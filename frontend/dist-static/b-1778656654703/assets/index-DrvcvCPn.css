@@ -953,6 +953,9 @@ body{
   max-width: -moz-max-content;
   max-width: max-content;
 }
+.max-w-md{
+  max-width: 28rem;
+}
 .flex-1{
   flex: 1 1 0%;
 }
@@ -1286,6 +1289,9 @@ body{
 }
 .bg-card{
   background-color: hsl(var(--card));
+}
+.bg-card\/80{
+  background-color: hsl(var(--card) / 0.8);
 }
 .bg-card\/95{
   background-color: hsl(var(--card) / 0.95);
@@ -1701,6 +1707,11 @@ body{
 }
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.backdrop-blur{
+  --tw-backdrop-blur: blur(8px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 .backdrop-blur-sm{
   --tw-backdrop-blur: blur(4px);

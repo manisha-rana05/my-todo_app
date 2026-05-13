@@ -1,9 +1,14 @@
 # Todoist API Contract
 
+## Authentication
+- JWT based authentication
+- Endpoints: `/api/signup`, `/api/login`
+- Protected routes require `Authorization: Bearer <token>` header
+
 ## Backend Routes
 
-### GET `/api/todos`
-Returns a list of all todos.
+### GET `/api/todos` (Protected)
+Returns a list of all todos for the authenticated user.
 
 **Response (200 OK):**
 ```json
@@ -27,22 +32,20 @@ Returns a list of all todos.
 ]
 ```
 
-### POST `/api/todos`
-Creates a new todo.
+### POST `/api/todos` (Protected)
+Creates a new todo for the user.
 
-### POST `/api/todos/{id}/comments`
-Adds a comment to a todo.
+### POST `/api/todos/{id}/comments` (Protected)
+Adds a comment to a todo owned by the user.
 
-**Request:**
-```json
-{
-  "text": "string"
-}
-```
+### DELETE `/api/todos/{todo_id}/comments/{comment_id}` (Protected)
 
-### DELETE `/api/todos/{todo_id}/comments/{comment_id}`
-Deletes a comment.
+### PUT `/api/todos/reorder` (Protected)
+
+### DELETE `/api/todos/{id}` (Protected)
 
 ## Database Schema (MongoDB)
+- Collection: `users`
+    - Fields: `_id`, `email`, `password` (hashed)
 - Collection: `todos`
-- Fields: `_id`, `title`, `completed`, `category`, `priority`, `due_date`, `order`, `comments`
+    - Fields: `_id`, `user_id`, `title`, `completed`, `category`, `priority`, `due_date`, `order`, `comments`

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Plus, Trash2, GripVertical, Loader2, Tag, Filter, AlertCircle, Calendar as CalendarIcon, Clock, ArrowUpDown, MessageSquare, Send, X } from "lucide-react";
+import { Plus, Trash2, GripVertical, Loader2, Tag, Filter, AlertCircle, Calendar as CalendarIcon, Clock, ArrowUpDown, MessageSquare, Send, X, LogOut, User as UserIcon } from "lucide-react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { format, isPast, isToday, isTomorrow } from "date-fns";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/components/auth-context";
 
 export interface Comment {
   id: string;
@@ -51,6 +52,7 @@ const PRIORITY_VALUE: Record<string, number> = {
 };
 
 export default function Index() {
+  const { token, logout, user } = useAuth();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState("");
   const [newCategory, setNewCategory] = useState("General");
@@ -65,12 +67,14 @@ export default function Index() {
   const { toast } = useToast();
 
   useEffect(() => {
-    fetchTodos();
-  }, []);
+    if (token) fetchTodos();
+  }, [token]);
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/todos`);
+      const response = await fetch(`${API_URL}/api/todos`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         const data = await response.json();
         setTodos(data);
@@ -88,7 +92,10 @@ export default function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ 
           title: newTodo.trim(),
           category: newCategory,
@@ -115,7 +122,10 @@ export default function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ completed: !currentStatus }),
       });
       if (!response.ok) fetchTodos();
@@ -128,7 +138,10 @@ export default function Index() {
   const deleteTodo = async (id: string) => {
     setTodos(prev => prev.map(t => t.id === id ? { ...t, isDeleting: true } : t));
     try {
-      const response = await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
+      const response = await fetch(`${API_URL}/api/todos/${id}`, { 
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         setTodos(prev => prev.filter((todo) => todo.id !== id));
       } else {
@@ -147,7 +160,10 @@ export default function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos/${activeTodoId}/comments`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ text: commentText.trim() }),
       });
       if (response.ok) {
@@ -164,7 +180,10 @@ export default function Index() {
 
   const deleteComment = async (todoId: string, commentId: string) => {
     try {
-      const response = await fetch(`${API_URL}/api/todos/${todoId}/comments/${commentId}`, { method: "DELETE" });
+      const response = await fetch(`${API_URL}/api/todos/${todoId}/comments/${commentId}`, { 
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         setTodos(todos.map(t => t.id === todoId ? { ...t, comments: t.comments.filter(c => c.id !== commentId) } : t));
       }
@@ -183,7 +202,10 @@ export default function Index() {
     try {
       await fetch(`${API_URL}/api/todos/reorder`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify(updatedItems.map((item, index) => ({ id: item.id, order: index }))),
       });
     } catch (error) {
@@ -224,7 +246,16 @@ export default function Index() {
       style={{ backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' }}
     >
       <div className="absolute inset-0 bg-background/40 pointer-events-none" />
-      <div className="absolute top-4 right-4 flex gap-2 z-10"><ModeToggle /></div>
+      <div className="absolute top-4 right-4 flex gap-2 z-10">
+        <div className="flex items-center gap-2 mr-2 bg-card/80 backdrop-blur px-3 py-1 rounded-full border border-border/50 shadow-sm">
+          <UserIcon className="h-3 w-3 text-muted-foreground" />
+          <span className="text-xs font-medium text-muted-foreground">{user?.email}</span>
+          <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-destructive" onClick={logout}>
+            <LogOut className="h-3 w-3" />
+          </Button>
+        </div>
+        <ModeToggle />
+      </div>
       
       <Card className="w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm">
         <CardHeader className="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7">

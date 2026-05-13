@@ -1,31 +1,84 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, EmailStr
 from typing import List, Optional
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from bson import ObjectId
+import jwt
+import bcrypt
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Configuration
+MONGO_URL = os.environ.get("MONGO_URL")
+DB_NAME = os.environ.get("DB_NAME")
+SECRET_KEY = os.environ.get("SECRET_KEY", "your-secret-key-for-jwt-signing")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7 # 1 week
+
 # MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+client = AsyncIOMotorClient(MONGO_URL)
+db = client[DB_NAME]
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/login")
 
+# Helpers
 def format_doc(doc: dict) -> dict:
     if "_id" in doc:
         doc["id"] = str(doc.pop("_id"))
+    if "user_id" in doc:
+        doc["user_id"] = str(doc["user_id"])
     return doc
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+    except jwt.PyJWTError:
+        raise credentials_exception
+    
+    user = await db.users.find_one({"_id": ObjectId(user_id)})
+    if user is None:
+        raise credentials_exception
+    return format_doc(user)
+
+# Models
+class UserSignup(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(BaseModel):
+    id: str
+    email: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+    user: UserResponse
 
 class Comment(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -61,9 +114,38 @@ class TodoReorder(BaseModel):
     id: str
     order: int
 
+# Auth Endpoints
+@api_router.post("/signup", response_model=UserResponse)
+async def signup(user_data: UserSignup):
+    existing_user = await db.users.find_one({"email": user_data.email})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    hashed_password = bcrypt.hashpw(user_data.password.encode('utf-8'), bcrypt.gensalt())
+    new_user = {
+        "email": user_data.email,
+        "password": hashed_password.decode('utf-8')
+    }
+    result = await db.users.insert_one(new_user)
+    return {"id": str(result.inserted_id), "email": user_data.email}
+
+@api_router.post("/login", response_model=Token)
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = await db.users.find_one({"email": form_data.username})
+    if not user or not bcrypt.checkpw(form_data.password.encode('utf-8'), user["password"].encode('utf-8')):
+        raise HTTPException(status_code=400, detail="Incorrect email or password")
+    
+    access_token = create_access_token(data={"sub": str(user["_id"])})
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": {"id": str(user["_id"]), "email": user["email"]}
+    }
+
+# Todo Endpoints
 @api_router.get("/todos", response_model=List[TodoResponse])
-async def get_todos():
-    todos = await db.todos.find({}).sort("order", 1).to_list(1000)
+async def get_todos(current_user: dict = Depends(get_current_user)):
+    todos = await db.todos.find({"user_id": ObjectId(current_user["id"])}).sort("order", 1).to_list(1000)
     for t in todos:
         if "order" not in t: t["order"] = 0
         if "category" not in t: t["category"] = "General"
@@ -72,9 +154,10 @@ async def get_todos():
     return [format_doc(todo) for todo in todos]
 
 @api_router.post("/todos", response_model=TodoResponse)
-async def create_todo(todo: TodoCreate):
-    count = await db.todos.count_documents({})
+async def create_todo(todo: TodoCreate, current_user: dict = Depends(get_current_user)):
+    count = await db.todos.count_documents({"user_id": ObjectId(current_user["id"])})
     new_todo = {
+        "user_id": ObjectId(current_user["id"]),
         "title": todo.title,
         "completed": False,
         "order": count,
@@ -88,7 +171,7 @@ async def create_todo(todo: TodoCreate):
     return format_doc(new_todo)
 
 @api_router.post("/todos/{todo_id}/comments", response_model=Comment)
-async def add_comment(todo_id: str, comment: CommentCreate):
+async def add_comment(todo_id: str, comment: CommentCreate, current_user: dict = Depends(get_current_user)):
     try:
         obj_id = ObjectId(todo_id)
     except:
@@ -96,7 +179,7 @@ async def add_comment(todo_id: str, comment: CommentCreate):
     
     new_comment = Comment(text=comment.text).dict()
     result = await db.todos.update_one(
-        {"_id": obj_id},
+        {"_id": obj_id, "user_id": ObjectId(current_user["id"])},
         {"$push": {"comments": new_comment}}
     )
     if result.matched_count == 0:
@@ -104,30 +187,33 @@ async def add_comment(todo_id: str, comment: CommentCreate):
     return new_comment
 
 @api_router.delete("/todos/{todo_id}/comments/{comment_id}")
-async def delete_comment(todo_id: str, comment_id: str):
+async def delete_comment(todo_id: str, comment_id: str, current_user: dict = Depends(get_current_user)):
     try:
         obj_id = ObjectId(todo_id)
     except:
         raise HTTPException(status_code=400, detail="Invalid ID")
     
     result = await db.todos.update_one(
-        {"_id": obj_id},
+        {"_id": obj_id, "user_id": ObjectId(current_user["id"])},
         {"$pull": {"comments": {"id": comment_id}}}
     )
     return {"success": True}
 
 @api_router.put("/todos/reorder")
-async def reorder_todos(reorders: List[TodoReorder]):
+async def reorder_todos(reorders: List[TodoReorder], current_user: dict = Depends(get_current_user)):
     for r in reorders:
         try:
             obj_id = ObjectId(r.id)
-            await db.todos.update_one({"_id": obj_id}, {"$set": {"order": r.order}})
+            await db.todos.update_one(
+                {"_id": obj_id, "user_id": ObjectId(current_user["id"])},
+                {"$set": {"order": r.order}}
+            )
         except:
             pass
     return {"success": True}
 
 @api_router.patch("/todos/{todo_id}", response_model=TodoResponse)
-async def update_todo(todo_id: str, todo_update: TodoUpdate):
+async def update_todo(todo_id: str, todo_update: TodoUpdate, current_user: dict = Depends(get_current_user)):
     try:
         obj_id = ObjectId(todo_id)
     except:
@@ -144,7 +230,7 @@ async def update_todo(todo_id: str, todo_update: TodoUpdate):
         update_data["due_date"] = todo_update.due_date
 
     result = await db.todos.find_one_and_update(
-        {"_id": obj_id},
+        {"_id": obj_id, "user_id": ObjectId(current_user["id"])},
         {"$set": update_data},
         return_document=True
     )
@@ -153,12 +239,12 @@ async def update_todo(todo_id: str, todo_update: TodoUpdate):
     return format_doc(result)
 
 @api_router.delete("/todos/{todo_id}")
-async def delete_todo(todo_id: str):
+async def delete_todo(todo_id: str, current_user: dict = Depends(get_current_user)):
     try:
         obj_id = ObjectId(todo_id)
     except:
         raise HTTPException(status_code=400, detail="Invalid ID")
-    result = await db.todos.delete_one({"_id": obj_id})
+    result = await db.todos.delete_one({"_id": obj_id, "user_id": ObjectId(current_user["id"])})
     return {"success": True}
 
 @api_router.get("/")

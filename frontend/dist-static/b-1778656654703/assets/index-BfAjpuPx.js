@@ -13162,7 +13162,7 @@ function handleAndDispatchCustomEvent$1(name, handler, detail, { discrete }) {
     target.dispatchEvent(event);
   }
 }
-var Root$6 = DismissableLayer;
+var Root$7 = DismissableLayer;
 var Branch = DismissableLayerBranch;
 var useLayoutEffect2 = (globalThis == null ? void 0 : globalThis.document) ? reactExports.useLayoutEffect : () => {
 };
@@ -13378,7 +13378,7 @@ var VISUALLY_HIDDEN_STYLES = Object.freeze({
   whiteSpace: "nowrap",
   wordWrap: "normal"
 });
-var NAME$1 = "VisuallyHidden";
+var NAME$2 = "VisuallyHidden";
 var VisuallyHidden = reactExports.forwardRef(
   (props, forwardedRef) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -13391,8 +13391,8 @@ var VisuallyHidden = reactExports.forwardRef(
     );
   }
 );
-VisuallyHidden.displayName = NAME$1;
-var Root$5 = VisuallyHidden;
+VisuallyHidden.displayName = NAME$2;
+var Root$6 = VisuallyHidden;
 var PROVIDER_NAME$1 = "ToastProvider";
 var [Collection$3, useCollection$3, createCollectionScope$3] = createCollection("Toast");
 var [createToastContext, createToastScope] = createContextScope("Toast", [createCollectionScope$3]);
@@ -13756,7 +13756,7 @@ var ToastImpl = reactExports.forwardRef(
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ToastInteractiveProvider, { scope: __scopeToast, onClose: handleClose, children: reactDomExports.createPortal(
         /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$3.ItemSlot, { scope: __scopeToast, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$6,
+          Root$7,
           {
             asChild: true,
             onEscapeKeyDown: composeEventHandlers(onEscapeKeyDown, () => {
@@ -14278,6 +14278,17 @@ const LoaderCircle = createLucideIcon("LoaderCircle", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const LogOut = createLucideIcon("LogOut", [
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }],
+  ["polyline", { points: "16 17 21 12 16 7", key: "1gabdz" }],
+  ["line", { x1: "21", x2: "9", y1: "12", y2: "12", key: "1uyos4" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const MessageSquare = createLucideIcon("MessageSquare", [
   ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
 ]);
@@ -14361,6 +14372,16 @@ const Trash2 = createLucideIcon("Trash2", [
   ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
   ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
   ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const User = createLucideIcon("User", [
+  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
+  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
 ]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -19147,7 +19168,7 @@ const arrow = (options, deps) => ({
   ...arrow$1(options),
   options: [options, deps]
 });
-var NAME = "Arrow";
+var NAME$1 = "Arrow";
 var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   const { children, width = 10, height = 5, ...arrowProps } = props;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -19163,8 +19184,8 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-Arrow$1.displayName = NAME;
-var Root$4 = Arrow$1;
+Arrow$1.displayName = NAME$1;
+var Root$5 = Arrow$1;
 function useSize(element) {
   const [size2, setSize] = reactExports.useState(void 0);
   useLayoutEffect2(() => {
@@ -19406,7 +19427,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$4,
+          Root$5,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -19699,7 +19720,7 @@ var TooltipContentImpl = reactExports.forwardRef(
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Slottable, { children }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$5, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$6, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
             ]
           }
         )
@@ -21705,8 +21726,8 @@ var QueryClientProvider = ({
  *
  * @license MIT
  */
-function _extends$2() {
-  _extends$2 = Object.assign ? Object.assign.bind() : function(target) {
+function _extends$3() {
+  _extends$3 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -21717,7 +21738,7 @@ function _extends$2() {
     }
     return target;
   };
-  return _extends$2.apply(this, arguments);
+  return _extends$3.apply(this, arguments);
 }
 var Action;
 (function(Action2) {
@@ -21781,7 +21802,7 @@ function createLocation(current, to, state, key) {
   if (state === void 0) {
     state = null;
   }
-  let location = _extends$2({
+  let location = _extends$3({
     pathname: typeof current === "string" ? current : current.pathname,
     search: "",
     hash: ""
@@ -21838,7 +21859,7 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
   let index2 = getIndex();
   if (index2 == null) {
     index2 = 0;
-    globalHistory.replaceState(_extends$2({}, globalHistory.state, {
+    globalHistory.replaceState(_extends$3({}, globalHistory.state, {
       idx: index2
     }), "");
   }
@@ -22204,8 +22225,89 @@ function stripBasename(pathname, basename) {
   }
   return pathname.slice(startIndex) || "/";
 }
+function resolvePath(to, fromPathname) {
+  if (fromPathname === void 0) {
+    fromPathname = "/";
+  }
+  let {
+    pathname: toPathname,
+    search = "",
+    hash = ""
+  } = typeof to === "string" ? parsePath(to) : to;
+  let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
+  return {
+    pathname,
+    search: normalizeSearch(search),
+    hash: normalizeHash(hash)
+  };
+}
+function resolvePathname(relativePath, fromPathname) {
+  let segments = fromPathname.replace(/\/+$/, "").split("/");
+  let relativeSegments = relativePath.split("/");
+  relativeSegments.forEach((segment) => {
+    if (segment === "..") {
+      if (segments.length > 1) segments.pop();
+    } else if (segment !== ".") {
+      segments.push(segment);
+    }
+  });
+  return segments.length > 1 ? segments.join("/") : "/";
+}
+function getInvalidPathError(char, field, dest, path) {
+  return "Cannot include a '" + char + "' character in a manually specified " + ("`to." + field + "` field [" + JSON.stringify(path) + "].  Please separate it out to the ") + ("`to." + dest + "` field. Alternatively you may provide the full path as ") + 'a string in <Link to="..."> and the router will parse it for you.';
+}
+function getPathContributingMatches(matches) {
+  return matches.filter((match2, index2) => index2 === 0 || match2.route.path && match2.route.path.length > 0);
+}
+function getResolveToMatches(matches, v7_relativeSplatPath) {
+  let pathMatches = getPathContributingMatches(matches);
+  if (v7_relativeSplatPath) {
+    return pathMatches.map((match2, idx) => idx === pathMatches.length - 1 ? match2.pathname : match2.pathnameBase);
+  }
+  return pathMatches.map((match2) => match2.pathnameBase);
+}
+function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
+  if (isPathRelative === void 0) {
+    isPathRelative = false;
+  }
+  let to;
+  if (typeof toArg === "string") {
+    to = parsePath(toArg);
+  } else {
+    to = _extends$3({}, toArg);
+    invariant$2(!to.pathname || !to.pathname.includes("?"), getInvalidPathError("?", "pathname", "search", to));
+    invariant$2(!to.pathname || !to.pathname.includes("#"), getInvalidPathError("#", "pathname", "hash", to));
+    invariant$2(!to.search || !to.search.includes("#"), getInvalidPathError("#", "search", "hash", to));
+  }
+  let isEmptyPath = toArg === "" || to.pathname === "";
+  let toPathname = isEmptyPath ? "/" : to.pathname;
+  let from;
+  if (toPathname == null) {
+    from = locationPathname;
+  } else {
+    let routePathnameIndex = routePathnames.length - 1;
+    if (!isPathRelative && toPathname.startsWith("..")) {
+      let toSegments = toPathname.split("/");
+      while (toSegments[0] === "..") {
+        toSegments.shift();
+        routePathnameIndex -= 1;
+      }
+      to.pathname = toSegments.join("/");
+    }
+    from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
+  }
+  let path = resolvePath(to, from);
+  let hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
+  let hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
+  if (!path.pathname.endsWith("/") && (hasExplicitTrailingSlash || hasCurrentTrailingSlash)) {
+    path.pathname += "/";
+  }
+  return path;
+}
 const joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
 const normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
+const normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
+const normalizeHash = (hash) => !hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
 function isRouteErrorResponse(error) {
   return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
 }
@@ -22223,8 +22325,8 @@ new Set(validRequestMethodsArr);
  *
  * @license MIT
  */
-function _extends$1() {
-  _extends$1 = Object.assign ? Object.assign.bind() : function(target) {
+function _extends$2() {
+  _extends$2 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -22235,7 +22337,7 @@ function _extends$1() {
     }
     return target;
   };
-  return _extends$1.apply(this, arguments);
+  return _extends$2.apply(this, arguments);
 }
 const DataRouterContext = /* @__PURE__ */ reactExports.createContext(null);
 const DataRouterStateContext = /* @__PURE__ */ reactExports.createContext(null);
@@ -22247,12 +22349,102 @@ const RouteContext = /* @__PURE__ */ reactExports.createContext({
   isDataRoute: false
 });
 const RouteErrorContext = /* @__PURE__ */ reactExports.createContext(null);
+function useHref(to, _temp) {
+  let {
+    relative
+  } = _temp === void 0 ? {} : _temp;
+  !useInRouterContext() ? invariant$2(false) : void 0;
+  let {
+    basename,
+    navigator: navigator2
+  } = reactExports.useContext(NavigationContext);
+  let {
+    hash,
+    pathname,
+    search
+  } = useResolvedPath(to, {
+    relative
+  });
+  let joinedPathname = pathname;
+  if (basename !== "/") {
+    joinedPathname = pathname === "/" ? basename : joinPaths([basename, pathname]);
+  }
+  return navigator2.createHref({
+    pathname: joinedPathname,
+    search,
+    hash
+  });
+}
 function useInRouterContext() {
   return reactExports.useContext(LocationContext) != null;
 }
 function useLocation() {
   !useInRouterContext() ? invariant$2(false) : void 0;
   return reactExports.useContext(LocationContext).location;
+}
+function useIsomorphicLayoutEffect$3(cb) {
+  let isStatic = reactExports.useContext(NavigationContext).static;
+  if (!isStatic) {
+    reactExports.useLayoutEffect(cb);
+  }
+}
+function useNavigate() {
+  let {
+    isDataRoute
+  } = reactExports.useContext(RouteContext);
+  return isDataRoute ? useNavigateStable() : useNavigateUnstable();
+}
+function useNavigateUnstable() {
+  !useInRouterContext() ? invariant$2(false) : void 0;
+  let dataRouterContext = reactExports.useContext(DataRouterContext);
+  let {
+    basename,
+    future,
+    navigator: navigator2
+  } = reactExports.useContext(NavigationContext);
+  let {
+    matches
+  } = reactExports.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = useLocation();
+  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future.v7_relativeSplatPath));
+  let activeRef = reactExports.useRef(false);
+  useIsomorphicLayoutEffect$3(() => {
+    activeRef.current = true;
+  });
+  let navigate = reactExports.useCallback(function(to, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    if (!activeRef.current) return;
+    if (typeof to === "number") {
+      navigator2.go(to);
+      return;
+    }
+    let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, options.relative === "path");
+    if (dataRouterContext == null && basename !== "/") {
+      path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
+    }
+    (!!options.replace ? navigator2.replace : navigator2.push)(path, options.state, options);
+  }, [basename, navigator2, routePathnamesJson, locationPathname, dataRouterContext]);
+  return navigate;
+}
+function useResolvedPath(to, _temp2) {
+  let {
+    relative
+  } = _temp2 === void 0 ? {} : _temp2;
+  let {
+    future
+  } = reactExports.useContext(NavigationContext);
+  let {
+    matches
+  } = reactExports.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = useLocation();
+  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future.v7_relativeSplatPath));
+  return reactExports.useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [to, routePathnamesJson, locationPathname, relative]);
 }
 function useRoutes(routes, locationArg) {
   return useRoutesImpl(routes, locationArg);
@@ -22306,7 +22498,7 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   if (locationArg && renderedMatches) {
     return /* @__PURE__ */ reactExports.createElement(LocationContext.Provider, {
       value: {
-        location: _extends$1({
+        location: _extends$2({
           pathname: "/",
           search: "",
           hash: "",
@@ -22505,6 +22697,12 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
     }) : getChildren();
   }, null);
 }
+var DataRouterHook$1 = /* @__PURE__ */ function(DataRouterHook2) {
+  DataRouterHook2["UseBlocker"] = "useBlocker";
+  DataRouterHook2["UseRevalidator"] = "useRevalidator";
+  DataRouterHook2["UseNavigateStable"] = "useNavigate";
+  return DataRouterHook2;
+}(DataRouterHook$1 || {});
 var DataRouterStateHook$1 = /* @__PURE__ */ function(DataRouterStateHook2) {
   DataRouterStateHook2["UseBlocker"] = "useBlocker";
   DataRouterStateHook2["UseLoaderData"] = "useLoaderData";
@@ -22518,6 +22716,11 @@ var DataRouterStateHook$1 = /* @__PURE__ */ function(DataRouterStateHook2) {
   DataRouterStateHook2["UseRouteId"] = "useRouteId";
   return DataRouterStateHook2;
 }(DataRouterStateHook$1 || {});
+function useDataRouterContext(hookName) {
+  let ctx = reactExports.useContext(DataRouterContext);
+  !ctx ? invariant$2(false) : void 0;
+  return ctx;
+}
 function useDataRouterState(hookName) {
   let state = reactExports.useContext(DataRouterStateContext);
   !state ? invariant$2(false) : void 0;
@@ -22544,9 +22747,61 @@ function useRouteError() {
   }
   return (_state$errors = state.errors) == null ? void 0 : _state$errors[routeId];
 }
+function useNavigateStable() {
+  let {
+    router
+  } = useDataRouterContext(DataRouterHook$1.UseNavigateStable);
+  let id = useCurrentRouteId(DataRouterStateHook$1.UseNavigateStable);
+  let activeRef = reactExports.useRef(false);
+  useIsomorphicLayoutEffect$3(() => {
+    activeRef.current = true;
+  });
+  let navigate = reactExports.useCallback(function(to, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    if (!activeRef.current) return;
+    if (typeof to === "number") {
+      router.navigate(to);
+    } else {
+      router.navigate(to, _extends$2({
+        fromRouteId: id
+      }, options));
+    }
+  }, [router, id]);
+  return navigate;
+}
 function logV6DeprecationWarnings(renderFuture, routerFuture) {
   if ((renderFuture == null ? void 0 : renderFuture.v7_startTransition) === void 0) ;
   if ((renderFuture == null ? void 0 : renderFuture.v7_relativeSplatPath) === void 0 && !routerFuture) ;
+}
+function Navigate(_ref4) {
+  let {
+    to,
+    replace: replace2,
+    state,
+    relative
+  } = _ref4;
+  !useInRouterContext() ? invariant$2(false) : void 0;
+  let {
+    future,
+    static: isStatic
+  } = reactExports.useContext(NavigationContext);
+  let {
+    matches
+  } = reactExports.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = useLocation();
+  let navigate = useNavigate();
+  let path = resolveTo(to, getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
+  let jsonPath = JSON.stringify(path);
+  reactExports.useEffect(() => navigate(JSON.parse(jsonPath), {
+    replace: replace2,
+    state,
+    relative
+  }), [navigate, jsonPath, relative, replace2, state]);
+  return null;
 }
 function Route(_props) {
   invariant$2(false);
@@ -22567,7 +22822,7 @@ function Router(_ref5) {
     basename,
     navigator: navigator2,
     static: staticProp,
-    future: _extends$1({
+    future: _extends$2({
       v7_relativeSplatPath: false
     }, future)
   }), [basename, future, navigator2, staticProp]);
@@ -22665,6 +22920,41 @@ function createRoutesFromChildren(children, parentPath) {
  *
  * @license MIT
  */
+function _extends$1() {
+  _extends$1 = Object.assign ? Object.assign.bind() : function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends$1.apply(this, arguments);
+}
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+function isModifiedEvent(event) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
+function shouldProcessLinkClick(event, target) {
+  return event.button === 0 && // Ignore everything but left clicks
+  (!target || target === "_self") && // Let browser handle "target=_blank" etc.
+  !isModifiedEvent(event);
+}
+const _excluded = ["onClick", "relative", "reloadDocument", "replace", "state", "target", "to", "preventScrollReset", "viewTransition"];
 const REACT_ROUTER_VERSION = "6";
 try {
   window.__reactRouterVersion = REACT_ROUTER_VERSION;
@@ -22708,6 +22998,68 @@ function BrowserRouter(_ref4) {
     future
   });
 }
+const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
+const ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+const Link = /* @__PURE__ */ reactExports.forwardRef(function LinkWithRef(_ref7, ref) {
+  let {
+    onClick,
+    relative,
+    reloadDocument,
+    replace: replace2,
+    state,
+    target,
+    to,
+    preventScrollReset,
+    viewTransition
+  } = _ref7, rest = _objectWithoutPropertiesLoose(_ref7, _excluded);
+  let {
+    basename
+  } = reactExports.useContext(NavigationContext);
+  let absoluteHref;
+  let isExternal = false;
+  if (typeof to === "string" && ABSOLUTE_URL_REGEX.test(to)) {
+    absoluteHref = to;
+    if (isBrowser) {
+      try {
+        let currentUrl = new URL(window.location.href);
+        let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
+        let path = stripBasename(targetUrl.pathname, basename);
+        if (targetUrl.origin === currentUrl.origin && path != null) {
+          to = path + targetUrl.search + targetUrl.hash;
+        } else {
+          isExternal = true;
+        }
+      } catch (e) {
+      }
+    }
+  }
+  let href = useHref(to, {
+    relative
+  });
+  let internalOnClick = useLinkClickHandler(to, {
+    replace: replace2,
+    state,
+    target,
+    preventScrollReset,
+    relative,
+    viewTransition
+  });
+  function handleClick(event) {
+    if (onClick) onClick(event);
+    if (!event.defaultPrevented) {
+      internalOnClick(event);
+    }
+  }
+  return (
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    /* @__PURE__ */ reactExports.createElement("a", _extends$1({}, rest, {
+      href: absoluteHref || href,
+      onClick: isExternal || reloadDocument ? onClick : handleClick,
+      ref,
+      target
+    }))
+  );
+});
 var DataRouterHook;
 (function(DataRouterHook2) {
   DataRouterHook2["UseScrollRestoration"] = "useScrollRestoration";
@@ -22722,6 +23074,34 @@ var DataRouterStateHook;
   DataRouterStateHook2["UseFetchers"] = "useFetchers";
   DataRouterStateHook2["UseScrollRestoration"] = "useScrollRestoration";
 })(DataRouterStateHook || (DataRouterStateHook = {}));
+function useLinkClickHandler(to, _temp) {
+  let {
+    target,
+    replace: replaceProp,
+    state,
+    preventScrollReset,
+    relative,
+    viewTransition
+  } = _temp === void 0 ? {} : _temp;
+  let navigate = useNavigate();
+  let location = useLocation();
+  let path = useResolvedPath(to, {
+    relative
+  });
+  return reactExports.useCallback((event) => {
+    if (shouldProcessLinkClick(event, target)) {
+      event.preventDefault();
+      let replace2 = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path);
+      navigate(to, {
+        replace: replace2,
+        state,
+        preventScrollReset,
+        relative,
+        viewTransition
+      });
+    }
+  }, [location, navigate, path, replaceProp, state, target, to, preventScrollReset, relative, viewTransition]);
+}
 function formatProdErrorMessage(code) {
   return `Minified Redux error #${code}; visit https://redux.js.org/Errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
 }
@@ -31606,7 +31986,7 @@ function focusFirst$1(candidates, preventScroll = false) {
 function wrapArray$2(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
-var Root$3 = RovingFocusGroup;
+var Root$4 = RovingFocusGroup;
 var Item$1 = RovingFocusGroupItem;
 var getDefaultParent = function(originalTarget) {
   if (typeof document === "undefined") {
@@ -32633,7 +33013,7 @@ var MenuContentImpl = reactExports.forwardRef(
                 onInteractOutside,
                 onDismiss,
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Root$3,
+                  Root$4,
                   {
                     asChild: true,
                     ...rovingFocusGroupScope,
@@ -33161,7 +33541,7 @@ var Anchor2 = MenuAnchor;
 var Portal$3 = MenuPortal;
 var Content2$3 = MenuContent;
 var Group = MenuGroup;
-var Label$1 = MenuLabel;
+var Label$3 = MenuLabel;
 var Item2$1 = MenuItem;
 var CheckboxItem = MenuCheckboxItem;
 var RadioGroup = MenuRadioGroup;
@@ -33312,7 +33692,7 @@ var DropdownMenuLabel$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, ...labelProps } = props;
     const menuScope = useMenuScope(__scopeDropdownMenu);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { ...menuScope, ...labelProps, ref: forwardedRef });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Label$3, { ...menuScope, ...labelProps, ref: forwardedRef });
   }
 );
 DropdownMenuLabel$1.displayName = LABEL_NAME$1;
@@ -34780,7 +35160,7 @@ var Icon = SelectIcon;
 var Portal$2 = SelectPortal;
 var Content2$1 = SelectContent$1;
 var Viewport$1 = SelectViewport;
-var Label = SelectLabel$1;
+var Label$2 = SelectLabel$1;
 var Item = SelectItem$1;
 var ItemText = SelectItemText;
 var ItemIndicator = SelectItemIndicator;
@@ -34893,8 +35273,8 @@ const SelectContent = reactExports.forwardRef(({ className, children, position: 
   }
 ) }));
 SelectContent.displayName = Content2$1.displayName;
-const SelectLabel = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/components/ui/select.tsx:97:2", "data-greta-name": "SelectPrimitive.Label", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "97", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Label", "data-component-content": "%7B%7D", ref, className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className), ...props }));
-SelectLabel.displayName = Label.displayName;
+const SelectLabel = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Label$2, { "data-greta-id": "src/components/ui/select.tsx:97:2", "data-greta-name": "SelectPrimitive.Label", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "97", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Label", "data-component-content": "%7B%7D", ref, className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className), ...props }));
+SelectLabel.displayName = Label$2.displayName;
 const SelectItem = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
   Item,
   {
@@ -37628,7 +38008,7 @@ function PreviousMonthButton(props) {
   const { components: components2 } = useDayPicker();
   return React$3.createElement(components2.Button, { ...props });
 }
-function Root$2(props) {
+function Root$3(props) {
   const { rootRef, ...rest } = props;
   return React$3.createElement("div", { ...rest, ref: rootRef });
 }
@@ -37682,7 +38062,7 @@ const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   NextMonthButton,
   Option,
   PreviousMonthButton,
-  Root: Root$2,
+  Root: Root$3,
   Select,
   Week,
   WeekNumber,
@@ -39661,7 +40041,7 @@ var DescriptionWarning = ({ contentRef, descriptionId }) => {
   }, [MESSAGE, contentRef, descriptionId]);
   return null;
 };
-var Root$1 = Dialog$1;
+var Root$2 = Dialog$1;
 var Trigger = DialogTrigger$1;
 var Portal = DialogPortal$1;
 var Overlay = DialogOverlay$1;
@@ -39669,7 +40049,7 @@ var Content = DialogContent$1;
 var Title = DialogTitle$1;
 var Description = DialogDescription$1;
 var Close = DialogClose;
-const Dialog = Root$1;
+const Dialog = Root$2;
 const DialogTrigger = Trigger;
 const DialogPortal = Portal;
 const DialogOverlay = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -40446,15 +40826,15 @@ function useResizeObserver(element, onResize) {
     }
   }, [element, handleResize]);
 }
-var Root = ScrollArea$1;
+var Root$1 = ScrollArea$1;
 var Viewport = ScrollAreaViewport;
 var Corner = ScrollAreaCorner;
-const ScrollArea = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Root, { "data-greta-id": "src/components/ui/scroll-area.tsx:10:2", "data-greta-name": "ScrollAreaPrimitive.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "10", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Root", "data-component-content": "%7B%7D", ref, className: cn("relative overflow-hidden", className), ...props, children: [
+const ScrollArea = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Root$1, { "data-greta-id": "src/components/ui/scroll-area.tsx:10:2", "data-greta-name": "ScrollAreaPrimitive.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "10", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Root", "data-component-content": "%7B%7D", ref, className: cn("relative overflow-hidden", className), ...props, children: [
   /* @__PURE__ */ jsxRuntimeExports.jsx(Viewport, { "data-greta-id": "src/components/ui/scroll-area.tsx:11:4", "data-greta-name": "ScrollAreaPrimitive.Viewport", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "11", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Viewport", "data-component-content": "%7B%22className%22%3A%22h-full%20w-full%20rounded-%5Binherit%5D%22%7D", className: "h-full w-full rounded-[inherit]", children }),
   /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollBar, { "data-greta-id": "src/components/ui/scroll-area.tsx:12:4", "data-greta-name": "ScrollBar", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "12", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollBar", "data-component-content": "%7B%7D" }),
   /* @__PURE__ */ jsxRuntimeExports.jsx(Corner, { "data-greta-id": "src/components/ui/scroll-area.tsx:13:4", "data-greta-name": "ScrollAreaPrimitive.Corner", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "13", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Corner", "data-component-content": "%7B%7D" })
 ] }));
-ScrollArea.displayName = Root.displayName;
+ScrollArea.displayName = Root$1.displayName;
 const ScrollBar = reactExports.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   ScrollAreaScrollbar,
   {
@@ -41926,6 +42306,44 @@ function isToday(date) {
 function isTomorrow(date) {
   return isSameDay(date, addDays(constructNow(date), 1));
 }
+const AuthContext = reactExports.createContext(void 0);
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = reactExports.useState(null);
+  const [token, setToken] = reactExports.useState(null);
+  const [isLoading, setIsLoading] = reactExports.useState(true);
+  const navigate = useNavigate();
+  reactExports.useEffect(() => {
+    const savedToken = localStorage.getItem("todo_token");
+    const savedUser = localStorage.getItem("todo_user");
+    if (savedToken && savedUser) {
+      setToken(savedToken);
+      setUser(JSON.parse(savedUser));
+    }
+    setIsLoading(false);
+  }, []);
+  const login = (newToken, newUser) => {
+    setToken(newToken);
+    setUser(newUser);
+    localStorage.setItem("todo_token", newToken);
+    localStorage.setItem("todo_user", JSON.stringify(newUser));
+    navigate("/");
+  };
+  const logout = () => {
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("todo_token");
+    localStorage.removeItem("todo_user");
+    navigate("/login");
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(AuthContext.Provider, { "data-greta-id": "src/components/auth-context.tsx:53:4", "data-greta-name": "AuthContext.Provider", "data-greta-editable": "false", "data-component-path": "src/components/auth-context.tsx", "data-component-line": "53", "data-component-file": "auth-context.tsx", "data-component-name": "AuthContext.Provider", "data-component-content": "%7B%7D", value: { user, token, login, logout, isLoading }, children });
+};
+const useAuth = () => {
+  const context = reactExports.useContext(AuthContext);
+  if (context === void 0) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
 const CATEGORIES = ["General", "Work", "Personal", "Shopping", "Urgent"];
 const PRIORITIES = ["Low", "Medium", "High"];
 const PRIORITY_COLORS = {
@@ -41939,6 +42357,7 @@ const PRIORITY_VALUE = {
   Low: 1
 };
 function Index() {
+  const { token, logout, user } = useAuth();
   const [todos, setTodos] = reactExports.useState([]);
   const [newTodo, setNewTodo] = reactExports.useState("");
   const [newCategory, setNewCategory] = reactExports.useState("General");
@@ -41952,11 +42371,13 @@ function Index() {
   const [isAddingComment, setIsAddingComment] = reactExports.useState(false);
   const { toast: toast2 } = useToast();
   reactExports.useEffect(() => {
-    fetchTodos();
-  }, []);
+    if (token) fetchTodos();
+  }, [token]);
   const fetchTodos = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/todos`);
+      const response = await fetch(`${API_URL}/api/todos`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         const data = await response.json();
         setTodos(data);
@@ -41972,7 +42393,10 @@ function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({
           title: newTodo.trim(),
           category: newCategory,
@@ -41997,7 +42421,10 @@ function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ completed: !currentStatus })
       });
       if (!response.ok) fetchTodos();
@@ -42009,7 +42436,10 @@ function Index() {
   const deleteTodo = async (id) => {
     setTodos((prev) => prev.map((t) => t.id === id ? { ...t, isDeleting: true } : t));
     try {
-      const response = await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         setTodos((prev) => prev.filter((todo) => todo.id !== id));
       } else {
@@ -42027,7 +42457,10 @@ function Index() {
     try {
       const response = await fetch(`${API_URL}/api/todos/${activeTodoId}/comments`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ text: commentText.trim() })
       });
       if (response.ok) {
@@ -42043,7 +42476,10 @@ function Index() {
   };
   const deleteComment = async (todoId, commentId) => {
     try {
-      const response = await fetch(`${API_URL}/api/todos/${todoId}/comments/${commentId}`, { method: "DELETE" });
+      const response = await fetch(`${API_URL}/api/todos/${todoId}/comments/${commentId}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       if (response.ok) {
         setTodos(todos.map((t) => t.id === todoId ? { ...t, comments: t.comments.filter((c) => c.id !== commentId) } : t));
       }
@@ -42061,7 +42497,10 @@ function Index() {
     try {
       await fetch(`${API_URL}/api/todos/reorder`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify(updatedItems.map((item, index2) => ({ id: item.id, order: index2 })))
       });
     } catch (error) {
@@ -42095,84 +42534,91 @@ function Index() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
-      "data-greta-id": "src/pages/Index.tsx:222:4",
+      "data-greta-id": "src/pages/Index.tsx:244:4",
       "data-greta-name": "div",
       "data-greta-editable": "false",
       "data-component-path": "src/pages/Index.tsx",
-      "data-component-line": "222",
+      "data-component-line": "244",
       "data-component-file": "Index.tsx",
       "data-component-name": "div",
       "data-component-content": "%7B%22className%22%3A%22min-h-screen%20p-4%20md%3Ap-8%20flex%20flex-col%20items-center%20pt-20%20relative%20bg-cover%20bg-center%20bg-no-repeat%20bg-fixed%22%7D",
       className: "min-h-screen p-4 md:p-8 flex flex-col items-center pt-20 relative bg-cover bg-center bg-no-repeat bg-fixed",
       style: { backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:226:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "226", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:227:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "227", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:227:62", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "227", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:229:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "229", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:230:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "230", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20md%3Aflex-row%20md%3Aitems-center%20justify-between%20space-y-4%20md%3Aspace-y-0%20pb-7%22%7D", className: "flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:231:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "231", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:232:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "232", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-wrap%20items-center%20gap-3%22%7D", className: "flex flex-wrap items-center gap-3", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:233:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "233", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:234:14", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "234", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:235:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:236:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "236", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:236:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "236", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Category%22%7D", placeholder: "Category" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:237:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "237", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:238:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "238", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Cats" }),
-                    CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:239:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "239", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:248:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "248", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:249:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "249", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:250:8", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "250", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%20mr-2%20bg-card%2F80%20backdrop-blur%20px-3%20py-1%20rounded-full%20border%20border-border%2F50%20shadow-sm%22%7D", className: "flex items-center gap-2 mr-2 bg-card/80 backdrop-blur px-3 py-1 rounded-full border border-border/50 shadow-sm", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(User, { "data-greta-id": "src/pages/Index.tsx:251:10", "data-greta-name": "UserIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "251", "data-component-file": "Index.tsx", "data-component-name": "UserIcon", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:252:10", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "252", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-xs%20font-medium%20text-muted-foreground%22%7D", className: "text-xs font-medium text-muted-foreground", children: user == null ? void 0 : user.email }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:253:10", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "253", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-6%20w-6%20text-muted-foreground%20hover%3Atext-destructive%22%7D", variant: "ghost", size: "icon", className: "h-6 w-6 text-muted-foreground hover:text-destructive", onClick: logout, children: /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { "data-greta-id": "src/pages/Index.tsx:254:12", "data-greta-name": "LogOut", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "254", "data-component-file": "Index.tsx", "data-component-name": "LogOut", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:257:8", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "257", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:260:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "260", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:261:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20md%3Aflex-row%20md%3Aitems-center%20justify-between%20space-y-4%20md%3Aspace-y-0%20pb-7%22%7D", className: "flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:262:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "262", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:263:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "263", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-wrap%20items-center%20gap-3%22%7D", className: "flex flex-wrap items-center gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:264:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "264", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:265:14", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "265", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:266:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:267:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:267:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Category%22%7D", placeholder: "Category" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:268:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "268", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:269:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "269", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Cats" }),
+                    CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:270:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
                   ] })
                 ] })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:243:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "243", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { "data-greta-id": "src/pages/Index.tsx:244:14", "data-greta-name": "ArrowUpDown", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "244", "data-component-file": "Index.tsx", "data-component-name": "ArrowUpDown", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:245:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "245", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: sortBy, onValueChange: (v2) => setSortBy(v2), children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:246:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:246:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Sort%22%7D", placeholder: "Sort" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:247:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "247", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:248:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "248", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22custom%22%7D", value: "custom", children: "Custom (Drag)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:249:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "249", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22priority%22%7D", value: "priority", children: "Priority" })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:274:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "274", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { "data-greta-id": "src/pages/Index.tsx:275:14", "data-greta-name": "ArrowUpDown", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "275", "data-component-file": "Index.tsx", "data-component-name": "ArrowUpDown", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:276:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "276", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: sortBy, onValueChange: (v2) => setSortBy(v2), children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:277:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "277", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:277:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "277", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Sort%22%7D", placeholder: "Sort" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:278:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "278", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:279:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "279", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22custom%22%7D", value: "custom", children: "Custom (Drag)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:280:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "280", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22priority%22%7D", value: "priority", children: "Priority" })
                   ] })
                 ] })
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:255:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "255", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:256:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "256", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:257:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "257", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20gap-2%22%7D", className: "flex flex-col gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:258:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "258", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:259:16", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "259", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D", placeholder: "What needs to be done?", value: newTodo, onChange: (e) => setNewTodo(e.target.value), className: "flex-1 h-11", disabled: isAdding }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:260:16", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "260", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:261:30", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:261:77", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:286:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "286", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:287:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "287", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:288:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "288", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20gap-2%22%7D", className: "flex flex-col gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:289:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "289", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:290:16", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "290", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D", placeholder: "What needs to be done?", value: newTodo, onChange: (e) => setNewTodo(e.target.value), className: "flex-1 h-11", disabled: isAdding }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:291:16", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "291", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:292:30", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "292", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:292:77", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "292", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:264:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "264", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20flex-wrap%20sm%3Aflex-nowrap%22%7D", className: "flex gap-2 flex-wrap sm:flex-nowrap", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:265:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "265", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:266:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:266:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:266:98", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:266:125", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:295:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "295", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20flex-wrap%20sm%3Aflex-nowrap%22%7D", className: "flex gap-2 flex-wrap sm:flex-nowrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:296:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "296", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:297:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:297:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:297:98", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:297:125", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
                   ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:267:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:267:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:298:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "298", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:298:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "298", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:269:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "269", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newPriority, onValueChange: setNewPriority, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:270:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:270:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { "data-greta-id": "src/pages/Index.tsx:270:98", "data-greta-name": "AlertCircle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "AlertCircle", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:270:133", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:300:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "300", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newPriority, onValueChange: setNewPriority, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:301:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "301", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:301:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "301", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { "data-greta-id": "src/pages/Index.tsx:301:98", "data-greta-name": "AlertCircle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "301", "data-component-file": "Index.tsx", "data-component-name": "AlertCircle", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:301:133", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "301", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
                   ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:271:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: PRIORITIES.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:271:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: p, children: p }, p)) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:302:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "302", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: PRIORITIES.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:302:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "302", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: p, children: p }, p)) })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Popover, { "data-greta-id": "src/pages/Index.tsx:273:16", "data-greta-name": "Popover", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "273", "data-component-file": "Index.tsx", "data-component-name": "Popover", "data-component-content": "%7B%7D", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { "data-greta-id": "src/pages/Index.tsx:274:18", "data-greta-name": "PopoverTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "274", "data-component-file": "Index.tsx", "data-component-name": "PopoverTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:275:20", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "275", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("w-full h-10 justify-start text-left font-normal", !dueDate && "text-muted-foreground"), children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { "data-greta-id": "src/pages/Index.tsx:276:22", "data-greta-name": "CalendarIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "276", "data-component-file": "Index.tsx", "data-component-name": "CalendarIcon", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D", className: "mr-2 h-4 w-4" }),
-                    dueDate ? format(dueDate, "MMM d") : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:277:60", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "277", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", children: "Due Date" })
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Popover, { "data-greta-id": "src/pages/Index.tsx:304:16", "data-greta-name": "Popover", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "304", "data-component-file": "Index.tsx", "data-component-name": "Popover", "data-component-content": "%7B%7D", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { "data-greta-id": "src/pages/Index.tsx:305:18", "data-greta-name": "PopoverTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "305", "data-component-file": "Index.tsx", "data-component-name": "PopoverTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:306:20", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "306", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("w-full h-10 justify-start text-left font-normal", !dueDate && "text-muted-foreground"), children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { "data-greta-id": "src/pages/Index.tsx:307:22", "data-greta-name": "CalendarIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "307", "data-component-file": "Index.tsx", "data-component-name": "CalendarIcon", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D", className: "mr-2 h-4 w-4" }),
+                    dueDate ? format(dueDate, "MMM d") : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:308:60", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "308", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", children: "Due Date" })
                   ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { "data-greta-id": "src/pages/Index.tsx:280:18", "data-greta-name": "PopoverContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "280", "data-component-file": "Index.tsx", "data-component-name": "PopoverContent", "data-component-content": "%7B%22className%22%3A%22w-auto%20p-0%22%2C%22align%22%3A%22start%22%7D", className: "w-auto p-0", align: "start", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { "data-greta-id": "src/pages/Index.tsx:280:71", "data-greta-name": "Calendar", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "280", "data-component-file": "Index.tsx", "data-component-name": "Calendar", "data-component-content": "%7B%22mode%22%3A%22single%22%7D", mode: "single", selected: dueDate, onSelect: setDueDate, initialFocus: true }) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { "data-greta-id": "src/pages/Index.tsx:311:18", "data-greta-name": "PopoverContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "311", "data-component-file": "Index.tsx", "data-component-name": "PopoverContent", "data-component-content": "%7B%22className%22%3A%22w-auto%20p-0%22%2C%22align%22%3A%22start%22%7D", className: "w-auto p-0", align: "start", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { "data-greta-id": "src/pages/Index.tsx:311:71", "data-greta-name": "Calendar", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "311", "data-component-file": "Index.tsx", "data-component-name": "Calendar", "data-component-content": "%7B%22mode%22%3A%22single%22%7D", mode: "single", selected: dueDate, onSelect: setDueDate, initialFocus: true }) })
                 ] })
               ] })
             ] }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:286:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "286", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:287:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "287", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:289:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "289", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
-              processedTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:291:20", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "291", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, isDragDisabled: sortBy !== "custom", children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:317:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "317", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:318:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "318", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:320:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "320", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
+              processedTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:322:20", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "322", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, isDragDisabled: sortBy !== "custom", children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  "data-greta-id": "src/pages/Index.tsx:293:24",
+                  "data-greta-id": "src/pages/Index.tsx:324:24",
                   "data-greta-name": "div",
                   "data-greta-editable": "false",
                   "data-component-path": "src/pages/Index.tsx",
-                  "data-component-line": "293",
+                  "data-component-line": "324",
                   "data-component-file": "Index.tsx",
                   "data-component-name": "div",
                   "data-component-content": "%7B%7D",
@@ -42184,50 +42630,50 @@ function Index() {
                   ),
                   style: provided2.draggableProps.style,
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:302:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "302", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:303:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "303", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", ...provided2.dragHandleProps, className: cn("text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing", sortBy !== "custom" && "opacity-0 pointer-events-none"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:304:30", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "304", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Checkbox, { "data-greta-id": "src/pages/Index.tsx:306:28", "data-greta-name": "Checkbox", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "306", "data-component-file": "Index.tsx", "data-component-name": "Checkbox", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", checked: todo.completed, onCheckedChange: () => toggleTodo(todo.id, todo.completed), className: "h-5 w-5" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:307:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "307", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:308:30", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "308", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: cn("text-sm font-semibold truncate transition-all", todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"), children: todo.title }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:311:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "311", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-3%20mt-1%20flex-wrap%22%7D", className: "flex items-center gap-3 mt-1 flex-wrap", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:312:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%22%7D", className: "flex items-center gap-1.5", children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:312:75", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:312:124", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase font-bold text-muted-foreground", children: todo.category })
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:333:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "333", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:334:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", ...provided2.dragHandleProps, className: cn("text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing", sortBy !== "custom" && "opacity-0 pointer-events-none"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:335:30", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "335", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Checkbox, { "data-greta-id": "src/pages/Index.tsx:337:28", "data-greta-name": "Checkbox", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "337", "data-component-file": "Index.tsx", "data-component-name": "Checkbox", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", checked: todo.completed, onCheckedChange: () => toggleTodo(todo.id, todo.completed), className: "h-5 w-5" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:338:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "338", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:339:30", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "339", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: cn("text-sm font-semibold truncate transition-all", todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"), children: todo.title }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:342:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "342", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-3%20mt-1%20flex-wrap%22%7D", className: "flex items-center gap-3 mt-1 flex-wrap", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:343:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "343", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%22%7D", className: "flex items-center gap-1.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:343:75", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "343", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:343:124", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "343", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase font-bold text-muted-foreground", children: todo.category })
                           ] }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { "data-greta-id": "src/pages/Index.tsx:313:32", "data-greta-name": "Badge", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "313", "data-component-file": "Index.tsx", "data-component-name": "Badge", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("text-[8px] h-4 px-1 font-black border", PRIORITY_COLORS[todo.priority]), children: todo.priority }),
-                          todo.due_date && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:314:50", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn("flex items-center gap-1.5", isOverdue(todo.due_date) && !todo.completed ? "text-destructive" : "text-muted-foreground"), children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { "data-greta-id": "src/pages/Index.tsx:314:191", "data-greta-name": "Clock", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "Clock", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:314:220", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20font-bold%22%7D", className: "text-[10px] font-bold", children: getDueDateLabel(todo.due_date) })
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { "data-greta-id": "src/pages/Index.tsx:344:32", "data-greta-name": "Badge", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "344", "data-component-file": "Index.tsx", "data-component-name": "Badge", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("text-[8px] h-4 px-1 font-black border", PRIORITY_COLORS[todo.priority]), children: todo.priority }),
+                          todo.due_date && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:345:50", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "345", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn("flex items-center gap-1.5", isOverdue(todo.due_date) && !todo.completed ? "text-destructive" : "text-muted-foreground"), children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { "data-greta-id": "src/pages/Index.tsx:345:191", "data-greta-name": "Clock", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "345", "data-component-file": "Index.tsx", "data-component-name": "Clock", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:345:220", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "345", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20font-bold%22%7D", className: "text-[10px] font-bold", children: getDueDateLabel(todo.due_date) })
                           ] })
                         ] })
                       ] })
                     ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:318:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "318", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1%22%7D", className: "flex items-center gap-1", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Dialog, { "data-greta-id": "src/pages/Index.tsx:319:28", "data-greta-name": "Dialog", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "319", "data-component-file": "Index.tsx", "data-component-name": "Dialog", "data-component-content": "%7B%7D", onOpenChange: (open) => {
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:349:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "349", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1%22%7D", className: "flex items-center gap-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Dialog, { "data-greta-id": "src/pages/Index.tsx:350:28", "data-greta-name": "Dialog", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "350", "data-component-file": "Index.tsx", "data-component-name": "Dialog", "data-component-content": "%7B%7D", onOpenChange: (open) => {
                         if (open) setActiveTodoId(todo.id);
                         else setActiveTodoId(null);
                       }, children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTrigger, { "data-greta-id": "src/pages/Index.tsx:320:30", "data-greta-name": "DialogTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "320", "data-component-file": "Index.tsx", "data-component-name": "DialogTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:321:32", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "321", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-primary%20shrink-0%20h-9%20w-9%20relative%22%7D", variant: "ghost", size: "icon", className: "text-muted-foreground hover:text-primary shrink-0 h-9 w-9 relative", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { "data-greta-id": "src/pages/Index.tsx:322:34", "data-greta-name": "MessageSquare", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "322", "data-component-file": "Index.tsx", "data-component-name": "MessageSquare", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
-                          todo.comments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:323:63", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "323", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22absolute%20-top-1%20-right-1%20bg-primary%20text-primary-foreground%20text-%5B8px%5D%20font-bold%20rounded-full%20w-4%20h-4%20flex%20items-center%20justify-center%20border-2%20border-background%22%7D", className: "absolute -top-1 -right-1 bg-primary text-primary-foreground text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-background", children: todo.comments.length })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTrigger, { "data-greta-id": "src/pages/Index.tsx:351:30", "data-greta-name": "DialogTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "351", "data-component-file": "Index.tsx", "data-component-name": "DialogTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:352:32", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "352", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-primary%20shrink-0%20h-9%20w-9%20relative%22%7D", variant: "ghost", size: "icon", className: "text-muted-foreground hover:text-primary shrink-0 h-9 w-9 relative", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { "data-greta-id": "src/pages/Index.tsx:353:34", "data-greta-name": "MessageSquare", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "353", "data-component-file": "Index.tsx", "data-component-name": "MessageSquare", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                          todo.comments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:354:63", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "354", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22absolute%20-top-1%20-right-1%20bg-primary%20text-primary-foreground%20text-%5B8px%5D%20font-bold%20rounded-full%20w-4%20h-4%20flex%20items-center%20justify-center%20border-2%20border-background%22%7D", className: "absolute -top-1 -right-1 bg-primary text-primary-foreground text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-background", children: todo.comments.length })
                         ] }) }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-greta-id": "src/pages/Index.tsx:326:30", "data-greta-name": "DialogContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "326", "data-component-file": "Index.tsx", "data-component-name": "DialogContent", "data-component-content": "%7B%22className%22%3A%22sm%3Amax-w-%5B425px%5D%22%7D", className: "sm:max-w-[425px]", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { "data-greta-id": "src/pages/Index.tsx:327:32", "data-greta-name": "DialogHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "327", "data-component-file": "Index.tsx", "data-component-name": "DialogHeader", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { "data-greta-id": "src/pages/Index.tsx:327:46", "data-greta-name": "DialogTitle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "327", "data-component-file": "Index.tsx", "data-component-name": "DialogTitle", "data-component-content": "%7B%7D", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-greta-id": "src/pages/Index.tsx:357:30", "data-greta-name": "DialogContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "357", "data-component-file": "Index.tsx", "data-component-name": "DialogContent", "data-component-content": "%7B%22className%22%3A%22sm%3Amax-w-%5B425px%5D%22%7D", className: "sm:max-w-[425px]", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { "data-greta-id": "src/pages/Index.tsx:358:32", "data-greta-name": "DialogHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "358", "data-component-file": "Index.tsx", "data-component-name": "DialogHeader", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { "data-greta-id": "src/pages/Index.tsx:358:46", "data-greta-name": "DialogTitle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "358", "data-component-file": "Index.tsx", "data-component-name": "DialogTitle", "data-component-content": "%7B%7D", children: [
                             "Comments: ",
                             todo.title
                           ] }) }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollArea, { "data-greta-id": "src/pages/Index.tsx:328:32", "data-greta-name": "ScrollArea", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "328", "data-component-file": "Index.tsx", "data-component-name": "ScrollArea", "data-component-content": "%7B%22className%22%3A%22h-%5B300px%5D%20pr-4%20mt-4%22%7D", className: "h-[300px] pr-4 mt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:329:34", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "329", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-4%22%7D", className: "space-y-4", children: todo.comments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:330:66", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "330", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-center%20text-muted-foreground%20text-sm%20py-8%22%7D", className: "text-center text-muted-foreground text-sm py-8", children: "No comments yet" }) : todo.comments.map((comment) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:331:38", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "331", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22bg-muted%20p-3%20rounded-lg%20relative%20group%22%7D", className: "bg-muted p-3 rounded-lg relative group", children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:332:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "332", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-sm%20pr-6%22%7D", className: "text-sm pr-6", children: comment.text }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:333:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "333", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20text-muted-foreground%20mt-2%22%7D", className: "text-[10px] text-muted-foreground mt-2", children: format(new Date(comment.created_at), "MMM d, h:mm a") }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:334:40", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-6%20w-6%20absolute%20top-1%20right-1%20opacity-0%20group-hover%3Aopacity-100%20transition-opacity%20text-destructive%22%7D", variant: "ghost", size: "icon", onClick: () => deleteComment(todo.id, comment.id), className: "h-6 w-6 absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-destructive", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { "data-greta-id": "src/pages/Index.tsx:334:240", "data-greta-name": "X", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "X", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }) })
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollArea, { "data-greta-id": "src/pages/Index.tsx:359:32", "data-greta-name": "ScrollArea", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "359", "data-component-file": "Index.tsx", "data-component-name": "ScrollArea", "data-component-content": "%7B%22className%22%3A%22h-%5B300px%5D%20pr-4%20mt-4%22%7D", className: "h-[300px] pr-4 mt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:360:34", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "360", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-4%22%7D", className: "space-y-4", children: todo.comments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:361:66", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "361", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-center%20text-muted-foreground%20text-sm%20py-8%22%7D", className: "text-center text-muted-foreground text-sm py-8", children: "No comments yet" }) : todo.comments.map((comment) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:362:38", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "362", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22bg-muted%20p-3%20rounded-lg%20relative%20group%22%7D", className: "bg-muted p-3 rounded-lg relative group", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:363:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "363", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-sm%20pr-6%22%7D", className: "text-sm pr-6", children: comment.text }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:364:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "364", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20text-muted-foreground%20mt-2%22%7D", className: "text-[10px] text-muted-foreground mt-2", children: format(new Date(comment.created_at), "MMM d, h:mm a") }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:365:40", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "365", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-6%20w-6%20absolute%20top-1%20right-1%20opacity-0%20group-hover%3Aopacity-100%20transition-opacity%20text-destructive%22%7D", variant: "ghost", size: "icon", onClick: () => deleteComment(todo.id, comment.id), className: "h-6 w-6 absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-destructive", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { "data-greta-id": "src/pages/Index.tsx:365:240", "data-greta-name": "X", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "365", "data-component-file": "Index.tsx", "data-component-name": "X", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }) })
                           ] }, comment.id)) }) }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:339:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "339", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20mt-4%20pt-4%20border-t%22%7D", className: "flex gap-2 mt-4 pt-4 border-t", children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:340:34", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "340", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22Add%20a%20comment...%22%7D", placeholder: "Add a comment...", value: commentText, onChange: (e) => setCommentText(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleAddComment() }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:341:34", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22size%22%3A%22icon%22%7D", size: "icon", onClick: handleAddComment, disabled: !commentText.trim() || isAddingComment, children: isAddingComment ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:341:150", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { "data-greta-id": "src/pages/Index.tsx:341:197", "data-greta-name": "Send", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Send", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:370:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "370", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20mt-4%20pt-4%20border-t%22%7D", className: "flex gap-2 mt-4 pt-4 border-t", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:371:34", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "371", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22Add%20a%20comment...%22%7D", placeholder: "Add a comment...", value: commentText, onChange: (e) => setCommentText(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleAddComment() }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:372:34", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "372", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22size%22%3A%22icon%22%7D", size: "icon", onClick: handleAddComment, disabled: !commentText.trim() || isAddingComment, children: isAddingComment ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:372:150", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "372", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { "data-greta-id": "src/pages/Index.tsx:372:197", "data-greta-name": "Send", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "372", "data-component-file": "Index.tsx", "data-component-name": "Send", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
                           ] })
                         ] })
                       ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:345:28", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "345", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-destructive%20shrink-0%20h-9%20w-9%22%7D", variant: "ghost", size: "icon", onClick: () => deleteTodo(todo.id), disabled: todo.isDeleting, className: "text-muted-foreground hover:text-destructive shrink-0 h-9 w-9", children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:346:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "346", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:346:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "346", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:376:28", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "376", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-destructive%20shrink-0%20h-9%20w-9%22%7D", variant: "ghost", size: "icon", onClick: () => deleteTodo(todo.id), disabled: todo.isDeleting, className: "text-muted-foreground hover:text-destructive shrink-0 h-9 w-9", children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:377:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "377", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:377:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "377", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
                     ] })
                   ]
                 }
@@ -42251,13 +42697,170 @@ const NotFound = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx("a", { "data-greta-id": "src/pages/NotFound.tsx:16:8", "data-greta-name": "a", "data-greta-editable": "true", "data-component-path": "src/pages/NotFound.tsx", "data-component-line": "16", "data-component-file": "NotFound.tsx", "data-component-name": "a", "data-component-content": "%7B%22href%22%3A%22%2F%22%2C%22className%22%3A%22text-primary%20underline%20hover%3Atext-primary%2F90%22%7D", href: "/", className: "text-primary underline hover:text-primary/90", children: "Return to Home" })
   ] }) });
 };
+var NAME = "Label";
+var Label$1 = reactExports.forwardRef((props, forwardedRef) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.label,
+    {
+      ...props,
+      ref: forwardedRef,
+      onMouseDown: (event) => {
+        var _a2;
+        const target = event.target;
+        if (target.closest("button, input, select, textarea")) return;
+        (_a2 = props.onMouseDown) == null ? void 0 : _a2.call(props, event);
+        if (!event.defaultPrevented && event.detail > 1) event.preventDefault();
+      }
+    }
+  );
+});
+Label$1.displayName = NAME;
+var Root = Label$1;
+const labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
+const Label = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Root, { "data-greta-id": "src/components/ui/label.tsx:13:2", "data-greta-name": "LabelPrimitive.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/label.tsx", "data-component-line": "13", "data-component-file": "label.tsx", "data-component-name": "LabelPrimitive.Root", "data-component-content": "%7B%7D", ref, className: cn(labelVariants(), className), ...props }));
+Label.displayName = Root.displayName;
+function Login() {
+  const [email, setEmail] = reactExports.useState("");
+  const [password, setPassword] = reactExports.useState("");
+  const [isLoading, setIsLoading] = reactExports.useState(false);
+  const { login } = useAuth();
+  useNavigate();
+  const { toast: toast2 } = useToast();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("username", email);
+      formData.append("password", password);
+      const response = await fetch(`${API_URL}/api/login`, {
+        method: "POST",
+        body: formData
+      });
+      if (response.ok) {
+        const data = await response.json();
+        login(data.access_token, data.user);
+        toast2({ title: "Welcome back!" });
+      } else {
+        const error = await response.json();
+        toast2({ title: "Login failed", description: error.detail, variant: "destructive" });
+      }
+    } catch (error) {
+      toast2({ title: "Error", description: "Something went wrong", variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Login.tsx:49:4", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "49", "data-component-file": "Login.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22min-h-screen%20flex%20items-center%20justify-center%20bg-background%20p-4%20bg-cover%20bg-center%22%7D", className: "min-h-screen flex items-center justify-center bg-background p-4 bg-cover bg-center", style: { backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Login.tsx:50:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "50", "data-component-file": "Login.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Login.tsx:51:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "51", "data-component-file": "Login.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-md%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%20shadow-xl%22%7D", className: "w-full max-w-md relative z-10 bg-card/95 backdrop-blur-sm shadow-xl", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Login.tsx:52:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "52", "data-component-file": "Login.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22space-y-1%22%7D", className: "space-y-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Login.tsx:53:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "53", "data-component-file": "Login.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-2xl%20font-bold%22%7D", className: "text-2xl font-bold", children: "Login" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardDescription, { "data-greta-id": "src/pages/Login.tsx:54:10", "data-greta-name": "CardDescription", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "54", "data-component-file": "Login.tsx", "data-component-name": "CardDescription", "data-component-content": "%7B%7D", children: "Enter your email and password to access your tasks" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { "data-greta-id": "src/pages/Login.tsx:56:8", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "56", "data-component-file": "Login.tsx", "data-component-name": "form", "data-component-content": "%7B%7D", onSubmit: handleSubmit, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Login.tsx:57:10", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "57", "data-component-file": "Login.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%22className%22%3A%22space-y-4%22%7D", className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Login.tsx:58:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "58", "data-component-file": "Login.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/pages/Login.tsx:59:14", "data-greta-name": "Label", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "59", "data-component-file": "Login.tsx", "data-component-name": "Label", "data-component-content": "%7B%22htmlFor%22%3A%22email%22%7D", htmlFor: "email", children: "Email" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Login.tsx:60:14", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "60", "data-component-file": "Login.tsx", "data-component-name": "Input", "data-component-content": "%7B%22id%22%3A%22email%22%2C%22type%22%3A%22email%22%2C%22placeholder%22%3A%22m%40example.com%22%7D", id: "email", type: "email", placeholder: "m@example.com", value: email, onChange: (e) => setEmail(e.target.value), required: true })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Login.tsx:62:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "62", "data-component-file": "Login.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/pages/Login.tsx:63:14", "data-greta-name": "Label", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "63", "data-component-file": "Login.tsx", "data-component-name": "Label", "data-component-content": "%7B%22htmlFor%22%3A%22password%22%7D", htmlFor: "password", children: "Password" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Login.tsx:64:14", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "64", "data-component-file": "Login.tsx", "data-component-name": "Input", "data-component-content": "%7B%22id%22%3A%22password%22%2C%22type%22%3A%22password%22%7D", id: "password", type: "password", value: password, onChange: (e) => setPassword(e.target.value), required: true })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardFooter, { "data-greta-id": "src/pages/Login.tsx:67:10", "data-greta-name": "CardFooter", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "67", "data-component-file": "Login.tsx", "data-component-name": "CardFooter", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20space-y-4%22%7D", className: "flex flex-col space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Login.tsx:68:12", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "68", "data-component-file": "Login.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22className%22%3A%22w-full%22%7D", type: "submit", className: "w-full", disabled: isLoading, children: [
+            isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Login.tsx:69:28", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Login.tsx", "data-component-line": "69", "data-component-file": "Login.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%20animate-spin%22%7D", className: "mr-2 h-4 w-4 animate-spin" }),
+            "Login"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { "data-greta-id": "src/pages/Login.tsx:72:12", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "72", "data-component-file": "Login.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-sm%20text-center%20text-muted-foreground%22%7D", className: "text-sm text-center text-muted-foreground", children: [
+            "Don't have an account? ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { "data-greta-id": "src/pages/Login.tsx:73:37", "data-greta-name": "Link", "data-greta-editable": "true", "data-component-path": "src/pages/Login.tsx", "data-component-line": "73", "data-component-file": "Login.tsx", "data-component-name": "Link", "data-component-content": "%7B%22to%22%3A%22%2Fsignup%22%2C%22className%22%3A%22text-primary%20hover%3Aunderline%22%7D", to: "/signup", className: "text-primary hover:underline", children: "Sign up" })
+          ] })
+        ] })
+      ] })
+    ] })
+  ] });
+}
+function Signup() {
+  const [email, setEmail] = reactExports.useState("");
+  const [password, setPassword] = reactExports.useState("");
+  const [isLoading, setIsLoading] = reactExports.useState(false);
+  const navigate = useNavigate();
+  const { toast: toast2 } = useToast();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/api/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      if (response.ok) {
+        toast2({ title: "Account created", description: "You can now login" });
+        navigate("/login");
+      } else {
+        const error = await response.json();
+        toast2({ title: "Signup failed", description: error.detail, variant: "destructive" });
+      }
+    } catch (error) {
+      toast2({ title: "Error", description: "Something went wrong", variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Signup.tsx:43:4", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "43", "data-component-file": "Signup.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22min-h-screen%20flex%20items-center%20justify-center%20bg-background%20p-4%20bg-cover%20bg-center%22%7D", className: "min-h-screen flex items-center justify-center bg-background p-4 bg-cover bg-center", style: { backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Signup.tsx:44:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "44", "data-component-file": "Signup.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Signup.tsx:45:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "45", "data-component-file": "Signup.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-md%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%20shadow-xl%22%7D", className: "w-full max-w-md relative z-10 bg-card/95 backdrop-blur-sm shadow-xl", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Signup.tsx:46:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "46", "data-component-file": "Signup.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22space-y-1%22%7D", className: "space-y-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Signup.tsx:47:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "47", "data-component-file": "Signup.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-2xl%20font-bold%22%7D", className: "text-2xl font-bold", children: "Create an account" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardDescription, { "data-greta-id": "src/pages/Signup.tsx:48:10", "data-greta-name": "CardDescription", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "48", "data-component-file": "Signup.tsx", "data-component-name": "CardDescription", "data-component-content": "%7B%7D", children: "Enter your email below to create your account" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { "data-greta-id": "src/pages/Signup.tsx:50:8", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "50", "data-component-file": "Signup.tsx", "data-component-name": "form", "data-component-content": "%7B%7D", onSubmit: handleSubmit, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Signup.tsx:51:10", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "51", "data-component-file": "Signup.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%22className%22%3A%22space-y-4%22%7D", className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Signup.tsx:52:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "52", "data-component-file": "Signup.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/pages/Signup.tsx:53:14", "data-greta-name": "Label", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "53", "data-component-file": "Signup.tsx", "data-component-name": "Label", "data-component-content": "%7B%22htmlFor%22%3A%22email%22%7D", htmlFor: "email", children: "Email" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Signup.tsx:54:14", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "54", "data-component-file": "Signup.tsx", "data-component-name": "Input", "data-component-content": "%7B%22id%22%3A%22email%22%2C%22type%22%3A%22email%22%2C%22placeholder%22%3A%22m%40example.com%22%7D", id: "email", type: "email", placeholder: "m@example.com", value: email, onChange: (e) => setEmail(e.target.value), required: true })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Signup.tsx:56:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "56", "data-component-file": "Signup.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/pages/Signup.tsx:57:14", "data-greta-name": "Label", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "57", "data-component-file": "Signup.tsx", "data-component-name": "Label", "data-component-content": "%7B%22htmlFor%22%3A%22password%22%7D", htmlFor: "password", children: "Password" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Signup.tsx:58:14", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "58", "data-component-file": "Signup.tsx", "data-component-name": "Input", "data-component-content": "%7B%22id%22%3A%22password%22%2C%22type%22%3A%22password%22%7D", id: "password", type: "password", value: password, onChange: (e) => setPassword(e.target.value), required: true })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardFooter, { "data-greta-id": "src/pages/Signup.tsx:61:10", "data-greta-name": "CardFooter", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "61", "data-component-file": "Signup.tsx", "data-component-name": "CardFooter", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20space-y-4%22%7D", className: "flex flex-col space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Signup.tsx:62:12", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "62", "data-component-file": "Signup.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22className%22%3A%22w-full%22%7D", type: "submit", className: "w-full", disabled: isLoading, children: [
+            isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Signup.tsx:63:28", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "63", "data-component-file": "Signup.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%20animate-spin%22%7D", className: "mr-2 h-4 w-4 animate-spin" }),
+            "Sign Up"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { "data-greta-id": "src/pages/Signup.tsx:66:12", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "66", "data-component-file": "Signup.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-sm%20text-center%20text-muted-foreground%22%7D", className: "text-sm text-center text-muted-foreground", children: [
+            "Already have an account? ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { "data-greta-id": "src/pages/Signup.tsx:67:39", "data-greta-name": "Link", "data-greta-editable": "true", "data-component-path": "src/pages/Signup.tsx", "data-component-line": "67", "data-component-file": "Signup.tsx", "data-component-name": "Link", "data-component-content": "%7B%22to%22%3A%22%2Flogin%22%2C%22className%22%3A%22text-primary%20hover%3Aunderline%22%7D", to: "/login", className: "text-primary hover:underline", children: "Login" })
+          ] })
+        ] })
+      ] })
+    ] })
+  ] });
+}
 const queryClient = new QueryClient();
-const App = () => /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProvider, { "data-greta-id": "src/App.tsx:14:2", "data-greta-name": "ThemeProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "14", "data-component-file": "App.tsx", "data-component-name": "ThemeProvider", "data-component-content": "%7B%22defaultTheme%22%3A%22dark%22%2C%22storageKey%22%3A%22vite-ui-theme%22%7D", defaultTheme: "dark", storageKey: "vite-ui-theme", children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { "data-greta-id": "src/App.tsx:15:4", "data-greta-name": "QueryClientProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "15", "data-component-file": "App.tsx", "data-component-name": "QueryClientProvider", "data-component-content": "%7B%7D", client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TooltipProvider, { "data-greta-id": "src/App.tsx:16:6", "data-greta-name": "TooltipProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "16", "data-component-file": "App.tsx", "data-component-name": "TooltipProvider", "data-component-content": "%7B%7D", children: [
-  /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster$1, { "data-greta-id": "src/App.tsx:17:8", "data-greta-name": "Toaster", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "17", "data-component-file": "App.tsx", "data-component-name": "Toaster", "data-component-content": "%7B%7D" }),
-  /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { "data-greta-id": "src/App.tsx:18:8", "data-greta-name": "Sonner", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "18", "data-component-file": "App.tsx", "data-component-name": "Sonner", "data-component-content": "%7B%7D" }),
-  /* @__PURE__ */ jsxRuntimeExports.jsx(BrowserRouter, { "data-greta-id": "src/App.tsx:19:8", "data-greta-name": "BrowserRouter", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "19", "data-component-file": "App.tsx", "data-component-name": "BrowserRouter", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { "data-greta-id": "src/App.tsx:20:10", "data-greta-name": "Routes", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "20", "data-component-file": "App.tsx", "data-component-name": "Routes", "data-component-content": "%7B%7D", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:21:12", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "21", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22%2F%22%7D", path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Index, { "data-greta-id": "src/App.tsx:21:37", "data-greta-name": "Index", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "21", "data-component-file": "App.tsx", "data-component-name": "Index", "data-component-content": "%7B%7D" }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:23:12", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "23", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22*%22%7D", path: "*", element: /* @__PURE__ */ jsxRuntimeExports.jsx(NotFound, { "data-greta-id": "src/App.tsx:23:37", "data-greta-name": "NotFound", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "23", "data-component-file": "App.tsx", "data-component-name": "NotFound", "data-component-content": "%7B%7D" }) })
-  ] }) })
+const ProtectedRoute = ({ children }) => {
+  const { user, isLoading } = useAuth();
+  if (isLoading) return null;
+  if (!user) return /* @__PURE__ */ jsxRuntimeExports.jsx(Navigate, { "data-greta-id": "src/App.tsx:19:20", "data-greta-name": "Navigate", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "19", "data-component-file": "App.tsx", "data-component-name": "Navigate", "data-component-content": "%7B%22to%22%3A%22%2Flogin%22%7D", to: "/login", replace: true });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children });
+};
+const AppRoutes = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { "data-greta-id": "src/App.tsx:25:4", "data-greta-name": "Routes", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "25", "data-component-file": "App.tsx", "data-component-name": "Routes", "data-component-content": "%7B%7D", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:26:6", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "26", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22%2Flogin%22%7D", path: "/login", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Login, { "data-greta-id": "src/App.tsx:26:36", "data-greta-name": "Login", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "26", "data-component-file": "App.tsx", "data-component-name": "Login", "data-component-content": "%7B%7D" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:27:6", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "27", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22%2Fsignup%22%7D", path: "/signup", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Signup, { "data-greta-id": "src/App.tsx:27:37", "data-greta-name": "Signup", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "27", "data-component-file": "App.tsx", "data-component-name": "Signup", "data-component-content": "%7B%7D" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:28:6", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "28", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22%2F%22%7D", path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(ProtectedRoute, { "data-greta-id": "src/App.tsx:28:31", "data-greta-name": "ProtectedRoute", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "28", "data-component-file": "App.tsx", "data-component-name": "ProtectedRoute", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Index, { "data-greta-id": "src/App.tsx:28:47", "data-greta-name": "Index", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "28", "data-component-file": "App.tsx", "data-component-name": "Index", "data-component-content": "%7B%7D" }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { "data-greta-id": "src/App.tsx:29:6", "data-greta-name": "Route", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "29", "data-component-file": "App.tsx", "data-component-name": "Route", "data-component-content": "%7B%22path%22%3A%22*%22%7D", path: "*", element: /* @__PURE__ */ jsxRuntimeExports.jsx(NotFound, { "data-greta-id": "src/App.tsx:29:31", "data-greta-name": "NotFound", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "29", "data-component-file": "App.tsx", "data-component-name": "NotFound", "data-component-content": "%7B%7D" }) })
+  ] });
+};
+const App = () => /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProvider, { "data-greta-id": "src/App.tsx:35:2", "data-greta-name": "ThemeProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "35", "data-component-file": "App.tsx", "data-component-name": "ThemeProvider", "data-component-content": "%7B%22defaultTheme%22%3A%22dark%22%2C%22storageKey%22%3A%22vite-ui-theme%22%7D", defaultTheme: "dark", storageKey: "vite-ui-theme", children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { "data-greta-id": "src/App.tsx:36:4", "data-greta-name": "QueryClientProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "36", "data-component-file": "App.tsx", "data-component-name": "QueryClientProvider", "data-component-content": "%7B%7D", client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TooltipProvider, { "data-greta-id": "src/App.tsx:37:6", "data-greta-name": "TooltipProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "37", "data-component-file": "App.tsx", "data-component-name": "TooltipProvider", "data-component-content": "%7B%7D", children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster$1, { "data-greta-id": "src/App.tsx:38:8", "data-greta-name": "Toaster", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "38", "data-component-file": "App.tsx", "data-component-name": "Toaster", "data-component-content": "%7B%7D" }),
+  /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { "data-greta-id": "src/App.tsx:39:8", "data-greta-name": "Sonner", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "39", "data-component-file": "App.tsx", "data-component-name": "Sonner", "data-component-content": "%7B%7D" }),
+  /* @__PURE__ */ jsxRuntimeExports.jsx(BrowserRouter, { "data-greta-id": "src/App.tsx:40:8", "data-greta-name": "BrowserRouter", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "40", "data-component-file": "App.tsx", "data-component-name": "BrowserRouter", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AuthProvider, { "data-greta-id": "src/App.tsx:41:10", "data-greta-name": "AuthProvider", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "41", "data-component-file": "App.tsx", "data-component-name": "AuthProvider", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AppRoutes, { "data-greta-id": "src/App.tsx:42:12", "data-greta-name": "AppRoutes", "data-greta-editable": "false", "data-component-path": "src/App.tsx", "data-component-line": "42", "data-component-file": "App.tsx", "data-component-name": "AppRoutes", "data-component-content": "%7B%7D" }) }) })
 ] }) }) });
 clientExports.createRoot(document.getElementById("root")).render(/* @__PURE__ */ jsxRuntimeExports.jsx(App, { "data-greta-id": "src/main.tsx:5:52", "data-greta-name": "App", "data-greta-editable": "false", "data-component-path": "src/main.tsx", "data-component-line": "5", "data-component-file": "main.tsx", "data-component-name": "App", "data-component-content": "%7B%7D" }));
