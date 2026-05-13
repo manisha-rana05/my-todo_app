@@ -569,8 +569,14 @@ body{
 .-left-12{
   left: -3rem;
 }
+.-right-1{
+  right: -0.25rem;
+}
 .-right-12{
   right: -3rem;
+}
+.-top-1{
+  top: -0.25rem;
 }
 .-top-12{
   top: -3rem;
@@ -610,6 +616,9 @@ body{
 }
 .top-0{
   top: 0px;
+}
+.top-1{
+  top: 0.25rem;
 }
 .top-1\.5{
   top: 0.375rem;
@@ -795,6 +804,9 @@ body{
 .h-\[1px\]{
   height: 1px;
 }
+.h-\[300px\]{
+  height: 300px;
+}
 .h-\[var\(--radix-navigation-menu-viewport-height\)\]{
   height: var(--radix-navigation-menu-viewport-height);
 }
@@ -866,6 +878,9 @@ body{
 }
 .w-5{
   width: 1.25rem;
+}
+.w-6{
+  width: 1.5rem;
 }
 .w-64{
   width: 16rem;
@@ -1209,6 +1224,9 @@ body{
 .border-\[--color-border\]{
   border-color: var(--color-border);
 }
+.border-background{
+  border-color: hsl(var(--background));
+}
 .border-blue-500\/20{
   border-color: rgb(59 130 246 / 0.2);
 }
@@ -1223,9 +1241,6 @@ body{
 }
 .border-input{
   border-color: hsl(var(--input));
-}
-.border-muted{
-  border-color: hsl(var(--muted));
 }
 .border-primary{
   border-color: hsl(var(--primary));
@@ -1387,10 +1402,6 @@ body{
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 }
-.py-12{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1406,6 +1417,10 @@ body{
 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .pb-3{
   padding-bottom: 0.75rem;
@@ -1430,6 +1445,12 @@ body{
 }
 .pr-2\.5{
   padding-right: 0.625rem;
+}
+.pr-4{
+  padding-right: 1rem;
+}
+.pr-6{
+  padding-right: 1.5rem;
 }
 .pr-8{
   padding-right: 2rem;
@@ -1529,9 +1550,6 @@ body{
 }
 .tracking-tight{
   letter-spacing: -0.025em;
-}
-.tracking-wider{
-  letter-spacing: 0.05em;
 }
 .tracking-widest{
   letter-spacing: 0.1em;
@@ -1864,9 +1882,6 @@ body{
 }
 .hover\:bg-accent:hover{
   background-color: hsl(var(--accent));
-}
-.hover\:bg-destructive\/10:hover{
-  background-color: hsl(var(--destructive) / 0.1);
 }
 .hover\:bg-destructive\/80:hover{
   background-color: hsl(var(--destructive) / 0.8);
@@ -2603,6 +2618,9 @@ body{
   }
   .sm\:flex{
     display: flex;
+  }
+  .sm\:max-w-\[425px\]{
+    max-width: 425px;
   }
   .sm\:max-w-sm{
     max-width: 24rem;

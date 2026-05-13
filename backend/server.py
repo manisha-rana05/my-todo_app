@@ -8,6 +8,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import uuid
+from datetime import datetime
 from bson import ObjectId
 
 ROOT_DIR = Path(__file__).parent
@@ -25,6 +26,14 @@ def format_doc(doc: dict) -> dict:
     if "_id" in doc:
         doc["id"] = str(doc.pop("_id"))
     return doc
+
+class Comment(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    text: str
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+class CommentCreate(BaseModel):
+    text: str
 
 class TodoCreate(BaseModel):
     title: str
@@ -46,6 +55,7 @@ class TodoResponse(BaseModel):
     category: str
     priority: str
     due_date: Optional[str] = None
+    comments: List[Comment] = []
 
 class TodoReorder(BaseModel):
     id: str
@@ -58,6 +68,7 @@ async def get_todos():
         if "order" not in t: t["order"] = 0
         if "category" not in t: t["category"] = "General"
         if "priority" not in t: t["priority"] = "Medium"
+        if "comments" not in t: t["comments"] = []
     return [format_doc(todo) for todo in todos]
 
 @api_router.post("/todos", response_model=TodoResponse)
@@ -69,11 +80,41 @@ async def create_todo(todo: TodoCreate):
         "order": count,
         "category": todo.category or "General",
         "priority": todo.priority or "Medium",
-        "due_date": todo.due_date
+        "due_date": todo.due_date,
+        "comments": []
     }
     result = await db.todos.insert_one(new_todo)
     new_todo["_id"] = result.inserted_id
     return format_doc(new_todo)
+
+@api_router.post("/todos/{todo_id}/comments", response_model=Comment)
+async def add_comment(todo_id: str, comment: CommentCreate):
+    try:
+        obj_id = ObjectId(todo_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid ID")
+    
+    new_comment = Comment(text=comment.text).dict()
+    result = await db.todos.update_one(
+        {"_id": obj_id},
+        {"$push": {"comments": new_comment}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    return new_comment
+
+@api_router.delete("/todos/{todo_id}/comments/{comment_id}")
+async def delete_comment(todo_id: str, comment_id: str):
+    try:
+        obj_id = ObjectId(todo_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid ID")
+    
+    result = await db.todos.update_one(
+        {"_id": obj_id},
+        {"$pull": {"comments": {"id": comment_id}}}
+    )
+    return {"success": True}
 
 @api_router.put("/todos/reorder")
 async def reorder_todos(reorders: List[TodoReorder]):
@@ -132,7 +173,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()

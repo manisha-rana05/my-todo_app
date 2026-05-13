@@ -15,7 +15,14 @@ Returns a list of all todos.
     "category": "string",
     "priority": "string",
     "due_date": "ISO string (optional)",
-    "order": 0
+    "order": 0,
+    "comments": [
+      {
+        "id": "string",
+        "text": "string",
+        "created_at": "ISO string"
+      }
+    ]
   }
 ]
 ```
@@ -23,42 +30,19 @@ Returns a list of all todos.
 ### POST `/api/todos`
 Creates a new todo.
 
-**Request:**
-```json
-{
-  "title": "string",
-  "category": "string (optional)",
-  "priority": "string (optional)",
-  "due_date": "ISO string (optional)"
-}
-```
-
-### PATCH `/api/todos/{id}`
-Updates a todo's completed status, category, priority, or due date.
+### POST `/api/todos/{id}/comments`
+Adds a comment to a todo.
 
 **Request:**
 ```json
 {
-  "completed": "boolean (optional)",
-  "category": "string (optional)",
-  "priority": "string (optional)",
-  "due_date": "ISO string (optional)"
+  "text": "string"
 }
 ```
 
-### PUT `/api/todos/reorder`
-Updates the order of multiple todos.
-
-**Request:**
-```json
-[
-  { "id": "string", "order": 0 }
-]
-```
-
-### DELETE `/api/todos/{id}`
-Deletes a todo.
+### DELETE `/api/todos/{todo_id}/comments/{comment_id}`
+Deletes a comment.
 
 ## Database Schema (MongoDB)
 - Collection: `todos`
-- Fields: `_id`, `title`, `completed`, `category`, `priority`, `due_date`, `order`
+- Fields: `_id`, `title`, `completed`, `category`, `priority`, `due_date`, `order`, `comments`

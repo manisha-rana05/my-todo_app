@@ -12674,6 +12674,22 @@ function composeRefs(...refs) {
 function useComposedRefs(...refs) {
   return reactExports.useCallback(composeRefs(...refs), refs);
 }
+function createContext2(rootComponentName, defaultContext) {
+  const Context = reactExports.createContext(defaultContext);
+  const Provider2 = (props) => {
+    const { children, ...context } = props;
+    const value = reactExports.useMemo(() => context, Object.values(context));
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Context.Provider, { value, children });
+  };
+  Provider2.displayName = rootComponentName + "Provider";
+  function useContext2(consumerName) {
+    const context = reactExports.useContext(Context);
+    if (context) return context;
+    if (defaultContext !== void 0) return defaultContext;
+    throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
+  }
+  return [Provider2, useContext2];
+}
 function createContextScope(scopeName, createContextScopeDeps = []) {
   let defaultContexts = [];
   function createContext3(rootComponentName, defaultContext) {
@@ -12757,7 +12773,7 @@ function createSlot(ownerName) {
   Slot2.displayName = `${ownerName}.Slot`;
   return Slot2;
 }
-var Slot$3 = /* @__PURE__ */ createSlot("Slot");
+var Slot$4 = /* @__PURE__ */ createSlot("Slot");
 // @__NO_SIDE_EFFECTS__
 function createSlotClone(ownerName) {
   const SlotClone = reactExports.forwardRef((props, forwardedRef) => {
@@ -13146,12 +13162,12 @@ function handleAndDispatchCustomEvent$1(name, handler, detail, { discrete }) {
     target.dispatchEvent(event);
   }
 }
-var Root$4 = DismissableLayer;
+var Root$6 = DismissableLayer;
 var Branch = DismissableLayerBranch;
 var useLayoutEffect2 = (globalThis == null ? void 0 : globalThis.document) ? reactExports.useLayoutEffect : () => {
 };
-var PORTAL_NAME$5 = "Portal";
-var Portal$3 = reactExports.forwardRef((props, forwardedRef) => {
+var PORTAL_NAME$6 = "Portal";
+var Portal$4 = reactExports.forwardRef((props, forwardedRef) => {
   var _a2;
   const { container: containerProp, ...portalProps } = props;
   const [mounted, setMounted] = reactExports.useState(false);
@@ -13159,8 +13175,8 @@ var Portal$3 = reactExports.forwardRef((props, forwardedRef) => {
   const container = containerProp || mounted && ((_a2 = globalThis == null ? void 0 : globalThis.document) == null ? void 0 : _a2.body);
   return container ? ReactDOM$1.createPortal(/* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...portalProps, ref: forwardedRef }), container) : null;
 });
-Portal$3.displayName = PORTAL_NAME$5;
-function useStateMachine(initialState2, machine) {
+Portal$4.displayName = PORTAL_NAME$6;
+function useStateMachine$1(initialState2, machine) {
   return reactExports.useReducer((state, event) => {
     const nextState = machine[state][event];
     return nextState ?? state;
@@ -13181,7 +13197,7 @@ function usePresence(present) {
   const prevPresentRef = reactExports.useRef(present);
   const prevAnimationNameRef = reactExports.useRef("none");
   const initialState2 = present ? "mounted" : "unmounted";
-  const [state, send] = useStateMachine(initialState2, {
+  const [state, send] = useStateMachine$1(initialState2, {
     mounted: {
       UNMOUNT: "unmounted",
       ANIMATION_OUT: "unmountSuspended"
@@ -13376,7 +13392,7 @@ var VisuallyHidden = reactExports.forwardRef(
   }
 );
 VisuallyHidden.displayName = NAME$1;
-var Root$3 = VisuallyHidden;
+var Root$5 = VisuallyHidden;
 var PROVIDER_NAME$1 = "ToastProvider";
 var [Collection$3, useCollection$3, createCollectionScope$3] = createCollection("Toast");
 var [createToastContext, createToastScope] = createContextScope("Toast", [createCollectionScope$3]);
@@ -13419,7 +13435,7 @@ var ToastProvider$1 = (props) => {
   ) });
 };
 ToastProvider$1.displayName = PROVIDER_NAME$1;
-var VIEWPORT_NAME$1 = "ToastViewport";
+var VIEWPORT_NAME$2 = "ToastViewport";
 var VIEWPORT_DEFAULT_HOTKEY = ["F8"];
 var VIEWPORT_PAUSE = "toast.viewportPause";
 var VIEWPORT_RESUME = "toast.viewportResume";
@@ -13431,7 +13447,7 @@ var ToastViewport$1 = reactExports.forwardRef(
       label = "Notifications ({hotkey})",
       ...viewportProps
     } = props;
-    const context = useToastProviderContext(VIEWPORT_NAME$1, __scopeToast);
+    const context = useToastProviderContext(VIEWPORT_NAME$2, __scopeToast);
     const getItems = useCollection$3(__scopeToast);
     const wrapperRef = reactExports.useRef(null);
     const headFocusProxyRef = reactExports.useRef(null);
@@ -13571,7 +13587,7 @@ var ToastViewport$1 = reactExports.forwardRef(
     );
   }
 );
-ToastViewport$1.displayName = VIEWPORT_NAME$1;
+ToastViewport$1.displayName = VIEWPORT_NAME$2;
 var FOCUS_PROXY_NAME = "ToastFocusProxy";
 var FocusProxy = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -13740,7 +13756,7 @@ var ToastImpl = reactExports.forwardRef(
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ToastInteractiveProvider, { scope: __scopeToast, onClose: handleClose, children: reactDomExports.createPortal(
         /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$3.ItemSlot, { scope: __scopeToast, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$4,
+          Root$6,
           {
             asChild: true,
             onEscapeKeyDown: composeEventHandlers(onEscapeKeyDown, () => {
@@ -13847,28 +13863,28 @@ var ToastAnnounce = (props) => {
     const timer = window.setTimeout(() => setIsAnnounced(true), 1e3);
     return () => window.clearTimeout(timer);
   }, []);
-  return isAnnounced ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHidden, { ...announceProps, children: renderAnnounceText && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+  return isAnnounced ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$4, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHidden, { ...announceProps, children: renderAnnounceText && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     context.label,
     " ",
     children
   ] }) }) });
 };
-var TITLE_NAME = "ToastTitle";
+var TITLE_NAME$1 = "ToastTitle";
 var ToastTitle$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeToast, ...titleProps } = props;
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...titleProps, ref: forwardedRef });
   }
 );
-ToastTitle$1.displayName = TITLE_NAME;
-var DESCRIPTION_NAME = "ToastDescription";
+ToastTitle$1.displayName = TITLE_NAME$1;
+var DESCRIPTION_NAME$1 = "ToastDescription";
 var ToastDescription$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeToast, ...descriptionProps } = props;
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...descriptionProps, ref: forwardedRef });
   }
 );
-ToastDescription$1.displayName = DESCRIPTION_NAME;
+ToastDescription$1.displayName = DESCRIPTION_NAME$1;
 var ACTION_NAME = "ToastAction";
 var ToastAction$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -13883,11 +13899,11 @@ var ToastAction$1 = reactExports.forwardRef(
   }
 );
 ToastAction$1.displayName = ACTION_NAME;
-var CLOSE_NAME$1 = "ToastClose";
+var CLOSE_NAME$2 = "ToastClose";
 var ToastClose$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeToast, ...closeProps } = props;
-    const interactiveContext = useToastInteractiveContext(CLOSE_NAME$1, __scopeToast);
+    const interactiveContext = useToastInteractiveContext(CLOSE_NAME$2, __scopeToast);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(ToastAnnounceExclude, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
       {
@@ -13899,7 +13915,7 @@ var ToastClose$1 = reactExports.forwardRef(
     ) });
   }
 );
-ToastClose$1.displayName = CLOSE_NAME$1;
+ToastClose$1.displayName = CLOSE_NAME$2;
 var ToastAnnounceExclude = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeToast, altText, ...announceExcludeProps } = props;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -13989,12 +14005,12 @@ function focusFirst$3(candidates) {
   });
 }
 var Provider$2 = ToastProvider$1;
-var Viewport$1 = ToastViewport$1;
+var Viewport$2 = ToastViewport$1;
 var Root2$4 = Toast$1;
-var Title = ToastTitle$1;
-var Description = ToastDescription$1;
+var Title$1 = ToastTitle$1;
+var Description$1 = ToastDescription$1;
 var Action$1 = ToastAction$1;
-var Close = ToastClose$1;
+var Close$1 = ToastClose$1;
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -14262,6 +14278,15 @@ const LoaderCircle = createLucideIcon("LoaderCircle", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const MessageSquare = createLucideIcon("MessageSquare", [
+  ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Moon = createLucideIcon("Moon", [
   ["path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z", key: "a7tn18" }]
 ]);
@@ -14274,6 +14299,22 @@ const Moon = createLucideIcon("Moon", [
 const Plus = createLucideIcon("Plus", [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Send = createLucideIcon("Send", [
+  [
+    "path",
+    {
+      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+      key: "1ffxy3"
+    }
+  ],
+  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -16795,7 +16836,7 @@ function cn(...inputs) {
 }
 const ToastProvider = Provider$2;
 const ToastViewport = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Viewport$1,
+  Viewport$2,
   {
     "data-greta-id": "src/components/ui/toast.tsx:14:2",
     "data-greta-name": "ToastPrimitives.Viewport",
@@ -16813,7 +16854,7 @@ const ToastViewport = reactExports.forwardRef(({ className, ...props }, ref) => 
     ...props
   }
 ));
-ToastViewport.displayName = Viewport$1.displayName;
+ToastViewport.displayName = Viewport$2.displayName;
 const toastVariants = cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
   {
@@ -16853,7 +16894,7 @@ const ToastAction = reactExports.forwardRef(({ className, ...props }, ref) => /*
 ));
 ToastAction.displayName = Action$1.displayName;
 const ToastClose = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Close,
+  Close$1,
   {
     "data-greta-id": "src/components/ui/toast.tsx:67:2",
     "data-greta-name": "ToastPrimitives.Close",
@@ -16873,11 +16914,11 @@ const ToastClose = reactExports.forwardRef(({ className, ...props }, ref) => /* 
     children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { "data-greta-id": "src/components/ui/toast.tsx:76:4", "data-greta-name": "X", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "76", "data-component-file": "toast.tsx", "data-component-name": "X", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" })
   }
 ));
-ToastClose.displayName = Close.displayName;
-const ToastTitle = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Title, { "data-greta-id": "src/components/ui/toast.tsx:85:2", "data-greta-name": "ToastPrimitives.Title", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "85", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Title", "data-component-content": "%7B%7D", ref, className: cn("text-sm font-semibold", className), ...props }));
-ToastTitle.displayName = Title.displayName;
-const ToastDescription = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Description, { "data-greta-id": "src/components/ui/toast.tsx:93:2", "data-greta-name": "ToastPrimitives.Description", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "93", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Description", "data-component-content": "%7B%7D", ref, className: cn("text-sm opacity-90", className), ...props }));
-ToastDescription.displayName = Description.displayName;
+ToastClose.displayName = Close$1.displayName;
+const ToastTitle = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Title$1, { "data-greta-id": "src/components/ui/toast.tsx:85:2", "data-greta-name": "ToastPrimitives.Title", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "85", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Title", "data-component-content": "%7B%7D", ref, className: cn("text-sm font-semibold", className), ...props }));
+ToastTitle.displayName = Title$1.displayName;
+const ToastDescription = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Description$1, { "data-greta-id": "src/components/ui/toast.tsx:93:2", "data-greta-name": "ToastPrimitives.Description", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "93", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Description", "data-component-content": "%7B%7D", ref, className: cn("text-sm opacity-90", className), ...props }));
+ToastDescription.displayName = Description$1.displayName;
 function Toaster$1() {
   const { toasts } = useToast();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(ToastProvider, { "data-greta-id": "src/components/ui/toaster.tsx:8:4", "data-greta-name": "ToastProvider", "data-greta-editable": "false", "data-component-path": "src/components/ui/toaster.tsx", "data-component-line": "8", "data-component-file": "toaster.tsx", "data-component-name": "ToastProvider", "data-component-content": "%7B%7D", children: [
@@ -19123,7 +19164,7 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 Arrow$1.displayName = NAME;
-var Root$2 = Arrow$1;
+var Root$4 = Arrow$1;
 function useSize(element) {
   const [size2, setSize] = reactExports.useState(void 0);
   useLayoutEffect2(() => {
@@ -19181,8 +19222,8 @@ var PopperAnchor = reactExports.forwardRef(
   }
 );
 PopperAnchor.displayName = ANCHOR_NAME$2;
-var CONTENT_NAME$5 = "PopperContent";
-var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$5);
+var CONTENT_NAME$6 = "PopperContent";
+var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$6);
 var PopperContent = reactExports.forwardRef(
   (props, forwardedRef) => {
     var _a2, _b2, _c2, _d2, _e2, _f2;
@@ -19202,7 +19243,7 @@ var PopperContent = reactExports.forwardRef(
       onPlaced,
       ...contentProps
     } = props;
-    const context = usePopperContext(CONTENT_NAME$5, __scopePopper);
+    const context = usePopperContext(CONTENT_NAME$6, __scopePopper);
     const [content, setContent] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
     const [arrow$12, setArrow] = reactExports.useState(null);
@@ -19325,7 +19366,7 @@ var PopperContent = reactExports.forwardRef(
     );
   }
 );
-PopperContent.displayName = CONTENT_NAME$5;
+PopperContent.displayName = CONTENT_NAME$6;
 var ARROW_NAME$5 = "PopperArrow";
 var OPPOSITE_SIDE = {
   top: "bottom",
@@ -19365,7 +19406,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$2,
+          Root$4,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -19422,7 +19463,7 @@ function getSideAndAlignFromPlacement(placement) {
 }
 var Root2$3 = Popper;
 var Anchor = PopperAnchor;
-var Content = PopperContent;
+var Content$1 = PopperContent;
 var Arrow = PopperArrow;
 var [createTooltipContext, createTooltipScope] = createContextScope("Tooltip", [
   createPopperScope
@@ -19476,12 +19517,12 @@ var TooltipProvider$1 = (props) => {
 TooltipProvider$1.displayName = PROVIDER_NAME;
 var TOOLTIP_NAME = "Tooltip";
 var [TooltipContextProvider, useTooltipContext] = createTooltipContext(TOOLTIP_NAME);
-var TRIGGER_NAME$4 = "TooltipTrigger";
+var TRIGGER_NAME$5 = "TooltipTrigger";
 var TooltipTrigger = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeTooltip, ...triggerProps } = props;
-    const context = useTooltipContext(TRIGGER_NAME$4, __scopeTooltip);
-    const providerContext = useTooltipProviderContext(TRIGGER_NAME$4, __scopeTooltip);
+    const context = useTooltipContext(TRIGGER_NAME$5, __scopeTooltip);
+    const providerContext = useTooltipProviderContext(TRIGGER_NAME$5, __scopeTooltip);
     const popperScope = usePopperScope$3(__scopeTooltip);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref, context.onTriggerChange);
@@ -19525,23 +19566,23 @@ var TooltipTrigger = reactExports.forwardRef(
     ) });
   }
 );
-TooltipTrigger.displayName = TRIGGER_NAME$4;
-var PORTAL_NAME$4 = "TooltipPortal";
-var [PortalProvider$2, usePortalContext$2] = createTooltipContext(PORTAL_NAME$4, {
+TooltipTrigger.displayName = TRIGGER_NAME$5;
+var PORTAL_NAME$5 = "TooltipPortal";
+var [PortalProvider$3, usePortalContext$3] = createTooltipContext(PORTAL_NAME$5, {
   forceMount: void 0
 });
-var CONTENT_NAME$4 = "TooltipContent";
+var CONTENT_NAME$5 = "TooltipContent";
 var TooltipContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext$2(CONTENT_NAME$4, props.__scopeTooltip);
+    const portalContext = usePortalContext$3(CONTENT_NAME$5, props.__scopeTooltip);
     const { forceMount = portalContext.forceMount, side = "top", ...contentProps } = props;
-    const context = useTooltipContext(CONTENT_NAME$4, props.__scopeTooltip);
+    const context = useTooltipContext(CONTENT_NAME$5, props.__scopeTooltip);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.disableHoverableContent ? /* @__PURE__ */ jsxRuntimeExports.jsx(TooltipContentImpl, { side, ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(TooltipContentHoverable, { side, ...contentProps, ref: forwardedRef }) });
   }
 );
 var TooltipContentHoverable = reactExports.forwardRef((props, forwardedRef) => {
-  const context = useTooltipContext(CONTENT_NAME$4, props.__scopeTooltip);
-  const providerContext = useTooltipProviderContext(CONTENT_NAME$4, props.__scopeTooltip);
+  const context = useTooltipContext(CONTENT_NAME$5, props.__scopeTooltip);
+  const providerContext = useTooltipProviderContext(CONTENT_NAME$5, props.__scopeTooltip);
   const ref = reactExports.useRef(null);
   const composedRefs = useComposedRefs(forwardedRef, ref);
   const [pointerGraceArea, setPointerGraceArea] = reactExports.useState(null);
@@ -19612,7 +19653,7 @@ var TooltipContentImpl = reactExports.forwardRef(
       onPointerDownOutside,
       ...contentProps
     } = props;
-    const context = useTooltipContext(CONTENT_NAME$4, __scopeTooltip);
+    const context = useTooltipContext(CONTENT_NAME$5, __scopeTooltip);
     const popperScope = usePopperScope$3(__scopeTooltip);
     const { onClose } = context;
     reactExports.useEffect(() => {
@@ -19639,7 +19680,7 @@ var TooltipContentImpl = reactExports.forwardRef(
         onFocusOutside: (event) => event.preventDefault(),
         onDismiss: onClose,
         children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Content,
+          Content$1,
           {
             "data-state": context.stateAttribute,
             ...popperScope,
@@ -19658,7 +19699,7 @@ var TooltipContentImpl = reactExports.forwardRef(
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Slottable, { children }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$3, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$5, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
             ]
           }
         )
@@ -19666,7 +19707,7 @@ var TooltipContentImpl = reactExports.forwardRef(
     );
   }
 );
-TooltipContent$1.displayName = CONTENT_NAME$4;
+TooltipContent$1.displayName = CONTENT_NAME$5;
 var ARROW_NAME$4 = "TooltipArrow";
 var TooltipArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -30787,7 +30828,7 @@ const buttonVariants = cva(
 );
 const Button$1 = reactExports.forwardRef(
   ({ className, variant, size: size2, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot$3 : "button";
+    const Comp = asChild ? Slot$4 : "button";
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Comp, { "data-greta-id": "src/components/ui/button.tsx:42:11", "data-greta-name": "Comp", "data-greta-editable": "false", "data-component-path": "src/components/ui/button.tsx", "data-component-line": "42", "data-component-file": "button.tsx", "data-component-name": "Comp", "data-component-content": "%7B%7D", className: cn(buttonVariants({ variant, size: size2, className })), ref, ...props });
   }
 );
@@ -30883,7 +30924,7 @@ function CheckboxProvider(props) {
     }
   );
 }
-var TRIGGER_NAME$3 = "CheckboxTrigger";
+var TRIGGER_NAME$4 = "CheckboxTrigger";
 var CheckboxTrigger = reactExports.forwardRef(
   ({ __scopeCheckbox, onKeyDown, onClick, ...checkboxProps }, forwardedRef) => {
     const {
@@ -30897,7 +30938,7 @@ var CheckboxTrigger = reactExports.forwardRef(
       hasConsumerStoppedPropagationRef,
       isFormControl,
       bubbleInput
-    } = useCheckboxContext(TRIGGER_NAME$3, __scopeCheckbox);
+    } = useCheckboxContext(TRIGGER_NAME$4, __scopeCheckbox);
     const composedRefs = useComposedRefs(forwardedRef, setControl);
     const initialCheckedStateRef = reactExports.useRef(checked);
     reactExports.useEffect(() => {
@@ -30915,7 +30956,7 @@ var CheckboxTrigger = reactExports.forwardRef(
         role: "checkbox",
         "aria-checked": isIndeterminate$1(checked) ? "mixed" : checked,
         "aria-required": required,
-        "data-state": getState$1(checked),
+        "data-state": getState$2(checked),
         "data-disabled": disabled ? "" : void 0,
         disabled,
         value,
@@ -30935,7 +30976,7 @@ var CheckboxTrigger = reactExports.forwardRef(
     );
   }
 );
-CheckboxTrigger.displayName = TRIGGER_NAME$3;
+CheckboxTrigger.displayName = TRIGGER_NAME$4;
 var Checkbox$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -30995,7 +31036,7 @@ var CheckboxIndicator = reactExports.forwardRef(
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Primitive.span,
           {
-            "data-state": getState$1(context.checked),
+            "data-state": getState$2(context.checked),
             "data-disabled": context.disabled ? "" : void 0,
             ...indicatorProps,
             ref: forwardedRef,
@@ -31081,7 +31122,7 @@ function isFunction(value) {
 function isIndeterminate$1(checked) {
   return checked === "indeterminate";
 }
-function getState$1(checked) {
+function getState$2(checked) {
   return isIndeterminate$1(checked) ? "indeterminate" : checked ? "checked" : "unchecked";
 }
 const Checkbox = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -31565,7 +31606,7 @@ function focusFirst$1(candidates, preventScroll = false) {
 function wrapArray$2(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
-var Root$1 = RovingFocusGroup;
+var Root$3 = RovingFocusGroup;
 var Item$1 = RovingFocusGroupItem;
 var getDefaultParent = function(originalTarget) {
   if (typeof document === "undefined") {
@@ -32416,30 +32457,30 @@ var MenuAnchor = reactExports.forwardRef(
   }
 );
 MenuAnchor.displayName = ANCHOR_NAME$1;
-var PORTAL_NAME$3 = "MenuPortal";
-var [PortalProvider$1, usePortalContext$1] = createMenuContext(PORTAL_NAME$3, {
+var PORTAL_NAME$4 = "MenuPortal";
+var [PortalProvider$2, usePortalContext$2] = createMenuContext(PORTAL_NAME$4, {
   forceMount: void 0
 });
 var MenuPortal = (props) => {
   const { __scopeMenu, forceMount, children, container } = props;
-  const context = useMenuContext(PORTAL_NAME$3, __scopeMenu);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider$1, { scope: __scopeMenu, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children }) }) });
+  const context = useMenuContext(PORTAL_NAME$4, __scopeMenu);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider$2, { scope: __scopeMenu, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$4, { asChild: true, container, children }) }) });
 };
-MenuPortal.displayName = PORTAL_NAME$3;
-var CONTENT_NAME$3 = "MenuContent";
-var [MenuContentProvider, useMenuContentContext] = createMenuContext(CONTENT_NAME$3);
+MenuPortal.displayName = PORTAL_NAME$4;
+var CONTENT_NAME$4 = "MenuContent";
+var [MenuContentProvider, useMenuContentContext] = createMenuContext(CONTENT_NAME$4);
 var MenuContent = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeMenu);
+    const portalContext = usePortalContext$2(CONTENT_NAME$4, props.__scopeMenu);
     const { forceMount = portalContext.forceMount, ...contentProps } = props;
-    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$3, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$4, props.__scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$4, props.__scopeMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Provider, { scope: props.__scopeMenu, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: props.__scopeMenu, children: rootContext.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(MenuRootContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(MenuRootContentNonModal, { ...contentProps, ref: forwardedRef }) }) }) });
   }
 );
 var MenuRootContentModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$4, props.__scopeMenu);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref);
     reactExports.useEffect(() => {
@@ -32465,7 +32506,7 @@ var MenuRootContentModal = reactExports.forwardRef(
   }
 );
 var MenuRootContentNonModal = reactExports.forwardRef((props, forwardedRef) => {
-  const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
+  const context = useMenuContext(CONTENT_NAME$4, props.__scopeMenu);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     MenuContentImpl,
     {
@@ -32478,7 +32519,7 @@ var MenuRootContentNonModal = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-var Slot$2 = /* @__PURE__ */ createSlot("MenuContent.ScrollLock");
+var Slot$3 = /* @__PURE__ */ createSlot("MenuContent.ScrollLock");
 var MenuContentImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -32497,8 +32538,8 @@ var MenuContentImpl = reactExports.forwardRef(
       disableOutsideScroll,
       ...contentProps
     } = props;
-    const context = useMenuContext(CONTENT_NAME$3, __scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$3, __scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$4, __scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$4, __scopeMenu);
     const popperScope = usePopperScope$2(__scopeMenu);
     const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeMenu);
     const getItems = useCollection$1(__scopeMenu);
@@ -32512,7 +32553,7 @@ var MenuContentImpl = reactExports.forwardRef(
     const pointerDirRef = reactExports.useRef("right");
     const lastPointerXRef = reactExports.useRef(0);
     const ScrollLockWrapper = disableOutsideScroll ? ReactRemoveScroll : reactExports.Fragment;
-    const scrollLockWrapperProps = disableOutsideScroll ? { as: Slot$2, allowPinchZoom: true } : void 0;
+    const scrollLockWrapperProps = disableOutsideScroll ? { as: Slot$3, allowPinchZoom: true } : void 0;
     const handleTypeaheadSearch = (key) => {
       var _a2, _b2;
       const search = searchRef.current + key;
@@ -32592,7 +32633,7 @@ var MenuContentImpl = reactExports.forwardRef(
                 onInteractOutside,
                 onDismiss,
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Root$1,
+                  Root$3,
                   {
                     asChild: true,
                     ...rovingFocusGroupScope,
@@ -32606,7 +32647,7 @@ var MenuContentImpl = reactExports.forwardRef(
                     }),
                     preventScrollOnEntryFocus: true,
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Content,
+                      Content$1,
                       {
                         role: "menu",
                         "aria-orientation": "vertical",
@@ -32665,7 +32706,7 @@ var MenuContentImpl = reactExports.forwardRef(
     );
   }
 );
-MenuContent.displayName = CONTENT_NAME$3;
+MenuContent.displayName = CONTENT_NAME$4;
 var GROUP_NAME$2 = "MenuGroup";
 var MenuGroup = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -33013,10 +33054,10 @@ MenuSubTrigger.displayName = SUB_TRIGGER_NAME$1;
 var SUB_CONTENT_NAME$1 = "MenuSubContent";
 var MenuSubContent = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeMenu);
+    const portalContext = usePortalContext$2(CONTENT_NAME$4, props.__scopeMenu);
     const { forceMount = portalContext.forceMount, ...subContentProps } = props;
-    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$3, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$4, props.__scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$4, props.__scopeMenu);
     const subContext = useMenuSubContext(SUB_CONTENT_NAME$1, props.__scopeMenu);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref);
@@ -33117,7 +33158,7 @@ function whenMouse(handler) {
 }
 var Root3 = Menu;
 var Anchor2 = MenuAnchor;
-var Portal$2 = MenuPortal;
+var Portal$3 = MenuPortal;
 var Content2$3 = MenuContent;
 var Group = MenuGroup;
 var Label$1 = MenuLabel;
@@ -33171,11 +33212,11 @@ var DropdownMenu$1 = (props) => {
   );
 };
 DropdownMenu$1.displayName = DROPDOWN_MENU_NAME;
-var TRIGGER_NAME$2 = "DropdownMenuTrigger";
+var TRIGGER_NAME$3 = "DropdownMenuTrigger";
 var DropdownMenuTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, disabled = false, ...triggerProps } = props;
-    const context = useDropdownMenuContext(TRIGGER_NAME$2, __scopeDropdownMenu);
+    const context = useDropdownMenuContext(TRIGGER_NAME$3, __scopeDropdownMenu);
     const menuScope = useMenuScope(__scopeDropdownMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor2, { asChild: true, ...menuScope, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
@@ -33206,19 +33247,19 @@ var DropdownMenuTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-DropdownMenuTrigger$1.displayName = TRIGGER_NAME$2;
-var PORTAL_NAME$2 = "DropdownMenuPortal";
+DropdownMenuTrigger$1.displayName = TRIGGER_NAME$3;
+var PORTAL_NAME$3 = "DropdownMenuPortal";
 var DropdownMenuPortal = (props) => {
   const { __scopeDropdownMenu, ...portalProps } = props;
   const menuScope = useMenuScope(__scopeDropdownMenu);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { ...menuScope, ...portalProps });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { ...menuScope, ...portalProps });
 };
-DropdownMenuPortal.displayName = PORTAL_NAME$2;
-var CONTENT_NAME$2 = "DropdownMenuContent";
+DropdownMenuPortal.displayName = PORTAL_NAME$3;
+var CONTENT_NAME$3 = "DropdownMenuContent";
 var DropdownMenuContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, ...contentProps } = props;
-    const context = useDropdownMenuContext(CONTENT_NAME$2, __scopeDropdownMenu);
+    const context = useDropdownMenuContext(CONTENT_NAME$3, __scopeDropdownMenu);
     const menuScope = useMenuScope(__scopeDropdownMenu);
     const hasInteractedOutsideRef = reactExports.useRef(false);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -33256,7 +33297,7 @@ var DropdownMenuContent$1 = reactExports.forwardRef(
     );
   }
 );
-DropdownMenuContent$1.displayName = CONTENT_NAME$2;
+DropdownMenuContent$1.displayName = CONTENT_NAME$3;
 var GROUP_NAME$1 = "DropdownMenuGroup";
 var DropdownMenuGroup = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -33361,7 +33402,7 @@ var DropdownMenuSubContent$1 = reactExports.forwardRef((props, forwardedRef) => 
 });
 DropdownMenuSubContent$1.displayName = SUB_CONTENT_NAME;
 var Root2$2 = DropdownMenu$1;
-var Trigger$2 = DropdownMenuTrigger$1;
+var Trigger$3 = DropdownMenuTrigger$1;
 var Portal2 = DropdownMenuPortal;
 var Content2$2 = DropdownMenuContent$1;
 var Label2 = DropdownMenuLabel$1;
@@ -33373,7 +33414,7 @@ var Separator2 = DropdownMenuSeparator$1;
 var SubTrigger2 = DropdownMenuSubTrigger$1;
 var SubContent2 = DropdownMenuSubContent$1;
 const DropdownMenu = Root2$2;
-const DropdownMenuTrigger = Trigger$2;
+const DropdownMenuTrigger = Trigger$3;
 const DropdownMenuSubTrigger = reactExports.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
   SubTrigger2,
   {
@@ -33715,12 +33756,12 @@ var Select$2 = (props) => {
   ) });
 };
 Select$2.displayName = SELECT_NAME;
-var TRIGGER_NAME$1 = "SelectTrigger";
+var TRIGGER_NAME$2 = "SelectTrigger";
 var SelectTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, disabled = false, ...triggerProps } = props;
     const popperScope = usePopperScope$1(__scopeSelect);
-    const context = useSelectContext(TRIGGER_NAME$1, __scopeSelect);
+    const context = useSelectContext(TRIGGER_NAME$2, __scopeSelect);
     const isDisabled = context.disabled || disabled;
     const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
     const getItems = useCollection(__scopeSelect);
@@ -33792,7 +33833,7 @@ var SelectTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-SelectTrigger$1.displayName = TRIGGER_NAME$1;
+SelectTrigger$1.displayName = TRIGGER_NAME$2;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -33824,15 +33865,15 @@ var SelectIcon = reactExports.forwardRef(
   }
 );
 SelectIcon.displayName = ICON_NAME;
-var PORTAL_NAME$1 = "SelectPortal";
+var PORTAL_NAME$2 = "SelectPortal";
 var SelectPortal = (props) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, ...props });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$4, { asChild: true, ...props });
 };
-SelectPortal.displayName = PORTAL_NAME$1;
-var CONTENT_NAME$1 = "SelectContent";
+SelectPortal.displayName = PORTAL_NAME$2;
+var CONTENT_NAME$2 = "SelectContent";
 var SelectContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useSelectContext(CONTENT_NAME$1, props.__scopeSelect);
+    const context = useSelectContext(CONTENT_NAME$2, props.__scopeSelect);
     const [fragment, setFragment] = reactExports.useState();
     useLayoutEffect2(() => {
       setFragment(new DocumentFragment());
@@ -33847,11 +33888,11 @@ var SelectContent$1 = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentImpl, { ...props, ref: forwardedRef });
   }
 );
-SelectContent$1.displayName = CONTENT_NAME$1;
+SelectContent$1.displayName = CONTENT_NAME$2;
 var CONTENT_MARGIN = 10;
-var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$1);
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$2);
 var CONTENT_IMPL_NAME = "SelectContentImpl";
-var Slot$1 = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
+var Slot$2 = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
 var SelectContentImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -33875,7 +33916,7 @@ var SelectContentImpl = reactExports.forwardRef(
       //
       ...contentProps
     } = props;
-    const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
+    const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
     const [content, setContent] = reactExports.useState(null);
     const [viewport, setViewport] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -34015,7 +34056,7 @@ var SelectContentImpl = reactExports.forwardRef(
         position: position2,
         isPositioned,
         searchRef,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot$1, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot$2, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           FocusScope,
           {
             asChild: true,
@@ -34090,8 +34131,8 @@ SelectContentImpl.displayName = CONTENT_IMPL_NAME;
 var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
 var SelectItemAlignedPosition = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeSelect, onPlaced, ...popperProps } = props;
-  const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
-  const contentContext = useSelectContentContext(CONTENT_NAME$1, __scopeSelect);
+  const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
+  const contentContext = useSelectContentContext(CONTENT_NAME$2, __scopeSelect);
   const [contentWrapper, setContentWrapper] = reactExports.useState(null);
   const [content, setContent] = reactExports.useState(null);
   const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -34261,7 +34302,7 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
   } = props;
   const popperScope = usePopperScope$1(__scopeSelect);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Content,
+    Content$1,
     {
       ...popperScope,
       ...popperProps,
@@ -34285,13 +34326,13 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$1, {});
-var VIEWPORT_NAME = "SelectViewport";
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$2, {});
+var VIEWPORT_NAME$1 = "SelectViewport";
 var SelectViewport = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, nonce, ...viewportProps } = props;
-    const contentContext = useSelectContentContext(VIEWPORT_NAME, __scopeSelect);
-    const viewportContext = useSelectViewportContext(VIEWPORT_NAME, __scopeSelect);
+    const contentContext = useSelectContentContext(VIEWPORT_NAME$1, __scopeSelect);
+    const viewportContext = useSelectViewportContext(VIEWPORT_NAME$1, __scopeSelect);
     const composedRefs = useComposedRefs(forwardedRef, contentContext.onViewportChange);
     const prevScrollTopRef = reactExports.useRef(0);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
@@ -34353,7 +34394,7 @@ var SelectViewport = reactExports.forwardRef(
     ] });
   }
 );
-SelectViewport.displayName = VIEWPORT_NAME;
+SelectViewport.displayName = VIEWPORT_NAME$1;
 var GROUP_NAME = "SelectGroup";
 var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME);
 var SelectGroup = reactExports.forwardRef(
@@ -34733,12 +34774,12 @@ function wrapArray(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
 var Root2$1 = Select$2;
-var Trigger$1 = SelectTrigger$1;
+var Trigger$2 = SelectTrigger$1;
 var Value = SelectValue$1;
 var Icon = SelectIcon;
-var Portal$1 = SelectPortal;
+var Portal$2 = SelectPortal;
 var Content2$1 = SelectContent$1;
-var Viewport = SelectViewport;
+var Viewport$1 = SelectViewport;
 var Label = SelectLabel$1;
 var Item = SelectItem$1;
 var ItemText = SelectItemText;
@@ -34749,7 +34790,7 @@ var Separator = SelectSeparator$1;
 const Select$1 = Root2$1;
 const SelectValue = Value;
 const SelectTrigger = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-  Trigger$1,
+  Trigger$2,
   {
     "data-greta-id": "src/components/ui/select.tsx:17:2",
     "data-greta-name": "SelectPrimitive.Trigger",
@@ -34771,7 +34812,7 @@ const SelectTrigger = reactExports.forwardRef(({ className, children, ...props }
     ]
   }
 ));
-SelectTrigger.displayName = Trigger$1.displayName;
+SelectTrigger.displayName = Trigger$2.displayName;
 const SelectScrollUpButton = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   ScrollUpButton,
   {
@@ -34808,7 +34849,7 @@ const SelectScrollDownButton = reactExports.forwardRef(({ className, ...props },
   }
 ));
 SelectScrollDownButton.displayName = ScrollDownButton.displayName;
-const SelectContent = reactExports.forwardRef(({ className, children, position: position2 = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-greta-id": "src/components/ui/select.tsx:65:2", "data-greta-name": "SelectPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "65", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+const SelectContent = reactExports.forwardRef(({ className, children, position: position2 = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { "data-greta-id": "src/components/ui/select.tsx:65:2", "data-greta-name": "SelectPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "65", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
   Content2$1,
   {
     "data-greta-id": "src/components/ui/select.tsx:66:4",
@@ -34830,7 +34871,7 @@ const SelectContent = reactExports.forwardRef(({ className, children, position: 
     children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(SelectScrollUpButton, { "data-greta-id": "src/components/ui/select.tsx:77:6", "data-greta-name": "SelectScrollUpButton", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "77", "data-component-file": "select.tsx", "data-component-name": "SelectScrollUpButton", "data-component-content": "%7B%7D" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Viewport,
+        Viewport$1,
         {
           "data-greta-id": "src/components/ui/select.tsx:78:6",
           "data-greta-name": "SelectPrimitive.Viewport",
@@ -34937,11 +34978,11 @@ var PopoverAnchor = reactExports.forwardRef(
   }
 );
 PopoverAnchor.displayName = ANCHOR_NAME;
-var TRIGGER_NAME = "PopoverTrigger";
+var TRIGGER_NAME$1 = "PopoverTrigger";
 var PopoverTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopePopover, ...triggerProps } = props;
-    const context = usePopoverContext(TRIGGER_NAME, __scopePopover);
+    const context = usePopoverContext(TRIGGER_NAME$1, __scopePopover);
     const popperScope = usePopperScope(__scopePopover);
     const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
     const trigger = /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -34951,7 +34992,7 @@ var PopoverTrigger$1 = reactExports.forwardRef(
         "aria-haspopup": "dialog",
         "aria-expanded": context.open,
         "aria-controls": context.contentId,
-        "data-state": getState(context.open),
+        "data-state": getState$1(context.open),
         ...triggerProps,
         ref: composedTriggerRef,
         onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
@@ -34960,31 +35001,31 @@ var PopoverTrigger$1 = reactExports.forwardRef(
     return context.hasCustomAnchor ? trigger : /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor, { asChild: true, ...popperScope, children: trigger });
   }
 );
-PopoverTrigger$1.displayName = TRIGGER_NAME;
-var PORTAL_NAME = "PopoverPortal";
-var [PortalProvider, usePortalContext] = createPopoverContext(PORTAL_NAME, {
+PopoverTrigger$1.displayName = TRIGGER_NAME$1;
+var PORTAL_NAME$1 = "PopoverPortal";
+var [PortalProvider$1, usePortalContext$1] = createPopoverContext(PORTAL_NAME$1, {
   forceMount: void 0
 });
 var PopoverPortal = (props) => {
   const { __scopePopover, forceMount, children, container } = props;
-  const context = usePopoverContext(PORTAL_NAME, __scopePopover);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopePopover, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children }) }) });
+  const context = usePopoverContext(PORTAL_NAME$1, __scopePopover);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider$1, { scope: __scopePopover, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$4, { asChild: true, container, children }) }) });
 };
-PopoverPortal.displayName = PORTAL_NAME;
-var CONTENT_NAME = "PopoverContent";
+PopoverPortal.displayName = PORTAL_NAME$1;
+var CONTENT_NAME$1 = "PopoverContent";
 var PopoverContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext(CONTENT_NAME, props.__scopePopover);
+    const portalContext = usePortalContext$1(CONTENT_NAME$1, props.__scopePopover);
     const { forceMount = portalContext.forceMount, ...contentProps } = props;
-    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    const context = usePopoverContext(CONTENT_NAME$1, props.__scopePopover);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContentNonModal, { ...contentProps, ref: forwardedRef }) });
   }
 );
-PopoverContent$1.displayName = CONTENT_NAME;
-var Slot = /* @__PURE__ */ createSlot("PopoverContent.RemoveScroll");
+PopoverContent$1.displayName = CONTENT_NAME$1;
+var Slot$1 = /* @__PURE__ */ createSlot("PopoverContent.RemoveScroll");
 var PopoverContentModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    const context = usePopoverContext(CONTENT_NAME$1, props.__scopePopover);
     const contentRef = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, contentRef);
     const isRightClickOutsideRef = reactExports.useRef(false);
@@ -34992,7 +35033,7 @@ var PopoverContentModal = reactExports.forwardRef(
       const content = contentRef.current;
       if (content) return hideOthers(content);
     }, []);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot$1, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       PopoverContentImpl,
       {
         ...props,
@@ -35025,7 +35066,7 @@ var PopoverContentModal = reactExports.forwardRef(
 );
 var PopoverContentNonModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    const context = usePopoverContext(CONTENT_NAME$1, props.__scopePopover);
     const hasInteractedOutsideRef = reactExports.useRef(false);
     const hasPointerDownOutsideRef = reactExports.useRef(false);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -35079,7 +35120,7 @@ var PopoverContentImpl = reactExports.forwardRef(
       onInteractOutside,
       ...contentProps
     } = props;
-    const context = usePopoverContext(CONTENT_NAME, __scopePopover);
+    const context = usePopoverContext(CONTENT_NAME$1, __scopePopover);
     const popperScope = usePopperScope(__scopePopover);
     useFocusGuards();
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -35101,9 +35142,9 @@ var PopoverContentImpl = reactExports.forwardRef(
             onFocusOutside,
             onDismiss: () => context.onOpenChange(false),
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Content,
+              Content$1,
               {
-                "data-state": getState(context.open),
+                "data-state": getState$1(context.open),
                 role: "dialog",
                 id: context.contentId,
                 ...popperScope,
@@ -35128,11 +35169,11 @@ var PopoverContentImpl = reactExports.forwardRef(
     );
   }
 );
-var CLOSE_NAME = "PopoverClose";
+var CLOSE_NAME$1 = "PopoverClose";
 var PopoverClose = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopePopover, ...closeProps } = props;
-    const context = usePopoverContext(CLOSE_NAME, __scopePopover);
+    const context = usePopoverContext(CLOSE_NAME$1, __scopePopover);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
       {
@@ -35144,7 +35185,7 @@ var PopoverClose = reactExports.forwardRef(
     );
   }
 );
-PopoverClose.displayName = CLOSE_NAME;
+PopoverClose.displayName = CLOSE_NAME$1;
 var ARROW_NAME = "PopoverArrow";
 var PopoverArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -35154,16 +35195,16 @@ var PopoverArrow = reactExports.forwardRef(
   }
 );
 PopoverArrow.displayName = ARROW_NAME;
-function getState(open) {
+function getState$1(open) {
   return open ? "open" : "closed";
 }
 var Root2 = Popover$1;
-var Trigger = PopoverTrigger$1;
-var Portal = PopoverPortal;
+var Trigger$1 = PopoverTrigger$1;
+var Portal$1 = PopoverPortal;
 var Content2 = PopoverContent$1;
 const Popover = Root2;
-const PopoverTrigger = Trigger;
-const PopoverContent = reactExports.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { "data-greta-id": "src/components/ui/popover.tsx:14:2", "data-greta-name": "PopoverPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/popover.tsx", "data-component-line": "14", "data-component-file": "popover.tsx", "data-component-name": "PopoverPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+const PopoverTrigger = Trigger$1;
+const PopoverContent = reactExports.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-greta-id": "src/components/ui/popover.tsx:14:2", "data-greta-name": "PopoverPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/popover.tsx", "data-component-line": "14", "data-component-file": "popover.tsx", "data-component-name": "PopoverPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
   Content2,
   {
     "data-greta-id": "src/components/ui/popover.tsx:15:4",
@@ -37587,7 +37628,7 @@ function PreviousMonthButton(props) {
   const { components: components2 } = useDayPicker();
   return React$3.createElement(components2.Button, { ...props });
 }
-function Root(props) {
+function Root$2(props) {
   const { rootRef, ...rest } = props;
   return React$3.createElement("div", { ...rest, ref: rootRef });
 }
@@ -37641,7 +37682,7 @@ const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   NextMonthButton,
   Option,
   PreviousMonthButton,
-  Root,
+  Root: Root$2,
   Select,
   Week,
   WeekNumber,
@@ -39322,6 +39363,1122 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
   );
 }
 Calendar.displayName = "Calendar";
+var DIALOG_NAME = "Dialog";
+var [createDialogContext, createDialogScope] = createContextScope(DIALOG_NAME);
+var [DialogProvider, useDialogContext] = createDialogContext(DIALOG_NAME);
+var Dialog$1 = (props) => {
+  const {
+    __scopeDialog,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    modal = true
+  } = props;
+  const triggerRef = reactExports.useRef(null);
+  const contentRef = reactExports.useRef(null);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: DIALOG_NAME
+  });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    DialogProvider,
+    {
+      scope: __scopeDialog,
+      triggerRef,
+      contentRef,
+      contentId: useId(),
+      titleId: useId(),
+      descriptionId: useId(),
+      open,
+      onOpenChange: setOpen,
+      onOpenToggle: reactExports.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
+      modal,
+      children
+    }
+  );
+};
+Dialog$1.displayName = DIALOG_NAME;
+var TRIGGER_NAME = "DialogTrigger";
+var DialogTrigger$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...triggerProps } = props;
+    const context = useDialogContext(TRIGGER_NAME, __scopeDialog);
+    const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-expanded": context.open,
+        "aria-controls": context.contentId,
+        "data-state": getState(context.open),
+        ...triggerProps,
+        ref: composedTriggerRef,
+        onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+      }
+    );
+  }
+);
+DialogTrigger$1.displayName = TRIGGER_NAME;
+var PORTAL_NAME = "DialogPortal";
+var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME, {
+  forceMount: void 0
+});
+var DialogPortal$1 = (props) => {
+  const { __scopeDialog, forceMount, children, container } = props;
+  const context = useDialogContext(PORTAL_NAME, __scopeDialog);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeDialog, forceMount, children: reactExports.Children.map(children, (child) => /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$4, { asChild: true, container, children: child }) })) });
+};
+DialogPortal$1.displayName = PORTAL_NAME;
+var OVERLAY_NAME = "DialogOverlay";
+var DialogOverlay$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(OVERLAY_NAME, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, props.__scopeDialog);
+    return context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
+  }
+);
+DialogOverlay$1.displayName = OVERLAY_NAME;
+var Slot = /* @__PURE__ */ createSlot("DialogOverlay.RemoveScroll");
+var DialogOverlayImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, __scopeDialog);
+    return (
+      // Make sure `Content` is scrollable even when it doesn't live inside `RemoveScroll`
+      // ie. when `Overlay` and `Content` are siblings
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, shards: [context.contentRef], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          "data-state": getState(context.open),
+          ...overlayProps,
+          ref: forwardedRef,
+          style: { pointerEvents: "auto", ...overlayProps.style }
+        }
+      ) })
+    );
+  }
+);
+var CONTENT_NAME = "DialogContent";
+var DialogContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(CONTENT_NAME, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
+  }
+);
+DialogContent$1.displayName = CONTENT_NAME;
+var DialogContentModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, context.contentRef, contentRef);
+    reactExports.useEffect(() => {
+      const content = contentRef.current;
+      if (content) return hideOthers(content);
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: composedRefs,
+        trapFocus: context.open,
+        disableOutsidePointerEvents: true,
+        onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          var _a2;
+          event.preventDefault();
+          (_a2 = context.triggerRef.current) == null ? void 0 : _a2.focus();
+        }),
+        onPointerDownOutside: composeEventHandlers(props.onPointerDownOutside, (event) => {
+          const originalEvent = event.detail.originalEvent;
+          const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
+          const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
+          if (isRightClick) event.preventDefault();
+        }),
+        onFocusOutside: composeEventHandlers(
+          props.onFocusOutside,
+          (event) => event.preventDefault()
+        )
+      }
+    );
+  }
+);
+var DialogContentNonModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const hasInteractedOutsideRef = reactExports.useRef(false);
+    const hasPointerDownOutsideRef = reactExports.useRef(false);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: forwardedRef,
+        trapFocus: false,
+        disableOutsidePointerEvents: false,
+        onCloseAutoFocus: (event) => {
+          var _a2, _b2;
+          (_a2 = props.onCloseAutoFocus) == null ? void 0 : _a2.call(props, event);
+          if (!event.defaultPrevented) {
+            if (!hasInteractedOutsideRef.current) (_b2 = context.triggerRef.current) == null ? void 0 : _b2.focus();
+            event.preventDefault();
+          }
+          hasInteractedOutsideRef.current = false;
+          hasPointerDownOutsideRef.current = false;
+        },
+        onInteractOutside: (event) => {
+          var _a2, _b2;
+          (_a2 = props.onInteractOutside) == null ? void 0 : _a2.call(props, event);
+          if (!event.defaultPrevented) {
+            hasInteractedOutsideRef.current = true;
+            if (event.detail.originalEvent.type === "pointerdown") {
+              hasPointerDownOutsideRef.current = true;
+            }
+          }
+          const target = event.target;
+          const targetIsTrigger = (_b2 = context.triggerRef.current) == null ? void 0 : _b2.contains(target);
+          if (targetIsTrigger) event.preventDefault();
+          if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) {
+            event.preventDefault();
+          }
+        }
+      }
+    );
+  }
+);
+var DialogContentImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, trapFocus, onOpenAutoFocus, onCloseAutoFocus, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME, __scopeDialog);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    useFocusGuards();
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        FocusScope,
+        {
+          asChild: true,
+          loop: true,
+          trapped: trapFocus,
+          onMountAutoFocus: onOpenAutoFocus,
+          onUnmountAutoFocus: onCloseAutoFocus,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DismissableLayer,
+            {
+              role: "dialog",
+              id: context.contentId,
+              "aria-describedby": context.descriptionId,
+              "aria-labelledby": context.titleId,
+              "data-state": getState(context.open),
+              ...contentProps,
+              ref: composedRefs,
+              onDismiss: () => context.onOpenChange(false)
+            }
+          )
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TitleWarning, { titleId: context.titleId }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DescriptionWarning, { contentRef, descriptionId: context.descriptionId })
+      ] })
+    ] });
+  }
+);
+var TITLE_NAME = "DialogTitle";
+var DialogTitle$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...titleProps } = props;
+    const context = useDialogContext(TITLE_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.h2, { id: context.titleId, ...titleProps, ref: forwardedRef });
+  }
+);
+DialogTitle$1.displayName = TITLE_NAME;
+var DESCRIPTION_NAME = "DialogDescription";
+var DialogDescription$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...descriptionProps } = props;
+    const context = useDialogContext(DESCRIPTION_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.p, { id: context.descriptionId, ...descriptionProps, ref: forwardedRef });
+  }
+);
+DialogDescription$1.displayName = DESCRIPTION_NAME;
+var CLOSE_NAME = "DialogClose";
+var DialogClose = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...closeProps } = props;
+    const context = useDialogContext(CLOSE_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        ...closeProps,
+        ref: forwardedRef,
+        onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+      }
+    );
+  }
+);
+DialogClose.displayName = CLOSE_NAME;
+function getState(open) {
+  return open ? "open" : "closed";
+}
+var TITLE_WARNING_NAME = "DialogTitleWarning";
+var [WarningProvider, useWarningContext] = createContext2(TITLE_WARNING_NAME, {
+  contentName: CONTENT_NAME,
+  titleName: TITLE_NAME,
+  docsSlug: "dialog"
+});
+var TitleWarning = ({ titleId }) => {
+  const titleWarningContext = useWarningContext(TITLE_WARNING_NAME);
+  const MESSAGE = `\`${titleWarningContext.contentName}\` requires a \`${titleWarningContext.titleName}\` for the component to be accessible for screen reader users.
+
+If you want to hide the \`${titleWarningContext.titleName}\`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/${titleWarningContext.docsSlug}`;
+  reactExports.useEffect(() => {
+    if (titleId) {
+      const hasTitle = document.getElementById(titleId);
+      if (!hasTitle) console.error(MESSAGE);
+    }
+  }, [MESSAGE, titleId]);
+  return null;
+};
+var DESCRIPTION_WARNING_NAME = "DialogDescriptionWarning";
+var DescriptionWarning = ({ contentRef, descriptionId }) => {
+  const descriptionWarningContext = useWarningContext(DESCRIPTION_WARNING_NAME);
+  const MESSAGE = `Warning: Missing \`Description\` or \`aria-describedby={undefined}\` for {${descriptionWarningContext.contentName}}.`;
+  reactExports.useEffect(() => {
+    var _a2;
+    const describedById = (_a2 = contentRef.current) == null ? void 0 : _a2.getAttribute("aria-describedby");
+    if (descriptionId && describedById) {
+      const hasDescription = document.getElementById(descriptionId);
+      if (!hasDescription) console.warn(MESSAGE);
+    }
+  }, [MESSAGE, contentRef, descriptionId]);
+  return null;
+};
+var Root$1 = Dialog$1;
+var Trigger = DialogTrigger$1;
+var Portal = DialogPortal$1;
+var Overlay = DialogOverlay$1;
+var Content = DialogContent$1;
+var Title = DialogTitle$1;
+var Description = DialogDescription$1;
+var Close = DialogClose;
+const Dialog = Root$1;
+const DialogTrigger = Trigger;
+const DialogPortal = Portal;
+const DialogOverlay = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Overlay,
+  {
+    "data-greta-id": "src/components/ui/dialog.tsx:19:2",
+    "data-greta-name": "DialogPrimitive.Overlay",
+    "data-greta-editable": "false",
+    "data-component-path": "src/components/ui/dialog.tsx",
+    "data-component-line": "19",
+    "data-component-file": "dialog.tsx",
+    "data-component-name": "DialogPrimitive.Overlay",
+    "data-component-content": "%7B%7D",
+    ref,
+    className: cn(
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    ),
+    ...props
+  }
+));
+DialogOverlay.displayName = Overlay.displayName;
+const DialogContent = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-greta-id": "src/components/ui/dialog.tsx:34:2", "data-greta-name": "DialogPortal", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "34", "data-component-file": "dialog.tsx", "data-component-name": "DialogPortal", "data-component-content": "%7B%7D", children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, { "data-greta-id": "src/components/ui/dialog.tsx:35:4", "data-greta-name": "DialogOverlay", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "35", "data-component-file": "dialog.tsx", "data-component-name": "DialogOverlay", "data-component-content": "%7B%7D" }),
+  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    Content,
+    {
+      "data-greta-id": "src/components/ui/dialog.tsx:36:4",
+      "data-greta-name": "DialogPrimitive.Content",
+      "data-greta-editable": "false",
+      "data-component-path": "src/components/ui/dialog.tsx",
+      "data-component-line": "36",
+      "data-component-file": "dialog.tsx",
+      "data-component-name": "DialogPrimitive.Content",
+      "data-component-content": "%7B%7D",
+      ref,
+      className: cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      ),
+      ...props,
+      children: [
+        children,
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Close, { "data-greta-id": "src/components/ui/dialog.tsx:45:6", "data-greta-name": "DialogPrimitive.Close", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "45", "data-component-file": "dialog.tsx", "data-component-name": "DialogPrimitive.Close", "data-component-content": "%7B%22className%22%3A%22absolute%20right-4%20top-4%20rounded-sm%20opacity-70%20ring-offset-background%20transition-opacity%20data-%5Bstate%3Dopen%5D%3Abg-accent%20data-%5Bstate%3Dopen%5D%3Atext-muted-foreground%20hover%3Aopacity-100%20focus%3Aoutline-none%20focus%3Aring-2%20focus%3Aring-ring%20focus%3Aring-offset-2%20disabled%3Apointer-events-none%22%7D", className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(X, { "data-greta-id": "src/components/ui/dialog.tsx:46:8", "data-greta-name": "X", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "46", "data-component-file": "dialog.tsx", "data-component-name": "X", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/components/ui/dialog.tsx:47:8", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "47", "data-component-file": "dialog.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22sr-only%22%7D", className: "sr-only", children: "Close" })
+        ] })
+      ]
+    }
+  )
+] }));
+DialogContent.displayName = Content.displayName;
+const DialogHeader = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/components/ui/dialog.tsx:55:2", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "55", "data-component-file": "dialog.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn("flex flex-col space-y-1.5 text-center sm:text-left", className), ...props });
+DialogHeader.displayName = "DialogHeader";
+const DialogTitle = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Title,
+  {
+    "data-greta-id": "src/components/ui/dialog.tsx:68:2",
+    "data-greta-name": "DialogPrimitive.Title",
+    "data-greta-editable": "false",
+    "data-component-path": "src/components/ui/dialog.tsx",
+    "data-component-line": "68",
+    "data-component-file": "dialog.tsx",
+    "data-component-name": "DialogPrimitive.Title",
+    "data-component-content": "%7B%7D",
+    ref,
+    className: cn("text-lg font-semibold leading-none tracking-tight", className),
+    ...props
+  }
+));
+DialogTitle.displayName = Title.displayName;
+const DialogDescription = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Description, { "data-greta-id": "src/components/ui/dialog.tsx:80:2", "data-greta-name": "DialogPrimitive.Description", "data-greta-editable": "false", "data-component-path": "src/components/ui/dialog.tsx", "data-component-line": "80", "data-component-file": "dialog.tsx", "data-component-name": "DialogPrimitive.Description", "data-component-content": "%7B%7D", ref, className: cn("text-sm text-muted-foreground", className), ...props }));
+DialogDescription.displayName = Description.displayName;
+function useStateMachine(initialState2, machine) {
+  return reactExports.useReducer((state, event) => {
+    const nextState = machine[state][event];
+    return nextState ?? state;
+  }, initialState2);
+}
+var SCROLL_AREA_NAME = "ScrollArea";
+var [createScrollAreaContext, createScrollAreaScope] = createContextScope(SCROLL_AREA_NAME);
+var [ScrollAreaProvider, useScrollAreaContext] = createScrollAreaContext(SCROLL_AREA_NAME);
+var ScrollArea$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeScrollArea,
+      type = "hover",
+      dir,
+      scrollHideDelay = 600,
+      ...scrollAreaProps
+    } = props;
+    const [scrollArea, setScrollArea] = reactExports.useState(null);
+    const [viewport, setViewport] = reactExports.useState(null);
+    const [content, setContent] = reactExports.useState(null);
+    const [scrollbarX, setScrollbarX] = reactExports.useState(null);
+    const [scrollbarY, setScrollbarY] = reactExports.useState(null);
+    const [cornerWidth, setCornerWidth] = reactExports.useState(0);
+    const [cornerHeight, setCornerHeight] = reactExports.useState(0);
+    const [scrollbarXEnabled, setScrollbarXEnabled] = reactExports.useState(false);
+    const [scrollbarYEnabled, setScrollbarYEnabled] = reactExports.useState(false);
+    const composedRefs = useComposedRefs(forwardedRef, (node) => setScrollArea(node));
+    const direction = useDirection(dir);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ScrollAreaProvider,
+      {
+        scope: __scopeScrollArea,
+        type,
+        dir: direction,
+        scrollHideDelay,
+        scrollArea,
+        viewport,
+        onViewportChange: setViewport,
+        content,
+        onContentChange: setContent,
+        scrollbarX,
+        onScrollbarXChange: setScrollbarX,
+        scrollbarXEnabled,
+        onScrollbarXEnabledChange: setScrollbarXEnabled,
+        scrollbarY,
+        onScrollbarYChange: setScrollbarY,
+        scrollbarYEnabled,
+        onScrollbarYEnabledChange: setScrollbarYEnabled,
+        onCornerWidthChange: setCornerWidth,
+        onCornerHeightChange: setCornerHeight,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.div,
+          {
+            dir: direction,
+            ...scrollAreaProps,
+            ref: composedRefs,
+            style: {
+              position: "relative",
+              // Pass corner sizes as CSS vars to reduce re-renders of context consumers
+              ["--radix-scroll-area-corner-width"]: cornerWidth + "px",
+              ["--radix-scroll-area-corner-height"]: cornerHeight + "px",
+              ...props.style
+            }
+          }
+        )
+      }
+    );
+  }
+);
+ScrollArea$1.displayName = SCROLL_AREA_NAME;
+var VIEWPORT_NAME = "ScrollAreaViewport";
+var ScrollAreaViewport = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeScrollArea, children, nonce, ...viewportProps } = props;
+    const context = useScrollAreaContext(VIEWPORT_NAME, __scopeScrollArea);
+    const ref = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, ref, context.onViewportChange);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "style",
+        {
+          dangerouslySetInnerHTML: {
+            __html: `[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}`
+          },
+          nonce
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          "data-radix-scroll-area-viewport": "",
+          ...viewportProps,
+          ref: composedRefs,
+          style: {
+            /**
+             * We don't support `visible` because the intention is to have at least one scrollbar
+             * if this component is used and `visible` will behave like `auto` in that case
+             * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#description
+             *
+             * We don't handle `auto` because the intention is for the native implementation
+             * to be hidden if using this component. We just want to ensure the node is scrollable
+             * so could have used either `scroll` or `auto` here. We picked `scroll` to prevent
+             * the browser from having to work out whether to render native scrollbars or not,
+             * we tell it to with the intention of hiding them in CSS.
+             */
+            overflowX: context.scrollbarXEnabled ? "scroll" : "hidden",
+            overflowY: context.scrollbarYEnabled ? "scroll" : "hidden",
+            ...props.style
+          },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: context.onContentChange, style: { minWidth: "100%", display: "table" }, children })
+        }
+      )
+    ] });
+  }
+);
+ScrollAreaViewport.displayName = VIEWPORT_NAME;
+var SCROLLBAR_NAME = "ScrollAreaScrollbar";
+var ScrollAreaScrollbar = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { forceMount, ...scrollbarProps } = props;
+    const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+    const { onScrollbarXEnabledChange, onScrollbarYEnabledChange } = context;
+    const isHorizontal = props.orientation === "horizontal";
+    reactExports.useEffect(() => {
+      isHorizontal ? onScrollbarXEnabledChange(true) : onScrollbarYEnabledChange(true);
+      return () => {
+        isHorizontal ? onScrollbarXEnabledChange(false) : onScrollbarYEnabledChange(false);
+      };
+    }, [isHorizontal, onScrollbarXEnabledChange, onScrollbarYEnabledChange]);
+    return context.type === "hover" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaScrollbarHover, { ...scrollbarProps, ref: forwardedRef, forceMount }) : context.type === "scroll" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaScrollbarScroll, { ...scrollbarProps, ref: forwardedRef, forceMount }) : context.type === "auto" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaScrollbarAuto, { ...scrollbarProps, ref: forwardedRef, forceMount }) : context.type === "always" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaScrollbarVisible, { ...scrollbarProps, ref: forwardedRef }) : null;
+  }
+);
+ScrollAreaScrollbar.displayName = SCROLLBAR_NAME;
+var ScrollAreaScrollbarHover = reactExports.forwardRef((props, forwardedRef) => {
+  const { forceMount, ...scrollbarProps } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const [visible, setVisible] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    const scrollArea = context.scrollArea;
+    let hideTimer = 0;
+    if (scrollArea) {
+      const handlePointerEnter = () => {
+        window.clearTimeout(hideTimer);
+        setVisible(true);
+      };
+      const handlePointerLeave = () => {
+        hideTimer = window.setTimeout(() => setVisible(false), context.scrollHideDelay);
+      };
+      scrollArea.addEventListener("pointerenter", handlePointerEnter);
+      scrollArea.addEventListener("pointerleave", handlePointerLeave);
+      return () => {
+        window.clearTimeout(hideTimer);
+        scrollArea.removeEventListener("pointerenter", handlePointerEnter);
+        scrollArea.removeEventListener("pointerleave", handlePointerLeave);
+      };
+    }
+  }, [context.scrollArea, context.scrollHideDelay]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || visible, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollAreaScrollbarAuto,
+    {
+      "data-state": visible ? "visible" : "hidden",
+      ...scrollbarProps,
+      ref: forwardedRef
+    }
+  ) });
+});
+var ScrollAreaScrollbarScroll = reactExports.forwardRef((props, forwardedRef) => {
+  const { forceMount, ...scrollbarProps } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const isHorizontal = props.orientation === "horizontal";
+  const debounceScrollEnd = useDebounceCallback(() => send("SCROLL_END"), 100);
+  const [state, send] = useStateMachine("hidden", {
+    hidden: {
+      SCROLL: "scrolling"
+    },
+    scrolling: {
+      SCROLL_END: "idle",
+      POINTER_ENTER: "interacting"
+    },
+    interacting: {
+      SCROLL: "interacting",
+      POINTER_LEAVE: "idle"
+    },
+    idle: {
+      HIDE: "hidden",
+      SCROLL: "scrolling",
+      POINTER_ENTER: "interacting"
+    }
+  });
+  reactExports.useEffect(() => {
+    if (state === "idle") {
+      const hideTimer = window.setTimeout(() => send("HIDE"), context.scrollHideDelay);
+      return () => window.clearTimeout(hideTimer);
+    }
+  }, [state, context.scrollHideDelay, send]);
+  reactExports.useEffect(() => {
+    const viewport = context.viewport;
+    const scrollDirection = isHorizontal ? "scrollLeft" : "scrollTop";
+    if (viewport) {
+      let prevScrollPos = viewport[scrollDirection];
+      const handleScroll2 = () => {
+        const scrollPos = viewport[scrollDirection];
+        const hasScrollInDirectionChanged = prevScrollPos !== scrollPos;
+        if (hasScrollInDirectionChanged) {
+          send("SCROLL");
+          debounceScrollEnd();
+        }
+        prevScrollPos = scrollPos;
+      };
+      viewport.addEventListener("scroll", handleScroll2);
+      return () => viewport.removeEventListener("scroll", handleScroll2);
+    }
+  }, [context.viewport, isHorizontal, send, debounceScrollEnd]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || state !== "hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollAreaScrollbarVisible,
+    {
+      "data-state": state === "hidden" ? "hidden" : "visible",
+      ...scrollbarProps,
+      ref: forwardedRef,
+      onPointerEnter: composeEventHandlers(props.onPointerEnter, () => send("POINTER_ENTER")),
+      onPointerLeave: composeEventHandlers(props.onPointerLeave, () => send("POINTER_LEAVE"))
+    }
+  ) });
+});
+var ScrollAreaScrollbarAuto = reactExports.forwardRef((props, forwardedRef) => {
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const { forceMount, ...scrollbarProps } = props;
+  const [visible, setVisible] = reactExports.useState(false);
+  const isHorizontal = props.orientation === "horizontal";
+  const handleResize = useDebounceCallback(() => {
+    if (context.viewport) {
+      const isOverflowX = context.viewport.offsetWidth < context.viewport.scrollWidth;
+      const isOverflowY = context.viewport.offsetHeight < context.viewport.scrollHeight;
+      setVisible(isHorizontal ? isOverflowX : isOverflowY);
+    }
+  }, 10);
+  useResizeObserver(context.viewport, handleResize);
+  useResizeObserver(context.content, handleResize);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || visible, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollAreaScrollbarVisible,
+    {
+      "data-state": visible ? "visible" : "hidden",
+      ...scrollbarProps,
+      ref: forwardedRef
+    }
+  ) });
+});
+var ScrollAreaScrollbarVisible = reactExports.forwardRef((props, forwardedRef) => {
+  const { orientation = "vertical", ...scrollbarProps } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const thumbRef = reactExports.useRef(null);
+  const pointerOffsetRef = reactExports.useRef(0);
+  const [sizes, setSizes] = reactExports.useState({
+    content: 0,
+    viewport: 0,
+    scrollbar: { size: 0, paddingStart: 0, paddingEnd: 0 }
+  });
+  const thumbRatio = getThumbRatio(sizes.viewport, sizes.content);
+  const commonProps = {
+    ...scrollbarProps,
+    sizes,
+    onSizesChange: setSizes,
+    hasThumb: Boolean(thumbRatio > 0 && thumbRatio < 1),
+    onThumbChange: (thumb) => thumbRef.current = thumb,
+    onThumbPointerUp: () => pointerOffsetRef.current = 0,
+    onThumbPointerDown: (pointerPos) => pointerOffsetRef.current = pointerPos
+  };
+  function getScrollPosition(pointerPos, dir) {
+    return getScrollPositionFromPointer(pointerPos, pointerOffsetRef.current, sizes, dir);
+  }
+  if (orientation === "horizontal") {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ScrollAreaScrollbarX,
+      {
+        ...commonProps,
+        ref: forwardedRef,
+        onThumbPositionChange: () => {
+          if (context.viewport && thumbRef.current) {
+            const scrollPos = context.viewport.scrollLeft;
+            const offset3 = getThumbOffsetFromScroll(scrollPos, sizes, context.dir);
+            thumbRef.current.style.transform = `translate3d(${offset3}px, 0, 0)`;
+          }
+        },
+        onWheelScroll: (scrollPos) => {
+          if (context.viewport) context.viewport.scrollLeft = scrollPos;
+        },
+        onDragScroll: (pointerPos) => {
+          if (context.viewport) {
+            context.viewport.scrollLeft = getScrollPosition(pointerPos, context.dir);
+          }
+        }
+      }
+    );
+  }
+  if (orientation === "vertical") {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ScrollAreaScrollbarY,
+      {
+        ...commonProps,
+        ref: forwardedRef,
+        onThumbPositionChange: () => {
+          if (context.viewport && thumbRef.current) {
+            const scrollPos = context.viewport.scrollTop;
+            const offset3 = getThumbOffsetFromScroll(scrollPos, sizes);
+            thumbRef.current.style.transform = `translate3d(0, ${offset3}px, 0)`;
+          }
+        },
+        onWheelScroll: (scrollPos) => {
+          if (context.viewport) context.viewport.scrollTop = scrollPos;
+        },
+        onDragScroll: (pointerPos) => {
+          if (context.viewport) context.viewport.scrollTop = getScrollPosition(pointerPos);
+        }
+      }
+    );
+  }
+  return null;
+});
+var ScrollAreaScrollbarX = reactExports.forwardRef((props, forwardedRef) => {
+  const { sizes, onSizesChange, ...scrollbarProps } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const [computedStyle, setComputedStyle] = reactExports.useState();
+  const ref = reactExports.useRef(null);
+  const composeRefs2 = useComposedRefs(forwardedRef, ref, context.onScrollbarXChange);
+  reactExports.useEffect(() => {
+    if (ref.current) setComputedStyle(getComputedStyle(ref.current));
+  }, [ref]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollAreaScrollbarImpl,
+    {
+      "data-orientation": "horizontal",
+      ...scrollbarProps,
+      ref: composeRefs2,
+      sizes,
+      style: {
+        bottom: 0,
+        left: context.dir === "rtl" ? "var(--radix-scroll-area-corner-width)" : 0,
+        right: context.dir === "ltr" ? "var(--radix-scroll-area-corner-width)" : 0,
+        ["--radix-scroll-area-thumb-width"]: getThumbSize(sizes) + "px",
+        ...props.style
+      },
+      onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.x),
+      onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.x),
+      onWheelScroll: (event, maxScrollPos) => {
+        if (context.viewport) {
+          const scrollPos = context.viewport.scrollLeft + event.deltaX;
+          props.onWheelScroll(scrollPos);
+          if (isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos)) {
+            event.preventDefault();
+          }
+        }
+      },
+      onResize: () => {
+        if (ref.current && context.viewport && computedStyle) {
+          onSizesChange({
+            content: context.viewport.scrollWidth,
+            viewport: context.viewport.offsetWidth,
+            scrollbar: {
+              size: ref.current.clientWidth,
+              paddingStart: toInt(computedStyle.paddingLeft),
+              paddingEnd: toInt(computedStyle.paddingRight)
+            }
+          });
+        }
+      }
+    }
+  );
+});
+var ScrollAreaScrollbarY = reactExports.forwardRef((props, forwardedRef) => {
+  const { sizes, onSizesChange, ...scrollbarProps } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
+  const [computedStyle, setComputedStyle] = reactExports.useState();
+  const ref = reactExports.useRef(null);
+  const composeRefs2 = useComposedRefs(forwardedRef, ref, context.onScrollbarYChange);
+  reactExports.useEffect(() => {
+    if (ref.current) setComputedStyle(getComputedStyle(ref.current));
+  }, [ref]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollAreaScrollbarImpl,
+    {
+      "data-orientation": "vertical",
+      ...scrollbarProps,
+      ref: composeRefs2,
+      sizes,
+      style: {
+        top: 0,
+        right: context.dir === "ltr" ? 0 : void 0,
+        left: context.dir === "rtl" ? 0 : void 0,
+        bottom: "var(--radix-scroll-area-corner-height)",
+        ["--radix-scroll-area-thumb-height"]: getThumbSize(sizes) + "px",
+        ...props.style
+      },
+      onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.y),
+      onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.y),
+      onWheelScroll: (event, maxScrollPos) => {
+        if (context.viewport) {
+          const scrollPos = context.viewport.scrollTop + event.deltaY;
+          props.onWheelScroll(scrollPos);
+          if (isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos)) {
+            event.preventDefault();
+          }
+        }
+      },
+      onResize: () => {
+        if (ref.current && context.viewport && computedStyle) {
+          onSizesChange({
+            content: context.viewport.scrollHeight,
+            viewport: context.viewport.offsetHeight,
+            scrollbar: {
+              size: ref.current.clientHeight,
+              paddingStart: toInt(computedStyle.paddingTop),
+              paddingEnd: toInt(computedStyle.paddingBottom)
+            }
+          });
+        }
+      }
+    }
+  );
+});
+var [ScrollbarProvider, useScrollbarContext] = createScrollAreaContext(SCROLLBAR_NAME);
+var ScrollAreaScrollbarImpl = reactExports.forwardRef((props, forwardedRef) => {
+  const {
+    __scopeScrollArea,
+    sizes,
+    hasThumb,
+    onThumbChange,
+    onThumbPointerUp,
+    onThumbPointerDown,
+    onThumbPositionChange,
+    onDragScroll,
+    onWheelScroll,
+    onResize,
+    ...scrollbarProps
+  } = props;
+  const context = useScrollAreaContext(SCROLLBAR_NAME, __scopeScrollArea);
+  const [scrollbar, setScrollbar] = reactExports.useState(null);
+  const composeRefs2 = useComposedRefs(forwardedRef, (node) => setScrollbar(node));
+  const rectRef = reactExports.useRef(null);
+  const prevWebkitUserSelectRef = reactExports.useRef("");
+  const viewport = context.viewport;
+  const maxScrollPos = sizes.content - sizes.viewport;
+  const handleWheelScroll = useCallbackRef$1(onWheelScroll);
+  const handleThumbPositionChange = useCallbackRef$1(onThumbPositionChange);
+  const handleResize = useDebounceCallback(onResize, 10);
+  function handleDragScroll(event) {
+    if (rectRef.current) {
+      const x2 = event.clientX - rectRef.current.left;
+      const y = event.clientY - rectRef.current.top;
+      onDragScroll({ x: x2, y });
+    }
+  }
+  reactExports.useEffect(() => {
+    const handleWheel = (event) => {
+      const element = event.target;
+      const isScrollbarWheel = scrollbar == null ? void 0 : scrollbar.contains(element);
+      if (isScrollbarWheel) handleWheelScroll(event, maxScrollPos);
+    };
+    document.addEventListener("wheel", handleWheel, { passive: false });
+    return () => document.removeEventListener("wheel", handleWheel, { passive: false });
+  }, [viewport, scrollbar, maxScrollPos, handleWheelScroll]);
+  reactExports.useEffect(handleThumbPositionChange, [sizes, handleThumbPositionChange]);
+  useResizeObserver(scrollbar, handleResize);
+  useResizeObserver(context.content, handleResize);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ScrollbarProvider,
+    {
+      scope: __scopeScrollArea,
+      scrollbar,
+      hasThumb,
+      onThumbChange: useCallbackRef$1(onThumbChange),
+      onThumbPointerUp: useCallbackRef$1(onThumbPointerUp),
+      onThumbPositionChange: handleThumbPositionChange,
+      onThumbPointerDown: useCallbackRef$1(onThumbPointerDown),
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          ...scrollbarProps,
+          ref: composeRefs2,
+          style: { position: "absolute", ...scrollbarProps.style },
+          onPointerDown: composeEventHandlers(props.onPointerDown, (event) => {
+            const mainPointer = 0;
+            if (event.button === mainPointer) {
+              const element = event.target;
+              element.setPointerCapture(event.pointerId);
+              rectRef.current = scrollbar.getBoundingClientRect();
+              prevWebkitUserSelectRef.current = document.body.style.webkitUserSelect;
+              document.body.style.webkitUserSelect = "none";
+              if (context.viewport) context.viewport.style.scrollBehavior = "auto";
+              handleDragScroll(event);
+            }
+          }),
+          onPointerMove: composeEventHandlers(props.onPointerMove, handleDragScroll),
+          onPointerUp: composeEventHandlers(props.onPointerUp, (event) => {
+            const element = event.target;
+            if (element.hasPointerCapture(event.pointerId)) {
+              element.releasePointerCapture(event.pointerId);
+            }
+            document.body.style.webkitUserSelect = prevWebkitUserSelectRef.current;
+            if (context.viewport) context.viewport.style.scrollBehavior = "";
+            rectRef.current = null;
+          })
+        }
+      )
+    }
+  );
+});
+var THUMB_NAME = "ScrollAreaThumb";
+var ScrollAreaThumb = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { forceMount, ...thumbProps } = props;
+    const scrollbarContext = useScrollbarContext(THUMB_NAME, props.__scopeScrollArea);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || scrollbarContext.hasThumb, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaThumbImpl, { ref: forwardedRef, ...thumbProps }) });
+  }
+);
+var ScrollAreaThumbImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeScrollArea, style: style2, ...thumbProps } = props;
+    const scrollAreaContext = useScrollAreaContext(THUMB_NAME, __scopeScrollArea);
+    const scrollbarContext = useScrollbarContext(THUMB_NAME, __scopeScrollArea);
+    const { onThumbPositionChange } = scrollbarContext;
+    const composedRef = useComposedRefs(
+      forwardedRef,
+      (node) => scrollbarContext.onThumbChange(node)
+    );
+    const removeUnlinkedScrollListenerRef = reactExports.useRef(void 0);
+    const debounceScrollEnd = useDebounceCallback(() => {
+      if (removeUnlinkedScrollListenerRef.current) {
+        removeUnlinkedScrollListenerRef.current();
+        removeUnlinkedScrollListenerRef.current = void 0;
+      }
+    }, 100);
+    reactExports.useEffect(() => {
+      const viewport = scrollAreaContext.viewport;
+      if (viewport) {
+        const handleScroll2 = () => {
+          debounceScrollEnd();
+          if (!removeUnlinkedScrollListenerRef.current) {
+            const listener = addUnlinkedScrollListener(viewport, onThumbPositionChange);
+            removeUnlinkedScrollListenerRef.current = listener;
+            onThumbPositionChange();
+          }
+        };
+        onThumbPositionChange();
+        viewport.addEventListener("scroll", handleScroll2);
+        return () => viewport.removeEventListener("scroll", handleScroll2);
+      }
+    }, [scrollAreaContext.viewport, debounceScrollEnd, onThumbPositionChange]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.div,
+      {
+        "data-state": scrollbarContext.hasThumb ? "visible" : "hidden",
+        ...thumbProps,
+        ref: composedRef,
+        style: {
+          width: "var(--radix-scroll-area-thumb-width)",
+          height: "var(--radix-scroll-area-thumb-height)",
+          ...style2
+        },
+        onPointerDownCapture: composeEventHandlers(props.onPointerDownCapture, (event) => {
+          const thumb = event.target;
+          const thumbRect = thumb.getBoundingClientRect();
+          const x2 = event.clientX - thumbRect.left;
+          const y = event.clientY - thumbRect.top;
+          scrollbarContext.onThumbPointerDown({ x: x2, y });
+        }),
+        onPointerUp: composeEventHandlers(props.onPointerUp, scrollbarContext.onThumbPointerUp)
+      }
+    );
+  }
+);
+ScrollAreaThumb.displayName = THUMB_NAME;
+var CORNER_NAME = "ScrollAreaCorner";
+var ScrollAreaCorner = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = useScrollAreaContext(CORNER_NAME, props.__scopeScrollArea);
+    const hasBothScrollbarsVisible = Boolean(context.scrollbarX && context.scrollbarY);
+    const hasCorner = context.type !== "scroll" && hasBothScrollbarsVisible;
+    return hasCorner ? /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaCornerImpl, { ...props, ref: forwardedRef }) : null;
+  }
+);
+ScrollAreaCorner.displayName = CORNER_NAME;
+var ScrollAreaCornerImpl = reactExports.forwardRef((props, forwardedRef) => {
+  const { __scopeScrollArea, ...cornerProps } = props;
+  const context = useScrollAreaContext(CORNER_NAME, __scopeScrollArea);
+  const [width, setWidth] = reactExports.useState(0);
+  const [height, setHeight] = reactExports.useState(0);
+  const hasSize = Boolean(width && height);
+  useResizeObserver(context.scrollbarX, () => {
+    var _a2;
+    const height2 = ((_a2 = context.scrollbarX) == null ? void 0 : _a2.offsetHeight) || 0;
+    context.onCornerHeightChange(height2);
+    setHeight(height2);
+  });
+  useResizeObserver(context.scrollbarY, () => {
+    var _a2;
+    const width2 = ((_a2 = context.scrollbarY) == null ? void 0 : _a2.offsetWidth) || 0;
+    context.onCornerWidthChange(width2);
+    setWidth(width2);
+  });
+  return hasSize ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.div,
+    {
+      ...cornerProps,
+      ref: forwardedRef,
+      style: {
+        width,
+        height,
+        position: "absolute",
+        right: context.dir === "ltr" ? 0 : void 0,
+        left: context.dir === "rtl" ? 0 : void 0,
+        bottom: 0,
+        ...props.style
+      }
+    }
+  ) : null;
+});
+function toInt(value) {
+  return value ? parseInt(value, 10) : 0;
+}
+function getThumbRatio(viewportSize, contentSize) {
+  const ratio = viewportSize / contentSize;
+  return isNaN(ratio) ? 0 : ratio;
+}
+function getThumbSize(sizes) {
+  const ratio = getThumbRatio(sizes.viewport, sizes.content);
+  const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
+  const thumbSize = (sizes.scrollbar.size - scrollbarPadding) * ratio;
+  return Math.max(thumbSize, 18);
+}
+function getScrollPositionFromPointer(pointerPos, pointerOffset, sizes, dir = "ltr") {
+  const thumbSizePx = getThumbSize(sizes);
+  const thumbCenter = thumbSizePx / 2;
+  const offset3 = pointerOffset || thumbCenter;
+  const thumbOffsetFromEnd = thumbSizePx - offset3;
+  const minPointerPos = sizes.scrollbar.paddingStart + offset3;
+  const maxPointerPos = sizes.scrollbar.size - sizes.scrollbar.paddingEnd - thumbOffsetFromEnd;
+  const maxScrollPos = sizes.content - sizes.viewport;
+  const scrollRange = dir === "ltr" ? [0, maxScrollPos] : [maxScrollPos * -1, 0];
+  const interpolate = linearScale([minPointerPos, maxPointerPos], scrollRange);
+  return interpolate(pointerPos);
+}
+function getThumbOffsetFromScroll(scrollPos, sizes, dir = "ltr") {
+  const thumbSizePx = getThumbSize(sizes);
+  const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
+  const scrollbar = sizes.scrollbar.size - scrollbarPadding;
+  const maxScrollPos = sizes.content - sizes.viewport;
+  const maxThumbPos = scrollbar - thumbSizePx;
+  const scrollClampRange = dir === "ltr" ? [0, maxScrollPos] : [maxScrollPos * -1, 0];
+  const scrollWithoutMomentum = clamp(scrollPos, scrollClampRange);
+  const interpolate = linearScale([0, maxScrollPos], [0, maxThumbPos]);
+  return interpolate(scrollWithoutMomentum);
+}
+function linearScale(input, output) {
+  return (value) => {
+    if (input[0] === input[1] || output[0] === output[1]) return output[0];
+    const ratio = (output[1] - output[0]) / (input[1] - input[0]);
+    return output[0] + ratio * (value - input[0]);
+  };
+}
+function isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos) {
+  return scrollPos > 0 && scrollPos < maxScrollPos;
+}
+var addUnlinkedScrollListener = (node, handler = () => {
+}) => {
+  let prevPosition = { left: node.scrollLeft, top: node.scrollTop };
+  let rAF = 0;
+  (function loop() {
+    const position2 = { left: node.scrollLeft, top: node.scrollTop };
+    const isHorizontalScroll = prevPosition.left !== position2.left;
+    const isVerticalScroll = prevPosition.top !== position2.top;
+    if (isHorizontalScroll || isVerticalScroll) handler();
+    prevPosition = position2;
+    rAF = window.requestAnimationFrame(loop);
+  })();
+  return () => window.cancelAnimationFrame(rAF);
+};
+function useDebounceCallback(callback, delay) {
+  const handleCallback = useCallbackRef$1(callback);
+  const debounceTimerRef = reactExports.useRef(0);
+  reactExports.useEffect(() => () => window.clearTimeout(debounceTimerRef.current), []);
+  return reactExports.useCallback(() => {
+    window.clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = window.setTimeout(handleCallback, delay);
+  }, [handleCallback, delay]);
+}
+function useResizeObserver(element, onResize) {
+  const handleResize = useCallbackRef$1(onResize);
+  useLayoutEffect2(() => {
+    let rAF = 0;
+    if (element) {
+      const resizeObserver = new ResizeObserver(() => {
+        cancelAnimationFrame(rAF);
+        rAF = window.requestAnimationFrame(handleResize);
+      });
+      resizeObserver.observe(element);
+      return () => {
+        window.cancelAnimationFrame(rAF);
+        resizeObserver.unobserve(element);
+      };
+    }
+  }, [element, handleResize]);
+}
+var Root = ScrollArea$1;
+var Viewport = ScrollAreaViewport;
+var Corner = ScrollAreaCorner;
+const ScrollArea = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Root, { "data-greta-id": "src/components/ui/scroll-area.tsx:10:2", "data-greta-name": "ScrollAreaPrimitive.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "10", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Root", "data-component-content": "%7B%7D", ref, className: cn("relative overflow-hidden", className), ...props, children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsx(Viewport, { "data-greta-id": "src/components/ui/scroll-area.tsx:11:4", "data-greta-name": "ScrollAreaPrimitive.Viewport", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "11", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Viewport", "data-component-content": "%7B%22className%22%3A%22h-full%20w-full%20rounded-%5Binherit%5D%22%7D", className: "h-full w-full rounded-[inherit]", children }),
+  /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollBar, { "data-greta-id": "src/components/ui/scroll-area.tsx:12:4", "data-greta-name": "ScrollBar", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "12", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollBar", "data-component-content": "%7B%7D" }),
+  /* @__PURE__ */ jsxRuntimeExports.jsx(Corner, { "data-greta-id": "src/components/ui/scroll-area.tsx:13:4", "data-greta-name": "ScrollAreaPrimitive.Corner", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "13", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.Corner", "data-component-content": "%7B%7D" })
+] }));
+ScrollArea.displayName = Root.displayName;
+const ScrollBar = reactExports.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  ScrollAreaScrollbar,
+  {
+    "data-greta-id": "src/components/ui/scroll-area.tsx:22:2",
+    "data-greta-name": "ScrollAreaPrimitive.ScrollAreaScrollbar",
+    "data-greta-editable": "false",
+    "data-component-path": "src/components/ui/scroll-area.tsx",
+    "data-component-line": "22",
+    "data-component-file": "scroll-area.tsx",
+    "data-component-name": "ScrollAreaPrimitive.ScrollAreaScrollbar",
+    "data-component-content": "%7B%7D",
+    ref,
+    orientation,
+    className: cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAreaThumb, { "data-greta-id": "src/components/ui/scroll-area.tsx:33:4", "data-greta-name": "ScrollAreaPrimitive.ScrollAreaThumb", "data-greta-editable": "false", "data-component-path": "src/components/ui/scroll-area.tsx", "data-component-line": "33", "data-component-file": "scroll-area.tsx", "data-component-name": "ScrollAreaPrimitive.ScrollAreaThumb", "data-component-content": "%7B%22className%22%3A%22relative%20flex-1%20rounded-full%20bg-border%22%7D", className: "relative flex-1 rounded-full bg-border" })
+  }
+));
+ScrollBar.displayName = ScrollAreaScrollbar.displayName;
 function toDate(argument) {
   const argStr = Object.prototype.toString.call(argument);
   if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
@@ -40790,6 +41947,9 @@ function Index() {
   const [filterCategory, setFilterCategory] = reactExports.useState("All");
   const [sortBy, setSortBy] = reactExports.useState("custom");
   const [isAdding, setIsAdding] = reactExports.useState(false);
+  const [activeTodoId, setActiveTodoId] = reactExports.useState(null);
+  const [commentText, setCommentText] = reactExports.useState("");
+  const [isAddingComment, setIsAddingComment] = reactExports.useState(false);
   const { toast: toast2 } = useToast();
   reactExports.useEffect(() => {
     fetchTodos();
@@ -40861,6 +42021,36 @@ function Index() {
       toast2({ title: "Error deleting todo", variant: "destructive" });
     }
   };
+  const handleAddComment = async () => {
+    if (!activeTodoId || !commentText.trim() || isAddingComment) return;
+    setIsAddingComment(true);
+    try {
+      const response = await fetch(`${API_URL}/api/todos/${activeTodoId}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: commentText.trim() })
+      });
+      if (response.ok) {
+        const newComment = await response.json();
+        setTodos(todos.map((t) => t.id === activeTodoId ? { ...t, comments: [...t.comments, newComment] } : t));
+        setCommentText("");
+      }
+    } catch (error) {
+      toast2({ title: "Error adding comment", variant: "destructive" });
+    } finally {
+      setIsAddingComment(false);
+    }
+  };
+  const deleteComment = async (todoId, commentId) => {
+    try {
+      const response = await fetch(`${API_URL}/api/todos/${todoId}/comments/${commentId}`, { method: "DELETE" });
+      if (response.ok) {
+        setTodos(todos.map((t) => t.id === todoId ? { ...t, comments: t.comments.filter((c) => c.id !== commentId) } : t));
+      }
+    } catch (error) {
+      toast2({ title: "Error deleting comment", variant: "destructive" });
+    }
+  };
   const handleDragEnd = async (result) => {
     if (!result.destination || sortBy !== "custom") return;
     const items = Array.from(todos);
@@ -40905,201 +42095,140 @@ function Index() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
-      "data-greta-id": "src/pages/Index.tsx:183:4",
+      "data-greta-id": "src/pages/Index.tsx:222:4",
       "data-greta-name": "div",
       "data-greta-editable": "false",
       "data-component-path": "src/pages/Index.tsx",
-      "data-component-line": "183",
+      "data-component-line": "222",
       "data-component-file": "Index.tsx",
       "data-component-name": "div",
       "data-component-content": "%7B%22className%22%3A%22min-h-screen%20p-4%20md%3Ap-8%20flex%20flex-col%20items-center%20pt-20%20relative%20bg-cover%20bg-center%20bg-no-repeat%20bg-fixed%22%7D",
       className: "min-h-screen p-4 md:p-8 flex flex-col items-center pt-20 relative bg-cover bg-center bg-no-repeat bg-fixed",
       style: { backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:187:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "187", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:189:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "189", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:190:8", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "190", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:193:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "193", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:194:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "194", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20md%3Aflex-row%20md%3Aitems-center%20justify-between%20space-y-4%20md%3Aspace-y-0%20pb-7%22%7D", className: "flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:195:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "195", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:196:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "196", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-wrap%20items-center%20gap-3%22%7D", className: "flex flex-wrap items-center gap-3", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:197:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "197", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:198:14", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "198", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:199:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "199", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:200:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "200", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:201:18", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "201", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Category%22%7D", placeholder: "Category" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:203:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "203", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:204:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "204", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Cats" }),
-                    CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:205:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "205", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:226:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "226", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:227:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "227", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:227:62", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "227", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:229:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "229", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:230:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "230", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20md%3Aflex-row%20md%3Aitems-center%20justify-between%20space-y-4%20md%3Aspace-y-0%20pb-7%22%7D", className: "flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:231:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "231", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:232:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "232", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-wrap%20items-center%20gap-3%22%7D", className: "flex flex-wrap items-center gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:233:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "233", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:234:14", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "234", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:235:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:236:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "236", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:236:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "236", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Category%22%7D", placeholder: "Category" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:237:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "237", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:238:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "238", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Cats" }),
+                    CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:239:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "239", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
                   ] })
                 ] })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:209:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "209", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { "data-greta-id": "src/pages/Index.tsx:210:14", "data-greta-name": "ArrowUpDown", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "210", "data-component-file": "Index.tsx", "data-component-name": "ArrowUpDown", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:211:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "211", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: sortBy, onValueChange: (v2) => setSortBy(v2), children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:212:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "212", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:213:18", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "213", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Sort%22%7D", placeholder: "Sort" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:215:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "215", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:216:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "216", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22custom%22%7D", value: "custom", children: "Custom (Drag)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:217:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "217", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22priority%22%7D", value: "priority", children: "Priority" })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:243:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "243", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { "data-greta-id": "src/pages/Index.tsx:244:14", "data-greta-name": "ArrowUpDown", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "244", "data-component-file": "Index.tsx", "data-component-name": "ArrowUpDown", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:245:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "245", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: sortBy, onValueChange: (v2) => setSortBy(v2), children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:246:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:246:65", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Sort%22%7D", placeholder: "Sort" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:247:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "247", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:248:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "248", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22custom%22%7D", value: "custom", children: "Custom (Drag)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:249:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "249", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22priority%22%7D", value: "priority", children: "Priority" })
                   ] })
                 ] })
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:223:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "223", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:224:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "224", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:225:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "225", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20gap-2%22%7D", className: "flex flex-col gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:226:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "226", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Input,
-                  {
-                    "data-greta-id": "src/pages/Index.tsx:227:16",
-                    "data-greta-name": "Input",
-                    "data-greta-editable": "false",
-                    "data-component-path": "src/pages/Index.tsx",
-                    "data-component-line": "227",
-                    "data-component-file": "Index.tsx",
-                    "data-component-name": "Input",
-                    "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D",
-                    placeholder: "What needs to be done?",
-                    value: newTodo,
-                    onChange: (e) => setNewTodo(e.target.value),
-                    className: "flex-1 h-11",
-                    disabled: isAdding
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:234:16", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "234", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:235:30", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:235:77", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:255:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "255", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:256:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "256", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:257:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "257", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20gap-2%22%7D", className: "flex flex-col gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:258:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "258", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:259:16", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "259", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D", placeholder: "What needs to be done?", value: newTodo, onChange: (e) => setNewTodo(e.target.value), className: "flex-1 h-11", disabled: isAdding }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:260:16", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "260", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:261:30", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:261:77", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:238:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "238", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20flex-wrap%20sm%3Aflex-nowrap%22%7D", className: "flex gap-2 flex-wrap sm:flex-nowrap", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:239:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "239", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:240:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "240", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:241:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "241", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:242:22", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "242", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:243:22", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "243", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:264:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "264", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20flex-wrap%20sm%3Aflex-nowrap%22%7D", className: "flex gap-2 flex-wrap sm:flex-nowrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:265:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "265", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:266:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:266:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:266:98", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:266:125", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "266", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
                   ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:246:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:247:41", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "247", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:267:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:267:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "267", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:250:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "250", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newPriority, onValueChange: setNewPriority, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:251:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "251", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:252:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "252", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { "data-greta-id": "src/pages/Index.tsx:253:22", "data-greta-name": "AlertCircle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "253", "data-component-file": "Index.tsx", "data-component-name": "AlertCircle", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:254:22", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "254", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:269:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "269", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newPriority, onValueChange: setNewPriority, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:270:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:270:57", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { "data-greta-id": "src/pages/Index.tsx:270:98", "data-greta-name": "AlertCircle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "AlertCircle", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:270:133", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
                   ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:257:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "257", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: PRIORITIES.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:258:41", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "258", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: p, children: p }, p)) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:271:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: PRIORITIES.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:271:54", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: p, children: p }, p)) })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Popover, { "data-greta-id": "src/pages/Index.tsx:261:16", "data-greta-name": "Popover", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Popover", "data-component-content": "%7B%7D", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { "data-greta-id": "src/pages/Index.tsx:262:18", "data-greta-name": "PopoverTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "262", "data-component-file": "Index.tsx", "data-component-name": "PopoverTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Button$1,
-                    {
-                      "data-greta-id": "src/pages/Index.tsx:263:20",
-                      "data-greta-name": "Button",
-                      "data-greta-editable": "false",
-                      "data-component-path": "src/pages/Index.tsx",
-                      "data-component-line": "263",
-                      "data-component-file": "Index.tsx",
-                      "data-component-name": "Button",
-                      "data-component-content": "%7B%22variant%22%3A%22outline%22%7D",
-                      variant: "outline",
-                      className: cn(
-                        "w-full h-10 justify-start text-left font-normal",
-                        !dueDate && "text-muted-foreground"
-                      ),
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { "data-greta-id": "src/pages/Index.tsx:270:22", "data-greta-name": "CalendarIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "CalendarIcon", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D", className: "mr-2 h-4 w-4" }),
-                        dueDate ? format(dueDate, "MMM d") : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:271:60", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", children: "Due Date" })
-                      ]
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { "data-greta-id": "src/pages/Index.tsx:274:18", "data-greta-name": "PopoverContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "274", "data-component-file": "Index.tsx", "data-component-name": "PopoverContent", "data-component-content": "%7B%22className%22%3A%22w-auto%20p-0%22%2C%22align%22%3A%22start%22%7D", className: "w-auto p-0", align: "start", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Calendar,
-                    {
-                      "data-greta-id": "src/pages/Index.tsx:275:20",
-                      "data-greta-name": "Calendar",
-                      "data-greta-editable": "false",
-                      "data-component-path": "src/pages/Index.tsx",
-                      "data-component-line": "275",
-                      "data-component-file": "Index.tsx",
-                      "data-component-name": "Calendar",
-                      "data-component-content": "%7B%22mode%22%3A%22single%22%7D",
-                      mode: "single",
-                      selected: dueDate,
-                      onSelect: setDueDate,
-                      initialFocus: true
-                    }
-                  ) })
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Popover, { "data-greta-id": "src/pages/Index.tsx:273:16", "data-greta-name": "Popover", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "273", "data-component-file": "Index.tsx", "data-component-name": "Popover", "data-component-content": "%7B%7D", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { "data-greta-id": "src/pages/Index.tsx:274:18", "data-greta-name": "PopoverTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "274", "data-component-file": "Index.tsx", "data-component-name": "PopoverTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:275:20", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "275", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("w-full h-10 justify-start text-left font-normal", !dueDate && "text-muted-foreground"), children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { "data-greta-id": "src/pages/Index.tsx:276:22", "data-greta-name": "CalendarIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "276", "data-component-file": "Index.tsx", "data-component-name": "CalendarIcon", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D", className: "mr-2 h-4 w-4" }),
+                    dueDate ? format(dueDate, "MMM d") : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:277:60", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "277", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", children: "Due Date" })
+                  ] }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { "data-greta-id": "src/pages/Index.tsx:280:18", "data-greta-name": "PopoverContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "280", "data-component-file": "Index.tsx", "data-component-name": "PopoverContent", "data-component-content": "%7B%22className%22%3A%22w-auto%20p-0%22%2C%22align%22%3A%22start%22%7D", className: "w-auto p-0", align: "start", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { "data-greta-id": "src/pages/Index.tsx:280:71", "data-greta-name": "Calendar", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "280", "data-component-file": "Index.tsx", "data-component-name": "Calendar", "data-component-content": "%7B%22mode%22%3A%22single%22%7D", mode: "single", selected: dueDate, onSelect: setDueDate, initialFocus: true }) })
                 ] })
               ] })
             ] }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:287:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "287", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:288:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "288", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:290:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "290", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
-              processedTodos.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:292:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "292", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22text-center%20py-12%20border-2%20border-dashed%20rounded-xl%20border-muted%22%7D", className: "text-center py-12 border-2 border-dashed rounded-xl border-muted", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:293:22", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "293", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-muted-foreground%20font-medium%22%7D", className: "text-muted-foreground font-medium", children: "No tasks found" }) }) : processedTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:297:22", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, isDragDisabled: sortBy !== "custom", children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:286:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "286", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:287:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "287", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:289:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "289", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
+              processedTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:291:20", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "291", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, isDragDisabled: sortBy !== "custom", children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  "data-greta-id": "src/pages/Index.tsx:299:26",
+                  "data-greta-id": "src/pages/Index.tsx:293:24",
                   "data-greta-name": "div",
                   "data-greta-editable": "false",
                   "data-component-path": "src/pages/Index.tsx",
-                  "data-component-line": "299",
+                  "data-component-line": "293",
                   "data-component-file": "Index.tsx",
                   "data-component-name": "div",
                   "data-component-content": "%7B%7D",
                   ref: provided2.innerRef,
                   ...provided2.draggableProps,
-                  className: `flex items-center justify-between p-4 border rounded-xl bg-card transition-all group ${snapshot.isDragging ? "shadow-2xl ring-2 ring-primary scale-[1.02] z-50" : "hover:border-primary/30"}`,
+                  className: cn(
+                    "flex items-center justify-between p-4 border rounded-xl bg-card transition-all group",
+                    snapshot.isDragging ? "shadow-2xl ring-2 ring-primary scale-[1.02] z-50" : "hover:border-primary/30"
+                  ),
                   style: provided2.draggableProps.style,
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:307:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "307", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:308:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "308", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", ...provided2.dragHandleProps, className: cn(
-                        "text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing",
-                        sortBy !== "custom" && "opacity-0 pointer-events-none"
-                      ), children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:312:32", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Checkbox,
-                        {
-                          "data-greta-id": "src/pages/Index.tsx:314:30",
-                          "data-greta-name": "Checkbox",
-                          "data-greta-editable": "false",
-                          "data-component-path": "src/pages/Index.tsx",
-                          "data-component-line": "314",
-                          "data-component-file": "Index.tsx",
-                          "data-component-name": "Checkbox",
-                          "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D",
-                          checked: todo.completed,
-                          onCheckedChange: () => toggleTodo(todo.id, todo.completed),
-                          className: "h-5 w-5"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:319:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "319", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:320:32", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "320", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: `text-sm font-semibold truncate transition-all ${todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"}`, children: todo.title }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:323:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "323", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-3%20mt-1%20flex-wrap%22%7D", className: "flex items-center gap-3 mt-1 flex-wrap", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:324:34", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "324", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%22%7D", className: "flex items-center gap-1.5", children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:325:36", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "325", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:326:36", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "326", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20tracking-wider%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase tracking-wider font-bold text-muted-foreground", children: todo.category })
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:302:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "302", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:303:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "303", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", ...provided2.dragHandleProps, className: cn("text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing", sortBy !== "custom" && "opacity-0 pointer-events-none"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:304:30", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "304", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Checkbox, { "data-greta-id": "src/pages/Index.tsx:306:28", "data-greta-name": "Checkbox", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "306", "data-component-file": "Index.tsx", "data-component-name": "Checkbox", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", checked: todo.completed, onCheckedChange: () => toggleTodo(todo.id, todo.completed), className: "h-5 w-5" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:307:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "307", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:308:30", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "308", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: cn("text-sm font-semibold truncate transition-all", todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"), children: todo.title }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:311:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "311", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-3%20mt-1%20flex-wrap%22%7D", className: "flex items-center gap-3 mt-1 flex-wrap", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:312:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%22%7D", className: "flex items-center gap-1.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:312:75", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:312:124", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase font-bold text-muted-foreground", children: todo.category })
                           ] }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { "data-greta-id": "src/pages/Index.tsx:330:34", "data-greta-name": "Badge", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "330", "data-component-file": "Index.tsx", "data-component-name": "Badge", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("text-[8px] h-4 px-1 uppercase font-black border", PRIORITY_COLORS[todo.priority] || PRIORITY_COLORS.Medium), children: todo.priority }),
-                          todo.due_date && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:334:36", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn(
-                            "flex items-center gap-1.5",
-                            isOverdue(todo.due_date) && !todo.completed ? "text-destructive" : "text-muted-foreground"
-                          ), children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { "data-greta-id": "src/pages/Index.tsx:338:38", "data-greta-name": "Clock", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "338", "data-component-file": "Index.tsx", "data-component-name": "Clock", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:339:38", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "339", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20font-bold%22%7D", className: "text-[10px] font-bold", children: getDueDateLabel(todo.due_date) })
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { "data-greta-id": "src/pages/Index.tsx:313:32", "data-greta-name": "Badge", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "313", "data-component-file": "Index.tsx", "data-component-name": "Badge", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("text-[8px] h-4 px-1 font-black border", PRIORITY_COLORS[todo.priority]), children: todo.priority }),
+                          todo.due_date && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:314:50", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn("flex items-center gap-1.5", isOverdue(todo.due_date) && !todo.completed ? "text-destructive" : "text-muted-foreground"), children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { "data-greta-id": "src/pages/Index.tsx:314:191", "data-greta-name": "Clock", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "Clock", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:314:220", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "314", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20font-bold%22%7D", className: "text-[10px] font-bold", children: getDueDateLabel(todo.due_date) })
                           ] })
                         ] })
                       ] })
                     ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Button$1,
-                      {
-                        "data-greta-id": "src/pages/Index.tsx:347:28",
-                        "data-greta-name": "Button",
-                        "data-greta-editable": "false",
-                        "data-component-path": "src/pages/Index.tsx",
-                        "data-component-line": "347",
-                        "data-component-file": "Index.tsx",
-                        "data-component-name": "Button",
-                        "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-destructive%20hover%3Abg-destructive%2F10%20shrink-0%20h-9%20w-9%22%7D",
-                        variant: "ghost",
-                        size: "icon",
-                        onClick: () => deleteTodo(todo.id),
-                        disabled: todo.isDeleting,
-                        className: "text-muted-foreground hover:text-destructive hover:bg-destructive/10 shrink-0 h-9 w-9",
-                        children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:354:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "354", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:354:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "354", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" })
-                      }
-                    )
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:318:26", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "318", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1%22%7D", className: "flex items-center gap-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Dialog, { "data-greta-id": "src/pages/Index.tsx:319:28", "data-greta-name": "Dialog", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "319", "data-component-file": "Index.tsx", "data-component-name": "Dialog", "data-component-content": "%7B%7D", onOpenChange: (open) => {
+                        if (open) setActiveTodoId(todo.id);
+                        else setActiveTodoId(null);
+                      }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTrigger, { "data-greta-id": "src/pages/Index.tsx:320:30", "data-greta-name": "DialogTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "320", "data-component-file": "Index.tsx", "data-component-name": "DialogTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/pages/Index.tsx:321:32", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "321", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-primary%20shrink-0%20h-9%20w-9%20relative%22%7D", variant: "ghost", size: "icon", className: "text-muted-foreground hover:text-primary shrink-0 h-9 w-9 relative", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { "data-greta-id": "src/pages/Index.tsx:322:34", "data-greta-name": "MessageSquare", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "322", "data-component-file": "Index.tsx", "data-component-name": "MessageSquare", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                          todo.comments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:323:63", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "323", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22absolute%20-top-1%20-right-1%20bg-primary%20text-primary-foreground%20text-%5B8px%5D%20font-bold%20rounded-full%20w-4%20h-4%20flex%20items-center%20justify-center%20border-2%20border-background%22%7D", className: "absolute -top-1 -right-1 bg-primary text-primary-foreground text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-background", children: todo.comments.length })
+                        ] }) }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-greta-id": "src/pages/Index.tsx:326:30", "data-greta-name": "DialogContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "326", "data-component-file": "Index.tsx", "data-component-name": "DialogContent", "data-component-content": "%7B%22className%22%3A%22sm%3Amax-w-%5B425px%5D%22%7D", className: "sm:max-w-[425px]", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { "data-greta-id": "src/pages/Index.tsx:327:32", "data-greta-name": "DialogHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "327", "data-component-file": "Index.tsx", "data-component-name": "DialogHeader", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { "data-greta-id": "src/pages/Index.tsx:327:46", "data-greta-name": "DialogTitle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "327", "data-component-file": "Index.tsx", "data-component-name": "DialogTitle", "data-component-content": "%7B%7D", children: [
+                            "Comments: ",
+                            todo.title
+                          ] }) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollArea, { "data-greta-id": "src/pages/Index.tsx:328:32", "data-greta-name": "ScrollArea", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "328", "data-component-file": "Index.tsx", "data-component-name": "ScrollArea", "data-component-content": "%7B%22className%22%3A%22h-%5B300px%5D%20pr-4%20mt-4%22%7D", className: "h-[300px] pr-4 mt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:329:34", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "329", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-4%22%7D", className: "space-y-4", children: todo.comments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:330:66", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "330", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-center%20text-muted-foreground%20text-sm%20py-8%22%7D", className: "text-center text-muted-foreground text-sm py-8", children: "No comments yet" }) : todo.comments.map((comment) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:331:38", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "331", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22bg-muted%20p-3%20rounded-lg%20relative%20group%22%7D", className: "bg-muted p-3 rounded-lg relative group", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:332:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "332", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-sm%20pr-6%22%7D", className: "text-sm pr-6", children: comment.text }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:333:40", "data-greta-name": "p", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "333", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20text-muted-foreground%20mt-2%22%7D", className: "text-[10px] text-muted-foreground mt-2", children: format(new Date(comment.created_at), "MMM d, h:mm a") }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:334:40", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-6%20w-6%20absolute%20top-1%20right-1%20opacity-0%20group-hover%3Aopacity-100%20transition-opacity%20text-destructive%22%7D", variant: "ghost", size: "icon", onClick: () => deleteComment(todo.id, comment.id), className: "h-6 w-6 absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-destructive", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { "data-greta-id": "src/pages/Index.tsx:334:240", "data-greta-name": "X", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "X", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }) })
+                          ] }, comment.id)) }) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:339:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "339", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20mt-4%20pt-4%20border-t%22%7D", className: "flex gap-2 mt-4 pt-4 border-t", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { "data-greta-id": "src/pages/Index.tsx:340:34", "data-greta-name": "Input", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "340", "data-component-file": "Index.tsx", "data-component-name": "Input", "data-component-content": "%7B%22placeholder%22%3A%22Add%20a%20comment...%22%7D", placeholder: "Add a comment...", value: commentText, onChange: (e) => setCommentText(e.target.value), onKeyDown: (e) => e.key === "Enter" && handleAddComment() }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:341:34", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22size%22%3A%22icon%22%7D", size: "icon", onClick: handleAddComment, disabled: !commentText.trim() || isAddingComment, children: isAddingComment ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:341:150", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { "data-greta-id": "src/pages/Index.tsx:341:197", "data-greta-name": "Send", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "341", "data-component-file": "Index.tsx", "data-component-name": "Send", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
+                          ] })
+                        ] })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:345:28", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "345", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-destructive%20shrink-0%20h-9%20w-9%22%7D", variant: "ghost", size: "icon", onClick: () => deleteTodo(todo.id), disabled: todo.isDeleting, className: "text-muted-foreground hover:text-destructive shrink-0 h-9 w-9", children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:346:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "346", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:346:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "346", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }) })
+                    ] })
                   ]
                 }
               ) }, todo.id)),
