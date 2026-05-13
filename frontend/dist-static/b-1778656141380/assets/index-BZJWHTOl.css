@@ -891,11 +891,8 @@ body{
 .w-\[100px\]{
   width: 100px;
 }
-.w-\[130px\]{
-  width: 130px;
-}
-.w-\[140px\]{
-  width: 140px;
+.w-\[120px\]{
+  width: 120px;
 }
 .w-\[1px\]{
   width: 1px;
@@ -1076,6 +1073,9 @@ body{
 .items-stretch{
   align-items: stretch;
 }
+.justify-start{
+  justify-content: flex-start;
+}
 .justify-center{
   justify-content: center;
 }
@@ -1091,6 +1091,9 @@ body{
 .gap-2{
   gap: 0.5rem;
 }
+.gap-3{
+  gap: 0.75rem;
+}
 .gap-4{
   gap: 1rem;
 }
@@ -1103,11 +1106,6 @@ body{
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-y-0 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0px * var(--tw-space-y-reverse));
 }
 .space-y-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
@@ -1211,6 +1209,9 @@ body{
 .border-\[--color-border\]{
   border-color: var(--color-border);
 }
+.border-blue-500\/20{
+  border-color: rgb(59 130 246 / 0.2);
+}
 .border-border\/50{
   border-color: hsl(var(--border) / 0.5);
 }
@@ -1229,11 +1230,17 @@ body{
 .border-primary{
   border-color: hsl(var(--primary));
 }
+.border-red-500\/20{
+  border-color: rgb(239 68 68 / 0.2);
+}
 .border-sidebar-border{
   border-color: hsl(var(--sidebar-border));
 }
 .border-transparent{
   border-color: transparent;
+}
+.border-yellow-500\/20{
+  border-color: rgb(234 179 8 / 0.2);
 }
 .border-l-transparent{
   border-left-color: transparent;
@@ -1255,6 +1262,9 @@ body{
 }
 .bg-black\/80{
   background-color: rgb(0 0 0 / 0.8);
+}
+.bg-blue-500\/10{
+  background-color: rgb(59 130 246 / 0.1);
 }
 .bg-border{
   background-color: hsl(var(--border));
@@ -1283,6 +1293,9 @@ body{
 .bg-primary{
   background-color: hsl(var(--primary));
 }
+.bg-red-500\/10{
+  background-color: rgb(239 68 68 / 0.1);
+}
 .bg-secondary{
   background-color: hsl(var(--secondary));
 }
@@ -1294,6 +1307,9 @@ body{
 }
 .bg-transparent{
   background-color: transparent;
+}
+.bg-yellow-500\/10{
+  background-color: rgb(234 179 8 / 0.1);
 }
 .bg-cover{
   background-size: cover;
@@ -1463,6 +1479,9 @@ body{
 .text-\[10px\]{
   font-size: 10px;
 }
+.text-\[8px\]{
+  font-size: 8px;
+}
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1520,6 +1539,10 @@ body{
 .text-accent-foreground{
   color: hsl(var(--accent-foreground));
 }
+.text-blue-500{
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
+}
 .text-card-foreground{
   color: hsl(var(--card-foreground));
 }
@@ -1553,6 +1576,10 @@ body{
 .text-primary-foreground{
   color: hsl(var(--primary-foreground));
 }
+.text-red-500{
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
 .text-secondary-foreground{
   color: hsl(var(--secondary-foreground));
 }
@@ -1561,6 +1588,10 @@ body{
 }
 .text-sidebar-foreground\/70{
   color: hsl(var(--sidebar-foreground) / 0.7);
+}
+.text-yellow-500{
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity, 1));
 }
 .underline{
   text-decoration-line: underline;
@@ -2582,6 +2613,9 @@ body{
   .sm\:flex-col{
     flex-direction: column;
   }
+  .sm\:flex-nowrap{
+    flex-wrap: nowrap;
+  }
   .sm\:justify-end{
     justify-content: flex-end;
   }
@@ -2631,6 +2665,17 @@ body{
   }
   .md\:max-w-\[420px\]{
     max-width: 420px;
+  }
+  .md\:flex-row{
+    flex-direction: row;
+  }
+  .md\:items-center{
+    align-items: center;
+  }
+  .md\:space-y-0 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
   .md\:p-8{
     padding: 2rem;

@@ -29,10 +29,14 @@ def format_doc(doc: dict) -> dict:
 class TodoCreate(BaseModel):
     title: str
     category: Optional[str] = "General"
+    priority: Optional[str] = "Medium"
+    due_date: Optional[str] = None
 
 class TodoUpdate(BaseModel):
     completed: Optional[bool] = None
     category: Optional[str] = None
+    priority: Optional[str] = None
+    due_date: Optional[str] = None
 
 class TodoResponse(BaseModel):
     id: str
@@ -40,6 +44,8 @@ class TodoResponse(BaseModel):
     completed: bool
     order: int
     category: str
+    priority: str
+    due_date: Optional[str] = None
 
 class TodoReorder(BaseModel):
     id: str
@@ -51,6 +57,7 @@ async def get_todos():
     for t in todos:
         if "order" not in t: t["order"] = 0
         if "category" not in t: t["category"] = "General"
+        if "priority" not in t: t["priority"] = "Medium"
     return [format_doc(todo) for todo in todos]
 
 @api_router.post("/todos", response_model=TodoResponse)
@@ -60,7 +67,9 @@ async def create_todo(todo: TodoCreate):
         "title": todo.title,
         "completed": False,
         "order": count,
-        "category": todo.category or "General"
+        "category": todo.category or "General",
+        "priority": todo.priority or "Medium",
+        "due_date": todo.due_date
     }
     result = await db.todos.insert_one(new_todo)
     new_todo["_id"] = result.inserted_id
@@ -88,6 +97,10 @@ async def update_todo(todo_id: str, todo_update: TodoUpdate):
         update_data["completed"] = todo_update.completed
     if todo_update.category is not None:
         update_data["category"] = todo_update.category
+    if todo_update.priority is not None:
+        update_data["priority"] = todo_update.priority
+    if todo_update.due_date is not None:
+        update_data["due_date"] = todo_update.due_date
 
     result = await db.todos.find_one_and_update(
         {"_id": obj_id},

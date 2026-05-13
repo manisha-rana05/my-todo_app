@@ -457,8 +457,8 @@ function isValidElement(object) {
 }
 function escape$1(key) {
   var escaperLookup = { "=": "=0", ":": "=2" };
-  return "$" + key.replace(/[=:]/g, function(match) {
-    return escaperLookup[match];
+  return "$" + key.replace(/[=:]/g, function(match2) {
+    return escaperLookup[match2];
   });
 }
 var userProvidedKeyEscapeRegex = /\/+/g;
@@ -1234,8 +1234,8 @@ function describeBuiltInComponentFrame(name) {
     try {
       throw Error();
     } catch (x2) {
-      var match = x2.stack.trim().match(/\n( *(at )?)/);
-      prefix$3 = match && match[1] || "";
+      var match2 = x2.stack.trim().match(/\n( *(at )?)/);
+      prefix$3 = match2 && match2[1] || "";
       suffix = -1 < x2.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x2.stack.indexOf("@") ? "@unknown:0:0" : "";
     }
   return "\n" + prefix$3 + name + suffix;
@@ -12757,7 +12757,7 @@ function createSlot(ownerName) {
   Slot2.displayName = `${ownerName}.Slot`;
   return Slot2;
 }
-var Slot$2 = /* @__PURE__ */ createSlot("Slot");
+var Slot$3 = /* @__PURE__ */ createSlot("Slot");
 // @__NO_SIDE_EFFECTS__
 function createSlotClone(ownerName) {
   const SlotClone = reactExports.forwardRef((props, forwardedRef) => {
@@ -13146,12 +13146,12 @@ function handleAndDispatchCustomEvent$1(name, handler, detail, { discrete }) {
     target.dispatchEvent(event);
   }
 }
-var Root$3 = DismissableLayer;
+var Root$4 = DismissableLayer;
 var Branch = DismissableLayerBranch;
 var useLayoutEffect2 = (globalThis == null ? void 0 : globalThis.document) ? reactExports.useLayoutEffect : () => {
 };
-var PORTAL_NAME$4 = "Portal";
-var Portal$2 = reactExports.forwardRef((props, forwardedRef) => {
+var PORTAL_NAME$5 = "Portal";
+var Portal$3 = reactExports.forwardRef((props, forwardedRef) => {
   var _a2;
   const { container: containerProp, ...portalProps } = props;
   const [mounted, setMounted] = reactExports.useState(false);
@@ -13159,7 +13159,7 @@ var Portal$2 = reactExports.forwardRef((props, forwardedRef) => {
   const container = containerProp || mounted && ((_a2 = globalThis == null ? void 0 : globalThis.document) == null ? void 0 : _a2.body);
   return container ? ReactDOM$1.createPortal(/* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...portalProps, ref: forwardedRef }), container) : null;
 });
-Portal$2.displayName = PORTAL_NAME$4;
+Portal$3.displayName = PORTAL_NAME$5;
 function useStateMachine(initialState2, machine) {
   return reactExports.useReducer((state, event) => {
     const nextState = machine[state][event];
@@ -13376,7 +13376,7 @@ var VisuallyHidden = reactExports.forwardRef(
   }
 );
 VisuallyHidden.displayName = NAME$1;
-var Root$2 = VisuallyHidden;
+var Root$3 = VisuallyHidden;
 var PROVIDER_NAME$1 = "ToastProvider";
 var [Collection$3, useCollection$3, createCollectionScope$3] = createCollection("Toast");
 var [createToastContext, createToastScope] = createContextScope("Toast", [createCollectionScope$3]);
@@ -13740,7 +13740,7 @@ var ToastImpl = reactExports.forwardRef(
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ToastInteractiveProvider, { scope: __scopeToast, onClose: handleClose, children: reactDomExports.createPortal(
         /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$3.ItemSlot, { scope: __scopeToast, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$3,
+          Root$4,
           {
             asChild: true,
             onEscapeKeyDown: composeEventHandlers(onEscapeKeyDown, () => {
@@ -13847,7 +13847,7 @@ var ToastAnnounce = (props) => {
     const timer = window.setTimeout(() => setIsAnnounced(true), 1e3);
     return () => window.clearTimeout(timer);
   }, []);
-  return isAnnounced ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHidden, { ...announceProps, children: renderAnnounceText && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+  return isAnnounced ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHidden, { ...announceProps, children: renderAnnounceText && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     context.label,
     " ",
     children
@@ -13883,11 +13883,11 @@ var ToastAction$1 = reactExports.forwardRef(
   }
 );
 ToastAction$1.displayName = ACTION_NAME;
-var CLOSE_NAME = "ToastClose";
+var CLOSE_NAME$1 = "ToastClose";
 var ToastClose$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeToast, ...closeProps } = props;
-    const interactiveContext = useToastInteractiveContext(CLOSE_NAME, __scopeToast);
+    const interactiveContext = useToastInteractiveContext(CLOSE_NAME$1, __scopeToast);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(ToastAnnounceExclude, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
       {
@@ -13899,7 +13899,7 @@ var ToastClose$1 = reactExports.forwardRef(
     ) });
   }
 );
-ToastClose$1.displayName = CLOSE_NAME;
+ToastClose$1.displayName = CLOSE_NAME$1;
 var ToastAnnounceExclude = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeToast, altText, ...announceExcludeProps } = props;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -13990,7 +13990,7 @@ function focusFirst$3(candidates) {
 }
 var Provider$2 = ToastProvider$1;
 var Viewport$1 = ToastViewport$1;
-var Root2$3 = Toast$1;
+var Root2$4 = Toast$1;
 var Title = ToastTitle$1;
 var Description = ToastDescription$1;
 var Action$1 = ToastAction$1;
@@ -14135,6 +14135,30 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const ArrowUpDown = createLucideIcon("ArrowUpDown", [
+  ["path", { d: "m21 16-4 4-4-4", key: "f6ql7i" }],
+  ["path", { d: "M17 20V4", key: "1ejh1v" }],
+  ["path", { d: "m3 8 4-4 4 4", key: "11wl7u" }],
+  ["path", { d: "M7 4v16", key: "1glfcx" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Calendar$1 = createLucideIcon("Calendar", [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Check = createLucideIcon("Check", [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -14144,6 +14168,15 @@ const Check = createLucideIcon("Check", [["path", { d: "M20 6 9 17l-5-5", key: "
  */
 const ChevronDown = createLucideIcon("ChevronDown", [
   ["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const ChevronLeft = createLucideIcon("ChevronLeft", [
+  ["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]
 ]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -14167,8 +14200,29 @@ const ChevronUp = createLucideIcon("ChevronUp", [["path", { d: "m18 15-6-6-6 6",
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const CircleAlert = createLucideIcon("CircleAlert", [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Circle = createLucideIcon("Circle", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Clock = createLucideIcon("Clock", [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
 ]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -16775,9 +16829,9 @@ const toastVariants = cva(
   }
 );
 const Toast = reactExports.forwardRef(({ className, variant, ...props }, ref) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$3, { "data-greta-id": "src/components/ui/toast.tsx:44:9", "data-greta-name": "ToastPrimitives.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "44", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Root", "data-component-content": "%7B%7D", ref, className: cn(toastVariants({ variant }), className), ...props });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$4, { "data-greta-id": "src/components/ui/toast.tsx:44:9", "data-greta-name": "ToastPrimitives.Root", "data-greta-editable": "false", "data-component-path": "src/components/ui/toast.tsx", "data-component-line": "44", "data-component-file": "toast.tsx", "data-component-name": "ToastPrimitives.Root", "data-component-content": "%7B%7D", ref, className: cn(toastVariants({ variant }), className), ...props });
 });
-Toast.displayName = Root2$3.displayName;
+Toast.displayName = Root2$4.displayName;
 const ToastAction = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   Action$1,
   {
@@ -17184,8 +17238,8 @@ function useId(deterministicId) {
   return id ? `radix-${id}` : "";
 }
 const sides = ["top", "right", "bottom", "left"];
-const min = Math.min;
-const max = Math.max;
+const min$1 = Math.min;
+const max$1 = Math.max;
 const round = Math.round;
 const floor = Math.floor;
 const createCoords = (v2) => ({
@@ -17203,7 +17257,7 @@ const oppositeAlignmentMap = {
   end: "start"
 };
 function clamp$1(start, value, end2) {
-  return max(start, min(value, end2));
+  return max$1(start, min$1(value, end2));
 }
 function evaluate(value, param) {
   return typeof value === "function" ? value(param) : value;
@@ -17548,14 +17602,14 @@ const arrow$3 = (options) => ({
     }
     const centerToReference = endDiff / 2 - startDiff / 2;
     const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
-    const minPadding = min(paddingObject[minProp], largestPossiblePadding);
-    const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
-    const min$1 = minPadding;
+    const minPadding = min$1(paddingObject[minProp], largestPossiblePadding);
+    const maxPadding = min$1(paddingObject[maxProp], largestPossiblePadding);
+    const min$1$1 = minPadding;
     const max2 = clientSize - arrowDimensions[length] - maxPadding;
     const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
-    const offset3 = clamp$1(min$1, center, max2);
-    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset3 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
-    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
+    const offset3 = clamp$1(min$1$1, center, max2);
+    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset3 && rects.reference[length] / 2 - (center < min$1$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1$1 ? center - min$1$1 : center - max2 : 0;
     return {
       [axis]: coords[axis] + alignmentOffset,
       data: {
@@ -17982,8 +18036,8 @@ const size$2 = function(options) {
       }
       const maximumClippingHeight = height - overflow.top - overflow.bottom;
       const maximumClippingWidth = width - overflow.left - overflow.right;
-      const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
-      const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
+      const overflowAvailableHeight = min$1(height - overflow[heightSide], maximumClippingHeight);
+      const overflowAvailableWidth = min$1(width - overflow[widthSide], maximumClippingWidth);
       const noShift = !state.middlewareData.shift;
       let availableHeight = overflowAvailableHeight;
       let availableWidth = overflowAvailableWidth;
@@ -17994,14 +18048,14 @@ const size$2 = function(options) {
         availableHeight = maximumClippingHeight;
       }
       if (noShift && !alignment) {
-        const xMin = max(overflow.left, 0);
-        const xMax = max(overflow.right, 0);
-        const yMin = max(overflow.top, 0);
-        const yMax = max(overflow.bottom, 0);
+        const xMin = max$1(overflow.left, 0);
+        const xMax = max$1(overflow.right, 0);
+        const yMin = max$1(overflow.top, 0);
+        const yMax = max$1(overflow.bottom, 0);
         if (isYAxis) {
-          availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right));
+          availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max$1(overflow.left, overflow.right));
         } else {
-          availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom));
+          availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max$1(overflow.top, overflow.bottom));
         }
       }
       await apply2({
@@ -18357,12 +18411,12 @@ function getDocumentRect(element) {
   const html = getDocumentElement$1(element);
   const scroll2 = getNodeScroll(element);
   const body = element.ownerDocument.body;
-  const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
-  const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  const width = max$1(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = max$1(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
   let x2 = -scroll2.scrollLeft + getWindowScrollBarX(element);
   const y = -scroll2.scrollTop;
   if (getComputedStyle$1(body).direction === "rtl") {
-    x2 += max(html.clientWidth, body.clientWidth) - width;
+    x2 += max$1(html.clientWidth, body.clientWidth) - width;
   }
   return {
     width,
@@ -18476,10 +18530,10 @@ function getClippingRect(_ref) {
   const firstClippingAncestor = clippingAncestors[0];
   const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
     const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
-    accRect.top = max(rect.top, accRect.top);
-    accRect.right = min(rect.right, accRect.right);
-    accRect.bottom = min(rect.bottom, accRect.bottom);
-    accRect.left = max(rect.left, accRect.left);
+    accRect.top = max$1(rect.top, accRect.top);
+    accRect.right = min$1(rect.right, accRect.right);
+    accRect.bottom = min$1(rect.bottom, accRect.bottom);
+    accRect.left = max$1(rect.left, accRect.left);
     return accRect;
   }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
   return {
@@ -18647,7 +18701,7 @@ function observeMove(element, onMove) {
     const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
     const options = {
       rootMargin,
-      threshold: max(0, min(1, threshold)) || 1
+      threshold: max$1(0, min$1(1, threshold)) || 1
     };
     let isFirstUpdate = true;
     function handleObserve(entries) {
@@ -19069,7 +19123,7 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 Arrow$1.displayName = NAME;
-var Root$1 = Arrow$1;
+var Root$2 = Arrow$1;
 function useSize(element) {
   const [size2, setSize] = reactExports.useState(void 0);
   useLayoutEffect2(() => {
@@ -19113,11 +19167,11 @@ var Popper = (props) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(PopperProvider, { scope: __scopePopper, anchor, onAnchorChange: setAnchor, children });
 };
 Popper.displayName = POPPER_NAME;
-var ANCHOR_NAME$1 = "PopperAnchor";
+var ANCHOR_NAME$2 = "PopperAnchor";
 var PopperAnchor = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopePopper, virtualRef, ...anchorProps } = props;
-    const context = usePopperContext(ANCHOR_NAME$1, __scopePopper);
+    const context = usePopperContext(ANCHOR_NAME$2, __scopePopper);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref);
     reactExports.useEffect(() => {
@@ -19126,9 +19180,9 @@ var PopperAnchor = reactExports.forwardRef(
     return virtualRef ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...anchorProps, ref: composedRefs });
   }
 );
-PopperAnchor.displayName = ANCHOR_NAME$1;
-var CONTENT_NAME$4 = "PopperContent";
-var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$4);
+PopperAnchor.displayName = ANCHOR_NAME$2;
+var CONTENT_NAME$5 = "PopperContent";
+var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$5);
 var PopperContent = reactExports.forwardRef(
   (props, forwardedRef) => {
     var _a2, _b2, _c2, _d2, _e2, _f2;
@@ -19148,7 +19202,7 @@ var PopperContent = reactExports.forwardRef(
       onPlaced,
       ...contentProps
     } = props;
-    const context = usePopperContext(CONTENT_NAME$4, __scopePopper);
+    const context = usePopperContext(CONTENT_NAME$5, __scopePopper);
     const [content, setContent] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
     const [arrow$12, setArrow] = reactExports.useState(null);
@@ -19271,8 +19325,8 @@ var PopperContent = reactExports.forwardRef(
     );
   }
 );
-PopperContent.displayName = CONTENT_NAME$4;
-var ARROW_NAME$4 = "PopperArrow";
+PopperContent.displayName = CONTENT_NAME$5;
+var ARROW_NAME$5 = "PopperArrow";
 var OPPOSITE_SIDE = {
   top: "bottom",
   right: "left",
@@ -19281,7 +19335,7 @@ var OPPOSITE_SIDE = {
 };
 var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwardedRef) {
   const { __scopePopper, ...arrowProps } = props;
-  const contentContext = useContentContext(ARROW_NAME$4, __scopePopper);
+  const contentContext = useContentContext(ARROW_NAME$5, __scopePopper);
   const baseSide = OPPOSITE_SIDE[contentContext.placedSide];
   return (
     // we have to use an extra wrapper because `ResizeObserver` (used by `useSize`)
@@ -19311,7 +19365,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$1,
+          Root$2,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -19326,7 +19380,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
     )
   );
 });
-PopperArrow.displayName = ARROW_NAME$4;
+PopperArrow.displayName = ARROW_NAME$5;
 function isNotNull(value) {
   return value !== null;
 }
@@ -19366,14 +19420,14 @@ function getSideAndAlignFromPlacement(placement) {
   const [side, align = "center"] = placement.split("-");
   return [side, align];
 }
-var Root2$2 = Popper;
+var Root2$3 = Popper;
 var Anchor = PopperAnchor;
 var Content = PopperContent;
 var Arrow = PopperArrow;
 var [createTooltipContext, createTooltipScope] = createContextScope("Tooltip", [
   createPopperScope
 ]);
-var usePopperScope$2 = createPopperScope();
+var usePopperScope$3 = createPopperScope();
 var PROVIDER_NAME = "TooltipProvider";
 var DEFAULT_DELAY_DURATION = 700;
 var TOOLTIP_OPEN = "tooltip.open";
@@ -19422,13 +19476,13 @@ var TooltipProvider$1 = (props) => {
 TooltipProvider$1.displayName = PROVIDER_NAME;
 var TOOLTIP_NAME = "Tooltip";
 var [TooltipContextProvider, useTooltipContext] = createTooltipContext(TOOLTIP_NAME);
-var TRIGGER_NAME$3 = "TooltipTrigger";
+var TRIGGER_NAME$4 = "TooltipTrigger";
 var TooltipTrigger = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeTooltip, ...triggerProps } = props;
-    const context = useTooltipContext(TRIGGER_NAME$3, __scopeTooltip);
-    const providerContext = useTooltipProviderContext(TRIGGER_NAME$3, __scopeTooltip);
-    const popperScope = usePopperScope$2(__scopeTooltip);
+    const context = useTooltipContext(TRIGGER_NAME$4, __scopeTooltip);
+    const providerContext = useTooltipProviderContext(TRIGGER_NAME$4, __scopeTooltip);
+    const popperScope = usePopperScope$3(__scopeTooltip);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref, context.onTriggerChange);
     const isPointerDownRef = reactExports.useRef(false);
@@ -19471,23 +19525,23 @@ var TooltipTrigger = reactExports.forwardRef(
     ) });
   }
 );
-TooltipTrigger.displayName = TRIGGER_NAME$3;
-var PORTAL_NAME$3 = "TooltipPortal";
-var [PortalProvider$1, usePortalContext$1] = createTooltipContext(PORTAL_NAME$3, {
+TooltipTrigger.displayName = TRIGGER_NAME$4;
+var PORTAL_NAME$4 = "TooltipPortal";
+var [PortalProvider$2, usePortalContext$2] = createTooltipContext(PORTAL_NAME$4, {
   forceMount: void 0
 });
-var CONTENT_NAME$3 = "TooltipContent";
+var CONTENT_NAME$4 = "TooltipContent";
 var TooltipContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeTooltip);
+    const portalContext = usePortalContext$2(CONTENT_NAME$4, props.__scopeTooltip);
     const { forceMount = portalContext.forceMount, side = "top", ...contentProps } = props;
-    const context = useTooltipContext(CONTENT_NAME$3, props.__scopeTooltip);
+    const context = useTooltipContext(CONTENT_NAME$4, props.__scopeTooltip);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.disableHoverableContent ? /* @__PURE__ */ jsxRuntimeExports.jsx(TooltipContentImpl, { side, ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(TooltipContentHoverable, { side, ...contentProps, ref: forwardedRef }) });
   }
 );
 var TooltipContentHoverable = reactExports.forwardRef((props, forwardedRef) => {
-  const context = useTooltipContext(CONTENT_NAME$3, props.__scopeTooltip);
-  const providerContext = useTooltipProviderContext(CONTENT_NAME$3, props.__scopeTooltip);
+  const context = useTooltipContext(CONTENT_NAME$4, props.__scopeTooltip);
+  const providerContext = useTooltipProviderContext(CONTENT_NAME$4, props.__scopeTooltip);
   const ref = reactExports.useRef(null);
   const composedRefs = useComposedRefs(forwardedRef, ref);
   const [pointerGraceArea, setPointerGraceArea] = reactExports.useState(null);
@@ -19558,8 +19612,8 @@ var TooltipContentImpl = reactExports.forwardRef(
       onPointerDownOutside,
       ...contentProps
     } = props;
-    const context = useTooltipContext(CONTENT_NAME$3, __scopeTooltip);
-    const popperScope = usePopperScope$2(__scopeTooltip);
+    const context = useTooltipContext(CONTENT_NAME$4, __scopeTooltip);
+    const popperScope = usePopperScope$3(__scopeTooltip);
     const { onClose } = context;
     reactExports.useEffect(() => {
       document.addEventListener(TOOLTIP_OPEN, onClose);
@@ -19604,7 +19658,7 @@ var TooltipContentImpl = reactExports.forwardRef(
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Slottable, { children }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$2, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Root$3, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
             ]
           }
         )
@@ -19612,20 +19666,20 @@ var TooltipContentImpl = reactExports.forwardRef(
     );
   }
 );
-TooltipContent$1.displayName = CONTENT_NAME$3;
-var ARROW_NAME$3 = "TooltipArrow";
+TooltipContent$1.displayName = CONTENT_NAME$4;
+var ARROW_NAME$4 = "TooltipArrow";
 var TooltipArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeTooltip, ...arrowProps } = props;
-    const popperScope = usePopperScope$2(__scopeTooltip);
+    const popperScope = usePopperScope$3(__scopeTooltip);
     const visuallyHiddenContentContext = useVisuallyHiddenContentContext(
-      ARROW_NAME$3,
+      ARROW_NAME$4,
       __scopeTooltip
     );
     return visuallyHiddenContentContext.isInside ? null : /* @__PURE__ */ jsxRuntimeExports.jsx(Arrow, { ...popperScope, ...arrowProps, ref: forwardedRef });
   }
 );
-TooltipArrow.displayName = ARROW_NAME$3;
+TooltipArrow.displayName = ARROW_NAME$4;
 function getExitSideFromRect(point, rect) {
   const top = Math.abs(rect.top - point.y);
   const bottom = Math.abs(rect.bottom - point.y);
@@ -19742,10 +19796,10 @@ function getHullPresorted(points) {
   }
 }
 var Provider$1 = TooltipProvider$1;
-var Content2$3 = TooltipContent$1;
+var Content2$4 = TooltipContent$1;
 const TooltipProvider = Provider$1;
 const TooltipContent = reactExports.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Content2$3,
+  Content2$4,
   {
     "data-greta-id": "src/components/ui/tooltip.tsx:16:2",
     "data-greta-name": "TooltipPrimitive.Content",
@@ -19764,7 +19818,7 @@ const TooltipContent = reactExports.forwardRef(({ className, sideOffset = 4, ...
     ...props
   }
 ));
-TooltipContent.displayName = Content2$3.displayName;
+TooltipContent.displayName = Content2$4.displayName;
 var Subscribable = class {
   constructor() {
     this.listeners = /* @__PURE__ */ new Set();
@@ -21658,16 +21712,16 @@ function createBrowserHistory(options) {
   }
   return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
 }
-function invariant$2(value, message) {
+function invariant$2(value, message2) {
   if (value === false || value === null || typeof value === "undefined") {
-    throw new Error(message);
+    throw new Error(message2);
   }
 }
-function warning(cond, message) {
+function warning(cond, message2) {
   if (!cond) {
-    if (typeof console !== "undefined") console.warn(message);
+    if (typeof console !== "undefined") console.warn(message2);
     try {
-      throw new Error(message);
+      throw new Error(message2);
     } catch (e) {
     }
   }
@@ -21992,32 +22046,32 @@ function matchRouteBranch(branch, pathname, allowPartial) {
     let meta = routesMeta[i];
     let end2 = i === routesMeta.length - 1;
     let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-    let match = matchPath({
+    let match2 = matchPath({
       path: meta.relativePath,
       caseSensitive: meta.caseSensitive,
       end: end2
     }, remainingPathname);
     let route = meta.route;
-    if (!match && end2 && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
-      match = matchPath({
+    if (!match2 && end2 && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
+      match2 = matchPath({
         path: meta.relativePath,
         caseSensitive: meta.caseSensitive,
         end: false
       }, remainingPathname);
     }
-    if (!match) {
+    if (!match2) {
       return null;
     }
-    Object.assign(matchedParams, match.params);
+    Object.assign(matchedParams, match2.params);
     matches.push({
       // TODO: Can this as be avoided?
       params: matchedParams,
-      pathname: joinPaths([matchedPathname, match.pathname]),
-      pathnameBase: normalizePathname(joinPaths([matchedPathname, match.pathnameBase])),
+      pathname: joinPaths([matchedPathname, match2.pathname]),
+      pathnameBase: normalizePathname(joinPaths([matchedPathname, match2.pathnameBase])),
       route
     });
-    if (match.pathnameBase !== "/") {
-      matchedPathname = joinPaths([matchedPathname, match.pathnameBase]);
+    if (match2.pathnameBase !== "/") {
+      matchedPathname = joinPaths([matchedPathname, match2.pathnameBase]);
     }
   }
   return matches;
@@ -22031,11 +22085,11 @@ function matchPath(pattern, pathname) {
     };
   }
   let [matcher, compiledParams] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-  let match = pathname.match(matcher);
-  if (!match) return null;
-  let matchedPathname = match[0];
+  let match2 = pathname.match(matcher);
+  if (!match2) return null;
+  let matchedPathname = match2[0];
   let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-  let captureGroups = match.slice(1);
+  let captureGroups = match2.slice(1);
   let params = compiledParams.reduce((memo, _ref, index2) => {
     let {
       paramName,
@@ -22195,17 +22249,17 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   let matches = matchRoutes(routes, {
     pathname: remainingPathname
   });
-  let renderedMatches = _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
-    params: Object.assign({}, parentParams, match.params),
+  let renderedMatches = _renderMatches(matches && matches.map((match2) => Object.assign({}, match2, {
+    params: Object.assign({}, parentParams, match2.params),
     pathname: joinPaths([
       parentPathnameBase,
       // Re-encode pathnames that were decoded inside matchRoutes
-      navigator2.encodeLocation ? navigator2.encodeLocation(match.pathname).pathname : match.pathname
+      navigator2.encodeLocation ? navigator2.encodeLocation(match2.pathname).pathname : match2.pathname
     ]),
-    pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([
+    pathnameBase: match2.pathnameBase === "/" ? parentPathnameBase : joinPaths([
       parentPathnameBase,
       // Re-encode pathnames that were decoded inside matchRoutes
-      navigator2.encodeLocation ? navigator2.encodeLocation(match.pathnameBase).pathname : match.pathnameBase
+      navigator2.encodeLocation ? navigator2.encodeLocation(match2.pathnameBase).pathname : match2.pathnameBase
     ])
   })), parentMatches, dataRouterState, future);
   if (locationArg && renderedMatches) {
@@ -22226,7 +22280,7 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
 }
 function DefaultErrorComponent() {
   let error = useRouteError();
-  let message = isRouteErrorResponse(error) ? error.status + " " + error.statusText : error instanceof Error ? error.message : JSON.stringify(error);
+  let message2 = isRouteErrorResponse(error) ? error.status + " " + error.statusText : error instanceof Error ? error.message : JSON.stringify(error);
   let stack = error instanceof Error ? error.stack : null;
   let lightgrey = "rgba(200,200,200, 0.5)";
   let preStyles = {
@@ -22238,7 +22292,7 @@ function DefaultErrorComponent() {
     style: {
       fontStyle: "italic"
     }
-  }, message), stack ? /* @__PURE__ */ reactExports.createElement("pre", {
+  }, message2), stack ? /* @__PURE__ */ reactExports.createElement("pre", {
     style: preStyles
   }, stack) : null, devInfo);
 }
@@ -22286,12 +22340,12 @@ class RenderErrorBoundary extends reactExports.Component {
 function RenderedRoute(_ref) {
   let {
     routeContext,
-    match,
+    match: match2,
     children
   } = _ref;
   let dataRouterContext = reactExports.useContext(DataRouterContext);
-  if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
-    dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
+  if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match2.route.errorElement || match2.route.ErrorBoundary)) {
+    dataRouterContext.staticContext._deepestRenderedBoundaryId = match2.route.id;
   }
   return /* @__PURE__ */ reactExports.createElement(RouteContext.Provider, {
     value: routeContext
@@ -22332,17 +22386,17 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
   let fallbackIndex = -1;
   if (dataRouterState && future && future.v7_partialHydration) {
     for (let i = 0; i < renderedMatches.length; i++) {
-      let match = renderedMatches[i];
-      if (match.route.HydrateFallback || match.route.hydrateFallbackElement) {
+      let match2 = renderedMatches[i];
+      if (match2.route.HydrateFallback || match2.route.hydrateFallbackElement) {
         fallbackIndex = i;
       }
-      if (match.route.id) {
+      if (match2.route.id) {
         let {
           loaderData,
           errors: errors2
         } = dataRouterState;
-        let needsToRunLoader = match.route.loader && loaderData[match.route.id] === void 0 && (!errors2 || errors2[match.route.id] === void 0);
-        if (match.route.lazy || needsToRunLoader) {
+        let needsToRunLoader = match2.route.loader && loaderData[match2.route.id] === void 0 && (!errors2 || errors2[match2.route.id] === void 0);
+        if (match2.route.lazy || needsToRunLoader) {
           renderFallback = true;
           if (fallbackIndex >= 0) {
             renderedMatches = renderedMatches.slice(0, fallbackIndex + 1);
@@ -22354,21 +22408,21 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
       }
     }
   }
-  return renderedMatches.reduceRight((outlet, match, index2) => {
+  return renderedMatches.reduceRight((outlet, match2, index2) => {
     let error;
     let shouldRenderHydrateFallback = false;
     let errorElement = null;
     let hydrateFallbackElement = null;
     if (dataRouterState) {
-      error = errors && match.route.id ? errors[match.route.id] : void 0;
-      errorElement = match.route.errorElement || defaultErrorElement;
+      error = errors && match2.route.id ? errors[match2.route.id] : void 0;
+      errorElement = match2.route.errorElement || defaultErrorElement;
       if (renderFallback) {
         if (fallbackIndex < 0 && index2 === 0) {
           shouldRenderHydrateFallback = true;
           hydrateFallbackElement = null;
         } else if (fallbackIndex === index2) {
           shouldRenderHydrateFallback = true;
-          hydrateFallbackElement = match.route.hydrateFallbackElement || null;
+          hydrateFallbackElement = match2.route.hydrateFallbackElement || null;
         }
       }
     }
@@ -22379,15 +22433,15 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
         children = errorElement;
       } else if (shouldRenderHydrateFallback) {
         children = hydrateFallbackElement;
-      } else if (match.route.Component) {
-        children = /* @__PURE__ */ reactExports.createElement(match.route.Component, null);
-      } else if (match.route.element) {
-        children = match.route.element;
+      } else if (match2.route.Component) {
+        children = /* @__PURE__ */ reactExports.createElement(match2.route.Component, null);
+      } else if (match2.route.element) {
+        children = match2.route.element;
       } else {
         children = outlet;
       }
       return /* @__PURE__ */ reactExports.createElement(RenderedRoute, {
-        match,
+        match: match2,
         routeContext: {
           outlet,
           matches: matches2,
@@ -22396,7 +22450,7 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
         children
       });
     };
-    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index2 === 0) ? /* @__PURE__ */ reactExports.createElement(RenderErrorBoundary, {
+    return dataRouterState && (match2.route.ErrorBoundary || match2.route.errorElement || index2 === 0) ? /* @__PURE__ */ reactExports.createElement(RenderErrorBoundary, {
       location: dataRouterState.location,
       revalidation: dataRouterState.revalidation,
       component: errorElement,
@@ -23657,7 +23711,7 @@ function Provider(providerProps) {
 }
 var Provider_default = Provider;
 var prefix$2 = "Invariant failed";
-function invariant$1(condition, message) {
+function invariant$1(condition, message2) {
   {
     throw new Error(prefix$2);
   }
@@ -23824,7 +23878,7 @@ function _extends() {
     return n;
   }, _extends.apply(null, arguments);
 }
-function log(type, message) {
+function log(type, message2) {
   {
     return;
   }
@@ -23859,7 +23913,7 @@ class RbdInvariant extends Error {
 RbdInvariant.prototype.toString = function toString() {
   return this.message;
 };
-function invariant(condition, message) {
+function invariant(condition, message2) {
   {
     throw new RbdInvariant(prefix$1);
   }
@@ -24492,8 +24546,8 @@ function calculateReorderImpact({
       destination
     });
   }
-  const match = insideDestination.find((item) => item.descriptor.index === index2);
-  if (!match) {
+  const match2 = insideDestination.find((item) => item.descriptor.index === index2);
+  if (!match2) {
     return goAtEnd({
       insideDestination,
       inHomeList,
@@ -24502,7 +24556,7 @@ function calculateReorderImpact({
     });
   }
   const withoutDragging = removeDraggableFromList(draggable2, insideDestination);
-  const sliceFrom = insideDestination.indexOf(match);
+  const sliceFrom = insideDestination.indexOf(match2);
   const impacted = withoutDragging.slice(sliceFrom);
   const displaced = getDisplacementGroups({
     afterDragging: impacted,
@@ -26647,7 +26701,7 @@ var getExpiringAnnounce = (announce) => {
   const timeoutId = setTimeout(() => {
     isExpired = true;
   });
-  const result = (message) => {
+  const result = (message2) => {
     if (wasCalled) {
       return;
     }
@@ -26655,7 +26709,7 @@ var getExpiringAnnounce = (announce) => {
       return;
     }
     wasCalled = true;
-    announce(message);
+    announce(message2);
     clearTimeout(timeoutId);
   };
   result.wasCalled = () => wasCalled;
@@ -28283,10 +28337,10 @@ function useAnnouncer(contextId) {
       });
     };
   }, [id]);
-  const announce = useCallback((message) => {
+  const announce = useCallback((message2) => {
     const el = ref2.current;
     if (el) {
-      el.textContent = message;
+      el.textContent = message2;
       return;
     }
   }, []);
@@ -30731,13 +30785,13 @@ const buttonVariants = cva(
     }
   }
 );
-const Button = reactExports.forwardRef(
+const Button$1 = reactExports.forwardRef(
   ({ className, variant, size: size2, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot$2 : "button";
+    const Comp = asChild ? Slot$3 : "button";
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Comp, { "data-greta-id": "src/components/ui/button.tsx:42:11", "data-greta-name": "Comp", "data-greta-editable": "false", "data-component-path": "src/components/ui/button.tsx", "data-component-line": "42", "data-component-file": "button.tsx", "data-component-name": "Comp", "data-component-content": "%7B%7D", className: cn(buttonVariants({ variant, size: size2, className })), ref, ...props });
   }
 );
-Button.displayName = "Button";
+Button$1.displayName = "Button";
 const Input = reactExports.forwardRef(
   ({ className, type, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30829,7 +30883,7 @@ function CheckboxProvider(props) {
     }
   );
 }
-var TRIGGER_NAME$2 = "CheckboxTrigger";
+var TRIGGER_NAME$3 = "CheckboxTrigger";
 var CheckboxTrigger = reactExports.forwardRef(
   ({ __scopeCheckbox, onKeyDown, onClick, ...checkboxProps }, forwardedRef) => {
     const {
@@ -30843,7 +30897,7 @@ var CheckboxTrigger = reactExports.forwardRef(
       hasConsumerStoppedPropagationRef,
       isFormControl,
       bubbleInput
-    } = useCheckboxContext(TRIGGER_NAME$2, __scopeCheckbox);
+    } = useCheckboxContext(TRIGGER_NAME$3, __scopeCheckbox);
     const composedRefs = useComposedRefs(forwardedRef, setControl);
     const initialCheckedStateRef = reactExports.useRef(checked);
     reactExports.useEffect(() => {
@@ -30861,7 +30915,7 @@ var CheckboxTrigger = reactExports.forwardRef(
         role: "checkbox",
         "aria-checked": isIndeterminate$1(checked) ? "mixed" : checked,
         "aria-required": required,
-        "data-state": getState(checked),
+        "data-state": getState$1(checked),
         "data-disabled": disabled ? "" : void 0,
         disabled,
         value,
@@ -30881,7 +30935,7 @@ var CheckboxTrigger = reactExports.forwardRef(
     );
   }
 );
-CheckboxTrigger.displayName = TRIGGER_NAME$2;
+CheckboxTrigger.displayName = TRIGGER_NAME$3;
 var Checkbox$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -30941,7 +30995,7 @@ var CheckboxIndicator = reactExports.forwardRef(
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Primitive.span,
           {
-            "data-state": getState(context.checked),
+            "data-state": getState$1(context.checked),
             "data-disabled": context.disabled ? "" : void 0,
             ...indicatorProps,
             ref: forwardedRef,
@@ -31027,7 +31081,7 @@ function isFunction(value) {
 function isIndeterminate$1(checked) {
   return checked === "indeterminate";
 }
-function getState(checked) {
+function getState$1(checked) {
   return isIndeterminate$1(checked) ? "indeterminate" : checked ? "checked" : "unchecked";
 }
 const Checkbox = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -31511,7 +31565,7 @@ function focusFirst$1(candidates, preventScroll = false) {
 function wrapArray$2(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
-var Root = RovingFocusGroup;
+var Root$1 = RovingFocusGroup;
 var Item$1 = RovingFocusGroupItem;
 var getDefaultParent = function(originalTarget) {
   if (typeof document === "undefined") {
@@ -31662,8 +31716,8 @@ function __spreadArray(to, from, pack) {
   }
   return to.concat(ar || Array.prototype.slice.call(from));
 }
-typeof SuppressedError === "function" ? SuppressedError : function(error, suppressed, message) {
-  var e = new Error(message);
+typeof SuppressedError === "function" ? SuppressedError : function(error, suppressed, message2) {
+  var e = new Error(message2);
   return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 var zeroRightClassName = "right-scroll-bar-position";
@@ -32305,13 +32359,13 @@ var [createMenuContext, createMenuScope] = createContextScope(MENU_NAME, [
   createPopperScope,
   createRovingFocusGroupScope
 ]);
-var usePopperScope$1 = createPopperScope();
+var usePopperScope$2 = createPopperScope();
 var useRovingFocusGroupScope = createRovingFocusGroupScope();
 var [MenuProvider, useMenuContext] = createMenuContext(MENU_NAME);
 var [MenuRootProvider, useMenuRootContext] = createMenuContext(MENU_NAME);
 var Menu = (props) => {
   const { __scopeMenu, open = false, children, dir, onOpenChange, modal = true } = props;
-  const popperScope = usePopperScope$1(__scopeMenu);
+  const popperScope = usePopperScope$2(__scopeMenu);
   const [content, setContent] = reactExports.useState(null);
   const isUsingKeyboardRef = reactExports.useRef(false);
   const handleOpenChange = useCallbackRef$1(onOpenChange);
@@ -32330,7 +32384,7 @@ var Menu = (props) => {
       document.removeEventListener("pointermove", handlePointer, { capture: true });
     };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$2, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$3, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     MenuProvider,
     {
       scope: __scopeMenu,
@@ -32353,39 +32407,39 @@ var Menu = (props) => {
   ) });
 };
 Menu.displayName = MENU_NAME;
-var ANCHOR_NAME = "MenuAnchor";
+var ANCHOR_NAME$1 = "MenuAnchor";
 var MenuAnchor = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeMenu, ...anchorProps } = props;
-    const popperScope = usePopperScope$1(__scopeMenu);
+    const popperScope = usePopperScope$2(__scopeMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor, { ...popperScope, ...anchorProps, ref: forwardedRef });
   }
 );
-MenuAnchor.displayName = ANCHOR_NAME;
-var PORTAL_NAME$2 = "MenuPortal";
-var [PortalProvider, usePortalContext] = createMenuContext(PORTAL_NAME$2, {
+MenuAnchor.displayName = ANCHOR_NAME$1;
+var PORTAL_NAME$3 = "MenuPortal";
+var [PortalProvider$1, usePortalContext$1] = createMenuContext(PORTAL_NAME$3, {
   forceMount: void 0
 });
 var MenuPortal = (props) => {
   const { __scopeMenu, forceMount, children, container } = props;
-  const context = useMenuContext(PORTAL_NAME$2, __scopeMenu);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeMenu, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { asChild: true, container, children }) }) });
+  const context = useMenuContext(PORTAL_NAME$3, __scopeMenu);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider$1, { scope: __scopeMenu, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children }) }) });
 };
-MenuPortal.displayName = PORTAL_NAME$2;
-var CONTENT_NAME$2 = "MenuContent";
-var [MenuContentProvider, useMenuContentContext] = createMenuContext(CONTENT_NAME$2);
+MenuPortal.displayName = PORTAL_NAME$3;
+var CONTENT_NAME$3 = "MenuContent";
+var [MenuContentProvider, useMenuContentContext] = createMenuContext(CONTENT_NAME$3);
 var MenuContent = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext(CONTENT_NAME$2, props.__scopeMenu);
+    const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeMenu);
     const { forceMount = portalContext.forceMount, ...contentProps } = props;
-    const context = useMenuContext(CONTENT_NAME$2, props.__scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$2, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$3, props.__scopeMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Provider, { scope: props.__scopeMenu, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: props.__scopeMenu, children: rootContext.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(MenuRootContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(MenuRootContentNonModal, { ...contentProps, ref: forwardedRef }) }) }) });
   }
 );
 var MenuRootContentModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useMenuContext(CONTENT_NAME$2, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref);
     reactExports.useEffect(() => {
@@ -32411,7 +32465,7 @@ var MenuRootContentModal = reactExports.forwardRef(
   }
 );
 var MenuRootContentNonModal = reactExports.forwardRef((props, forwardedRef) => {
-  const context = useMenuContext(CONTENT_NAME$2, props.__scopeMenu);
+  const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     MenuContentImpl,
     {
@@ -32424,7 +32478,7 @@ var MenuRootContentNonModal = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-var Slot$1 = /* @__PURE__ */ createSlot("MenuContent.ScrollLock");
+var Slot$2 = /* @__PURE__ */ createSlot("MenuContent.ScrollLock");
 var MenuContentImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -32443,9 +32497,9 @@ var MenuContentImpl = reactExports.forwardRef(
       disableOutsideScroll,
       ...contentProps
     } = props;
-    const context = useMenuContext(CONTENT_NAME$2, __scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$2, __scopeMenu);
-    const popperScope = usePopperScope$1(__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$3, __scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$3, __scopeMenu);
+    const popperScope = usePopperScope$2(__scopeMenu);
     const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeMenu);
     const getItems = useCollection$1(__scopeMenu);
     const [currentItemId, setCurrentItemId] = reactExports.useState(null);
@@ -32458,7 +32512,7 @@ var MenuContentImpl = reactExports.forwardRef(
     const pointerDirRef = reactExports.useRef("right");
     const lastPointerXRef = reactExports.useRef(0);
     const ScrollLockWrapper = disableOutsideScroll ? ReactRemoveScroll : reactExports.Fragment;
-    const scrollLockWrapperProps = disableOutsideScroll ? { as: Slot$1, allowPinchZoom: true } : void 0;
+    const scrollLockWrapperProps = disableOutsideScroll ? { as: Slot$2, allowPinchZoom: true } : void 0;
     const handleTypeaheadSearch = (key) => {
       var _a2, _b2;
       const search = searchRef.current + key;
@@ -32538,7 +32592,7 @@ var MenuContentImpl = reactExports.forwardRef(
                 onInteractOutside,
                 onDismiss,
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Root,
+                  Root$1,
                   {
                     asChild: true,
                     ...rovingFocusGroupScope,
@@ -32611,7 +32665,7 @@ var MenuContentImpl = reactExports.forwardRef(
     );
   }
 );
-MenuContent.displayName = CONTENT_NAME$2;
+MenuContent.displayName = CONTENT_NAME$3;
 var GROUP_NAME$2 = "MenuGroup";
 var MenuGroup = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -32841,15 +32895,15 @@ var MenuSeparator = reactExports.forwardRef(
   }
 );
 MenuSeparator.displayName = SEPARATOR_NAME$2;
-var ARROW_NAME$2 = "MenuArrow";
+var ARROW_NAME$3 = "MenuArrow";
 var MenuArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeMenu, ...arrowProps } = props;
-    const popperScope = usePopperScope$1(__scopeMenu);
+    const popperScope = usePopperScope$2(__scopeMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Arrow, { ...popperScope, ...arrowProps, ref: forwardedRef });
   }
 );
-MenuArrow.displayName = ARROW_NAME$2;
+MenuArrow.displayName = ARROW_NAME$3;
 var SUB_NAME = "MenuSub";
 var [MenuSubProvider, useMenuSubContext] = createMenuContext(SUB_NAME);
 var SUB_TRIGGER_NAME$1 = "MenuSubTrigger";
@@ -32959,10 +33013,10 @@ MenuSubTrigger.displayName = SUB_TRIGGER_NAME$1;
 var SUB_CONTENT_NAME$1 = "MenuSubContent";
 var MenuSubContent = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext(CONTENT_NAME$2, props.__scopeMenu);
+    const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeMenu);
     const { forceMount = portalContext.forceMount, ...subContentProps } = props;
-    const context = useMenuContext(CONTENT_NAME$2, props.__scopeMenu);
-    const rootContext = useMenuRootContext(CONTENT_NAME$2, props.__scopeMenu);
+    const context = useMenuContext(CONTENT_NAME$3, props.__scopeMenu);
+    const rootContext = useMenuRootContext(CONTENT_NAME$3, props.__scopeMenu);
     const subContext = useMenuSubContext(SUB_CONTENT_NAME$1, props.__scopeMenu);
     const ref = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, ref);
@@ -33063,8 +33117,8 @@ function whenMouse(handler) {
 }
 var Root3 = Menu;
 var Anchor2 = MenuAnchor;
-var Portal$1 = MenuPortal;
-var Content2$2 = MenuContent;
+var Portal$2 = MenuPortal;
+var Content2$3 = MenuContent;
 var Group = MenuGroup;
 var Label$1 = MenuLabel;
 var Item2$1 = MenuItem;
@@ -33117,11 +33171,11 @@ var DropdownMenu$1 = (props) => {
   );
 };
 DropdownMenu$1.displayName = DROPDOWN_MENU_NAME;
-var TRIGGER_NAME$1 = "DropdownMenuTrigger";
+var TRIGGER_NAME$2 = "DropdownMenuTrigger";
 var DropdownMenuTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, disabled = false, ...triggerProps } = props;
-    const context = useDropdownMenuContext(TRIGGER_NAME$1, __scopeDropdownMenu);
+    const context = useDropdownMenuContext(TRIGGER_NAME$2, __scopeDropdownMenu);
     const menuScope = useMenuScope(__scopeDropdownMenu);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor2, { asChild: true, ...menuScope, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
@@ -33152,23 +33206,23 @@ var DropdownMenuTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-DropdownMenuTrigger$1.displayName = TRIGGER_NAME$1;
-var PORTAL_NAME$1 = "DropdownMenuPortal";
+DropdownMenuTrigger$1.displayName = TRIGGER_NAME$2;
+var PORTAL_NAME$2 = "DropdownMenuPortal";
 var DropdownMenuPortal = (props) => {
   const { __scopeDropdownMenu, ...portalProps } = props;
   const menuScope = useMenuScope(__scopeDropdownMenu);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { ...menuScope, ...portalProps });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { ...menuScope, ...portalProps });
 };
-DropdownMenuPortal.displayName = PORTAL_NAME$1;
-var CONTENT_NAME$1 = "DropdownMenuContent";
+DropdownMenuPortal.displayName = PORTAL_NAME$2;
+var CONTENT_NAME$2 = "DropdownMenuContent";
 var DropdownMenuContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, ...contentProps } = props;
-    const context = useDropdownMenuContext(CONTENT_NAME$1, __scopeDropdownMenu);
+    const context = useDropdownMenuContext(CONTENT_NAME$2, __scopeDropdownMenu);
     const menuScope = useMenuScope(__scopeDropdownMenu);
     const hasInteractedOutsideRef = reactExports.useRef(false);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Content2$2,
+      Content2$3,
       {
         id: context.contentId,
         "aria-labelledby": context.triggerId,
@@ -33202,7 +33256,7 @@ var DropdownMenuContent$1 = reactExports.forwardRef(
     );
   }
 );
-DropdownMenuContent$1.displayName = CONTENT_NAME$1;
+DropdownMenuContent$1.displayName = CONTENT_NAME$2;
 var GROUP_NAME$1 = "DropdownMenuGroup";
 var DropdownMenuGroup = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -33265,7 +33319,7 @@ var DropdownMenuSeparator$1 = reactExports.forwardRef((props, forwardedRef) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Separator$1, { ...menuScope, ...separatorProps, ref: forwardedRef });
 });
 DropdownMenuSeparator$1.displayName = SEPARATOR_NAME$1;
-var ARROW_NAME$1 = "DropdownMenuArrow";
+var ARROW_NAME$2 = "DropdownMenuArrow";
 var DropdownMenuArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDropdownMenu, ...arrowProps } = props;
@@ -33273,7 +33327,7 @@ var DropdownMenuArrow = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Arrow2, { ...menuScope, ...arrowProps, ref: forwardedRef });
   }
 );
-DropdownMenuArrow.displayName = ARROW_NAME$1;
+DropdownMenuArrow.displayName = ARROW_NAME$2;
 var SUB_TRIGGER_NAME = "DropdownMenuSubTrigger";
 var DropdownMenuSubTrigger$1 = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeDropdownMenu, ...subTriggerProps } = props;
@@ -33306,10 +33360,10 @@ var DropdownMenuSubContent$1 = reactExports.forwardRef((props, forwardedRef) => 
   );
 });
 DropdownMenuSubContent$1.displayName = SUB_CONTENT_NAME;
-var Root2$1 = DropdownMenu$1;
-var Trigger$1 = DropdownMenuTrigger$1;
+var Root2$2 = DropdownMenu$1;
+var Trigger$2 = DropdownMenuTrigger$1;
 var Portal2 = DropdownMenuPortal;
-var Content2$1 = DropdownMenuContent$1;
+var Content2$2 = DropdownMenuContent$1;
 var Label2 = DropdownMenuLabel$1;
 var Item2 = DropdownMenuItem$1;
 var CheckboxItem2 = DropdownMenuCheckboxItem$1;
@@ -33318,8 +33372,8 @@ var ItemIndicator2 = DropdownMenuItemIndicator;
 var Separator2 = DropdownMenuSeparator$1;
 var SubTrigger2 = DropdownMenuSubTrigger$1;
 var SubContent2 = DropdownMenuSubContent$1;
-const DropdownMenu = Root2$1;
-const DropdownMenuTrigger = Trigger$1;
+const DropdownMenu = Root2$2;
+const DropdownMenuTrigger = Trigger$2;
 const DropdownMenuSubTrigger = reactExports.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
   SubTrigger2,
   {
@@ -33366,7 +33420,7 @@ const DropdownMenuSubContent = reactExports.forwardRef(({ className, ...props },
 ));
 DropdownMenuSubContent.displayName = SubContent2.displayName;
 const DropdownMenuContent = reactExports.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal2, { "data-greta-id": "src/components/ui/dropdown-menu.tsx:59:2", "data-greta-name": "DropdownMenuPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/dropdown-menu.tsx", "data-component-line": "59", "data-component-file": "dropdown-menu.tsx", "data-component-name": "DropdownMenuPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Content2$1,
+  Content2$2,
   {
     "data-greta-id": "src/components/ui/dropdown-menu.tsx:60:4",
     "data-greta-name": "DropdownMenuPrimitive.Content",
@@ -33385,7 +33439,7 @@ const DropdownMenuContent = reactExports.forwardRef(({ className, sideOffset = 4
     ...props
   }
 ) }));
-DropdownMenuContent.displayName = Content2$1.displayName;
+DropdownMenuContent.displayName = Content2$2.displayName;
 const DropdownMenuItem = reactExports.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   Item2,
   {
@@ -33517,7 +33571,7 @@ const useTheme = () => {
 function ModeToggle() {
   const { setTheme } = useTheme();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(DropdownMenu, { "data-greta-id": "src/components/mode-toggle.tsx:16:4", "data-greta-name": "DropdownMenu", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "16", "data-component-file": "mode-toggle.tsx", "data-component-name": "DropdownMenu", "data-component-content": "%7B%7D", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownMenuTrigger, { "data-greta-id": "src/components/mode-toggle.tsx:17:6", "data-greta-name": "DropdownMenuTrigger", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "17", "data-component-file": "mode-toggle.tsx", "data-component-name": "DropdownMenuTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { "data-greta-id": "src/components/mode-toggle.tsx:18:8", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "18", "data-component-file": "mode-toggle.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22outline%22%2C%22size%22%3A%22icon%22%7D", variant: "outline", size: "icon", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownMenuTrigger, { "data-greta-id": "src/components/mode-toggle.tsx:17:6", "data-greta-name": "DropdownMenuTrigger", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "17", "data-component-file": "mode-toggle.tsx", "data-component-name": "DropdownMenuTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { "data-greta-id": "src/components/mode-toggle.tsx:18:8", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "18", "data-component-file": "mode-toggle.tsx", "data-component-name": "Button", "data-component-content": "%7B%22variant%22%3A%22outline%22%2C%22size%22%3A%22icon%22%7D", variant: "outline", size: "icon", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Sun, { "data-greta-id": "src/components/mode-toggle.tsx:19:10", "data-greta-name": "Sun", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "19", "data-component-file": "mode-toggle.tsx", "data-component-name": "Sun", "data-component-content": "%7B%22className%22%3A%22h-%5B1.2rem%5D%20w-%5B1.2rem%5D%20rotate-0%20scale-100%20transition-all%20dark%3A-rotate-90%20dark%3Ascale-0%22%7D", className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Moon, { "data-greta-id": "src/components/mode-toggle.tsx:20:10", "data-greta-name": "Moon", "data-greta-editable": "false", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "20", "data-component-file": "mode-toggle.tsx", "data-component-name": "Moon", "data-component-content": "%7B%22className%22%3A%22absolute%20h-%5B1.2rem%5D%20w-%5B1.2rem%5D%20rotate-90%20scale-0%20transition-all%20dark%3Arotate-0%20dark%3Ascale-100%22%7D", className: "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/components/mode-toggle.tsx:21:10", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "21", "data-component-file": "mode-toggle.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22sr-only%22%7D", className: "sr-only", children: "Toggle theme" })
@@ -33528,6 +33582,25 @@ function ModeToggle() {
       /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownMenuItem, { "data-greta-id": "src/components/mode-toggle.tsx:31:8", "data-greta-name": "DropdownMenuItem", "data-greta-editable": "true", "data-component-path": "src/components/mode-toggle.tsx", "data-component-line": "31", "data-component-file": "mode-toggle.tsx", "data-component-name": "DropdownMenuItem", "data-component-content": "%7B%7D", onClick: () => setTheme("system"), children: "System" })
     ] })
   ] });
+}
+const badgeVariants = cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground"
+      }
+    },
+    defaultVariants: {
+      variant: "default"
+    }
+  }
+);
+function Badge({ className, variant, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/components/ui/badge.tsx:26:9", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/components/ui/badge.tsx", "data-component-line": "26", "data-component-file": "badge.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn(badgeVariants({ variant }), className), ...props });
 }
 function clamp(value, [min2, max2]) {
   return Math.min(max2, Math.max(min2, value));
@@ -33540,10 +33613,10 @@ var [createSelectContext, createSelectScope] = createContextScope(SELECT_NAME, [
   createCollectionScope,
   createPopperScope
 ]);
-var usePopperScope = createPopperScope();
+var usePopperScope$1 = createPopperScope();
 var [SelectProvider, useSelectContext] = createSelectContext(SELECT_NAME);
 var [SelectNativeOptionsProvider, useSelectNativeOptionsContext] = createSelectContext(SELECT_NAME);
-var Select$1 = (props) => {
+var Select$2 = (props) => {
   const {
     __scopeSelect,
     children,
@@ -33560,7 +33633,7 @@ var Select$1 = (props) => {
     required,
     form
   } = props;
-  const popperScope = usePopperScope(__scopeSelect);
+  const popperScope = usePopperScope$1(__scopeSelect);
   const [trigger, setTrigger] = reactExports.useState(null);
   const [valueNode, setValueNode] = reactExports.useState(null);
   const [valueNodeHasChildren, setValueNodeHasChildren] = reactExports.useState(false);
@@ -33581,7 +33654,7 @@ var Select$1 = (props) => {
   const isFormControl = trigger ? form || !!trigger.closest("form") : true;
   const [nativeOptionsSet, setNativeOptionsSet] = reactExports.useState(/* @__PURE__ */ new Set());
   const nativeSelectKey = Array.from(nativeOptionsSet).map((option) => option.props.value).join(";");
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$2, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$3, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     SelectProvider,
     {
       required,
@@ -33641,13 +33714,13 @@ var Select$1 = (props) => {
     }
   ) });
 };
-Select$1.displayName = SELECT_NAME;
-var TRIGGER_NAME = "SelectTrigger";
+Select$2.displayName = SELECT_NAME;
+var TRIGGER_NAME$1 = "SelectTrigger";
 var SelectTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, disabled = false, ...triggerProps } = props;
-    const popperScope = usePopperScope(__scopeSelect);
-    const context = useSelectContext(TRIGGER_NAME, __scopeSelect);
+    const popperScope = usePopperScope$1(__scopeSelect);
+    const context = useSelectContext(TRIGGER_NAME$1, __scopeSelect);
     const isDisabled = context.disabled || disabled;
     const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
     const getItems = useCollection(__scopeSelect);
@@ -33719,7 +33792,7 @@ var SelectTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-SelectTrigger$1.displayName = TRIGGER_NAME;
+SelectTrigger$1.displayName = TRIGGER_NAME$1;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -33751,15 +33824,15 @@ var SelectIcon = reactExports.forwardRef(
   }
 );
 SelectIcon.displayName = ICON_NAME;
-var PORTAL_NAME = "SelectPortal";
+var PORTAL_NAME$1 = "SelectPortal";
 var SelectPortal = (props) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$2, { asChild: true, ...props });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, ...props });
 };
-SelectPortal.displayName = PORTAL_NAME;
-var CONTENT_NAME = "SelectContent";
+SelectPortal.displayName = PORTAL_NAME$1;
+var CONTENT_NAME$1 = "SelectContent";
 var SelectContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useSelectContext(CONTENT_NAME, props.__scopeSelect);
+    const context = useSelectContext(CONTENT_NAME$1, props.__scopeSelect);
     const [fragment, setFragment] = reactExports.useState();
     useLayoutEffect2(() => {
       setFragment(new DocumentFragment());
@@ -33774,11 +33847,11 @@ var SelectContent$1 = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentImpl, { ...props, ref: forwardedRef });
   }
 );
-SelectContent$1.displayName = CONTENT_NAME;
+SelectContent$1.displayName = CONTENT_NAME$1;
 var CONTENT_MARGIN = 10;
-var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME);
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$1);
 var CONTENT_IMPL_NAME = "SelectContentImpl";
-var Slot = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
+var Slot$1 = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
 var SelectContentImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -33802,7 +33875,7 @@ var SelectContentImpl = reactExports.forwardRef(
       //
       ...contentProps
     } = props;
-    const context = useSelectContext(CONTENT_NAME, __scopeSelect);
+    const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
     const [content, setContent] = reactExports.useState(null);
     const [viewport, setViewport] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -33942,7 +34015,7 @@ var SelectContentImpl = reactExports.forwardRef(
         position: position2,
         isPositioned,
         searchRef,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot$1, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           FocusScope,
           {
             asChild: true,
@@ -34017,8 +34090,8 @@ SelectContentImpl.displayName = CONTENT_IMPL_NAME;
 var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
 var SelectItemAlignedPosition = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeSelect, onPlaced, ...popperProps } = props;
-  const context = useSelectContext(CONTENT_NAME, __scopeSelect);
-  const contentContext = useSelectContentContext(CONTENT_NAME, __scopeSelect);
+  const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
+  const contentContext = useSelectContentContext(CONTENT_NAME$1, __scopeSelect);
   const [contentWrapper, setContentWrapper] = reactExports.useState(null);
   const [content, setContent] = reactExports.useState(null);
   const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -34186,7 +34259,7 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
     collisionPadding = CONTENT_MARGIN,
     ...popperProps
   } = props;
-  const popperScope = usePopperScope(__scopeSelect);
+  const popperScope = usePopperScope$1(__scopeSelect);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     Content,
     {
@@ -34212,7 +34285,7 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME, {});
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$1, {});
 var VIEWPORT_NAME = "SelectViewport";
 var SelectViewport = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -34572,17 +34645,17 @@ var SelectSeparator$1 = reactExports.forwardRef(
   }
 );
 SelectSeparator$1.displayName = SEPARATOR_NAME;
-var ARROW_NAME = "SelectArrow";
+var ARROW_NAME$1 = "SelectArrow";
 var SelectArrow = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, ...arrowProps } = props;
-    const popperScope = usePopperScope(__scopeSelect);
-    const context = useSelectContext(ARROW_NAME, __scopeSelect);
-    const contentContext = useSelectContentContext(ARROW_NAME, __scopeSelect);
+    const popperScope = usePopperScope$1(__scopeSelect);
+    const context = useSelectContext(ARROW_NAME$1, __scopeSelect);
+    const contentContext = useSelectContentContext(ARROW_NAME$1, __scopeSelect);
     return context.open && contentContext.position === "popper" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Arrow, { ...popperScope, ...arrowProps, ref: forwardedRef }) : null;
   }
 );
-SelectArrow.displayName = ARROW_NAME;
+SelectArrow.displayName = ARROW_NAME$1;
 var BUBBLE_INPUT_NAME = "SelectBubbleInput";
 var SelectBubbleInput = reactExports.forwardRef(
   ({ __scopeSelect, value, ...props }, forwardedRef) => {
@@ -34659,12 +34732,12 @@ function findNextItem(items, search, currentItem) {
 function wrapArray(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
-var Root2 = Select$1;
-var Trigger = SelectTrigger$1;
+var Root2$1 = Select$2;
+var Trigger$1 = SelectTrigger$1;
 var Value = SelectValue$1;
 var Icon = SelectIcon;
-var Portal = SelectPortal;
-var Content2 = SelectContent$1;
+var Portal$1 = SelectPortal;
+var Content2$1 = SelectContent$1;
 var Viewport = SelectViewport;
 var Label = SelectLabel$1;
 var Item = SelectItem$1;
@@ -34673,10 +34746,10 @@ var ItemIndicator = SelectItemIndicator;
 var ScrollUpButton = SelectScrollUpButton$1;
 var ScrollDownButton = SelectScrollDownButton$1;
 var Separator = SelectSeparator$1;
-const Select = Root2;
+const Select$1 = Root2$1;
 const SelectValue = Value;
 const SelectTrigger = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-  Trigger,
+  Trigger$1,
   {
     "data-greta-id": "src/components/ui/select.tsx:17:2",
     "data-greta-name": "SelectPrimitive.Trigger",
@@ -34698,7 +34771,7 @@ const SelectTrigger = reactExports.forwardRef(({ className, children, ...props }
     ]
   }
 ));
-SelectTrigger.displayName = Trigger.displayName;
+SelectTrigger.displayName = Trigger$1.displayName;
 const SelectScrollUpButton = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   ScrollUpButton,
   {
@@ -34735,8 +34808,8 @@ const SelectScrollDownButton = reactExports.forwardRef(({ className, ...props },
   }
 ));
 SelectScrollDownButton.displayName = ScrollDownButton.displayName;
-const SelectContent = reactExports.forwardRef(({ className, children, position: position2 = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { "data-greta-id": "src/components/ui/select.tsx:65:2", "data-greta-name": "SelectPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "65", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-  Content2,
+const SelectContent = reactExports.forwardRef(({ className, children, position: position2 = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-greta-id": "src/components/ui/select.tsx:65:2", "data-greta-name": "SelectPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "65", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  Content2$1,
   {
     "data-greta-id": "src/components/ui/select.tsx:66:4",
     "data-greta-name": "SelectPrimitive.Content",
@@ -34778,7 +34851,7 @@ const SelectContent = reactExports.forwardRef(({ className, children, position: 
     ]
   }
 ) }));
-SelectContent.displayName = Content2.displayName;
+SelectContent.displayName = Content2$1.displayName;
 const SelectLabel = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { "data-greta-id": "src/components/ui/select.tsx:97:2", "data-greta-name": "SelectPrimitive.Label", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "97", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Label", "data-component-content": "%7B%7D", ref, className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className), ...props }));
 SelectLabel.displayName = Label.displayName;
 const SelectItem = reactExports.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -34807,12 +34880,5915 @@ const SelectItem = reactExports.forwardRef(({ className, children, ...props }, r
 SelectItem.displayName = Item.displayName;
 const SelectSeparator = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, { "data-greta-id": "src/components/ui/select.tsx:128:2", "data-greta-name": "SelectPrimitive.Separator", "data-greta-editable": "false", "data-component-path": "src/components/ui/select.tsx", "data-component-line": "128", "data-component-file": "select.tsx", "data-component-name": "SelectPrimitive.Separator", "data-component-content": "%7B%7D", ref, className: cn("-mx-1 my-1 h-px bg-muted", className), ...props }));
 SelectSeparator.displayName = Separator.displayName;
+var POPOVER_NAME = "Popover";
+var [createPopoverContext, createPopoverScope] = createContextScope(POPOVER_NAME, [
+  createPopperScope
+]);
+var usePopperScope = createPopperScope();
+var [PopoverProvider, usePopoverContext] = createPopoverContext(POPOVER_NAME);
+var Popover$1 = (props) => {
+  const {
+    __scopePopover,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    modal = false
+  } = props;
+  const popperScope = usePopperScope(__scopePopover);
+  const triggerRef = reactExports.useRef(null);
+  const [hasCustomAnchor, setHasCustomAnchor] = reactExports.useState(false);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: POPOVER_NAME
+  });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$3, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    PopoverProvider,
+    {
+      scope: __scopePopover,
+      contentId: useId(),
+      triggerRef,
+      open,
+      onOpenChange: setOpen,
+      onOpenToggle: reactExports.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
+      hasCustomAnchor,
+      onCustomAnchorAdd: reactExports.useCallback(() => setHasCustomAnchor(true), []),
+      onCustomAnchorRemove: reactExports.useCallback(() => setHasCustomAnchor(false), []),
+      modal,
+      children
+    }
+  ) });
+};
+Popover$1.displayName = POPOVER_NAME;
+var ANCHOR_NAME = "PopoverAnchor";
+var PopoverAnchor = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...anchorProps } = props;
+    const context = usePopoverContext(ANCHOR_NAME, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    const { onCustomAnchorAdd, onCustomAnchorRemove } = context;
+    reactExports.useEffect(() => {
+      onCustomAnchorAdd();
+      return () => onCustomAnchorRemove();
+    }, [onCustomAnchorAdd, onCustomAnchorRemove]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor, { ...popperScope, ...anchorProps, ref: forwardedRef });
+  }
+);
+PopoverAnchor.displayName = ANCHOR_NAME;
+var TRIGGER_NAME = "PopoverTrigger";
+var PopoverTrigger$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...triggerProps } = props;
+    const context = usePopoverContext(TRIGGER_NAME, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
+    const trigger = /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-expanded": context.open,
+        "aria-controls": context.contentId,
+        "data-state": getState(context.open),
+        ...triggerProps,
+        ref: composedTriggerRef,
+        onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+      }
+    );
+    return context.hasCustomAnchor ? trigger : /* @__PURE__ */ jsxRuntimeExports.jsx(Anchor, { asChild: true, ...popperScope, children: trigger });
+  }
+);
+PopoverTrigger$1.displayName = TRIGGER_NAME;
+var PORTAL_NAME = "PopoverPortal";
+var [PortalProvider, usePortalContext] = createPopoverContext(PORTAL_NAME, {
+  forceMount: void 0
+});
+var PopoverPortal = (props) => {
+  const { __scopePopover, forceMount, children, container } = props;
+  const context = usePopoverContext(PORTAL_NAME, __scopePopover);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopePopover, forceMount, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children }) }) });
+};
+PopoverPortal.displayName = PORTAL_NAME;
+var CONTENT_NAME = "PopoverContent";
+var PopoverContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(CONTENT_NAME, props.__scopePopover);
+    const { forceMount = portalContext.forceMount, ...contentProps } = props;
+    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContentNonModal, { ...contentProps, ref: forwardedRef }) });
+  }
+);
+PopoverContent$1.displayName = CONTENT_NAME;
+var Slot = /* @__PURE__ */ createSlot("PopoverContent.RemoveScroll");
+var PopoverContentModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    const isRightClickOutsideRef = reactExports.useRef(false);
+    reactExports.useEffect(() => {
+      const content = contentRef.current;
+      if (content) return hideOthers(content);
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PopoverContentImpl,
+      {
+        ...props,
+        ref: composedRefs,
+        trapFocus: context.open,
+        disableOutsidePointerEvents: true,
+        onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          var _a2;
+          event.preventDefault();
+          if (!isRightClickOutsideRef.current) (_a2 = context.triggerRef.current) == null ? void 0 : _a2.focus();
+        }),
+        onPointerDownOutside: composeEventHandlers(
+          props.onPointerDownOutside,
+          (event) => {
+            const originalEvent = event.detail.originalEvent;
+            const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
+            const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
+            isRightClickOutsideRef.current = isRightClick;
+          },
+          { checkForDefaultPrevented: false }
+        ),
+        onFocusOutside: composeEventHandlers(
+          props.onFocusOutside,
+          (event) => event.preventDefault(),
+          { checkForDefaultPrevented: false }
+        )
+      }
+    ) });
+  }
+);
+var PopoverContentNonModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
+    const hasInteractedOutsideRef = reactExports.useRef(false);
+    const hasPointerDownOutsideRef = reactExports.useRef(false);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PopoverContentImpl,
+      {
+        ...props,
+        ref: forwardedRef,
+        trapFocus: false,
+        disableOutsidePointerEvents: false,
+        onCloseAutoFocus: (event) => {
+          var _a2, _b2;
+          (_a2 = props.onCloseAutoFocus) == null ? void 0 : _a2.call(props, event);
+          if (!event.defaultPrevented) {
+            if (!hasInteractedOutsideRef.current) (_b2 = context.triggerRef.current) == null ? void 0 : _b2.focus();
+            event.preventDefault();
+          }
+          hasInteractedOutsideRef.current = false;
+          hasPointerDownOutsideRef.current = false;
+        },
+        onInteractOutside: (event) => {
+          var _a2, _b2;
+          (_a2 = props.onInteractOutside) == null ? void 0 : _a2.call(props, event);
+          if (!event.defaultPrevented) {
+            hasInteractedOutsideRef.current = true;
+            if (event.detail.originalEvent.type === "pointerdown") {
+              hasPointerDownOutsideRef.current = true;
+            }
+          }
+          const target = event.target;
+          const targetIsTrigger = (_b2 = context.triggerRef.current) == null ? void 0 : _b2.contains(target);
+          if (targetIsTrigger) event.preventDefault();
+          if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) {
+            event.preventDefault();
+          }
+        }
+      }
+    );
+  }
+);
+var PopoverContentImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopePopover,
+      trapFocus,
+      onOpenAutoFocus,
+      onCloseAutoFocus,
+      disableOutsidePointerEvents,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      onFocusOutside,
+      onInteractOutside,
+      ...contentProps
+    } = props;
+    const context = usePopoverContext(CONTENT_NAME, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    useFocusGuards();
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FocusScope,
+      {
+        asChild: true,
+        loop: true,
+        trapped: trapFocus,
+        onMountAutoFocus: onOpenAutoFocus,
+        onUnmountAutoFocus: onCloseAutoFocus,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          DismissableLayer,
+          {
+            asChild: true,
+            disableOutsidePointerEvents,
+            onInteractOutside,
+            onEscapeKeyDown,
+            onPointerDownOutside,
+            onFocusOutside,
+            onDismiss: () => context.onOpenChange(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Content,
+              {
+                "data-state": getState(context.open),
+                role: "dialog",
+                id: context.contentId,
+                ...popperScope,
+                ...contentProps,
+                ref: forwardedRef,
+                style: {
+                  ...contentProps.style,
+                  // re-namespace exposed content custom properties
+                  ...{
+                    "--radix-popover-content-transform-origin": "var(--radix-popper-transform-origin)",
+                    "--radix-popover-content-available-width": "var(--radix-popper-available-width)",
+                    "--radix-popover-content-available-height": "var(--radix-popper-available-height)",
+                    "--radix-popover-trigger-width": "var(--radix-popper-anchor-width)",
+                    "--radix-popover-trigger-height": "var(--radix-popper-anchor-height)"
+                  }
+                }
+              }
+            )
+          }
+        )
+      }
+    );
+  }
+);
+var CLOSE_NAME = "PopoverClose";
+var PopoverClose = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...closeProps } = props;
+    const context = usePopoverContext(CLOSE_NAME, __scopePopover);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        ...closeProps,
+        ref: forwardedRef,
+        onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+      }
+    );
+  }
+);
+PopoverClose.displayName = CLOSE_NAME;
+var ARROW_NAME = "PopoverArrow";
+var PopoverArrow = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...arrowProps } = props;
+    const popperScope = usePopperScope(__scopePopover);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Arrow, { ...popperScope, ...arrowProps, ref: forwardedRef });
+  }
+);
+PopoverArrow.displayName = ARROW_NAME;
+function getState(open) {
+  return open ? "open" : "closed";
+}
+var Root2 = Popover$1;
+var Trigger = PopoverTrigger$1;
+var Portal = PopoverPortal;
+var Content2 = PopoverContent$1;
+const Popover = Root2;
+const PopoverTrigger = Trigger;
+const PopoverContent = reactExports.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { "data-greta-id": "src/components/ui/popover.tsx:14:2", "data-greta-name": "PopoverPrimitive.Portal", "data-greta-editable": "false", "data-component-path": "src/components/ui/popover.tsx", "data-component-line": "14", "data-component-file": "popover.tsx", "data-component-name": "PopoverPrimitive.Portal", "data-component-content": "%7B%7D", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Content2,
+  {
+    "data-greta-id": "src/components/ui/popover.tsx:15:4",
+    "data-greta-name": "PopoverPrimitive.Content",
+    "data-greta-editable": "false",
+    "data-component-path": "src/components/ui/popover.tsx",
+    "data-component-line": "15",
+    "data-component-file": "popover.tsx",
+    "data-component-name": "PopoverPrimitive.Content",
+    "data-component-content": "%7B%7D",
+    ref,
+    align,
+    sideOffset,
+    className: cn(
+      "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    ),
+    ...props
+  }
+) }));
+PopoverContent.displayName = Content2.displayName;
+function tzName(timeZone, date, format2 = "long") {
+  return new Intl.DateTimeFormat("en-US", {
+    // Enforces engine to render the time. Without the option JavaScriptCore omits it.
+    hour: "numeric",
+    timeZone,
+    timeZoneName: format2
+  }).format(date).split(/\s/g).slice(2).join(" ");
+}
+const offsetFormatCache = {};
+const offsetCache = {};
+function tzOffset(timeZone, date) {
+  try {
+    const format2 = offsetFormatCache[timeZone] || (offsetFormatCache[timeZone] = new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      timeZoneName: "longOffset"
+    }).format);
+    const offsetStr = format2(date).split("GMT")[1];
+    if (offsetStr in offsetCache) return offsetCache[offsetStr];
+    return calcOffset(offsetStr, offsetStr.split(":"));
+  } catch {
+    if (timeZone in offsetCache) return offsetCache[timeZone];
+    const captures = timeZone == null ? void 0 : timeZone.match(offsetRe);
+    if (captures) return calcOffset(timeZone, captures.slice(1));
+    return NaN;
+  }
+}
+const offsetRe = /([+-]\d\d):?(\d\d)?/;
+function calcOffset(cacheStr, values) {
+  const hours = +(values[0] || 0);
+  const minutes = +(values[1] || 0);
+  const seconds = +(values[2] || 0) / 60;
+  return offsetCache[cacheStr] = hours * 60 + minutes > 0 ? hours * 60 + minutes + seconds : hours * 60 - minutes - seconds;
+}
+class TZDateMini extends Date {
+  //#region static
+  constructor(...args) {
+    super();
+    if (args.length > 1 && typeof args[args.length - 1] === "string") {
+      this.timeZone = args.pop();
+    }
+    this.internal = /* @__PURE__ */ new Date();
+    if (isNaN(tzOffset(this.timeZone, this))) {
+      this.setTime(NaN);
+    } else {
+      if (!args.length) {
+        this.setTime(Date.now());
+      } else if (typeof args[0] === "number" && (args.length === 1 || args.length === 2 && typeof args[1] !== "number")) {
+        this.setTime(args[0]);
+      } else if (typeof args[0] === "string") {
+        this.setTime(+new Date(args[0]));
+      } else if (args[0] instanceof Date) {
+        this.setTime(+args[0]);
+      } else {
+        this.setTime(+new Date(...args));
+        adjustToSystemTZ(this);
+        syncToInternal(this);
+      }
+    }
+  }
+  static tz(tz, ...args) {
+    return args.length ? new TZDateMini(...args, tz) : new TZDateMini(Date.now(), tz);
+  }
+  //#endregion
+  //#region time zone
+  withTimeZone(timeZone) {
+    return new TZDateMini(+this, timeZone);
+  }
+  getTimezoneOffset() {
+    const offset3 = -tzOffset(this.timeZone, this);
+    return offset3 > 0 ? Math.floor(offset3) : Math.ceil(offset3);
+  }
+  //#endregion
+  //#region time
+  setTime(time) {
+    Date.prototype.setTime.apply(this, arguments);
+    syncToInternal(this);
+    return +this;
+  }
+  //#endregion
+  //#region date-fns integration
+  [Symbol.for("constructDateFrom")](date) {
+    return new TZDateMini(+new Date(date), this.timeZone);
+  }
+  //#endregion
+}
+const re = /^(get|set)(?!UTC)/;
+Object.getOwnPropertyNames(Date.prototype).forEach((method) => {
+  if (!re.test(method)) return;
+  const utcMethod = method.replace(re, "$1UTC");
+  if (!TZDateMini.prototype[utcMethod]) return;
+  if (method.startsWith("get")) {
+    TZDateMini.prototype[method] = function() {
+      return this.internal[utcMethod]();
+    };
+  } else {
+    TZDateMini.prototype[method] = function() {
+      Date.prototype[utcMethod].apply(this.internal, arguments);
+      syncFromInternal(this);
+      return +this;
+    };
+    TZDateMini.prototype[utcMethod] = function() {
+      Date.prototype[utcMethod].apply(this, arguments);
+      syncToInternal(this);
+      return +this;
+    };
+  }
+});
+function syncToInternal(date) {
+  date.internal.setTime(+date);
+  date.internal.setUTCSeconds(date.internal.getUTCSeconds() - Math.round(-tzOffset(date.timeZone, date) * 60));
+}
+function syncFromInternal(date) {
+  Date.prototype.setFullYear.call(date, date.internal.getUTCFullYear(), date.internal.getUTCMonth(), date.internal.getUTCDate());
+  Date.prototype.setHours.call(date, date.internal.getUTCHours(), date.internal.getUTCMinutes(), date.internal.getUTCSeconds(), date.internal.getUTCMilliseconds());
+  adjustToSystemTZ(date);
+}
+function adjustToSystemTZ(date) {
+  const baseOffset = tzOffset(date.timeZone, date);
+  const offset3 = baseOffset > 0 ? Math.floor(baseOffset) : Math.ceil(baseOffset);
+  const prevHour = /* @__PURE__ */ new Date(+date);
+  prevHour.setUTCHours(prevHour.getUTCHours() - 1);
+  const systemOffset = -(/* @__PURE__ */ new Date(+date)).getTimezoneOffset();
+  const prevHourSystemOffset = -(/* @__PURE__ */ new Date(+prevHour)).getTimezoneOffset();
+  const systemDSTChange = systemOffset - prevHourSystemOffset;
+  const dstShift = Date.prototype.getHours.apply(date) !== date.internal.getUTCHours();
+  if (systemDSTChange && dstShift) date.internal.setUTCMinutes(date.internal.getUTCMinutes() + systemDSTChange);
+  const offsetDiff = systemOffset - offset3;
+  if (offsetDiff) Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + offsetDiff);
+  const systemDate = /* @__PURE__ */ new Date(+date);
+  systemDate.setUTCSeconds(0);
+  const systemSecondsOffset = systemOffset > 0 ? systemDate.getSeconds() : (systemDate.getSeconds() - 60) % 60;
+  const secondsOffset = Math.round(-(tzOffset(date.timeZone, date) * 60)) % 60;
+  if (secondsOffset || systemSecondsOffset) {
+    date.internal.setUTCSeconds(date.internal.getUTCSeconds() + secondsOffset);
+    Date.prototype.setUTCSeconds.call(date, Date.prototype.getUTCSeconds.call(date) + secondsOffset + systemSecondsOffset);
+  }
+  const postBaseOffset = tzOffset(date.timeZone, date);
+  const postOffset = postBaseOffset > 0 ? Math.floor(postBaseOffset) : Math.ceil(postBaseOffset);
+  const postSystemOffset = -(/* @__PURE__ */ new Date(+date)).getTimezoneOffset();
+  const postOffsetDiff = postSystemOffset - postOffset;
+  const offsetChanged = postOffset !== offset3;
+  const postDiff = postOffsetDiff - offsetDiff;
+  if (offsetChanged && postDiff) {
+    Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + postDiff);
+    const newBaseOffset = tzOffset(date.timeZone, date);
+    const newOffset = newBaseOffset > 0 ? Math.floor(newBaseOffset) : Math.ceil(newBaseOffset);
+    const offsetChange = postOffset - newOffset;
+    if (offsetChange) {
+      date.internal.setUTCMinutes(date.internal.getUTCMinutes() + offsetChange);
+      Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + offsetChange);
+    }
+  }
+}
+class TZDate extends TZDateMini {
+  //#region static
+  static tz(tz, ...args) {
+    return args.length ? new TZDate(...args, tz) : new TZDate(Date.now(), tz);
+  }
+  //#endregion
+  //#region representation
+  toISOString() {
+    const [sign, hours, minutes] = this.tzComponents();
+    const tz = `${sign}${hours}:${minutes}`;
+    return this.internal.toISOString().slice(0, -1) + tz;
+  }
+  toString() {
+    return `${this.toDateString()} ${this.toTimeString()}`;
+  }
+  toDateString() {
+    const [day, date, month, year] = this.internal.toUTCString().split(" ");
+    return `${day == null ? void 0 : day.slice(0, -1)} ${month} ${date} ${year}`;
+  }
+  toTimeString() {
+    const time = this.internal.toUTCString().split(" ")[4];
+    const [sign, hours, minutes] = this.tzComponents();
+    return `${time} GMT${sign}${hours}${minutes} (${tzName(this.timeZone, this)})`;
+  }
+  toLocaleString(locales, options) {
+    return Date.prototype.toLocaleString.call(this, locales, {
+      ...options,
+      timeZone: (options == null ? void 0 : options.timeZone) || this.timeZone
+    });
+  }
+  toLocaleDateString(locales, options) {
+    return Date.prototype.toLocaleDateString.call(this, locales, {
+      ...options,
+      timeZone: (options == null ? void 0 : options.timeZone) || this.timeZone
+    });
+  }
+  toLocaleTimeString(locales, options) {
+    return Date.prototype.toLocaleTimeString.call(this, locales, {
+      ...options,
+      timeZone: (options == null ? void 0 : options.timeZone) || this.timeZone
+    });
+  }
+  //#endregion
+  //#region private
+  tzComponents() {
+    const offset3 = this.getTimezoneOffset();
+    const sign = offset3 > 0 ? "-" : "+";
+    const hours = String(Math.floor(Math.abs(offset3) / 60)).padStart(2, "0");
+    const minutes = String(Math.abs(offset3) % 60).padStart(2, "0");
+    return [sign, hours, minutes];
+  }
+  //#endregion
+  withTimeZone(timeZone) {
+    return new TZDate(+this, timeZone);
+  }
+  //#region date-fns integration
+  [Symbol.for("constructDateFrom")](date) {
+    return new TZDate(+new Date(date), this.timeZone);
+  }
+  //#endregion
+}
+const millisecondsInWeek$1 = 6048e5;
+const millisecondsInDay$1 = 864e5;
+const constructFromSymbol = Symbol.for("constructDateFrom");
+function constructFrom$1(date, value) {
+  if (typeof date === "function") return date(value);
+  if (date && typeof date === "object" && constructFromSymbol in date)
+    return date[constructFromSymbol](value);
+  if (date instanceof Date) return new date.constructor(value);
+  return new Date(value);
+}
+function toDate$1(argument, context) {
+  return constructFrom$1(context || argument, argument);
+}
+function addDays$1(date, amount, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  if (isNaN(amount)) return constructFrom$1(date, NaN);
+  if (!amount) return _date;
+  _date.setDate(_date.getDate() + amount);
+  return _date;
+}
+function addMonths(date, amount, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  if (isNaN(amount)) return constructFrom$1(date, NaN);
+  if (!amount) {
+    return _date;
+  }
+  const dayOfMonth = _date.getDate();
+  const endOfDesiredMonth = constructFrom$1(date, _date.getTime());
+  endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
+  const daysInMonth = endOfDesiredMonth.getDate();
+  if (dayOfMonth >= daysInMonth) {
+    return endOfDesiredMonth;
+  } else {
+    _date.setFullYear(
+      endOfDesiredMonth.getFullYear(),
+      endOfDesiredMonth.getMonth(),
+      dayOfMonth
+    );
+    return _date;
+  }
+}
+let defaultOptions$1 = {};
+function getDefaultOptions$1() {
+  return defaultOptions$1;
+}
+function startOfWeek$1(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions$1();
+  const weekStartsOn = (options == null ? void 0 : options.weekStartsOn) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.weekStartsOn) ?? defaultOptions2.weekStartsOn ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.weekStartsOn) ?? 0;
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const day = _date.getDay();
+  const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+  _date.setDate(_date.getDate() - diff);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+function startOfISOWeek$1(date, options) {
+  return startOfWeek$1(date, { ...options, weekStartsOn: 1 });
+}
+function getISOWeekYear$1(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const year = _date.getFullYear();
+  const fourthOfJanuaryOfNextYear = constructFrom$1(_date, 0);
+  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
+  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
+  const startOfNextYear = startOfISOWeek$1(fourthOfJanuaryOfNextYear);
+  const fourthOfJanuaryOfThisYear = constructFrom$1(_date, 0);
+  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
+  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
+  const startOfThisYear = startOfISOWeek$1(fourthOfJanuaryOfThisYear);
+  if (_date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1;
+  } else if (_date.getTime() >= startOfThisYear.getTime()) {
+    return year;
+  } else {
+    return year - 1;
+  }
+}
+function getTimezoneOffsetInMilliseconds$1(date) {
+  const _date = toDate$1(date);
+  const utcDate = new Date(
+    Date.UTC(
+      _date.getFullYear(),
+      _date.getMonth(),
+      _date.getDate(),
+      _date.getHours(),
+      _date.getMinutes(),
+      _date.getSeconds(),
+      _date.getMilliseconds()
+    )
+  );
+  utcDate.setUTCFullYear(_date.getFullYear());
+  return +date - +utcDate;
+}
+function normalizeDates(context, ...dates) {
+  const normalize = constructFrom$1.bind(
+    null,
+    dates.find((date) => typeof date === "object")
+  );
+  return dates.map(normalize);
+}
+function startOfDay$1(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+function differenceInCalendarDays$1(laterDate, earlierDate, options) {
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options == null ? void 0 : options.in,
+    laterDate,
+    earlierDate
+  );
+  const laterStartOfDay = startOfDay$1(laterDate_);
+  const earlierStartOfDay = startOfDay$1(earlierDate_);
+  const laterTimestamp = +laterStartOfDay - getTimezoneOffsetInMilliseconds$1(laterStartOfDay);
+  const earlierTimestamp = +earlierStartOfDay - getTimezoneOffsetInMilliseconds$1(earlierStartOfDay);
+  return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInDay$1);
+}
+function startOfISOWeekYear$1(date, options) {
+  const year = getISOWeekYear$1(date, options);
+  const fourthOfJanuary = constructFrom$1(date, 0);
+  fourthOfJanuary.setFullYear(year, 0, 4);
+  fourthOfJanuary.setHours(0, 0, 0, 0);
+  return startOfISOWeek$1(fourthOfJanuary);
+}
+function addWeeks(date, amount, options) {
+  return addDays$1(date, amount * 7, options);
+}
+function addYears(date, amount, options) {
+  return addMonths(date, amount * 12, options);
+}
+function max(dates, options) {
+  let result;
+  let context = options == null ? void 0 : options.in;
+  dates.forEach((date) => {
+    if (!context && typeof date === "object")
+      context = constructFrom$1.bind(null, date);
+    const date_ = toDate$1(date, context);
+    if (!result || result < date_ || isNaN(+date_)) result = date_;
+  });
+  return constructFrom$1(context, result || NaN);
+}
+function min(dates, options) {
+  let result;
+  let context = options == null ? void 0 : options.in;
+  dates.forEach((date) => {
+    if (!context && typeof date === "object")
+      context = constructFrom$1.bind(null, date);
+    const date_ = toDate$1(date, context);
+    if (!result || result > date_ || isNaN(+date_)) result = date_;
+  });
+  return constructFrom$1(context, result || NaN);
+}
+function isSameDay$1(laterDate, earlierDate, options) {
+  const [dateLeft_, dateRight_] = normalizeDates(
+    options == null ? void 0 : options.in,
+    laterDate,
+    earlierDate
+  );
+  return +startOfDay$1(dateLeft_) === +startOfDay$1(dateRight_);
+}
+function isDate$1(value) {
+  return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
+}
+function isValid$1(date) {
+  return !(!isDate$1(date) && typeof date !== "number" || isNaN(+toDate$1(date)));
+}
+function differenceInCalendarMonths(laterDate, earlierDate, options) {
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options == null ? void 0 : options.in,
+    laterDate,
+    earlierDate
+  );
+  const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
+  const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
+  return yearsDiff * 12 + monthsDiff;
+}
+function endOfMonth(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const month = _date.getMonth();
+  _date.setFullYear(_date.getFullYear(), month + 1, 0);
+  _date.setHours(23, 59, 59, 999);
+  return _date;
+}
+function normalizeInterval(context, interval) {
+  const [start, end2] = normalizeDates(context, interval.start, interval.end);
+  return { start, end: end2 };
+}
+function eachMonthOfInterval(interval, options) {
+  const { start, end: end2 } = normalizeInterval(options == null ? void 0 : options.in, interval);
+  let reversed = +start > +end2;
+  const endTime = reversed ? +start : +end2;
+  const date = reversed ? end2 : start;
+  date.setHours(0, 0, 0, 0);
+  date.setDate(1);
+  let step = 1;
+  const dates = [];
+  while (+date <= endTime) {
+    dates.push(constructFrom$1(start, date));
+    date.setMonth(date.getMonth() + step);
+  }
+  return reversed ? dates.reverse() : dates;
+}
+function startOfMonth(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  _date.setDate(1);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+function endOfYear(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const year = _date.getFullYear();
+  _date.setFullYear(year + 1, 0, 0);
+  _date.setHours(23, 59, 59, 999);
+  return _date;
+}
+function startOfYear$1(date, options) {
+  const date_ = toDate$1(date, options == null ? void 0 : options.in);
+  date_.setFullYear(date_.getFullYear(), 0, 1);
+  date_.setHours(0, 0, 0, 0);
+  return date_;
+}
+function eachYearOfInterval(interval, options) {
+  const { start, end: end2 } = normalizeInterval(options == null ? void 0 : options.in, interval);
+  let reversed = +start > +end2;
+  const endTime = reversed ? +start : +end2;
+  const date = reversed ? end2 : start;
+  date.setHours(0, 0, 0, 0);
+  date.setMonth(0, 1);
+  let step = 1;
+  const dates = [];
+  while (+date <= endTime) {
+    dates.push(constructFrom$1(start, date));
+    date.setFullYear(date.getFullYear() + step);
+  }
+  return reversed ? dates.reverse() : dates;
+}
+function endOfWeek(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions$1();
+  const weekStartsOn = (options == null ? void 0 : options.weekStartsOn) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.weekStartsOn) ?? defaultOptions2.weekStartsOn ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.weekStartsOn) ?? 0;
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const day = _date.getDay();
+  const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
+  _date.setDate(_date.getDate() + diff);
+  _date.setHours(23, 59, 59, 999);
+  return _date;
+}
+function endOfISOWeek(date, options) {
+  return endOfWeek(date, { ...options, weekStartsOn: 1 });
+}
+const formatDistanceLocale$1 = {
+  lessThanXSeconds: {
+    one: "less than a second",
+    other: "less than {{count}} seconds"
+  },
+  xSeconds: {
+    one: "1 second",
+    other: "{{count}} seconds"
+  },
+  halfAMinute: "half a minute",
+  lessThanXMinutes: {
+    one: "less than a minute",
+    other: "less than {{count}} minutes"
+  },
+  xMinutes: {
+    one: "1 minute",
+    other: "{{count}} minutes"
+  },
+  aboutXHours: {
+    one: "about 1 hour",
+    other: "about {{count}} hours"
+  },
+  xHours: {
+    one: "1 hour",
+    other: "{{count}} hours"
+  },
+  xDays: {
+    one: "1 day",
+    other: "{{count}} days"
+  },
+  aboutXWeeks: {
+    one: "about 1 week",
+    other: "about {{count}} weeks"
+  },
+  xWeeks: {
+    one: "1 week",
+    other: "{{count}} weeks"
+  },
+  aboutXMonths: {
+    one: "about 1 month",
+    other: "about {{count}} months"
+  },
+  xMonths: {
+    one: "1 month",
+    other: "{{count}} months"
+  },
+  aboutXYears: {
+    one: "about 1 year",
+    other: "about {{count}} years"
+  },
+  xYears: {
+    one: "1 year",
+    other: "{{count}} years"
+  },
+  overXYears: {
+    one: "over 1 year",
+    other: "over {{count}} years"
+  },
+  almostXYears: {
+    one: "almost 1 year",
+    other: "almost {{count}} years"
+  }
+};
+const formatDistance$1 = (token, count2, options) => {
+  let result;
+  const tokenValue = formatDistanceLocale$1[token];
+  if (typeof tokenValue === "string") {
+    result = tokenValue;
+  } else if (count2 === 1) {
+    result = tokenValue.one;
+  } else {
+    result = tokenValue.other.replace("{{count}}", count2.toString());
+  }
+  if (options == null ? void 0 : options.addSuffix) {
+    if (options.comparison && options.comparison > 0) {
+      return "in " + result;
+    } else {
+      return result + " ago";
+    }
+  }
+  return result;
+};
+function buildFormatLongFn$1(args) {
+  return (options = {}) => {
+    const width = options.width ? String(options.width) : args.defaultWidth;
+    const format2 = args.formats[width] || args.formats[args.defaultWidth];
+    return format2;
+  };
+}
+const dateFormats$1 = {
+  full: "EEEE, MMMM do, y",
+  long: "MMMM do, y",
+  medium: "MMM d, y",
+  short: "MM/dd/yyyy"
+};
+const timeFormats$1 = {
+  full: "h:mm:ss a zzzz",
+  long: "h:mm:ss a z",
+  medium: "h:mm:ss a",
+  short: "h:mm a"
+};
+const dateTimeFormats$1 = {
+  full: "{{date}} 'at' {{time}}",
+  long: "{{date}} 'at' {{time}}",
+  medium: "{{date}}, {{time}}",
+  short: "{{date}}, {{time}}"
+};
+const formatLong$1 = {
+  date: buildFormatLongFn$1({
+    formats: dateFormats$1,
+    defaultWidth: "full"
+  }),
+  time: buildFormatLongFn$1({
+    formats: timeFormats$1,
+    defaultWidth: "full"
+  }),
+  dateTime: buildFormatLongFn$1({
+    formats: dateTimeFormats$1,
+    defaultWidth: "full"
+  })
+};
+const formatRelativeLocale$1 = {
+  lastWeek: "'last' eeee 'at' p",
+  yesterday: "'yesterday at' p",
+  today: "'today at' p",
+  tomorrow: "'tomorrow at' p",
+  nextWeek: "eeee 'at' p",
+  other: "P"
+};
+const formatRelative$1 = (token, _date, _baseDate, _options) => formatRelativeLocale$1[token];
+function buildLocalizeFn$1(args) {
+  return (value, options) => {
+    const context = (options == null ? void 0 : options.context) ? String(options.context) : "standalone";
+    let valuesArray;
+    if (context === "formatting" && args.formattingValues) {
+      const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+      const width = (options == null ? void 0 : options.width) ? String(options.width) : defaultWidth;
+      valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+    } else {
+      const defaultWidth = args.defaultWidth;
+      const width = (options == null ? void 0 : options.width) ? String(options.width) : args.defaultWidth;
+      valuesArray = args.values[width] || args.values[defaultWidth];
+    }
+    const index2 = args.argumentCallback ? args.argumentCallback(value) : value;
+    return valuesArray[index2];
+  };
+}
+const eraValues$1 = {
+  narrow: ["B", "A"],
+  abbreviated: ["BC", "AD"],
+  wide: ["Before Christ", "Anno Domini"]
+};
+const quarterValues$1 = {
+  narrow: ["1", "2", "3", "4"],
+  abbreviated: ["Q1", "Q2", "Q3", "Q4"],
+  wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
+};
+const monthValues$1 = {
+  narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+  abbreviated: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  wide: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
+};
+const dayValues$1 = {
+  narrow: ["S", "M", "T", "W", "T", "F", "S"],
+  short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+  abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  wide: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+};
+const dayPeriodValues$1 = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mi",
+    noon: "n",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  }
+};
+const formattingDayPeriodValues$1 = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mi",
+    noon: "n",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  }
+};
+const ordinalNumber$1 = (dirtyNumber, _options) => {
+  const number = Number(dirtyNumber);
+  const rem100 = number % 100;
+  if (rem100 > 20 || rem100 < 10) {
+    switch (rem100 % 10) {
+      case 1:
+        return number + "st";
+      case 2:
+        return number + "nd";
+      case 3:
+        return number + "rd";
+    }
+  }
+  return number + "th";
+};
+const localize$1 = {
+  ordinalNumber: ordinalNumber$1,
+  era: buildLocalizeFn$1({
+    values: eraValues$1,
+    defaultWidth: "wide"
+  }),
+  quarter: buildLocalizeFn$1({
+    values: quarterValues$1,
+    defaultWidth: "wide",
+    argumentCallback: (quarter) => quarter - 1
+  }),
+  month: buildLocalizeFn$1({
+    values: monthValues$1,
+    defaultWidth: "wide"
+  }),
+  day: buildLocalizeFn$1({
+    values: dayValues$1,
+    defaultWidth: "wide"
+  }),
+  dayPeriod: buildLocalizeFn$1({
+    values: dayPeriodValues$1,
+    defaultWidth: "wide",
+    formattingValues: formattingDayPeriodValues$1,
+    defaultFormattingWidth: "wide"
+  })
+};
+function buildMatchFn$1(args) {
+  return (string, options = {}) => {
+    const width = options.width;
+    const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
+    const matchResult = string.match(matchPattern);
+    if (!matchResult) {
+      return null;
+    }
+    const matchedString = matchResult[0];
+    const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
+    const key = Array.isArray(parsePatterns) ? findIndex$1(parsePatterns, (pattern) => pattern.test(matchedString)) : (
+      // [TODO] -- I challenge you to fix the type
+      findKey$1(parsePatterns, (pattern) => pattern.test(matchedString))
+    );
+    let value;
+    value = args.valueCallback ? args.valueCallback(key) : key;
+    value = options.valueCallback ? (
+      // [TODO] -- I challenge you to fix the type
+      options.valueCallback(value)
+    ) : value;
+    const rest = string.slice(matchedString.length);
+    return { value, rest };
+  };
+}
+function findKey$1(object, predicate) {
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
+      return key;
+    }
+  }
+  return void 0;
+}
+function findIndex$1(array, predicate) {
+  for (let key = 0; key < array.length; key++) {
+    if (predicate(array[key])) {
+      return key;
+    }
+  }
+  return void 0;
+}
+function buildMatchPatternFn$1(args) {
+  return (string, options = {}) => {
+    const matchResult = string.match(args.matchPattern);
+    if (!matchResult) return null;
+    const matchedString = matchResult[0];
+    const parseResult = string.match(args.parsePattern);
+    if (!parseResult) return null;
+    let value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+    value = options.valueCallback ? options.valueCallback(value) : value;
+    const rest = string.slice(matchedString.length);
+    return { value, rest };
+  };
+}
+const matchOrdinalNumberPattern$1 = /^(\d+)(th|st|nd|rd)?/i;
+const parseOrdinalNumberPattern$1 = /\d+/i;
+const matchEraPatterns$1 = {
+  narrow: /^(b|a)/i,
+  abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+  wide: /^(before christ|before common era|anno domini|common era)/i
+};
+const parseEraPatterns$1 = {
+  any: [/^b/i, /^(a|c)/i]
+};
+const matchQuarterPatterns$1 = {
+  narrow: /^[1234]/i,
+  abbreviated: /^q[1234]/i,
+  wide: /^[1234](th|st|nd|rd)? quarter/i
+};
+const parseQuarterPatterns$1 = {
+  any: [/1/i, /2/i, /3/i, /4/i]
+};
+const matchMonthPatterns$1 = {
+  narrow: /^[jfmasond]/i,
+  abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+  wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+};
+const parseMonthPatterns$1 = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^ap/i,
+    /^may/i,
+    /^jun/i,
+    /^jul/i,
+    /^au/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+};
+const matchDayPatterns$1 = {
+  narrow: /^[smtwf]/i,
+  short: /^(su|mo|tu|we|th|fr|sa)/i,
+  abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+  wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+};
+const parseDayPatterns$1 = {
+  narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+};
+const matchDayPeriodPatterns$1 = {
+  narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+  any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+};
+const parseDayPeriodPatterns$1 = {
+  any: {
+    am: /^a/i,
+    pm: /^p/i,
+    midnight: /^mi/i,
+    noon: /^no/i,
+    morning: /morning/i,
+    afternoon: /afternoon/i,
+    evening: /evening/i,
+    night: /night/i
+  }
+};
+const match$1 = {
+  ordinalNumber: buildMatchPatternFn$1({
+    matchPattern: matchOrdinalNumberPattern$1,
+    parsePattern: parseOrdinalNumberPattern$1,
+    valueCallback: (value) => parseInt(value, 10)
+  }),
+  era: buildMatchFn$1({
+    matchPatterns: matchEraPatterns$1,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseEraPatterns$1,
+    defaultParseWidth: "any"
+  }),
+  quarter: buildMatchFn$1({
+    matchPatterns: matchQuarterPatterns$1,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseQuarterPatterns$1,
+    defaultParseWidth: "any",
+    valueCallback: (index2) => index2 + 1
+  }),
+  month: buildMatchFn$1({
+    matchPatterns: matchMonthPatterns$1,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseMonthPatterns$1,
+    defaultParseWidth: "any"
+  }),
+  day: buildMatchFn$1({
+    matchPatterns: matchDayPatterns$1,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseDayPatterns$1,
+    defaultParseWidth: "any"
+  }),
+  dayPeriod: buildMatchFn$1({
+    matchPatterns: matchDayPeriodPatterns$1,
+    defaultMatchWidth: "any",
+    parsePatterns: parseDayPeriodPatterns$1,
+    defaultParseWidth: "any"
+  })
+};
+const enUS$2 = {
+  code: "en-US",
+  formatDistance: formatDistance$1,
+  formatLong: formatLong$1,
+  formatRelative: formatRelative$1,
+  localize: localize$1,
+  match: match$1,
+  options: {
+    weekStartsOn: 0,
+    firstWeekContainsDate: 1
+  }
+};
+function getDayOfYear$1(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const diff = differenceInCalendarDays$1(_date, startOfYear$1(_date));
+  const dayOfYear = diff + 1;
+  return dayOfYear;
+}
+function getISOWeek$1(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const diff = +startOfISOWeek$1(_date) - +startOfISOWeekYear$1(_date);
+  return Math.round(diff / millisecondsInWeek$1) + 1;
+}
+function getWeekYear$1(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const year = _date.getFullYear();
+  const defaultOptions2 = getDefaultOptions$1();
+  const firstWeekContainsDate = (options == null ? void 0 : options.firstWeekContainsDate) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? defaultOptions2.firstWeekContainsDate ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.firstWeekContainsDate) ?? 1;
+  const firstWeekOfNextYear = constructFrom$1((options == null ? void 0 : options.in) || date, 0);
+  firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
+  firstWeekOfNextYear.setHours(0, 0, 0, 0);
+  const startOfNextYear = startOfWeek$1(firstWeekOfNextYear, options);
+  const firstWeekOfThisYear = constructFrom$1((options == null ? void 0 : options.in) || date, 0);
+  firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeekOfThisYear.setHours(0, 0, 0, 0);
+  const startOfThisYear = startOfWeek$1(firstWeekOfThisYear, options);
+  if (+_date >= +startOfNextYear) {
+    return year + 1;
+  } else if (+_date >= +startOfThisYear) {
+    return year;
+  } else {
+    return year - 1;
+  }
+}
+function startOfWeekYear$1(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions$1();
+  const firstWeekContainsDate = (options == null ? void 0 : options.firstWeekContainsDate) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? defaultOptions2.firstWeekContainsDate ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.firstWeekContainsDate) ?? 1;
+  const year = getWeekYear$1(date, options);
+  const firstWeek = constructFrom$1((options == null ? void 0 : options.in) || date, 0);
+  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeek.setHours(0, 0, 0, 0);
+  const _date = startOfWeek$1(firstWeek, options);
+  return _date;
+}
+function getWeek$1(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const diff = +startOfWeek$1(_date, options) - +startOfWeekYear$1(_date, options);
+  return Math.round(diff / millisecondsInWeek$1) + 1;
+}
+function addLeadingZeros$1(number, targetLength) {
+  const sign = number < 0 ? "-" : "";
+  const output = Math.abs(number).toString().padStart(targetLength, "0");
+  return sign + output;
+}
+const lightFormatters$1 = {
+  // Year
+  y(date, token) {
+    const signedYear = date.getFullYear();
+    const year = signedYear > 0 ? signedYear : 1 - signedYear;
+    return addLeadingZeros$1(token === "yy" ? year % 100 : year, token.length);
+  },
+  // Month
+  M(date, token) {
+    const month = date.getMonth();
+    return token === "M" ? String(month + 1) : addLeadingZeros$1(month + 1, 2);
+  },
+  // Day of the month
+  d(date, token) {
+    return addLeadingZeros$1(date.getDate(), token.length);
+  },
+  // AM or PM
+  a(date, token) {
+    const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
+    switch (token) {
+      case "a":
+      case "aa":
+        return dayPeriodEnumValue.toUpperCase();
+      case "aaa":
+        return dayPeriodEnumValue;
+      case "aaaaa":
+        return dayPeriodEnumValue[0];
+      case "aaaa":
+      default:
+        return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+    }
+  },
+  // Hour [1-12]
+  h(date, token) {
+    return addLeadingZeros$1(date.getHours() % 12 || 12, token.length);
+  },
+  // Hour [0-23]
+  H(date, token) {
+    return addLeadingZeros$1(date.getHours(), token.length);
+  },
+  // Minute
+  m(date, token) {
+    return addLeadingZeros$1(date.getMinutes(), token.length);
+  },
+  // Second
+  s(date, token) {
+    return addLeadingZeros$1(date.getSeconds(), token.length);
+  },
+  // Fraction of second
+  S(date, token) {
+    const numberOfDigits = token.length;
+    const milliseconds = date.getMilliseconds();
+    const fractionalSeconds = Math.trunc(
+      milliseconds * Math.pow(10, numberOfDigits - 3)
+    );
+    return addLeadingZeros$1(fractionalSeconds, token.length);
+  }
+};
+const dayPeriodEnum$1 = {
+  am: "am",
+  pm: "pm",
+  midnight: "midnight",
+  noon: "noon",
+  morning: "morning",
+  afternoon: "afternoon",
+  evening: "evening",
+  night: "night"
+};
+const formatters$1 = {
+  // Era
+  G: function(date, token, localize2) {
+    const era = date.getFullYear() > 0 ? 1 : 0;
+    switch (token) {
+      case "G":
+      case "GG":
+      case "GGG":
+        return localize2.era(era, { width: "abbreviated" });
+      case "GGGGG":
+        return localize2.era(era, { width: "narrow" });
+      case "GGGG":
+      default:
+        return localize2.era(era, { width: "wide" });
+    }
+  },
+  // Year
+  y: function(date, token, localize2) {
+    if (token === "yo") {
+      const signedYear = date.getFullYear();
+      const year = signedYear > 0 ? signedYear : 1 - signedYear;
+      return localize2.ordinalNumber(year, { unit: "year" });
+    }
+    return lightFormatters$1.y(date, token);
+  },
+  // Local week-numbering year
+  Y: function(date, token, localize2, options) {
+    const signedWeekYear = getWeekYear$1(date, options);
+    const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
+    if (token === "YY") {
+      const twoDigitYear = weekYear % 100;
+      return addLeadingZeros$1(twoDigitYear, 2);
+    }
+    if (token === "Yo") {
+      return localize2.ordinalNumber(weekYear, { unit: "year" });
+    }
+    return addLeadingZeros$1(weekYear, token.length);
+  },
+  // ISO week-numbering year
+  R: function(date, token) {
+    const isoWeekYear = getISOWeekYear$1(date);
+    return addLeadingZeros$1(isoWeekYear, token.length);
+  },
+  // Extended year. This is a single number designating the year of this calendar system.
+  // The main difference between `y` and `u` localizers are B.C. years:
+  // | Year | `y` | `u` |
+  // |------|-----|-----|
+  // | AC 1 |   1 |   1 |
+  // | BC 1 |   1 |   0 |
+  // | BC 2 |   2 |  -1 |
+  // Also `yy` always returns the last two digits of a year,
+  // while `uu` pads single digit years to 2 characters and returns other years unchanged.
+  u: function(date, token) {
+    const year = date.getFullYear();
+    return addLeadingZeros$1(year, token.length);
+  },
+  // Quarter
+  Q: function(date, token, localize2) {
+    const quarter = Math.ceil((date.getMonth() + 1) / 3);
+    switch (token) {
+      case "Q":
+        return String(quarter);
+      case "QQ":
+        return addLeadingZeros$1(quarter, 2);
+      case "Qo":
+        return localize2.ordinalNumber(quarter, { unit: "quarter" });
+      case "QQQ":
+        return localize2.quarter(quarter, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "QQQQQ":
+        return localize2.quarter(quarter, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "QQQQ":
+      default:
+        return localize2.quarter(quarter, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Stand-alone quarter
+  q: function(date, token, localize2) {
+    const quarter = Math.ceil((date.getMonth() + 1) / 3);
+    switch (token) {
+      case "q":
+        return String(quarter);
+      case "qq":
+        return addLeadingZeros$1(quarter, 2);
+      case "qo":
+        return localize2.ordinalNumber(quarter, { unit: "quarter" });
+      case "qqq":
+        return localize2.quarter(quarter, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "qqqqq":
+        return localize2.quarter(quarter, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "qqqq":
+      default:
+        return localize2.quarter(quarter, {
+          width: "wide",
+          context: "standalone"
+        });
+    }
+  },
+  // Month
+  M: function(date, token, localize2) {
+    const month = date.getMonth();
+    switch (token) {
+      case "M":
+      case "MM":
+        return lightFormatters$1.M(date, token);
+      case "Mo":
+        return localize2.ordinalNumber(month + 1, { unit: "month" });
+      case "MMM":
+        return localize2.month(month, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "MMMMM":
+        return localize2.month(month, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "MMMM":
+      default:
+        return localize2.month(month, { width: "wide", context: "formatting" });
+    }
+  },
+  // Stand-alone month
+  L: function(date, token, localize2) {
+    const month = date.getMonth();
+    switch (token) {
+      case "L":
+        return String(month + 1);
+      case "LL":
+        return addLeadingZeros$1(month + 1, 2);
+      case "Lo":
+        return localize2.ordinalNumber(month + 1, { unit: "month" });
+      case "LLL":
+        return localize2.month(month, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "LLLLL":
+        return localize2.month(month, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "LLLL":
+      default:
+        return localize2.month(month, { width: "wide", context: "standalone" });
+    }
+  },
+  // Local week of year
+  w: function(date, token, localize2, options) {
+    const week = getWeek$1(date, options);
+    if (token === "wo") {
+      return localize2.ordinalNumber(week, { unit: "week" });
+    }
+    return addLeadingZeros$1(week, token.length);
+  },
+  // ISO week of year
+  I: function(date, token, localize2) {
+    const isoWeek = getISOWeek$1(date);
+    if (token === "Io") {
+      return localize2.ordinalNumber(isoWeek, { unit: "week" });
+    }
+    return addLeadingZeros$1(isoWeek, token.length);
+  },
+  // Day of the month
+  d: function(date, token, localize2) {
+    if (token === "do") {
+      return localize2.ordinalNumber(date.getDate(), { unit: "date" });
+    }
+    return lightFormatters$1.d(date, token);
+  },
+  // Day of year
+  D: function(date, token, localize2) {
+    const dayOfYear = getDayOfYear$1(date);
+    if (token === "Do") {
+      return localize2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
+    }
+    return addLeadingZeros$1(dayOfYear, token.length);
+  },
+  // Day of week
+  E: function(date, token, localize2) {
+    const dayOfWeek = date.getDay();
+    switch (token) {
+      case "E":
+      case "EE":
+      case "EEE":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "EEEEE":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "EEEEEE":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "EEEE":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Local day of week
+  e: function(date, token, localize2, options) {
+    const dayOfWeek = date.getDay();
+    const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+    switch (token) {
+      case "e":
+        return String(localDayOfWeek);
+      case "ee":
+        return addLeadingZeros$1(localDayOfWeek, 2);
+      case "eo":
+        return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+      case "eee":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "eeeee":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "eeeeee":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "eeee":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Stand-alone local day of week
+  c: function(date, token, localize2, options) {
+    const dayOfWeek = date.getDay();
+    const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+    switch (token) {
+      case "c":
+        return String(localDayOfWeek);
+      case "cc":
+        return addLeadingZeros$1(localDayOfWeek, token.length);
+      case "co":
+        return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+      case "ccc":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "ccccc":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "cccccc":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "standalone"
+        });
+      case "cccc":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "standalone"
+        });
+    }
+  },
+  // ISO day of week
+  i: function(date, token, localize2) {
+    const dayOfWeek = date.getDay();
+    const isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+    switch (token) {
+      case "i":
+        return String(isoDayOfWeek);
+      case "ii":
+        return addLeadingZeros$1(isoDayOfWeek, token.length);
+      case "io":
+        return localize2.ordinalNumber(isoDayOfWeek, { unit: "day" });
+      case "iii":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "iiiii":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "iiiiii":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "iiii":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // AM or PM
+  a: function(date, token, localize2) {
+    const hours = date.getHours();
+    const dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+    switch (token) {
+      case "a":
+      case "aa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "aaa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        }).toLowerCase();
+      case "aaaaa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "aaaa":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // AM, PM, midnight, noon
+  b: function(date, token, localize2) {
+    const hours = date.getHours();
+    let dayPeriodEnumValue;
+    if (hours === 12) {
+      dayPeriodEnumValue = dayPeriodEnum$1.noon;
+    } else if (hours === 0) {
+      dayPeriodEnumValue = dayPeriodEnum$1.midnight;
+    } else {
+      dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+    }
+    switch (token) {
+      case "b":
+      case "bb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "bbb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        }).toLowerCase();
+      case "bbbbb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "bbbb":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // in the morning, in the afternoon, in the evening, at night
+  B: function(date, token, localize2) {
+    const hours = date.getHours();
+    let dayPeriodEnumValue;
+    if (hours >= 17) {
+      dayPeriodEnumValue = dayPeriodEnum$1.evening;
+    } else if (hours >= 12) {
+      dayPeriodEnumValue = dayPeriodEnum$1.afternoon;
+    } else if (hours >= 4) {
+      dayPeriodEnumValue = dayPeriodEnum$1.morning;
+    } else {
+      dayPeriodEnumValue = dayPeriodEnum$1.night;
+    }
+    switch (token) {
+      case "B":
+      case "BB":
+      case "BBB":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "BBBBB":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "BBBB":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Hour [1-12]
+  h: function(date, token, localize2) {
+    if (token === "ho") {
+      let hours = date.getHours() % 12;
+      if (hours === 0) hours = 12;
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return lightFormatters$1.h(date, token);
+  },
+  // Hour [0-23]
+  H: function(date, token, localize2) {
+    if (token === "Ho") {
+      return localize2.ordinalNumber(date.getHours(), { unit: "hour" });
+    }
+    return lightFormatters$1.H(date, token);
+  },
+  // Hour [0-11]
+  K: function(date, token, localize2) {
+    const hours = date.getHours() % 12;
+    if (token === "Ko") {
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return addLeadingZeros$1(hours, token.length);
+  },
+  // Hour [1-24]
+  k: function(date, token, localize2) {
+    let hours = date.getHours();
+    if (hours === 0) hours = 24;
+    if (token === "ko") {
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return addLeadingZeros$1(hours, token.length);
+  },
+  // Minute
+  m: function(date, token, localize2) {
+    if (token === "mo") {
+      return localize2.ordinalNumber(date.getMinutes(), { unit: "minute" });
+    }
+    return lightFormatters$1.m(date, token);
+  },
+  // Second
+  s: function(date, token, localize2) {
+    if (token === "so") {
+      return localize2.ordinalNumber(date.getSeconds(), { unit: "second" });
+    }
+    return lightFormatters$1.s(date, token);
+  },
+  // Fraction of second
+  S: function(date, token) {
+    return lightFormatters$1.S(date, token);
+  },
+  // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
+  X: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    if (timezoneOffset === 0) {
+      return "Z";
+    }
+    switch (token) {
+      case "X":
+        return formatTimezoneWithOptionalMinutes$1(timezoneOffset);
+      case "XXXX":
+      case "XX":
+        return formatTimezone$1(timezoneOffset);
+      case "XXXXX":
+      case "XXX":
+      default:
+        return formatTimezone$1(timezoneOffset, ":");
+    }
+  },
+  // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
+  x: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "x":
+        return formatTimezoneWithOptionalMinutes$1(timezoneOffset);
+      case "xxxx":
+      case "xx":
+        return formatTimezone$1(timezoneOffset);
+      case "xxxxx":
+      case "xxx":
+      default:
+        return formatTimezone$1(timezoneOffset, ":");
+    }
+  },
+  // Timezone (GMT)
+  O: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "O":
+      case "OO":
+      case "OOO":
+        return "GMT" + formatTimezoneShort$1(timezoneOffset, ":");
+      case "OOOO":
+      default:
+        return "GMT" + formatTimezone$1(timezoneOffset, ":");
+    }
+  },
+  // Timezone (specific non-location)
+  z: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "z":
+      case "zz":
+      case "zzz":
+        return "GMT" + formatTimezoneShort$1(timezoneOffset, ":");
+      case "zzzz":
+      default:
+        return "GMT" + formatTimezone$1(timezoneOffset, ":");
+    }
+  },
+  // Seconds timestamp
+  t: function(date, token, _localize) {
+    const timestamp = Math.trunc(+date / 1e3);
+    return addLeadingZeros$1(timestamp, token.length);
+  },
+  // Milliseconds timestamp
+  T: function(date, token, _localize) {
+    return addLeadingZeros$1(+date, token.length);
+  }
+};
+function formatTimezoneShort$1(offset3, delimiter = "") {
+  const sign = offset3 > 0 ? "-" : "+";
+  const absOffset = Math.abs(offset3);
+  const hours = Math.trunc(absOffset / 60);
+  const minutes = absOffset % 60;
+  if (minutes === 0) {
+    return sign + String(hours);
+  }
+  return sign + String(hours) + delimiter + addLeadingZeros$1(minutes, 2);
+}
+function formatTimezoneWithOptionalMinutes$1(offset3, delimiter) {
+  if (offset3 % 60 === 0) {
+    const sign = offset3 > 0 ? "-" : "+";
+    return sign + addLeadingZeros$1(Math.abs(offset3) / 60, 2);
+  }
+  return formatTimezone$1(offset3, delimiter);
+}
+function formatTimezone$1(offset3, delimiter = "") {
+  const sign = offset3 > 0 ? "-" : "+";
+  const absOffset = Math.abs(offset3);
+  const hours = addLeadingZeros$1(Math.trunc(absOffset / 60), 2);
+  const minutes = addLeadingZeros$1(absOffset % 60, 2);
+  return sign + hours + delimiter + minutes;
+}
+const dateLongFormatter$1 = (pattern, formatLong2) => {
+  switch (pattern) {
+    case "P":
+      return formatLong2.date({ width: "short" });
+    case "PP":
+      return formatLong2.date({ width: "medium" });
+    case "PPP":
+      return formatLong2.date({ width: "long" });
+    case "PPPP":
+    default:
+      return formatLong2.date({ width: "full" });
+  }
+};
+const timeLongFormatter$1 = (pattern, formatLong2) => {
+  switch (pattern) {
+    case "p":
+      return formatLong2.time({ width: "short" });
+    case "pp":
+      return formatLong2.time({ width: "medium" });
+    case "ppp":
+      return formatLong2.time({ width: "long" });
+    case "pppp":
+    default:
+      return formatLong2.time({ width: "full" });
+  }
+};
+const dateTimeLongFormatter$1 = (pattern, formatLong2) => {
+  const matchResult = pattern.match(/(P+)(p+)?/) || [];
+  const datePattern = matchResult[1];
+  const timePattern = matchResult[2];
+  if (!timePattern) {
+    return dateLongFormatter$1(pattern, formatLong2);
+  }
+  let dateTimeFormat;
+  switch (datePattern) {
+    case "P":
+      dateTimeFormat = formatLong2.dateTime({ width: "short" });
+      break;
+    case "PP":
+      dateTimeFormat = formatLong2.dateTime({ width: "medium" });
+      break;
+    case "PPP":
+      dateTimeFormat = formatLong2.dateTime({ width: "long" });
+      break;
+    case "PPPP":
+    default:
+      dateTimeFormat = formatLong2.dateTime({ width: "full" });
+      break;
+  }
+  return dateTimeFormat.replace("{{date}}", dateLongFormatter$1(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter$1(timePattern, formatLong2));
+};
+const longFormatters$1 = {
+  p: timeLongFormatter$1,
+  P: dateTimeLongFormatter$1
+};
+const dayOfYearTokenRE$1 = /^D+$/;
+const weekYearTokenRE$1 = /^Y+$/;
+const throwTokens$1 = ["D", "DD", "YY", "YYYY"];
+function isProtectedDayOfYearToken$1(token) {
+  return dayOfYearTokenRE$1.test(token);
+}
+function isProtectedWeekYearToken$1(token) {
+  return weekYearTokenRE$1.test(token);
+}
+function warnOrThrowProtectedError$1(token, format2, input) {
+  const _message = message$1(token, format2, input);
+  console.warn(_message);
+  if (throwTokens$1.includes(token)) throw new RangeError(_message);
+}
+function message$1(token, format2, input) {
+  const subject = token[0] === "Y" ? "years" : "days of the month";
+  return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format2}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
+}
+const formattingTokensRegExp$1 = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const longFormattingTokensRegExp$1 = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+const escapedStringRegExp$1 = /^'([^]*?)'?$/;
+const doubleQuoteRegExp$1 = /''/g;
+const unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
+function format$1(date, formatStr, options) {
+  var _a2, _b2, _c2, _d2, _e2, _f2, _g2, _h2;
+  const defaultOptions2 = getDefaultOptions$1();
+  const locale = (options == null ? void 0 : options.locale) ?? defaultOptions2.locale ?? enUS$2;
+  const firstWeekContainsDate = (options == null ? void 0 : options.firstWeekContainsDate) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? defaultOptions2.firstWeekContainsDate ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.firstWeekContainsDate) ?? 1;
+  const weekStartsOn = (options == null ? void 0 : options.weekStartsOn) ?? ((_f2 = (_e2 = options == null ? void 0 : options.locale) == null ? void 0 : _e2.options) == null ? void 0 : _f2.weekStartsOn) ?? defaultOptions2.weekStartsOn ?? ((_h2 = (_g2 = defaultOptions2.locale) == null ? void 0 : _g2.options) == null ? void 0 : _h2.weekStartsOn) ?? 0;
+  const originalDate = toDate$1(date, options == null ? void 0 : options.in);
+  if (!isValid$1(originalDate)) {
+    throw new RangeError("Invalid time value");
+  }
+  let parts = formatStr.match(longFormattingTokensRegExp$1).map((substring) => {
+    const firstCharacter = substring[0];
+    if (firstCharacter === "p" || firstCharacter === "P") {
+      const longFormatter = longFormatters$1[firstCharacter];
+      return longFormatter(substring, locale.formatLong);
+    }
+    return substring;
+  }).join("").match(formattingTokensRegExp$1).map((substring) => {
+    if (substring === "''") {
+      return { isToken: false, value: "'" };
+    }
+    const firstCharacter = substring[0];
+    if (firstCharacter === "'") {
+      return { isToken: false, value: cleanEscapedString$1(substring) };
+    }
+    if (formatters$1[firstCharacter]) {
+      return { isToken: true, value: substring };
+    }
+    if (firstCharacter.match(unescapedLatinCharacterRegExp$1)) {
+      throw new RangeError(
+        "Format string contains an unescaped latin alphabet character `" + firstCharacter + "`"
+      );
+    }
+    return { isToken: false, value: substring };
+  });
+  if (locale.localize.preprocessor) {
+    parts = locale.localize.preprocessor(originalDate, parts);
+  }
+  const formatterOptions = {
+    firstWeekContainsDate,
+    weekStartsOn,
+    locale
+  };
+  return parts.map((part) => {
+    if (!part.isToken) return part.value;
+    const token = part.value;
+    if (!(options == null ? void 0 : options.useAdditionalWeekYearTokens) && isProtectedWeekYearToken$1(token) || !(options == null ? void 0 : options.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken$1(token)) {
+      warnOrThrowProtectedError$1(token, formatStr, String(date));
+    }
+    const formatter = formatters$1[token[0]];
+    return formatter(originalDate, token, locale.localize, formatterOptions);
+  }).join("");
+}
+function cleanEscapedString$1(input) {
+  const matched = input.match(escapedStringRegExp$1);
+  if (!matched) {
+    return input;
+  }
+  return matched[1].replace(doubleQuoteRegExp$1, "'");
+}
+function getDaysInMonth(date, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const year = _date.getFullYear();
+  const monthIndex = _date.getMonth();
+  const lastDayOfMonth = constructFrom$1(_date, 0);
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  lastDayOfMonth.setHours(0, 0, 0, 0);
+  return lastDayOfMonth.getDate();
+}
+function getMonth(date, options) {
+  return toDate$1(date, options == null ? void 0 : options.in).getMonth();
+}
+function getYear(date, options) {
+  return toDate$1(date, options == null ? void 0 : options.in).getFullYear();
+}
+function isAfter(date, dateToCompare) {
+  return +toDate$1(date) > +toDate$1(dateToCompare);
+}
+function isBefore(date, dateToCompare) {
+  return +toDate$1(date) < +toDate$1(dateToCompare);
+}
+function isSameMonth(laterDate, earlierDate, options) {
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options == null ? void 0 : options.in,
+    laterDate,
+    earlierDate
+  );
+  return laterDate_.getFullYear() === earlierDate_.getFullYear() && laterDate_.getMonth() === earlierDate_.getMonth();
+}
+function isSameYear(laterDate, earlierDate, options) {
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options == null ? void 0 : options.in,
+    laterDate,
+    earlierDate
+  );
+  return laterDate_.getFullYear() === earlierDate_.getFullYear();
+}
+function setMonth(date, month, options) {
+  const _date = toDate$1(date, options == null ? void 0 : options.in);
+  const year = _date.getFullYear();
+  const day = _date.getDate();
+  const midMonth = constructFrom$1(date, 0);
+  midMonth.setFullYear(year, month, 15);
+  midMonth.setHours(0, 0, 0, 0);
+  const daysInMonth = getDaysInMonth(midMonth);
+  _date.setMonth(month, Math.min(day, daysInMonth));
+  return _date;
+}
+function setYear(date, year, options) {
+  const date_ = toDate$1(date, options == null ? void 0 : options.in);
+  if (isNaN(+date_)) return constructFrom$1(date, NaN);
+  date_.setFullYear(year);
+  return date_;
+}
+const FIVE_WEEKS = 5;
+const FOUR_WEEKS = 4;
+function getBroadcastWeeksInMonth(month, dateLib) {
+  const firstDayOfMonth = dateLib.startOfMonth(month);
+  const firstDayOfWeek = firstDayOfMonth.getDay() > 0 ? firstDayOfMonth.getDay() : 7;
+  const broadcastStartDate = dateLib.addDays(month, -firstDayOfWeek + 1);
+  const lastDateOfLastWeek = dateLib.addDays(broadcastStartDate, FIVE_WEEKS * 7 - 1);
+  const numberOfWeeks = dateLib.getMonth(month) === dateLib.getMonth(lastDateOfLastWeek) ? FIVE_WEEKS : FOUR_WEEKS;
+  return numberOfWeeks;
+}
+function startOfBroadcastWeek(date, dateLib) {
+  const firstOfMonth = dateLib.startOfMonth(date);
+  const dayOfWeek = firstOfMonth.getDay();
+  if (dayOfWeek === 1) {
+    return firstOfMonth;
+  } else if (dayOfWeek === 0) {
+    return dateLib.addDays(firstOfMonth, -1 * 6);
+  } else {
+    return dateLib.addDays(firstOfMonth, -1 * (dayOfWeek - 1));
+  }
+}
+function endOfBroadcastWeek(date, dateLib) {
+  const startDate = startOfBroadcastWeek(date, dateLib);
+  const numberOfWeeks = getBroadcastWeeksInMonth(date, dateLib);
+  const endDate = dateLib.addDays(startDate, numberOfWeeks * 7 - 1);
+  return endDate;
+}
+const enUS$1 = {
+  ...enUS$2,
+  labels: {
+    labelDayButton: (date, modifiers, options, dateLib) => {
+      let formatDate;
+      if (dateLib && typeof dateLib.format === "function") {
+        formatDate = dateLib.format.bind(dateLib);
+      } else {
+        formatDate = (d, pattern) => format$1(d, pattern, { locale: enUS$2, ...options });
+      }
+      let label = formatDate(date, "PPPP");
+      if (modifiers.today)
+        label = `Today, ${label}`;
+      if (modifiers.selected)
+        label = `${label}, selected`;
+      return label;
+    },
+    labelMonthDropdown: "Choose the Month",
+    labelNext: "Go to the Next Month",
+    labelPrevious: "Go to the Previous Month",
+    labelWeekNumber: (weekNumber) => `Week ${weekNumber}`,
+    labelYearDropdown: "Choose the Year",
+    labelGrid: (date, options, dateLib) => {
+      let formatDate;
+      if (dateLib && typeof dateLib.format === "function") {
+        formatDate = dateLib.format.bind(dateLib);
+      } else {
+        formatDate = (d, pattern) => format$1(d, pattern, { locale: enUS$2, ...options });
+      }
+      return formatDate(date, "LLLL yyyy");
+    },
+    labelGridcell: (date, modifiers, options, dateLib) => {
+      let formatDate;
+      if (dateLib && typeof dateLib.format === "function") {
+        formatDate = dateLib.format.bind(dateLib);
+      } else {
+        formatDate = (d, pattern) => format$1(d, pattern, { locale: enUS$2, ...options });
+      }
+      let label = formatDate(date, "PPPP");
+      if (modifiers == null ? void 0 : modifiers.today) {
+        label = `Today, ${label}`;
+      }
+      return label;
+    },
+    labelNav: "Navigation bar",
+    labelWeekNumberHeader: "Week Number",
+    labelWeekday: (date, options, dateLib) => {
+      let formatDate;
+      if (dateLib && typeof dateLib.format === "function") {
+        formatDate = dateLib.format.bind(dateLib);
+      } else {
+        formatDate = (d, pattern) => format$1(d, pattern, { locale: enUS$2, ...options });
+      }
+      return formatDate(date, "cccc");
+    }
+  }
+};
+class DateLib {
+  /**
+   * Creates an instance of `DateLib`.
+   *
+   * @param options Configuration options for the date library.
+   * @param overrides Custom overrides for the date library functions.
+   */
+  constructor(options, overrides) {
+    this.Date = Date;
+    this.today = () => {
+      var _a2;
+      if ((_a2 = this.overrides) == null ? void 0 : _a2.today) {
+        return this.overrides.today();
+      }
+      if (this.options.timeZone) {
+        return TZDate.tz(this.options.timeZone);
+      }
+      return new this.Date();
+    };
+    this.newDate = (year, monthIndex, date) => {
+      var _a2;
+      if ((_a2 = this.overrides) == null ? void 0 : _a2.newDate) {
+        return this.overrides.newDate(year, monthIndex, date);
+      }
+      if (this.options.timeZone) {
+        return new TZDate(year, monthIndex, date, this.options.timeZone);
+      }
+      return new Date(year, monthIndex, date);
+    };
+    this.addDays = (date, amount) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.addDays) ? this.overrides.addDays(date, amount) : addDays$1(date, amount);
+    };
+    this.addMonths = (date, amount) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.addMonths) ? this.overrides.addMonths(date, amount) : addMonths(date, amount);
+    };
+    this.addWeeks = (date, amount) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.addWeeks) ? this.overrides.addWeeks(date, amount) : addWeeks(date, amount);
+    };
+    this.addYears = (date, amount) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.addYears) ? this.overrides.addYears(date, amount) : addYears(date, amount);
+    };
+    this.differenceInCalendarDays = (dateLeft, dateRight) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.differenceInCalendarDays) ? this.overrides.differenceInCalendarDays(dateLeft, dateRight) : differenceInCalendarDays$1(dateLeft, dateRight);
+    };
+    this.differenceInCalendarMonths = (dateLeft, dateRight) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.differenceInCalendarMonths) ? this.overrides.differenceInCalendarMonths(dateLeft, dateRight) : differenceInCalendarMonths(dateLeft, dateRight);
+    };
+    this.eachMonthOfInterval = (interval) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.eachMonthOfInterval) ? this.overrides.eachMonthOfInterval(interval) : eachMonthOfInterval(interval);
+    };
+    this.eachYearOfInterval = (interval) => {
+      var _a2;
+      const years = ((_a2 = this.overrides) == null ? void 0 : _a2.eachYearOfInterval) ? this.overrides.eachYearOfInterval(interval) : eachYearOfInterval(interval);
+      const uniqueYears = new Set(years.map((d) => this.getYear(d)));
+      if (uniqueYears.size === years.length) {
+        return years;
+      }
+      const yearsArray = [];
+      uniqueYears.forEach((y) => {
+        yearsArray.push(new Date(y, 0, 1));
+      });
+      return yearsArray;
+    };
+    this.endOfBroadcastWeek = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.endOfBroadcastWeek) ? this.overrides.endOfBroadcastWeek(date) : endOfBroadcastWeek(date, this);
+    };
+    this.endOfISOWeek = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.endOfISOWeek) ? this.overrides.endOfISOWeek(date) : endOfISOWeek(date);
+    };
+    this.endOfMonth = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.endOfMonth) ? this.overrides.endOfMonth(date) : endOfMonth(date);
+    };
+    this.endOfWeek = (date, options2) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.endOfWeek) ? this.overrides.endOfWeek(date, options2) : endOfWeek(date, this.options);
+    };
+    this.endOfYear = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.endOfYear) ? this.overrides.endOfYear(date) : endOfYear(date);
+    };
+    this.format = (date, formatStr, _options) => {
+      var _a2;
+      const formatted = ((_a2 = this.overrides) == null ? void 0 : _a2.format) ? this.overrides.format(date, formatStr, this.options) : format$1(date, formatStr, this.options);
+      if (this.options.numerals && this.options.numerals !== "latn") {
+        return this.replaceDigits(formatted);
+      }
+      return formatted;
+    };
+    this.getISOWeek = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.getISOWeek) ? this.overrides.getISOWeek(date) : getISOWeek$1(date);
+    };
+    this.getMonth = (date, _options) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.getMonth) ? this.overrides.getMonth(date, this.options) : getMonth(date, this.options);
+    };
+    this.getYear = (date, _options) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.getYear) ? this.overrides.getYear(date, this.options) : getYear(date, this.options);
+    };
+    this.getWeek = (date, _options) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.getWeek) ? this.overrides.getWeek(date, this.options) : getWeek$1(date, this.options);
+    };
+    this.isAfter = (date, dateToCompare) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isAfter) ? this.overrides.isAfter(date, dateToCompare) : isAfter(date, dateToCompare);
+    };
+    this.isBefore = (date, dateToCompare) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isBefore) ? this.overrides.isBefore(date, dateToCompare) : isBefore(date, dateToCompare);
+    };
+    this.isDate = (value) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isDate) ? this.overrides.isDate(value) : isDate$1(value);
+    };
+    this.isSameDay = (dateLeft, dateRight) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isSameDay) ? this.overrides.isSameDay(dateLeft, dateRight) : isSameDay$1(dateLeft, dateRight);
+    };
+    this.isSameMonth = (dateLeft, dateRight) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isSameMonth) ? this.overrides.isSameMonth(dateLeft, dateRight) : isSameMonth(dateLeft, dateRight);
+    };
+    this.isSameYear = (dateLeft, dateRight) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.isSameYear) ? this.overrides.isSameYear(dateLeft, dateRight) : isSameYear(dateLeft, dateRight);
+    };
+    this.max = (dates) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.max) ? this.overrides.max(dates) : max(dates);
+    };
+    this.min = (dates) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.min) ? this.overrides.min(dates) : min(dates);
+    };
+    this.setMonth = (date, month) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.setMonth) ? this.overrides.setMonth(date, month) : setMonth(date, month);
+    };
+    this.setYear = (date, year) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.setYear) ? this.overrides.setYear(date, year) : setYear(date, year);
+    };
+    this.startOfBroadcastWeek = (date, _dateLib) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfBroadcastWeek) ? this.overrides.startOfBroadcastWeek(date, this) : startOfBroadcastWeek(date, this);
+    };
+    this.startOfDay = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfDay) ? this.overrides.startOfDay(date) : startOfDay$1(date);
+    };
+    this.startOfISOWeek = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfISOWeek) ? this.overrides.startOfISOWeek(date) : startOfISOWeek$1(date);
+    };
+    this.startOfMonth = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfMonth) ? this.overrides.startOfMonth(date) : startOfMonth(date);
+    };
+    this.startOfWeek = (date, _options) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfWeek) ? this.overrides.startOfWeek(date, this.options) : startOfWeek$1(date, this.options);
+    };
+    this.startOfYear = (date) => {
+      var _a2;
+      return ((_a2 = this.overrides) == null ? void 0 : _a2.startOfYear) ? this.overrides.startOfYear(date) : startOfYear$1(date);
+    };
+    this.options = { locale: enUS$1, ...options };
+    this.overrides = overrides;
+  }
+  /**
+   * Generates a mapping of Arabic digits (0-9) to the target numbering system
+   * digits.
+   *
+   * @since 9.5.0
+   * @returns A record mapping Arabic digits to the target numerals.
+   */
+  getDigitMap() {
+    const { numerals = "latn" } = this.options;
+    const formatter = new Intl.NumberFormat("en-US", {
+      numberingSystem: numerals
+    });
+    const digitMap = {};
+    for (let i = 0; i < 10; i++) {
+      digitMap[i.toString()] = formatter.format(i);
+    }
+    return digitMap;
+  }
+  /**
+   * Replaces Arabic digits in a string with the target numbering system digits.
+   *
+   * @since 9.5.0
+   * @param input The string containing Arabic digits.
+   * @returns The string with digits replaced.
+   */
+  replaceDigits(input) {
+    const digitMap = this.getDigitMap();
+    return input.replace(/\d/g, (digit) => digitMap[digit] || digit);
+  }
+  /**
+   * Formats a number using the configured numbering system.
+   *
+   * @since 9.5.0
+   * @param value The number to format.
+   * @returns The formatted number as a string.
+   */
+  formatNumber(value) {
+    return this.replaceDigits(value.toString());
+  }
+  /**
+   * Returns the preferred ordering for month and year labels for the current
+   * locale.
+   */
+  getMonthYearOrder() {
+    var _a2;
+    const code = (_a2 = this.options.locale) == null ? void 0 : _a2.code;
+    if (!code) {
+      return "month-first";
+    }
+    return DateLib.yearFirstLocales.has(code) ? "year-first" : "month-first";
+  }
+  /**
+   * Formats the month/year pair respecting locale conventions.
+   *
+   * @since 9.11.0
+   */
+  formatMonthYear(date) {
+    const { locale, timeZone, numerals } = this.options;
+    const localeCode = locale == null ? void 0 : locale.code;
+    if (localeCode && DateLib.yearFirstLocales.has(localeCode)) {
+      try {
+        const intl = new Intl.DateTimeFormat(localeCode, {
+          month: "long",
+          year: "numeric",
+          timeZone,
+          numberingSystem: numerals
+        });
+        const formatted = intl.format(date);
+        return formatted;
+      } catch {
+      }
+    }
+    const pattern = this.getMonthYearOrder() === "year-first" ? "y LLLL" : "LLLL y";
+    return this.format(date, pattern);
+  }
+}
+DateLib.yearFirstLocales = /* @__PURE__ */ new Set([
+  "eu",
+  "hu",
+  "ja",
+  "ja-Hira",
+  "ja-JP",
+  "ko",
+  "ko-KR",
+  "lt",
+  "lt-LT",
+  "lv",
+  "lv-LV",
+  "mn",
+  "mn-MN",
+  "zh",
+  "zh-CN",
+  "zh-HK",
+  "zh-TW"
+]);
+const defaultDateLib = new DateLib();
+class CalendarDay {
+  constructor(date, displayMonth, dateLib = defaultDateLib) {
+    this.date = date;
+    this.displayMonth = displayMonth;
+    this.outside = Boolean(displayMonth && !dateLib.isSameMonth(date, displayMonth));
+    this.dateLib = dateLib;
+    this.isoDate = dateLib.format(date, "yyyy-MM-dd");
+    this.displayMonthId = dateLib.format(displayMonth, "yyyy-MM");
+    this.dateMonthId = dateLib.format(date, "yyyy-MM");
+  }
+  /**
+   * Checks if this day is equal to another `CalendarDay`, considering both the
+   * date and the displayed month.
+   *
+   * @param day The `CalendarDay` to compare with.
+   * @returns `true` if the days are equal, otherwise `false`.
+   */
+  isEqualTo(day) {
+    return this.dateLib.isSameDay(day.date, this.date) && this.dateLib.isSameMonth(day.displayMonth, this.displayMonth);
+  }
+}
+class CalendarMonth {
+  constructor(month, weeks) {
+    this.date = month;
+    this.weeks = weeks;
+  }
+}
+class CalendarWeek {
+  constructor(weekNumber, days) {
+    this.days = days;
+    this.weekNumber = weekNumber;
+  }
+}
+function Button(props) {
+  return React$3.createElement("button", { ...props });
+}
+function CaptionLabel(props) {
+  return React$3.createElement("span", { ...props });
+}
+function Chevron(props) {
+  const { size: size2 = 24, orientation = "left", className } = props;
+  return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: handled by the parent component
+    React$3.createElement(
+      "svg",
+      { className, width: size2, height: size2, viewBox: "0 0 24 24" },
+      orientation === "up" && React$3.createElement("polygon", { points: "6.77 17 12.5 11.43 18.24 17 20 15.28 12.5 8 5 15.28" }),
+      orientation === "down" && React$3.createElement("polygon", { points: "6.77 8 12.5 13.57 18.24 8 20 9.72 12.5 17 5 9.72" }),
+      orientation === "left" && React$3.createElement("polygon", { points: "16 18.112 9.81111111 12 16 5.87733333 14.0888889 4 6 12 14.0888889 20" }),
+      orientation === "right" && React$3.createElement("polygon", { points: "8 18.112 14.18888889 12 8 5.87733333 9.91111111 4 18 12 9.91111111 20" })
+    )
+  );
+}
+function Day(props) {
+  const { day, modifiers, ...tdProps } = props;
+  return React$3.createElement("td", { ...tdProps });
+}
+function DayButton(props) {
+  const { day, modifiers, ...buttonProps } = props;
+  const ref = React$3.useRef(null);
+  React$3.useEffect(() => {
+    var _a2;
+    if (modifiers.focused)
+      (_a2 = ref.current) == null ? void 0 : _a2.focus();
+  }, [modifiers.focused]);
+  return React$3.createElement("button", { ref, ...buttonProps });
+}
+var UI;
+(function(UI2) {
+  UI2["Root"] = "root";
+  UI2["Chevron"] = "chevron";
+  UI2["Day"] = "day";
+  UI2["DayButton"] = "day_button";
+  UI2["CaptionLabel"] = "caption_label";
+  UI2["Dropdowns"] = "dropdowns";
+  UI2["Dropdown"] = "dropdown";
+  UI2["DropdownRoot"] = "dropdown_root";
+  UI2["Footer"] = "footer";
+  UI2["MonthGrid"] = "month_grid";
+  UI2["MonthCaption"] = "month_caption";
+  UI2["MonthsDropdown"] = "months_dropdown";
+  UI2["Month"] = "month";
+  UI2["Months"] = "months";
+  UI2["Nav"] = "nav";
+  UI2["NextMonthButton"] = "button_next";
+  UI2["PreviousMonthButton"] = "button_previous";
+  UI2["Week"] = "week";
+  UI2["Weeks"] = "weeks";
+  UI2["Weekday"] = "weekday";
+  UI2["Weekdays"] = "weekdays";
+  UI2["WeekNumber"] = "week_number";
+  UI2["WeekNumberHeader"] = "week_number_header";
+  UI2["YearsDropdown"] = "years_dropdown";
+})(UI || (UI = {}));
+var DayFlag;
+(function(DayFlag2) {
+  DayFlag2["disabled"] = "disabled";
+  DayFlag2["hidden"] = "hidden";
+  DayFlag2["outside"] = "outside";
+  DayFlag2["focused"] = "focused";
+  DayFlag2["today"] = "today";
+})(DayFlag || (DayFlag = {}));
+var SelectionState;
+(function(SelectionState2) {
+  SelectionState2["range_end"] = "range_end";
+  SelectionState2["range_middle"] = "range_middle";
+  SelectionState2["range_start"] = "range_start";
+  SelectionState2["selected"] = "selected";
+})(SelectionState || (SelectionState = {}));
+var Animation;
+(function(Animation2) {
+  Animation2["weeks_before_enter"] = "weeks_before_enter";
+  Animation2["weeks_before_exit"] = "weeks_before_exit";
+  Animation2["weeks_after_enter"] = "weeks_after_enter";
+  Animation2["weeks_after_exit"] = "weeks_after_exit";
+  Animation2["caption_after_enter"] = "caption_after_enter";
+  Animation2["caption_after_exit"] = "caption_after_exit";
+  Animation2["caption_before_enter"] = "caption_before_enter";
+  Animation2["caption_before_exit"] = "caption_before_exit";
+})(Animation || (Animation = {}));
+function Dropdown(props) {
+  const { options, className, components: components2, classNames, ...selectProps } = props;
+  const cssClassSelect = [classNames[UI.Dropdown], className].join(" ");
+  const selectedOption = options == null ? void 0 : options.find(({ value }) => value === selectProps.value);
+  return React$3.createElement(
+    "span",
+    { "data-disabled": selectProps.disabled, className: classNames[UI.DropdownRoot] },
+    React$3.createElement(components2.Select, { className: cssClassSelect, ...selectProps }, options == null ? void 0 : options.map(({ value, label, disabled }) => React$3.createElement(components2.Option, { key: value, value, disabled }, label))),
+    React$3.createElement(
+      "span",
+      { className: classNames[UI.CaptionLabel], "aria-hidden": true },
+      selectedOption == null ? void 0 : selectedOption.label,
+      React$3.createElement(components2.Chevron, { orientation: "down", size: 18, className: classNames[UI.Chevron] })
+    )
+  );
+}
+function DropdownNav(props) {
+  return React$3.createElement("div", { ...props });
+}
+function Footer(props) {
+  return React$3.createElement("div", { ...props });
+}
+function Month(props) {
+  const { calendarMonth, displayIndex, ...divProps } = props;
+  return React$3.createElement("div", { ...divProps }, props.children);
+}
+function MonthCaption(props) {
+  const { calendarMonth, displayIndex, ...divProps } = props;
+  return React$3.createElement("div", { ...divProps });
+}
+function MonthGrid(props) {
+  return React$3.createElement("table", { ...props });
+}
+function Months(props) {
+  return React$3.createElement("div", { ...props });
+}
+const dayPickerContext = reactExports.createContext(void 0);
+function useDayPicker() {
+  const context = reactExports.useContext(dayPickerContext);
+  if (context === void 0) {
+    throw new Error("useDayPicker() must be used within a custom component.");
+  }
+  return context;
+}
+function MonthsDropdown(props) {
+  const { components: components2 } = useDayPicker();
+  return React$3.createElement(components2.Dropdown, { ...props });
+}
+function Nav(props) {
+  const { onPreviousClick, onNextClick, previousMonth, nextMonth, ...navProps } = props;
+  const { components: components2, classNames, labels: { labelPrevious: labelPrevious2, labelNext: labelNext2 } } = useDayPicker();
+  const handleNextClick = reactExports.useCallback((e) => {
+    if (nextMonth) {
+      onNextClick == null ? void 0 : onNextClick(e);
+    }
+  }, [nextMonth, onNextClick]);
+  const handlePreviousClick = reactExports.useCallback((e) => {
+    if (previousMonth) {
+      onPreviousClick == null ? void 0 : onPreviousClick(e);
+    }
+  }, [previousMonth, onPreviousClick]);
+  return React$3.createElement(
+    "nav",
+    { ...navProps },
+    React$3.createElement(
+      components2.PreviousMonthButton,
+      { type: "button", className: classNames[UI.PreviousMonthButton], tabIndex: previousMonth ? void 0 : -1, "aria-disabled": previousMonth ? void 0 : true, "aria-label": labelPrevious2(previousMonth), onClick: handlePreviousClick },
+      React$3.createElement(components2.Chevron, { disabled: previousMonth ? void 0 : true, className: classNames[UI.Chevron], orientation: "left" })
+    ),
+    React$3.createElement(
+      components2.NextMonthButton,
+      { type: "button", className: classNames[UI.NextMonthButton], tabIndex: nextMonth ? void 0 : -1, "aria-disabled": nextMonth ? void 0 : true, "aria-label": labelNext2(nextMonth), onClick: handleNextClick },
+      React$3.createElement(components2.Chevron, { disabled: nextMonth ? void 0 : true, orientation: "right", className: classNames[UI.Chevron] })
+    )
+  );
+}
+function NextMonthButton(props) {
+  const { components: components2 } = useDayPicker();
+  return React$3.createElement(components2.Button, { ...props });
+}
+function Option(props) {
+  return React$3.createElement("option", { ...props });
+}
+function PreviousMonthButton(props) {
+  const { components: components2 } = useDayPicker();
+  return React$3.createElement(components2.Button, { ...props });
+}
+function Root(props) {
+  const { rootRef, ...rest } = props;
+  return React$3.createElement("div", { ...rest, ref: rootRef });
+}
+function Select(props) {
+  return React$3.createElement("select", { ...props });
+}
+function Week(props) {
+  const { week, ...trProps } = props;
+  return React$3.createElement("tr", { ...trProps });
+}
+function Weekday(props) {
+  return React$3.createElement("th", { ...props });
+}
+function Weekdays(props) {
+  return React$3.createElement(
+    "thead",
+    { "aria-hidden": true },
+    React$3.createElement("tr", { ...props })
+  );
+}
+function WeekNumber(props) {
+  const { week, ...thProps } = props;
+  return React$3.createElement("th", { ...thProps });
+}
+function WeekNumberHeader(props) {
+  return React$3.createElement("th", { ...props });
+}
+function Weeks(props) {
+  return React$3.createElement("tbody", { ...props });
+}
+function YearsDropdown(props) {
+  const { components: components2 } = useDayPicker();
+  return React$3.createElement(components2.Dropdown, { ...props });
+}
+const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Button,
+  CaptionLabel,
+  Chevron,
+  Day,
+  DayButton,
+  Dropdown,
+  DropdownNav,
+  Footer,
+  Month,
+  MonthCaption,
+  MonthGrid,
+  Months,
+  MonthsDropdown,
+  Nav,
+  NextMonthButton,
+  Option,
+  PreviousMonthButton,
+  Root,
+  Select,
+  Week,
+  WeekNumber,
+  WeekNumberHeader,
+  Weekday,
+  Weekdays,
+  Weeks,
+  YearsDropdown
+}, Symbol.toStringTag, { value: "Module" }));
+function rangeIncludesDate(range, date, excludeEnds = false, dateLib = defaultDateLib) {
+  let { from, to } = range;
+  const { differenceInCalendarDays: differenceInCalendarDays2, isSameDay: isSameDay2 } = dateLib;
+  if (from && to) {
+    const isRangeInverted = differenceInCalendarDays2(to, from) < 0;
+    if (isRangeInverted) {
+      [from, to] = [to, from];
+    }
+    const isInRange = differenceInCalendarDays2(date, from) >= (excludeEnds ? 1 : 0) && differenceInCalendarDays2(to, date) >= (excludeEnds ? 1 : 0);
+    return isInRange;
+  }
+  if (!excludeEnds && to) {
+    return isSameDay2(to, date);
+  }
+  if (!excludeEnds && from) {
+    return isSameDay2(from, date);
+  }
+  return false;
+}
+function isDateInterval(matcher) {
+  return Boolean(matcher && typeof matcher === "object" && "before" in matcher && "after" in matcher);
+}
+function isDateRange(value) {
+  return Boolean(value && typeof value === "object" && "from" in value);
+}
+function isDateAfterType(value) {
+  return Boolean(value && typeof value === "object" && "after" in value);
+}
+function isDateBeforeType(value) {
+  return Boolean(value && typeof value === "object" && "before" in value);
+}
+function isDayOfWeekType(value) {
+  return Boolean(value && typeof value === "object" && "dayOfWeek" in value);
+}
+function isDatesArray(value, dateLib) {
+  return Array.isArray(value) && value.every(dateLib.isDate);
+}
+function dateMatchModifiers(date, matchers, dateLib = defaultDateLib) {
+  const matchersArr = !Array.isArray(matchers) ? [matchers] : matchers;
+  const { isSameDay: isSameDay2, differenceInCalendarDays: differenceInCalendarDays2, isAfter: isAfter2 } = dateLib;
+  return matchersArr.some((matcher) => {
+    if (typeof matcher === "boolean") {
+      return matcher;
+    }
+    if (dateLib.isDate(matcher)) {
+      return isSameDay2(date, matcher);
+    }
+    if (isDatesArray(matcher, dateLib)) {
+      return matcher.some((matcherDate) => isSameDay2(date, matcherDate));
+    }
+    if (isDateRange(matcher)) {
+      return rangeIncludesDate(matcher, date, false, dateLib);
+    }
+    if (isDayOfWeekType(matcher)) {
+      if (!Array.isArray(matcher.dayOfWeek)) {
+        return matcher.dayOfWeek === date.getDay();
+      }
+      return matcher.dayOfWeek.includes(date.getDay());
+    }
+    if (isDateInterval(matcher)) {
+      const diffBefore = differenceInCalendarDays2(matcher.before, date);
+      const diffAfter = differenceInCalendarDays2(matcher.after, date);
+      const isDayBefore = diffBefore > 0;
+      const isDayAfter = diffAfter < 0;
+      const isClosedInterval = isAfter2(matcher.before, matcher.after);
+      if (isClosedInterval) {
+        return isDayAfter && isDayBefore;
+      } else {
+        return isDayBefore || isDayAfter;
+      }
+    }
+    if (isDateAfterType(matcher)) {
+      return differenceInCalendarDays2(date, matcher.after) > 0;
+    }
+    if (isDateBeforeType(matcher)) {
+      return differenceInCalendarDays2(matcher.before, date) > 0;
+    }
+    if (typeof matcher === "function") {
+      return matcher(date);
+    }
+    return false;
+  });
+}
+function createGetModifiers(days, props, navStart, navEnd, dateLib) {
+  const { disabled, hidden, modifiers, showOutsideDays, broadcastCalendar, today = dateLib.today() } = props;
+  const { isSameDay: isSameDay2, isSameMonth: isSameMonth2, startOfMonth: startOfMonth2, isBefore: isBefore2, endOfMonth: endOfMonth2, isAfter: isAfter2 } = dateLib;
+  const computedNavStart = navStart && startOfMonth2(navStart);
+  const computedNavEnd = navEnd && endOfMonth2(navEnd);
+  const internalModifiersMap = {
+    [DayFlag.focused]: [],
+    [DayFlag.outside]: [],
+    [DayFlag.disabled]: [],
+    [DayFlag.hidden]: [],
+    [DayFlag.today]: []
+  };
+  const customModifiersMap = {};
+  for (const day of days) {
+    const { date, displayMonth } = day;
+    const isOutside = Boolean(displayMonth && !isSameMonth2(date, displayMonth));
+    const isBeforeNavStart = Boolean(computedNavStart && isBefore2(date, computedNavStart));
+    const isAfterNavEnd = Boolean(computedNavEnd && isAfter2(date, computedNavEnd));
+    const isDisabled = Boolean(disabled && dateMatchModifiers(date, disabled, dateLib));
+    const isHidden2 = Boolean(hidden && dateMatchModifiers(date, hidden, dateLib)) || isBeforeNavStart || isAfterNavEnd || // Broadcast calendar will show outside days as default
+    !broadcastCalendar && !showOutsideDays && isOutside || broadcastCalendar && showOutsideDays === false && isOutside;
+    const isToday2 = isSameDay2(date, today);
+    if (isOutside)
+      internalModifiersMap.outside.push(day);
+    if (isDisabled)
+      internalModifiersMap.disabled.push(day);
+    if (isHidden2)
+      internalModifiersMap.hidden.push(day);
+    if (isToday2)
+      internalModifiersMap.today.push(day);
+    if (modifiers) {
+      Object.keys(modifiers).forEach((name) => {
+        const modifierValue = modifiers == null ? void 0 : modifiers[name];
+        const isMatch = modifierValue ? dateMatchModifiers(date, modifierValue, dateLib) : false;
+        if (!isMatch)
+          return;
+        if (customModifiersMap[name]) {
+          customModifiersMap[name].push(day);
+        } else {
+          customModifiersMap[name] = [day];
+        }
+      });
+    }
+  }
+  return (day) => {
+    const dayFlags = {
+      [DayFlag.focused]: false,
+      [DayFlag.disabled]: false,
+      [DayFlag.hidden]: false,
+      [DayFlag.outside]: false,
+      [DayFlag.today]: false
+    };
+    const customModifiers = {};
+    for (const name in internalModifiersMap) {
+      const days2 = internalModifiersMap[name];
+      dayFlags[name] = days2.some((d) => d === day);
+    }
+    for (const name in customModifiersMap) {
+      customModifiers[name] = customModifiersMap[name].some((d) => d === day);
+    }
+    return {
+      ...dayFlags,
+      // custom modifiers should override all the previous ones
+      ...customModifiers
+    };
+  };
+}
+function getClassNamesForModifiers(modifiers, classNames, modifiersClassNames = {}) {
+  const modifierClassNames = Object.entries(modifiers).filter(([, active]) => active === true).reduce((previousValue, [key]) => {
+    if (modifiersClassNames[key]) {
+      previousValue.push(modifiersClassNames[key]);
+    } else if (classNames[DayFlag[key]]) {
+      previousValue.push(classNames[DayFlag[key]]);
+    } else if (classNames[SelectionState[key]]) {
+      previousValue.push(classNames[SelectionState[key]]);
+    }
+    return previousValue;
+  }, [classNames[UI.Day]]);
+  return modifierClassNames;
+}
+function getComponents(customComponents) {
+  return {
+    ...components,
+    ...customComponents
+  };
+}
+function getDataAttributes(props) {
+  const dataAttributes = {
+    "data-mode": props.mode ?? void 0,
+    "data-required": "required" in props ? props.required : void 0,
+    "data-multiple-months": props.numberOfMonths && props.numberOfMonths > 1 || void 0,
+    "data-week-numbers": props.showWeekNumber || void 0,
+    "data-broadcast-calendar": props.broadcastCalendar || void 0,
+    "data-nav-layout": props.navLayout || void 0
+  };
+  Object.entries(props).forEach(([key, val]) => {
+    if (key.startsWith("data-")) {
+      dataAttributes[key] = val;
+    }
+  });
+  return dataAttributes;
+}
+function getDefaultClassNames() {
+  const classNames = {};
+  for (const key in UI) {
+    classNames[UI[key]] = `rdp-${UI[key]}`;
+  }
+  for (const key in DayFlag) {
+    classNames[DayFlag[key]] = `rdp-${DayFlag[key]}`;
+  }
+  for (const key in SelectionState) {
+    classNames[SelectionState[key]] = `rdp-${SelectionState[key]}`;
+  }
+  for (const key in Animation) {
+    classNames[Animation[key]] = `rdp-${Animation[key]}`;
+  }
+  return classNames;
+}
+function formatCaption(month, options, dateLib) {
+  const lib = dateLib ?? new DateLib(options);
+  return lib.formatMonthYear(month);
+}
+const formatMonthCaption = formatCaption;
+function formatDay(date, options, dateLib) {
+  return (dateLib ?? new DateLib(options)).format(date, "d");
+}
+function formatMonthDropdown(month, dateLib = defaultDateLib) {
+  return dateLib.format(month, "LLLL");
+}
+function formatWeekdayName(weekday, options, dateLib) {
+  return (dateLib ?? new DateLib(options)).format(weekday, "cccccc");
+}
+function formatWeekNumber(weekNumber, dateLib = defaultDateLib) {
+  if (weekNumber < 10) {
+    return dateLib.formatNumber(`0${weekNumber.toLocaleString()}`);
+  }
+  return dateLib.formatNumber(`${weekNumber.toLocaleString()}`);
+}
+function formatWeekNumberHeader() {
+  return ``;
+}
+function formatYearDropdown(year, dateLib = defaultDateLib) {
+  return dateLib.format(year, "yyyy");
+}
+const formatYearCaption = formatYearDropdown;
+const defaultFormatters = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  formatCaption,
+  formatDay,
+  formatMonthCaption,
+  formatMonthDropdown,
+  formatWeekNumber,
+  formatWeekNumberHeader,
+  formatWeekdayName,
+  formatYearCaption,
+  formatYearDropdown
+}, Symbol.toStringTag, { value: "Module" }));
+function getFormatters(customFormatters) {
+  if ((customFormatters == null ? void 0 : customFormatters.formatMonthCaption) && !customFormatters.formatCaption) {
+    customFormatters.formatCaption = customFormatters.formatMonthCaption;
+  }
+  if ((customFormatters == null ? void 0 : customFormatters.formatYearCaption) && !customFormatters.formatYearDropdown) {
+    customFormatters.formatYearDropdown = customFormatters.formatYearCaption;
+  }
+  return {
+    ...defaultFormatters,
+    ...customFormatters
+  };
+}
+function labelDayButton(date, modifiers, options, dateLib) {
+  let label = (dateLib ?? new DateLib(options)).format(date, "PPPP");
+  if (modifiers.today)
+    label = `Today, ${label}`;
+  if (modifiers.selected)
+    label = `${label}, selected`;
+  return label;
+}
+const labelDay = labelDayButton;
+function labelGrid(date, options, dateLib) {
+  const lib = dateLib ?? new DateLib(options);
+  return lib.formatMonthYear(date);
+}
+const labelCaption = labelGrid;
+function labelGridcell(date, modifiers, options, dateLib) {
+  let label = (dateLib ?? new DateLib(options)).format(date, "PPPP");
+  if (modifiers == null ? void 0 : modifiers.today) {
+    label = `Today, ${label}`;
+  }
+  return label;
+}
+function labelMonthDropdown(_options) {
+  return "Choose the Month";
+}
+function labelNav() {
+  return "";
+}
+const defaultLabel = "Go to the Next Month";
+function labelNext(_month, _options) {
+  return defaultLabel;
+}
+function labelPrevious(_month) {
+  return "Go to the Previous Month";
+}
+function labelWeekday(date, options, dateLib) {
+  return (dateLib ?? new DateLib(options)).format(date, "cccc");
+}
+function labelWeekNumber(weekNumber, _options) {
+  return `Week ${weekNumber}`;
+}
+function labelWeekNumberHeader(_options) {
+  return "Week Number";
+}
+function labelYearDropdown(_options) {
+  return "Choose the Year";
+}
+const defaultLabels = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  labelCaption,
+  labelDay,
+  labelDayButton,
+  labelGrid,
+  labelGridcell,
+  labelMonthDropdown,
+  labelNav,
+  labelNext,
+  labelPrevious,
+  labelWeekNumber,
+  labelWeekNumberHeader,
+  labelWeekday,
+  labelYearDropdown
+}, Symbol.toStringTag, { value: "Module" }));
+const resolveLabel = (defaultLabel2, customLabel, localeLabel) => {
+  if (customLabel)
+    return customLabel;
+  if (localeLabel) {
+    return typeof localeLabel === "function" ? localeLabel : (..._args) => localeLabel;
+  }
+  return defaultLabel2;
+};
+function getLabels(customLabels, options) {
+  var _a2;
+  const localeLabels = ((_a2 = options.locale) == null ? void 0 : _a2.labels) ?? {};
+  return {
+    ...defaultLabels,
+    ...customLabels ?? {},
+    labelDayButton: resolveLabel(labelDayButton, customLabels == null ? void 0 : customLabels.labelDayButton, localeLabels.labelDayButton),
+    labelMonthDropdown: resolveLabel(labelMonthDropdown, customLabels == null ? void 0 : customLabels.labelMonthDropdown, localeLabels.labelMonthDropdown),
+    labelNext: resolveLabel(labelNext, customLabels == null ? void 0 : customLabels.labelNext, localeLabels.labelNext),
+    labelPrevious: resolveLabel(labelPrevious, customLabels == null ? void 0 : customLabels.labelPrevious, localeLabels.labelPrevious),
+    labelWeekNumber: resolveLabel(labelWeekNumber, customLabels == null ? void 0 : customLabels.labelWeekNumber, localeLabels.labelWeekNumber),
+    labelYearDropdown: resolveLabel(labelYearDropdown, customLabels == null ? void 0 : customLabels.labelYearDropdown, localeLabels.labelYearDropdown),
+    labelGrid: resolveLabel(labelGrid, customLabels == null ? void 0 : customLabels.labelGrid, localeLabels.labelGrid),
+    labelGridcell: resolveLabel(labelGridcell, customLabels == null ? void 0 : customLabels.labelGridcell, localeLabels.labelGridcell),
+    labelNav: resolveLabel(labelNav, customLabels == null ? void 0 : customLabels.labelNav, localeLabels.labelNav),
+    labelWeekNumberHeader: resolveLabel(labelWeekNumberHeader, customLabels == null ? void 0 : customLabels.labelWeekNumberHeader, localeLabels.labelWeekNumberHeader),
+    labelWeekday: resolveLabel(labelWeekday, customLabels == null ? void 0 : customLabels.labelWeekday, localeLabels.labelWeekday)
+  };
+}
+function getMonthOptions(displayMonth, navStart, navEnd, formatters2, dateLib) {
+  const { startOfMonth: startOfMonth2, startOfYear: startOfYear2, endOfYear: endOfYear2, eachMonthOfInterval: eachMonthOfInterval2, getMonth: getMonth2 } = dateLib;
+  const months = eachMonthOfInterval2({
+    start: startOfYear2(displayMonth),
+    end: endOfYear2(displayMonth)
+  });
+  const options = months.map((month) => {
+    const label = formatters2.formatMonthDropdown(month, dateLib);
+    const value = getMonth2(month);
+    const disabled = navStart && month < startOfMonth2(navStart) || navEnd && month > startOfMonth2(navEnd) || false;
+    return { value, label, disabled };
+  });
+  return options;
+}
+function getStyleForModifiers(dayModifiers, styles = {}, modifiersStyles = {}) {
+  let style2 = { ...styles == null ? void 0 : styles[UI.Day] };
+  Object.entries(dayModifiers).filter(([, active]) => active === true).forEach(([modifier]) => {
+    style2 = {
+      ...style2,
+      ...modifiersStyles == null ? void 0 : modifiersStyles[modifier]
+    };
+  });
+  return style2;
+}
+function getWeekdays(dateLib, ISOWeek, broadcastCalendar, today) {
+  const referenceToday = today ?? dateLib.today();
+  const start = broadcastCalendar ? dateLib.startOfBroadcastWeek(referenceToday, dateLib) : ISOWeek ? dateLib.startOfISOWeek(referenceToday) : dateLib.startOfWeek(referenceToday);
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const day = dateLib.addDays(start, i);
+    days.push(day);
+  }
+  return days;
+}
+function getYearOptions(navStart, navEnd, formatters2, dateLib, reverse = false) {
+  if (!navStart)
+    return void 0;
+  if (!navEnd)
+    return void 0;
+  const { startOfYear: startOfYear2, endOfYear: endOfYear2, eachYearOfInterval: eachYearOfInterval2, getYear: getYear2 } = dateLib;
+  const firstNavYear = startOfYear2(navStart);
+  const lastNavYear = endOfYear2(navEnd);
+  const years = eachYearOfInterval2({ start: firstNavYear, end: lastNavYear });
+  if (reverse)
+    years.reverse();
+  return years.map((year) => {
+    const label = formatters2.formatYearDropdown(year, dateLib);
+    return {
+      value: getYear2(year),
+      label,
+      disabled: false
+    };
+  });
+}
+function createNoonOverrides(timeZone, options = {}) {
+  var _a2;
+  const { weekStartsOn, locale } = options;
+  const fallbackWeekStartsOn = weekStartsOn ?? ((_a2 = locale == null ? void 0 : locale.options) == null ? void 0 : _a2.weekStartsOn) ?? 0;
+  const toNoonTZDate = (date) => {
+    const normalizedDate = typeof date === "number" || typeof date === "string" ? new Date(date) : date;
+    return new TZDate(normalizedDate.getFullYear(), normalizedDate.getMonth(), normalizedDate.getDate(), 12, 0, 0, timeZone);
+  };
+  const toCalendarDate = (date) => {
+    const zoned = toNoonTZDate(date);
+    return new Date(zoned.getFullYear(), zoned.getMonth(), zoned.getDate(), 0, 0, 0, 0);
+  };
+  return {
+    today: () => {
+      return toNoonTZDate(TZDate.tz(timeZone));
+    },
+    newDate: (year, monthIndex, date) => {
+      return new TZDate(year, monthIndex, date, 12, 0, 0, timeZone);
+    },
+    startOfDay: (date) => {
+      return toNoonTZDate(date);
+    },
+    startOfWeek: (date, options2) => {
+      const base = toNoonTZDate(date);
+      const weekStartsOnValue = (options2 == null ? void 0 : options2.weekStartsOn) ?? fallbackWeekStartsOn;
+      const diff = (base.getDay() - weekStartsOnValue + 7) % 7;
+      base.setDate(base.getDate() - diff);
+      return base;
+    },
+    startOfISOWeek: (date) => {
+      const base = toNoonTZDate(date);
+      const diff = (base.getDay() - 1 + 7) % 7;
+      base.setDate(base.getDate() - diff);
+      return base;
+    },
+    startOfMonth: (date) => {
+      const base = toNoonTZDate(date);
+      base.setDate(1);
+      return base;
+    },
+    startOfYear: (date) => {
+      const base = toNoonTZDate(date);
+      base.setMonth(0, 1);
+      return base;
+    },
+    endOfWeek: (date, options2) => {
+      const base = toNoonTZDate(date);
+      const weekStartsOnValue = (options2 == null ? void 0 : options2.weekStartsOn) ?? fallbackWeekStartsOn;
+      const endDow = (weekStartsOnValue + 6) % 7;
+      const diff = (endDow - base.getDay() + 7) % 7;
+      base.setDate(base.getDate() + diff);
+      return base;
+    },
+    endOfISOWeek: (date) => {
+      const base = toNoonTZDate(date);
+      const diff = (7 - base.getDay()) % 7;
+      base.setDate(base.getDate() + diff);
+      return base;
+    },
+    endOfMonth: (date) => {
+      const base = toNoonTZDate(date);
+      base.setMonth(base.getMonth() + 1, 0);
+      return base;
+    },
+    endOfYear: (date) => {
+      const base = toNoonTZDate(date);
+      base.setMonth(11, 31);
+      return base;
+    },
+    eachMonthOfInterval: (interval) => {
+      const start = toNoonTZDate(interval.start);
+      const end2 = toNoonTZDate(interval.end);
+      const result = [];
+      const cursor = new TZDate(start.getFullYear(), start.getMonth(), 1, 12, 0, 0, timeZone);
+      const endKey = end2.getFullYear() * 12 + end2.getMonth();
+      while (cursor.getFullYear() * 12 + cursor.getMonth() <= endKey) {
+        result.push(new TZDate(cursor, timeZone));
+        cursor.setMonth(cursor.getMonth() + 1, 1);
+      }
+      return result;
+    },
+    // Normalize to noon once before arithmetic (avoid DST/midnight edge cases),
+    // mutate the same TZDate, and return it.
+    addDays: (date, amount) => {
+      const base = toNoonTZDate(date);
+      base.setDate(base.getDate() + amount);
+      return base;
+    },
+    addWeeks: (date, amount) => {
+      const base = toNoonTZDate(date);
+      base.setDate(base.getDate() + amount * 7);
+      return base;
+    },
+    addMonths: (date, amount) => {
+      const base = toNoonTZDate(date);
+      base.setMonth(base.getMonth() + amount);
+      return base;
+    },
+    addYears: (date, amount) => {
+      const base = toNoonTZDate(date);
+      base.setFullYear(base.getFullYear() + amount);
+      return base;
+    },
+    eachYearOfInterval: (interval) => {
+      const start = toNoonTZDate(interval.start);
+      const end2 = toNoonTZDate(interval.end);
+      const years = [];
+      const cursor = new TZDate(start.getFullYear(), 0, 1, 12, 0, 0, timeZone);
+      while (cursor.getFullYear() <= end2.getFullYear()) {
+        years.push(new TZDate(cursor, timeZone));
+        cursor.setFullYear(cursor.getFullYear() + 1, 0, 1);
+      }
+      return years;
+    },
+    getWeek: (date, options2) => {
+      var _a3;
+      const base = toCalendarDate(date);
+      return getWeek$1(base, {
+        weekStartsOn: (options2 == null ? void 0 : options2.weekStartsOn) ?? fallbackWeekStartsOn,
+        firstWeekContainsDate: (options2 == null ? void 0 : options2.firstWeekContainsDate) ?? ((_a3 = locale == null ? void 0 : locale.options) == null ? void 0 : _a3.firstWeekContainsDate) ?? 1
+      });
+    },
+    getISOWeek: (date) => {
+      const base = toCalendarDate(date);
+      return getISOWeek$1(base);
+    },
+    differenceInCalendarDays: (dateLeft, dateRight) => {
+      const left = toCalendarDate(dateLeft);
+      const right = toCalendarDate(dateRight);
+      return differenceInCalendarDays$1(left, right);
+    },
+    differenceInCalendarMonths: (dateLeft, dateRight) => {
+      const left = toCalendarDate(dateLeft);
+      const right = toCalendarDate(dateRight);
+      return differenceInCalendarMonths(left, right);
+    }
+  };
+}
+const asHtmlElement = (element) => {
+  if (element instanceof HTMLElement)
+    return element;
+  return null;
+};
+const queryMonthEls = (element) => [
+  ...element.querySelectorAll("[data-animated-month]") ?? []
+];
+const queryMonthEl = (element) => asHtmlElement(element.querySelector("[data-animated-month]"));
+const queryCaptionEl = (element) => asHtmlElement(element.querySelector("[data-animated-caption]"));
+const queryWeeksEl = (element) => asHtmlElement(element.querySelector("[data-animated-weeks]"));
+const queryNavEl = (element) => asHtmlElement(element.querySelector("[data-animated-nav]"));
+const queryWeekdaysEl = (element) => asHtmlElement(element.querySelector("[data-animated-weekdays]"));
+function useAnimation(rootElRef, enabled, { classNames, months, focused, dateLib }) {
+  const previousRootElSnapshotRef = reactExports.useRef(null);
+  const previousMonthsRef = reactExports.useRef(months);
+  const animatingRef = reactExports.useRef(false);
+  reactExports.useLayoutEffect(() => {
+    const previousMonths = previousMonthsRef.current;
+    previousMonthsRef.current = months;
+    if (!enabled || !rootElRef.current || // safety check because the ref can be set to anything by consumers
+    !(rootElRef.current instanceof HTMLElement) || // validation required for the animation to work as expected
+    months.length === 0 || previousMonths.length === 0 || months.length !== previousMonths.length) {
+      return;
+    }
+    const isSameMonth2 = dateLib.isSameMonth(months[0].date, previousMonths[0].date);
+    const isAfterPreviousMonth = dateLib.isAfter(months[0].date, previousMonths[0].date);
+    const captionAnimationClass = isAfterPreviousMonth ? classNames[Animation.caption_after_enter] : classNames[Animation.caption_before_enter];
+    const weeksAnimationClass = isAfterPreviousMonth ? classNames[Animation.weeks_after_enter] : classNames[Animation.weeks_before_enter];
+    const previousRootElSnapshot = previousRootElSnapshotRef.current;
+    const rootElSnapshot = rootElRef.current.cloneNode(true);
+    if (rootElSnapshot instanceof HTMLElement) {
+      const currentMonthElsSnapshot = queryMonthEls(rootElSnapshot);
+      currentMonthElsSnapshot.forEach((currentMonthElSnapshot) => {
+        if (!(currentMonthElSnapshot instanceof HTMLElement))
+          return;
+        const previousMonthElSnapshot = queryMonthEl(currentMonthElSnapshot);
+        if (previousMonthElSnapshot && currentMonthElSnapshot.contains(previousMonthElSnapshot)) {
+          currentMonthElSnapshot.removeChild(previousMonthElSnapshot);
+        }
+        const captionEl = queryCaptionEl(currentMonthElSnapshot);
+        if (captionEl) {
+          captionEl.classList.remove(captionAnimationClass);
+        }
+        const weeksEl = queryWeeksEl(currentMonthElSnapshot);
+        if (weeksEl) {
+          weeksEl.classList.remove(weeksAnimationClass);
+        }
+      });
+      previousRootElSnapshotRef.current = rootElSnapshot;
+    } else {
+      previousRootElSnapshotRef.current = null;
+    }
+    if (animatingRef.current || isSameMonth2 || // skip animation if a day is focused because it can cause issues to the animation and is better for a11y
+    focused) {
+      return;
+    }
+    const previousMonthEls = previousRootElSnapshot instanceof HTMLElement ? queryMonthEls(previousRootElSnapshot) : [];
+    const currentMonthEls = queryMonthEls(rootElRef.current);
+    if ((currentMonthEls == null ? void 0 : currentMonthEls.every((el) => el instanceof HTMLElement)) && previousMonthEls && previousMonthEls.every((el) => el instanceof HTMLElement)) {
+      animatingRef.current = true;
+      rootElRef.current.style.isolation = "isolate";
+      const navEl = queryNavEl(rootElRef.current);
+      if (navEl) {
+        navEl.style.zIndex = "1";
+      }
+      currentMonthEls.forEach((currentMonthEl, index2) => {
+        const previousMonthEl = previousMonthEls[index2];
+        if (!previousMonthEl) {
+          return;
+        }
+        currentMonthEl.style.position = "relative";
+        currentMonthEl.style.overflow = "hidden";
+        const captionEl = queryCaptionEl(currentMonthEl);
+        if (captionEl) {
+          captionEl.classList.add(captionAnimationClass);
+        }
+        const weeksEl = queryWeeksEl(currentMonthEl);
+        if (weeksEl) {
+          weeksEl.classList.add(weeksAnimationClass);
+        }
+        const cleanUp = () => {
+          animatingRef.current = false;
+          if (rootElRef.current) {
+            rootElRef.current.style.isolation = "";
+          }
+          if (navEl) {
+            navEl.style.zIndex = "";
+          }
+          if (captionEl) {
+            captionEl.classList.remove(captionAnimationClass);
+          }
+          if (weeksEl) {
+            weeksEl.classList.remove(weeksAnimationClass);
+          }
+          currentMonthEl.style.position = "";
+          currentMonthEl.style.overflow = "";
+          if (currentMonthEl.contains(previousMonthEl)) {
+            currentMonthEl.removeChild(previousMonthEl);
+          }
+        };
+        previousMonthEl.style.pointerEvents = "none";
+        previousMonthEl.style.position = "absolute";
+        previousMonthEl.style.overflow = "hidden";
+        previousMonthEl.setAttribute("aria-hidden", "true");
+        const previousWeekdaysEl = queryWeekdaysEl(previousMonthEl);
+        if (previousWeekdaysEl) {
+          previousWeekdaysEl.style.opacity = "0";
+        }
+        const previousCaptionEl = queryCaptionEl(previousMonthEl);
+        if (previousCaptionEl) {
+          previousCaptionEl.classList.add(isAfterPreviousMonth ? classNames[Animation.caption_before_exit] : classNames[Animation.caption_after_exit]);
+          previousCaptionEl.addEventListener("animationend", cleanUp);
+        }
+        const previousWeeksEl = queryWeeksEl(previousMonthEl);
+        if (previousWeeksEl) {
+          previousWeeksEl.classList.add(isAfterPreviousMonth ? classNames[Animation.weeks_before_exit] : classNames[Animation.weeks_after_exit]);
+        }
+        currentMonthEl.insertBefore(previousMonthEl, currentMonthEl.firstChild);
+      });
+    }
+  });
+}
+function getDates(displayMonths, maxDate, props, dateLib) {
+  const firstMonth = displayMonths[0];
+  const lastMonth = displayMonths[displayMonths.length - 1];
+  const { ISOWeek, fixedWeeks, broadcastCalendar } = props ?? {};
+  const { addDays: addDays2, differenceInCalendarDays: differenceInCalendarDays2, differenceInCalendarMonths: differenceInCalendarMonths2, endOfBroadcastWeek: endOfBroadcastWeek2, endOfISOWeek: endOfISOWeek2, endOfMonth: endOfMonth2, endOfWeek: endOfWeek2, isAfter: isAfter2, startOfBroadcastWeek: startOfBroadcastWeek2, startOfISOWeek: startOfISOWeek2, startOfWeek: startOfWeek2 } = dateLib;
+  const startWeekFirstDate = broadcastCalendar ? startOfBroadcastWeek2(firstMonth, dateLib) : ISOWeek ? startOfISOWeek2(firstMonth) : startOfWeek2(firstMonth);
+  const displayMonthsWeekEnd = broadcastCalendar ? endOfBroadcastWeek2(lastMonth) : ISOWeek ? endOfISOWeek2(endOfMonth2(lastMonth)) : endOfWeek2(endOfMonth2(lastMonth));
+  const constraintWeekEnd = maxDate && (broadcastCalendar ? endOfBroadcastWeek2(maxDate) : ISOWeek ? endOfISOWeek2(maxDate) : endOfWeek2(maxDate));
+  const gridEndDate = constraintWeekEnd && isAfter2(displayMonthsWeekEnd, constraintWeekEnd) ? constraintWeekEnd : displayMonthsWeekEnd;
+  const nOfDays = differenceInCalendarDays2(gridEndDate, startWeekFirstDate);
+  const nOfMonths = differenceInCalendarMonths2(lastMonth, firstMonth) + 1;
+  const dates = [];
+  for (let i = 0; i <= nOfDays; i++) {
+    const date = addDays2(startWeekFirstDate, i);
+    dates.push(date);
+  }
+  const nrOfDaysWithFixedWeeks = broadcastCalendar ? 35 : 42;
+  const extraDates = nrOfDaysWithFixedWeeks * nOfMonths;
+  if (fixedWeeks && dates.length < extraDates) {
+    const daysToAdd = extraDates - dates.length;
+    for (let i = 0; i < daysToAdd; i++) {
+      const date = addDays2(dates[dates.length - 1], 1);
+      dates.push(date);
+    }
+  }
+  return dates;
+}
+function getDays(calendarMonths) {
+  const initialDays = [];
+  return calendarMonths.reduce((days, month) => {
+    const weekDays = month.weeks.reduce((weekDays2, week) => {
+      return weekDays2.concat(week.days.slice());
+    }, initialDays.slice());
+    return days.concat(weekDays.slice());
+  }, initialDays.slice());
+}
+function getDisplayMonths(firstDisplayedMonth, calendarEndMonth, props, dateLib) {
+  const { numberOfMonths = 1 } = props;
+  const months = [];
+  for (let i = 0; i < numberOfMonths; i++) {
+    const month = dateLib.addMonths(firstDisplayedMonth, i);
+    if (calendarEndMonth && month > calendarEndMonth) {
+      break;
+    }
+    months.push(month);
+  }
+  return months;
+}
+function getInitialMonth(props, navStart, navEnd, dateLib) {
+  const { month, defaultMonth, today = dateLib.today(), numberOfMonths = 1 } = props;
+  let initialMonth = month || defaultMonth || today;
+  const { differenceInCalendarMonths: differenceInCalendarMonths2, addMonths: addMonths2, startOfMonth: startOfMonth2 } = dateLib;
+  if (navEnd && differenceInCalendarMonths2(navEnd, initialMonth) < numberOfMonths - 1) {
+    const offset3 = -1 * (numberOfMonths - 1);
+    initialMonth = addMonths2(navEnd, offset3);
+  }
+  if (navStart && differenceInCalendarMonths2(initialMonth, navStart) < 0) {
+    initialMonth = navStart;
+  }
+  return startOfMonth2(initialMonth);
+}
+function getMonths(displayMonths, dates, props, dateLib) {
+  const { addDays: addDays2, endOfBroadcastWeek: endOfBroadcastWeek2, endOfISOWeek: endOfISOWeek2, endOfMonth: endOfMonth2, endOfWeek: endOfWeek2, getISOWeek: getISOWeek2, getWeek: getWeek2, startOfBroadcastWeek: startOfBroadcastWeek2, startOfISOWeek: startOfISOWeek2, startOfWeek: startOfWeek2 } = dateLib;
+  const dayPickerMonths = displayMonths.reduce((months, month) => {
+    const firstDateOfFirstWeek = props.broadcastCalendar ? startOfBroadcastWeek2(month, dateLib) : props.ISOWeek ? startOfISOWeek2(month) : startOfWeek2(month);
+    const lastDateOfLastWeek = props.broadcastCalendar ? endOfBroadcastWeek2(month) : props.ISOWeek ? endOfISOWeek2(endOfMonth2(month)) : endOfWeek2(endOfMonth2(month));
+    const monthDates = dates.filter((date) => {
+      return date >= firstDateOfFirstWeek && date <= lastDateOfLastWeek;
+    });
+    const nrOfDaysWithFixedWeeks = props.broadcastCalendar ? 35 : 42;
+    if (props.fixedWeeks && monthDates.length < nrOfDaysWithFixedWeeks) {
+      const extraDates = dates.filter((date) => {
+        const daysToAdd = nrOfDaysWithFixedWeeks - monthDates.length;
+        return date > lastDateOfLastWeek && date <= addDays2(lastDateOfLastWeek, daysToAdd);
+      });
+      monthDates.push(...extraDates);
+    }
+    const weeks = monthDates.reduce((weeks2, date) => {
+      const weekNumber = props.ISOWeek ? getISOWeek2(date) : getWeek2(date);
+      const week = weeks2.find((week2) => week2.weekNumber === weekNumber);
+      const day = new CalendarDay(date, month, dateLib);
+      if (!week) {
+        weeks2.push(new CalendarWeek(weekNumber, [day]));
+      } else {
+        week.days.push(day);
+      }
+      return weeks2;
+    }, []);
+    const dayPickerMonth = new CalendarMonth(month, weeks);
+    months.push(dayPickerMonth);
+    return months;
+  }, []);
+  if (!props.reverseMonths) {
+    return dayPickerMonths;
+  } else {
+    return dayPickerMonths.reverse();
+  }
+}
+function getNavMonths(props, dateLib) {
+  let { startMonth, endMonth } = props;
+  const { startOfYear: startOfYear2, startOfDay: startOfDay2, startOfMonth: startOfMonth2, endOfMonth: endOfMonth2, addYears: addYears2, endOfYear: endOfYear2, newDate, today } = dateLib;
+  const { fromYear, toYear, fromMonth, toMonth } = props;
+  if (!startMonth && fromMonth) {
+    startMonth = fromMonth;
+  }
+  if (!startMonth && fromYear) {
+    startMonth = dateLib.newDate(fromYear, 0, 1);
+  }
+  if (!endMonth && toMonth) {
+    endMonth = toMonth;
+  }
+  if (!endMonth && toYear) {
+    endMonth = newDate(toYear, 11, 31);
+  }
+  const hasYearDropdown = props.captionLayout === "dropdown" || props.captionLayout === "dropdown-years";
+  if (startMonth) {
+    startMonth = startOfMonth2(startMonth);
+  } else if (fromYear) {
+    startMonth = newDate(fromYear, 0, 1);
+  } else if (!startMonth && hasYearDropdown) {
+    startMonth = startOfYear2(addYears2(props.today ?? today(), -100));
+  }
+  if (endMonth) {
+    endMonth = endOfMonth2(endMonth);
+  } else if (toYear) {
+    endMonth = newDate(toYear, 11, 31);
+  } else if (!endMonth && hasYearDropdown) {
+    endMonth = endOfYear2(props.today ?? today());
+  }
+  return [
+    startMonth ? startOfDay2(startMonth) : startMonth,
+    endMonth ? startOfDay2(endMonth) : endMonth
+  ];
+}
+function getNextMonth(firstDisplayedMonth, calendarEndMonth, options, dateLib) {
+  if (options.disableNavigation) {
+    return void 0;
+  }
+  const { pagedNavigation, numberOfMonths = 1 } = options;
+  const { startOfMonth: startOfMonth2, addMonths: addMonths2, differenceInCalendarMonths: differenceInCalendarMonths2 } = dateLib;
+  const offset3 = pagedNavigation ? numberOfMonths : 1;
+  const month = startOfMonth2(firstDisplayedMonth);
+  if (!calendarEndMonth) {
+    return addMonths2(month, offset3);
+  }
+  const monthsDiff = differenceInCalendarMonths2(calendarEndMonth, firstDisplayedMonth);
+  if (monthsDiff < numberOfMonths) {
+    return void 0;
+  }
+  return addMonths2(month, offset3);
+}
+function getPreviousMonth(firstDisplayedMonth, calendarStartMonth, options, dateLib) {
+  if (options.disableNavigation) {
+    return void 0;
+  }
+  const { pagedNavigation, numberOfMonths } = options;
+  const { startOfMonth: startOfMonth2, addMonths: addMonths2, differenceInCalendarMonths: differenceInCalendarMonths2 } = dateLib;
+  const offset3 = pagedNavigation ? numberOfMonths ?? 1 : 1;
+  const month = startOfMonth2(firstDisplayedMonth);
+  if (!calendarStartMonth) {
+    return addMonths2(month, -offset3);
+  }
+  const monthsDiff = differenceInCalendarMonths2(month, calendarStartMonth);
+  if (monthsDiff <= 0) {
+    return void 0;
+  }
+  return addMonths2(month, -offset3);
+}
+function getWeeks(months) {
+  const initialWeeks = [];
+  return months.reduce((weeks, month) => {
+    return weeks.concat(month.weeks.slice());
+  }, initialWeeks.slice());
+}
+function useControlledValue(defaultValue, controlledValue) {
+  const [uncontrolledValue, setValue] = reactExports.useState(defaultValue);
+  const value = controlledValue === void 0 ? uncontrolledValue : controlledValue;
+  return [value, setValue];
+}
+function useCalendar(props, dateLib) {
+  var _a2;
+  const [navStart, navEnd] = getNavMonths(props, dateLib);
+  const { startOfMonth: startOfMonth2, endOfMonth: endOfMonth2 } = dateLib;
+  const initialMonth = getInitialMonth(props, navStart, navEnd, dateLib);
+  const [firstMonth, setFirstMonth] = useControlledValue(
+    initialMonth,
+    // initialMonth is always computed from props.month if provided
+    props.month ? initialMonth : void 0
+  );
+  reactExports.useEffect(() => {
+    const newInitialMonth = getInitialMonth(props, navStart, navEnd, dateLib);
+    setFirstMonth(newInitialMonth);
+  }, [props.timeZone]);
+  const { months, weeks, days, previousMonth, nextMonth } = reactExports.useMemo(() => {
+    const displayMonths = getDisplayMonths(firstMonth, navEnd, { numberOfMonths: props.numberOfMonths }, dateLib);
+    const dates = getDates(displayMonths, props.endMonth ? endOfMonth2(props.endMonth) : void 0, {
+      ISOWeek: props.ISOWeek,
+      fixedWeeks: props.fixedWeeks,
+      broadcastCalendar: props.broadcastCalendar
+    }, dateLib);
+    const months2 = getMonths(displayMonths, dates, {
+      broadcastCalendar: props.broadcastCalendar,
+      fixedWeeks: props.fixedWeeks,
+      ISOWeek: props.ISOWeek,
+      reverseMonths: props.reverseMonths
+    }, dateLib);
+    const weeks2 = getWeeks(months2);
+    const days2 = getDays(months2);
+    const previousMonth2 = getPreviousMonth(firstMonth, navStart, props, dateLib);
+    const nextMonth2 = getNextMonth(firstMonth, navEnd, props, dateLib);
+    return {
+      months: months2,
+      weeks: weeks2,
+      days: days2,
+      previousMonth: previousMonth2,
+      nextMonth: nextMonth2
+    };
+  }, [
+    dateLib,
+    firstMonth.getTime(),
+    navEnd == null ? void 0 : navEnd.getTime(),
+    navStart == null ? void 0 : navStart.getTime(),
+    props.disableNavigation,
+    props.broadcastCalendar,
+    (_a2 = props.endMonth) == null ? void 0 : _a2.getTime(),
+    props.fixedWeeks,
+    props.ISOWeek,
+    props.numberOfMonths,
+    props.pagedNavigation,
+    props.reverseMonths
+  ]);
+  const { disableNavigation, onMonthChange } = props;
+  const isDayInCalendar = (day) => weeks.some((week) => week.days.some((d) => d.isEqualTo(day)));
+  const goToMonth = (date) => {
+    if (disableNavigation) {
+      return;
+    }
+    let newMonth = startOfMonth2(date);
+    if (navStart && newMonth < startOfMonth2(navStart)) {
+      newMonth = startOfMonth2(navStart);
+    }
+    if (navEnd && newMonth > startOfMonth2(navEnd)) {
+      newMonth = startOfMonth2(navEnd);
+    }
+    setFirstMonth(newMonth);
+    onMonthChange == null ? void 0 : onMonthChange(newMonth);
+  };
+  const goToDay = (day) => {
+    if (isDayInCalendar(day)) {
+      return;
+    }
+    goToMonth(day.date);
+  };
+  const calendar = {
+    months,
+    weeks,
+    days,
+    navStart,
+    navEnd,
+    previousMonth,
+    nextMonth,
+    goToMonth,
+    goToDay
+  };
+  return calendar;
+}
+var FocusTargetPriority;
+(function(FocusTargetPriority2) {
+  FocusTargetPriority2[FocusTargetPriority2["Today"] = 0] = "Today";
+  FocusTargetPriority2[FocusTargetPriority2["Selected"] = 1] = "Selected";
+  FocusTargetPriority2[FocusTargetPriority2["LastFocused"] = 2] = "LastFocused";
+  FocusTargetPriority2[FocusTargetPriority2["FocusedModifier"] = 3] = "FocusedModifier";
+})(FocusTargetPriority || (FocusTargetPriority = {}));
+function isFocusableDay(modifiers) {
+  return !modifiers[DayFlag.disabled] && !modifiers[DayFlag.hidden] && !modifiers[DayFlag.outside];
+}
+function calculateFocusTarget(days, getModifiers, isSelected, lastFocused) {
+  let focusTarget;
+  let foundFocusTargetPriority = -1;
+  for (const day of days) {
+    const modifiers = getModifiers(day);
+    if (isFocusableDay(modifiers)) {
+      if (modifiers[DayFlag.focused] && foundFocusTargetPriority < FocusTargetPriority.FocusedModifier) {
+        focusTarget = day;
+        foundFocusTargetPriority = FocusTargetPriority.FocusedModifier;
+      } else if ((lastFocused == null ? void 0 : lastFocused.isEqualTo(day)) && foundFocusTargetPriority < FocusTargetPriority.LastFocused) {
+        focusTarget = day;
+        foundFocusTargetPriority = FocusTargetPriority.LastFocused;
+      } else if (isSelected(day.date) && foundFocusTargetPriority < FocusTargetPriority.Selected) {
+        focusTarget = day;
+        foundFocusTargetPriority = FocusTargetPriority.Selected;
+      } else if (modifiers[DayFlag.today] && foundFocusTargetPriority < FocusTargetPriority.Today) {
+        focusTarget = day;
+        foundFocusTargetPriority = FocusTargetPriority.Today;
+      }
+    }
+  }
+  if (!focusTarget) {
+    focusTarget = days.find((day) => isFocusableDay(getModifiers(day)));
+  }
+  return focusTarget;
+}
+function getFocusableDate(moveBy, moveDir, refDate, navStart, navEnd, props, dateLib) {
+  const { ISOWeek, broadcastCalendar } = props;
+  const { addDays: addDays2, addMonths: addMonths2, addWeeks: addWeeks2, addYears: addYears2, endOfBroadcastWeek: endOfBroadcastWeek2, endOfISOWeek: endOfISOWeek2, endOfWeek: endOfWeek2, max: max2, min: min2, startOfBroadcastWeek: startOfBroadcastWeek2, startOfISOWeek: startOfISOWeek2, startOfWeek: startOfWeek2 } = dateLib;
+  const moveFns = {
+    day: addDays2,
+    week: addWeeks2,
+    month: addMonths2,
+    year: addYears2,
+    startOfWeek: (date) => broadcastCalendar ? startOfBroadcastWeek2(date, dateLib) : ISOWeek ? startOfISOWeek2(date) : startOfWeek2(date),
+    endOfWeek: (date) => broadcastCalendar ? endOfBroadcastWeek2(date) : ISOWeek ? endOfISOWeek2(date) : endOfWeek2(date)
+  };
+  let focusableDate = moveFns[moveBy](refDate, moveDir === "after" ? 1 : -1);
+  if (moveDir === "before" && navStart) {
+    focusableDate = max2([navStart, focusableDate]);
+  } else if (moveDir === "after" && navEnd) {
+    focusableDate = min2([navEnd, focusableDate]);
+  }
+  return focusableDate;
+}
+function getNextFocus(moveBy, moveDir, refDay, calendarStartMonth, calendarEndMonth, props, dateLib, attempt = 0) {
+  if (attempt > 365) {
+    return void 0;
+  }
+  const focusableDate = getFocusableDate(moveBy, moveDir, refDay.date, calendarStartMonth, calendarEndMonth, props, dateLib);
+  const isDisabled = Boolean(props.disabled && dateMatchModifiers(focusableDate, props.disabled, dateLib));
+  const isHidden2 = Boolean(props.hidden && dateMatchModifiers(focusableDate, props.hidden, dateLib));
+  const targetMonth = focusableDate;
+  const focusDay = new CalendarDay(focusableDate, targetMonth, dateLib);
+  if (!isDisabled && !isHidden2) {
+    return focusDay;
+  }
+  return getNextFocus(moveBy, moveDir, focusDay, calendarStartMonth, calendarEndMonth, props, dateLib, attempt + 1);
+}
+function useFocus(props, calendar, getModifiers, isSelected, dateLib) {
+  const { autoFocus } = props;
+  const [lastFocused, setLastFocused] = reactExports.useState();
+  const focusTarget = calculateFocusTarget(calendar.days, getModifiers, isSelected || (() => false), lastFocused);
+  const [focusedDay, setFocused] = reactExports.useState(autoFocus ? focusTarget : void 0);
+  const blur = () => {
+    setLastFocused(focusedDay);
+    setFocused(void 0);
+  };
+  const moveFocus = (moveBy, moveDir) => {
+    if (!focusedDay)
+      return;
+    const nextFocus = getNextFocus(moveBy, moveDir, focusedDay, calendar.navStart, calendar.navEnd, props, dateLib);
+    if (!nextFocus)
+      return;
+    if (props.disableNavigation) {
+      const isNextInCalendar = calendar.days.some((day) => day.isEqualTo(nextFocus));
+      if (!isNextInCalendar) {
+        return;
+      }
+    }
+    calendar.goToDay(nextFocus);
+    setFocused(nextFocus);
+  };
+  const isFocusTarget = (day) => {
+    return Boolean(focusTarget == null ? void 0 : focusTarget.isEqualTo(day));
+  };
+  const useFocus2 = {
+    isFocusTarget,
+    setFocused,
+    focused: focusedDay,
+    blur,
+    moveFocus
+  };
+  return useFocus2;
+}
+function useMulti(props, dateLib) {
+  const { selected: initiallySelected, required, onSelect } = props;
+  const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
+  const selected = !onSelect ? internallySelected : initiallySelected;
+  const { isSameDay: isSameDay2 } = dateLib;
+  const isSelected = (date) => {
+    return (selected == null ? void 0 : selected.some((d) => isSameDay2(d, date))) ?? false;
+  };
+  const { min: min2, max: max2 } = props;
+  const select = (triggerDate, modifiers, e) => {
+    let newDates = [...selected ?? []];
+    if (isSelected(triggerDate)) {
+      if ((selected == null ? void 0 : selected.length) === min2) {
+        return;
+      }
+      if (required && (selected == null ? void 0 : selected.length) === 1) {
+        return;
+      }
+      newDates = selected == null ? void 0 : selected.filter((d) => !isSameDay2(d, triggerDate));
+    } else {
+      if ((selected == null ? void 0 : selected.length) === max2) {
+        newDates = [triggerDate];
+      } else {
+        newDates = [...newDates, triggerDate];
+      }
+    }
+    if (!onSelect) {
+      setSelected(newDates);
+    }
+    onSelect == null ? void 0 : onSelect(newDates, triggerDate, modifiers, e);
+    return newDates;
+  };
+  return {
+    selected,
+    select,
+    isSelected
+  };
+}
+function addToRange(date, initialRange, min2 = 0, max2 = 0, required = false, dateLib = defaultDateLib) {
+  const { from, to } = initialRange || {};
+  const { isSameDay: isSameDay2, isAfter: isAfter2, isBefore: isBefore2 } = dateLib;
+  let range;
+  if (!from && !to) {
+    range = { from: date, to: min2 > 0 ? void 0 : date };
+  } else if (from && !to) {
+    if (isSameDay2(from, date)) {
+      if (min2 === 0) {
+        range = { from, to: date };
+      } else if (required) {
+        range = { from, to: void 0 };
+      } else {
+        range = void 0;
+      }
+    } else if (isBefore2(date, from)) {
+      range = { from: date, to: from };
+    } else {
+      range = { from, to: date };
+    }
+  } else if (from && to) {
+    if (isSameDay2(from, date) && isSameDay2(to, date)) {
+      if (required) {
+        range = { from, to };
+      } else {
+        range = void 0;
+      }
+    } else if (isSameDay2(from, date)) {
+      range = { from, to: min2 > 0 ? void 0 : date };
+    } else if (isSameDay2(to, date)) {
+      range = { from: date, to: min2 > 0 ? void 0 : date };
+    } else if (isBefore2(date, from)) {
+      range = { from: date, to };
+    } else if (isAfter2(date, from)) {
+      range = { from, to: date };
+    } else if (isAfter2(date, to)) {
+      range = { from, to: date };
+    } else {
+      throw new Error("Invalid range");
+    }
+  }
+  if ((range == null ? void 0 : range.from) && (range == null ? void 0 : range.to)) {
+    const diff = dateLib.differenceInCalendarDays(range.to, range.from);
+    if (max2 > 0 && diff > max2) {
+      range = { from: date, to: void 0 };
+    } else if (min2 > 1 && diff < min2) {
+      range = { from: date, to: void 0 };
+    }
+  }
+  return range;
+}
+function rangeContainsDayOfWeek(range, dayOfWeek, dateLib = defaultDateLib) {
+  const dayOfWeekArr = !Array.isArray(dayOfWeek) ? [dayOfWeek] : dayOfWeek;
+  let date = range.from;
+  const totalDays = dateLib.differenceInCalendarDays(range.to, range.from);
+  const totalDaysLimit = Math.min(totalDays, 6);
+  for (let i = 0; i <= totalDaysLimit; i++) {
+    if (dayOfWeekArr.includes(date.getDay())) {
+      return true;
+    }
+    date = dateLib.addDays(date, 1);
+  }
+  return false;
+}
+function rangeOverlaps(rangeLeft, rangeRight, dateLib = defaultDateLib) {
+  return rangeIncludesDate(rangeLeft, rangeRight.from, false, dateLib) || rangeIncludesDate(rangeLeft, rangeRight.to, false, dateLib) || rangeIncludesDate(rangeRight, rangeLeft.from, false, dateLib) || rangeIncludesDate(rangeRight, rangeLeft.to, false, dateLib);
+}
+function rangeContainsModifiers(range, modifiers, dateLib = defaultDateLib) {
+  const matchers = Array.isArray(modifiers) ? modifiers : [modifiers];
+  const nonFunctionMatchers = matchers.filter((matcher) => typeof matcher !== "function");
+  const nonFunctionMatchersResult = nonFunctionMatchers.some((matcher) => {
+    if (typeof matcher === "boolean")
+      return matcher;
+    if (dateLib.isDate(matcher)) {
+      return rangeIncludesDate(range, matcher, false, dateLib);
+    }
+    if (isDatesArray(matcher, dateLib)) {
+      return matcher.some((date) => rangeIncludesDate(range, date, false, dateLib));
+    }
+    if (isDateRange(matcher)) {
+      if (matcher.from && matcher.to) {
+        return rangeOverlaps(range, { from: matcher.from, to: matcher.to }, dateLib);
+      }
+      return false;
+    }
+    if (isDayOfWeekType(matcher)) {
+      return rangeContainsDayOfWeek(range, matcher.dayOfWeek, dateLib);
+    }
+    if (isDateInterval(matcher)) {
+      const isClosedInterval = dateLib.isAfter(matcher.before, matcher.after);
+      if (isClosedInterval) {
+        return rangeOverlaps(range, {
+          from: dateLib.addDays(matcher.after, 1),
+          to: dateLib.addDays(matcher.before, -1)
+        }, dateLib);
+      }
+      return dateMatchModifiers(range.from, matcher, dateLib) || dateMatchModifiers(range.to, matcher, dateLib);
+    }
+    if (isDateAfterType(matcher) || isDateBeforeType(matcher)) {
+      return dateMatchModifiers(range.from, matcher, dateLib) || dateMatchModifiers(range.to, matcher, dateLib);
+    }
+    return false;
+  });
+  if (nonFunctionMatchersResult) {
+    return true;
+  }
+  const functionMatchers = matchers.filter((matcher) => typeof matcher === "function");
+  if (functionMatchers.length) {
+    let date = range.from;
+    const totalDays = dateLib.differenceInCalendarDays(range.to, range.from);
+    for (let i = 0; i <= totalDays; i++) {
+      if (functionMatchers.some((matcher) => matcher(date))) {
+        return true;
+      }
+      date = dateLib.addDays(date, 1);
+    }
+  }
+  return false;
+}
+function useRange(props, dateLib) {
+  const { disabled, excludeDisabled, resetOnSelect, selected: initiallySelected, required, onSelect } = props;
+  const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
+  const selected = !onSelect ? internallySelected : initiallySelected;
+  const isSelected = (date) => selected && rangeIncludesDate(selected, date, false, dateLib);
+  const select = (triggerDate, modifiers, e) => {
+    const { min: min2, max: max2 } = props;
+    let newRange;
+    if (triggerDate) {
+      const selectedFrom = selected == null ? void 0 : selected.from;
+      const selectedTo = selected == null ? void 0 : selected.to;
+      const hasFullRange = !!selectedFrom && !!selectedTo;
+      const isClickingSingleDayRange = !!selectedFrom && !!selectedTo && dateLib.isSameDay(selectedFrom, selectedTo) && dateLib.isSameDay(triggerDate, selectedFrom);
+      if (resetOnSelect && (hasFullRange || !(selected == null ? void 0 : selected.from))) {
+        if (!required && isClickingSingleDayRange) {
+          newRange = void 0;
+        } else {
+          newRange = { from: triggerDate, to: void 0 };
+        }
+      } else {
+        newRange = addToRange(triggerDate, selected, min2, max2, required, dateLib);
+      }
+    }
+    if (excludeDisabled && disabled && (newRange == null ? void 0 : newRange.from) && newRange.to) {
+      if (rangeContainsModifiers({ from: newRange.from, to: newRange.to }, disabled, dateLib)) {
+        newRange.from = triggerDate;
+        newRange.to = void 0;
+      }
+    }
+    if (!onSelect) {
+      setSelected(newRange);
+    }
+    onSelect == null ? void 0 : onSelect(newRange, triggerDate, modifiers, e);
+    return newRange;
+  };
+  return {
+    selected,
+    select,
+    isSelected
+  };
+}
+function useSingle(props, dateLib) {
+  const { selected: initiallySelected, required, onSelect } = props;
+  const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
+  const selected = !onSelect ? internallySelected : initiallySelected;
+  const { isSameDay: isSameDay2 } = dateLib;
+  const isSelected = (compareDate) => {
+    return selected ? isSameDay2(selected, compareDate) : false;
+  };
+  const select = (triggerDate, modifiers, e) => {
+    let newDate = triggerDate;
+    if (!required && selected && selected && isSameDay2(triggerDate, selected)) {
+      newDate = void 0;
+    }
+    if (!onSelect) {
+      setSelected(newDate);
+    }
+    if (required) {
+      onSelect == null ? void 0 : onSelect(newDate, triggerDate, modifiers, e);
+    } else {
+      onSelect == null ? void 0 : onSelect(newDate, triggerDate, modifiers, e);
+    }
+    return newDate;
+  };
+  return {
+    selected,
+    select,
+    isSelected
+  };
+}
+function useSelection(props, dateLib) {
+  const single = useSingle(props, dateLib);
+  const multi = useMulti(props, dateLib);
+  const range = useRange(props, dateLib);
+  switch (props.mode) {
+    case "single":
+      return single;
+    case "multiple":
+      return multi;
+    case "range":
+      return range;
+    default:
+      return void 0;
+  }
+}
+function toTimeZone(date, timeZone) {
+  if (date instanceof TZDate && date.timeZone === timeZone) {
+    return date;
+  }
+  return new TZDate(date, timeZone);
+}
+function toZoneNoon(date, timeZone, noonSafe) {
+  return toTimeZone(date, timeZone);
+}
+function convertMatcher(matcher, timeZone, noonSafe) {
+  if (typeof matcher === "boolean" || typeof matcher === "function") {
+    return matcher;
+  }
+  if (matcher instanceof Date) {
+    return toZoneNoon(matcher, timeZone);
+  }
+  if (Array.isArray(matcher)) {
+    return matcher.map((value) => value instanceof Date ? toZoneNoon(value, timeZone) : value);
+  }
+  if (isDateRange(matcher)) {
+    return {
+      ...matcher,
+      from: matcher.from ? toTimeZone(matcher.from, timeZone) : matcher.from,
+      to: matcher.to ? toTimeZone(matcher.to, timeZone) : matcher.to
+    };
+  }
+  if (isDateInterval(matcher)) {
+    return {
+      before: toZoneNoon(matcher.before, timeZone),
+      after: toZoneNoon(matcher.after, timeZone)
+    };
+  }
+  if (isDateAfterType(matcher)) {
+    return {
+      after: toZoneNoon(matcher.after, timeZone)
+    };
+  }
+  if (isDateBeforeType(matcher)) {
+    return {
+      before: toZoneNoon(matcher.before, timeZone)
+    };
+  }
+  return matcher;
+}
+function convertMatchersToTimeZone(matchers, timeZone, noonSafe) {
+  if (!matchers) {
+    return matchers;
+  }
+  if (Array.isArray(matchers)) {
+    return matchers.map((matcher) => convertMatcher(matcher, timeZone));
+  }
+  return convertMatcher(matchers, timeZone);
+}
+function DayPicker(initialProps) {
+  var _a2;
+  let props = initialProps;
+  const timeZone = props.timeZone;
+  if (timeZone) {
+    props = {
+      ...initialProps,
+      timeZone
+    };
+    if (props.today) {
+      props.today = toTimeZone(props.today, timeZone);
+    }
+    if (props.month) {
+      props.month = toTimeZone(props.month, timeZone);
+    }
+    if (props.defaultMonth) {
+      props.defaultMonth = toTimeZone(props.defaultMonth, timeZone);
+    }
+    if (props.startMonth) {
+      props.startMonth = toTimeZone(props.startMonth, timeZone);
+    }
+    if (props.endMonth) {
+      props.endMonth = toTimeZone(props.endMonth, timeZone);
+    }
+    if (props.mode === "single" && props.selected) {
+      props.selected = toTimeZone(props.selected, timeZone);
+    } else if (props.mode === "multiple" && props.selected) {
+      props.selected = (_a2 = props.selected) == null ? void 0 : _a2.map((date) => toTimeZone(date, timeZone));
+    } else if (props.mode === "range" && props.selected) {
+      props.selected = {
+        from: props.selected.from ? toTimeZone(props.selected.from, timeZone) : props.selected.from,
+        to: props.selected.to ? toTimeZone(props.selected.to, timeZone) : props.selected.to
+      };
+    }
+    if (props.disabled !== void 0) {
+      props.disabled = convertMatchersToTimeZone(props.disabled, timeZone);
+    }
+    if (props.hidden !== void 0) {
+      props.hidden = convertMatchersToTimeZone(props.hidden, timeZone);
+    }
+    if (props.modifiers) {
+      const nextModifiers = {};
+      Object.keys(props.modifiers).forEach((key) => {
+        var _a3;
+        nextModifiers[key] = convertMatchersToTimeZone((_a3 = props.modifiers) == null ? void 0 : _a3[key], timeZone);
+      });
+      props.modifiers = nextModifiers;
+    }
+  }
+  const { components: components2, formatters: formatters2, labels, dateLib, locale, classNames } = reactExports.useMemo(() => {
+    const locale2 = { ...enUS$1, ...props.locale };
+    const weekStartsOn = props.broadcastCalendar ? 1 : props.weekStartsOn;
+    const noonOverrides = props.noonSafe && props.timeZone ? createNoonOverrides(props.timeZone, {
+      weekStartsOn,
+      locale: locale2
+    }) : void 0;
+    const overrides = props.dateLib && noonOverrides ? { ...noonOverrides, ...props.dateLib } : props.dateLib ?? noonOverrides;
+    const dateLib2 = new DateLib({
+      locale: locale2,
+      weekStartsOn,
+      firstWeekContainsDate: props.firstWeekContainsDate,
+      useAdditionalWeekYearTokens: props.useAdditionalWeekYearTokens,
+      useAdditionalDayOfYearTokens: props.useAdditionalDayOfYearTokens,
+      timeZone: props.timeZone,
+      numerals: props.numerals
+    }, overrides);
+    return {
+      dateLib: dateLib2,
+      components: getComponents(props.components),
+      formatters: getFormatters(props.formatters),
+      labels: getLabels(props.labels, dateLib2.options),
+      locale: locale2,
+      classNames: { ...getDefaultClassNames(), ...props.classNames }
+    };
+  }, [
+    props.locale,
+    props.broadcastCalendar,
+    props.weekStartsOn,
+    props.firstWeekContainsDate,
+    props.useAdditionalWeekYearTokens,
+    props.useAdditionalDayOfYearTokens,
+    props.timeZone,
+    props.numerals,
+    props.dateLib,
+    props.noonSafe,
+    props.components,
+    props.formatters,
+    props.labels,
+    props.classNames
+  ]);
+  if (!props.today) {
+    props = { ...props, today: dateLib.today() };
+  }
+  const { captionLayout, mode, navLayout, numberOfMonths = 1, onDayBlur, onDayClick, onDayFocus, onDayKeyDown, onDayMouseEnter, onDayMouseLeave, onNextClick, onPrevClick, showWeekNumber, styles } = props;
+  const { formatCaption: formatCaption2, formatDay: formatDay2, formatMonthDropdown: formatMonthDropdown2, formatWeekNumber: formatWeekNumber2, formatWeekNumberHeader: formatWeekNumberHeader2, formatWeekdayName: formatWeekdayName2, formatYearDropdown: formatYearDropdown2 } = formatters2;
+  const calendar = useCalendar(props, dateLib);
+  const { days, months, navStart, navEnd, previousMonth, nextMonth, goToMonth } = calendar;
+  const getModifiers = createGetModifiers(days, props, navStart, navEnd, dateLib);
+  const { isSelected, select, selected: selectedValue } = useSelection(props, dateLib) ?? {};
+  const { blur, focused, isFocusTarget, moveFocus, setFocused } = useFocus(props, calendar, getModifiers, isSelected ?? (() => false), dateLib);
+  const { labelDayButton: labelDayButton2, labelGridcell: labelGridcell2, labelGrid: labelGrid2, labelMonthDropdown: labelMonthDropdown2, labelNav: labelNav2, labelPrevious: labelPrevious2, labelNext: labelNext2, labelWeekday: labelWeekday2, labelWeekNumber: labelWeekNumber2, labelWeekNumberHeader: labelWeekNumberHeader2, labelYearDropdown: labelYearDropdown2 } = labels;
+  const weekdays = reactExports.useMemo(() => getWeekdays(dateLib, props.ISOWeek, props.broadcastCalendar, props.today), [dateLib, props.ISOWeek, props.broadcastCalendar, props.today]);
+  const isInteractive = mode !== void 0 || onDayClick !== void 0;
+  const handlePreviousClick = reactExports.useCallback(() => {
+    if (!previousMonth)
+      return;
+    goToMonth(previousMonth);
+    onPrevClick == null ? void 0 : onPrevClick(previousMonth);
+  }, [previousMonth, goToMonth, onPrevClick]);
+  const handleNextClick = reactExports.useCallback(() => {
+    if (!nextMonth)
+      return;
+    goToMonth(nextMonth);
+    onNextClick == null ? void 0 : onNextClick(nextMonth);
+  }, [goToMonth, nextMonth, onNextClick]);
+  const handleDayClick = reactExports.useCallback((day, m) => (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFocused(day);
+    if (m.disabled) {
+      return;
+    }
+    select == null ? void 0 : select(day.date, m, e);
+    onDayClick == null ? void 0 : onDayClick(day.date, m, e);
+  }, [select, onDayClick, setFocused]);
+  const handleDayFocus = reactExports.useCallback((day, m) => (e) => {
+    setFocused(day);
+    onDayFocus == null ? void 0 : onDayFocus(day.date, m, e);
+  }, [onDayFocus, setFocused]);
+  const handleDayBlur = reactExports.useCallback((day, m) => (e) => {
+    blur();
+    onDayBlur == null ? void 0 : onDayBlur(day.date, m, e);
+  }, [blur, onDayBlur]);
+  const handleDayKeyDown = reactExports.useCallback((day, modifiers) => (e) => {
+    const keyMap = {
+      ArrowLeft: [
+        e.shiftKey ? "month" : "day",
+        props.dir === "rtl" ? "after" : "before"
+      ],
+      ArrowRight: [
+        e.shiftKey ? "month" : "day",
+        props.dir === "rtl" ? "before" : "after"
+      ],
+      ArrowDown: [e.shiftKey ? "year" : "week", "after"],
+      ArrowUp: [e.shiftKey ? "year" : "week", "before"],
+      PageUp: [e.shiftKey ? "year" : "month", "before"],
+      PageDown: [e.shiftKey ? "year" : "month", "after"],
+      Home: ["startOfWeek", "before"],
+      End: ["endOfWeek", "after"]
+    };
+    if (keyMap[e.key]) {
+      e.preventDefault();
+      e.stopPropagation();
+      const [moveBy, moveDir] = keyMap[e.key];
+      moveFocus(moveBy, moveDir);
+    }
+    onDayKeyDown == null ? void 0 : onDayKeyDown(day.date, modifiers, e);
+  }, [moveFocus, onDayKeyDown, props.dir]);
+  const handleDayMouseEnter = reactExports.useCallback((day, modifiers) => (e) => {
+    onDayMouseEnter == null ? void 0 : onDayMouseEnter(day.date, modifiers, e);
+  }, [onDayMouseEnter]);
+  const handleDayMouseLeave = reactExports.useCallback((day, modifiers) => (e) => {
+    onDayMouseLeave == null ? void 0 : onDayMouseLeave(day.date, modifiers, e);
+  }, [onDayMouseLeave]);
+  const handleMonthChange = reactExports.useCallback((date) => (e) => {
+    const selectedMonth = Number(e.target.value);
+    const month = dateLib.setMonth(dateLib.startOfMonth(date), selectedMonth);
+    goToMonth(month);
+  }, [dateLib, goToMonth]);
+  const handleYearChange = reactExports.useCallback((date) => (e) => {
+    const selectedYear = Number(e.target.value);
+    const month = dateLib.setYear(dateLib.startOfMonth(date), selectedYear);
+    goToMonth(month);
+  }, [dateLib, goToMonth]);
+  const { className, style: style2 } = reactExports.useMemo(() => ({
+    className: [classNames[UI.Root], props.className].filter(Boolean).join(" "),
+    style: { ...styles == null ? void 0 : styles[UI.Root], ...props.style }
+  }), [classNames, props.className, props.style, styles]);
+  const dataAttributes = getDataAttributes(props);
+  const rootElRef = reactExports.useRef(null);
+  useAnimation(rootElRef, Boolean(props.animate), {
+    classNames,
+    months,
+    focused,
+    dateLib
+  });
+  const contextValue = {
+    dayPickerProps: props,
+    selected: selectedValue,
+    select,
+    isSelected,
+    months,
+    nextMonth,
+    previousMonth,
+    goToMonth,
+    getModifiers,
+    components: components2,
+    classNames,
+    styles,
+    labels,
+    formatters: formatters2
+  };
+  return React$3.createElement(
+    dayPickerContext.Provider,
+    { value: contextValue },
+    React$3.createElement(
+      components2.Root,
+      { rootRef: props.animate ? rootElRef : void 0, className, style: style2, dir: props.dir, id: props.id, lang: props.lang ?? locale.code, nonce: props.nonce, title: props.title, role: props.role, "aria-label": props["aria-label"], "aria-labelledby": props["aria-labelledby"], ...dataAttributes },
+      React$3.createElement(
+        components2.Months,
+        { className: classNames[UI.Months], style: styles == null ? void 0 : styles[UI.Months] },
+        !props.hideNavigation && !navLayout && React$3.createElement(components2.Nav, { "data-animated-nav": props.animate ? "true" : void 0, className: classNames[UI.Nav], style: styles == null ? void 0 : styles[UI.Nav], "aria-label": labelNav2(), onPreviousClick: handlePreviousClick, onNextClick: handleNextClick, previousMonth, nextMonth }),
+        months.map((calendarMonth, displayIndex) => {
+          return React$3.createElement(
+            components2.Month,
+            {
+              "data-animated-month": props.animate ? "true" : void 0,
+              className: classNames[UI.Month],
+              style: styles == null ? void 0 : styles[UI.Month],
+              // biome-ignore lint/suspicious/noArrayIndexKey: breaks animation
+              key: displayIndex,
+              displayIndex,
+              calendarMonth
+            },
+            navLayout === "around" && !props.hideNavigation && displayIndex === 0 && React$3.createElement(
+              components2.PreviousMonthButton,
+              { type: "button", className: classNames[UI.PreviousMonthButton], tabIndex: previousMonth ? void 0 : -1, "aria-disabled": previousMonth ? void 0 : true, "aria-label": labelPrevious2(previousMonth), onClick: handlePreviousClick, "data-animated-button": props.animate ? "true" : void 0 },
+              React$3.createElement(components2.Chevron, { disabled: previousMonth ? void 0 : true, className: classNames[UI.Chevron], orientation: props.dir === "rtl" ? "right" : "left" })
+            ),
+            React$3.createElement(components2.MonthCaption, { "data-animated-caption": props.animate ? "true" : void 0, className: classNames[UI.MonthCaption], style: styles == null ? void 0 : styles[UI.MonthCaption], calendarMonth, displayIndex }, (captionLayout == null ? void 0 : captionLayout.startsWith("dropdown")) ? React$3.createElement(
+              components2.DropdownNav,
+              { className: classNames[UI.Dropdowns], style: styles == null ? void 0 : styles[UI.Dropdowns] },
+              (() => {
+                const monthControl = captionLayout === "dropdown" || captionLayout === "dropdown-months" ? React$3.createElement(components2.MonthsDropdown, { key: "month", className: classNames[UI.MonthsDropdown], "aria-label": labelMonthDropdown2(), classNames, components: components2, disabled: Boolean(props.disableNavigation), onChange: handleMonthChange(calendarMonth.date), options: getMonthOptions(calendarMonth.date, navStart, navEnd, formatters2, dateLib), style: styles == null ? void 0 : styles[UI.Dropdown], value: dateLib.getMonth(calendarMonth.date) }) : React$3.createElement("span", { key: "month" }, formatMonthDropdown2(calendarMonth.date, dateLib));
+                const yearControl = captionLayout === "dropdown" || captionLayout === "dropdown-years" ? React$3.createElement(components2.YearsDropdown, { key: "year", className: classNames[UI.YearsDropdown], "aria-label": labelYearDropdown2(dateLib.options), classNames, components: components2, disabled: Boolean(props.disableNavigation), onChange: handleYearChange(calendarMonth.date), options: getYearOptions(navStart, navEnd, formatters2, dateLib, Boolean(props.reverseYears)), style: styles == null ? void 0 : styles[UI.Dropdown], value: dateLib.getYear(calendarMonth.date) }) : React$3.createElement("span", { key: "year" }, formatYearDropdown2(calendarMonth.date, dateLib));
+                const controls = dateLib.getMonthYearOrder() === "year-first" ? [yearControl, monthControl] : [monthControl, yearControl];
+                return controls;
+              })(),
+              React$3.createElement("span", { role: "status", "aria-live": "polite", style: {
+                border: 0,
+                clip: "rect(0 0 0 0)",
+                height: "1px",
+                margin: "-1px",
+                overflow: "hidden",
+                padding: 0,
+                position: "absolute",
+                width: "1px",
+                whiteSpace: "nowrap",
+                wordWrap: "normal"
+              } }, formatCaption2(calendarMonth.date, dateLib.options, dateLib))
+            ) : React$3.createElement(components2.CaptionLabel, { className: classNames[UI.CaptionLabel], role: "status", "aria-live": "polite" }, formatCaption2(calendarMonth.date, dateLib.options, dateLib))),
+            navLayout === "around" && !props.hideNavigation && displayIndex === numberOfMonths - 1 && React$3.createElement(
+              components2.NextMonthButton,
+              { type: "button", className: classNames[UI.NextMonthButton], tabIndex: nextMonth ? void 0 : -1, "aria-disabled": nextMonth ? void 0 : true, "aria-label": labelNext2(nextMonth), onClick: handleNextClick, "data-animated-button": props.animate ? "true" : void 0 },
+              React$3.createElement(components2.Chevron, { disabled: nextMonth ? void 0 : true, className: classNames[UI.Chevron], orientation: props.dir === "rtl" ? "left" : "right" })
+            ),
+            displayIndex === numberOfMonths - 1 && navLayout === "after" && !props.hideNavigation && React$3.createElement(components2.Nav, { "data-animated-nav": props.animate ? "true" : void 0, className: classNames[UI.Nav], style: styles == null ? void 0 : styles[UI.Nav], "aria-label": labelNav2(), onPreviousClick: handlePreviousClick, onNextClick: handleNextClick, previousMonth, nextMonth }),
+            React$3.createElement(
+              components2.MonthGrid,
+              { role: "grid", "aria-multiselectable": mode === "multiple" || mode === "range", "aria-label": labelGrid2(calendarMonth.date, dateLib.options, dateLib) || void 0, className: classNames[UI.MonthGrid], style: styles == null ? void 0 : styles[UI.MonthGrid] },
+              !props.hideWeekdays && React$3.createElement(
+                components2.Weekdays,
+                { "data-animated-weekdays": props.animate ? "true" : void 0, className: classNames[UI.Weekdays], style: styles == null ? void 0 : styles[UI.Weekdays] },
+                showWeekNumber && React$3.createElement(components2.WeekNumberHeader, { "aria-label": labelWeekNumberHeader2(dateLib.options), className: classNames[UI.WeekNumberHeader], style: styles == null ? void 0 : styles[UI.WeekNumberHeader], scope: "col" }, formatWeekNumberHeader2()),
+                weekdays.map((weekday) => React$3.createElement(components2.Weekday, { "aria-label": labelWeekday2(weekday, dateLib.options, dateLib), className: classNames[UI.Weekday], key: String(weekday), style: styles == null ? void 0 : styles[UI.Weekday], scope: "col" }, formatWeekdayName2(weekday, dateLib.options, dateLib)))
+              ),
+              React$3.createElement(components2.Weeks, { "data-animated-weeks": props.animate ? "true" : void 0, className: classNames[UI.Weeks], style: styles == null ? void 0 : styles[UI.Weeks] }, calendarMonth.weeks.map((week) => {
+                return React$3.createElement(
+                  components2.Week,
+                  { className: classNames[UI.Week], key: week.weekNumber, style: styles == null ? void 0 : styles[UI.Week], week },
+                  showWeekNumber && React$3.createElement(components2.WeekNumber, { week, style: styles == null ? void 0 : styles[UI.WeekNumber], "aria-label": labelWeekNumber2(week.weekNumber, {
+                    locale
+                  }), className: classNames[UI.WeekNumber], scope: "row", role: "rowheader" }, formatWeekNumber2(week.weekNumber, dateLib)),
+                  week.days.map((day) => {
+                    const { date } = day;
+                    const modifiers = getModifiers(day);
+                    modifiers[DayFlag.focused] = !modifiers.hidden && Boolean(focused == null ? void 0 : focused.isEqualTo(day));
+                    modifiers[SelectionState.selected] = (isSelected == null ? void 0 : isSelected(date)) || modifiers.selected;
+                    if (isDateRange(selectedValue)) {
+                      const { from, to } = selectedValue;
+                      modifiers[SelectionState.range_start] = Boolean(from && to && dateLib.isSameDay(date, from));
+                      modifiers[SelectionState.range_end] = Boolean(from && to && dateLib.isSameDay(date, to));
+                      modifiers[SelectionState.range_middle] = rangeIncludesDate(selectedValue, date, true, dateLib);
+                    }
+                    const style3 = getStyleForModifiers(modifiers, styles, props.modifiersStyles);
+                    const className2 = getClassNamesForModifiers(modifiers, classNames, props.modifiersClassNames);
+                    const ariaLabel = !isInteractive && !modifiers.hidden ? labelGridcell2(date, modifiers, dateLib.options, dateLib) : void 0;
+                    return React$3.createElement(components2.Day, { key: `${day.isoDate}_${day.displayMonthId}`, day, modifiers, className: className2.join(" "), style: style3, role: "gridcell", "aria-selected": modifiers.selected || void 0, "aria-label": ariaLabel, "data-day": day.isoDate, "data-month": day.outside ? day.dateMonthId : void 0, "data-selected": modifiers.selected || void 0, "data-disabled": modifiers.disabled || void 0, "data-hidden": modifiers.hidden || void 0, "data-outside": day.outside || void 0, "data-focused": modifiers.focused || void 0, "data-today": modifiers.today || void 0 }, !modifiers.hidden && isInteractive ? React$3.createElement(components2.DayButton, { className: classNames[UI.DayButton], style: styles == null ? void 0 : styles[UI.DayButton], type: "button", day, modifiers, disabled: !modifiers.focused && modifiers.disabled || void 0, "aria-disabled": modifiers.focused && modifiers.disabled || void 0, tabIndex: isFocusTarget(day) ? 0 : -1, "aria-label": labelDayButton2(date, modifiers, dateLib.options, dateLib), onClick: handleDayClick(day, modifiers), onBlur: handleDayBlur(day, modifiers), onFocus: handleDayFocus(day, modifiers), onKeyDown: handleDayKeyDown(day, modifiers), onMouseEnter: handleDayMouseEnter(day, modifiers), onMouseLeave: handleDayMouseLeave(day, modifiers) }, formatDay2(date, dateLib.options, dateLib)) : !modifiers.hidden && formatDay2(day.date, dateLib.options, dateLib));
+                  })
+                );
+              }))
+            )
+          );
+        })
+      ),
+      props.footer && React$3.createElement(components2.Footer, { className: classNames[UI.Footer], style: styles == null ? void 0 : styles[UI.Footer], role: "status", "aria-live": "polite" }, props.footer)
+    )
+  );
+}
+function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    DayPicker,
+    {
+      "data-greta-id": "src/components/ui/calendar.tsx:12:4",
+      "data-greta-name": "DayPicker",
+      "data-greta-editable": "false",
+      "data-component-path": "src/components/ui/calendar.tsx",
+      "data-component-line": "12",
+      "data-component-file": "calendar.tsx",
+      "data-component-name": "DayPicker",
+      "data-component-content": "%7B%7D",
+      showOutsideDays,
+      className: cn("p-3", className),
+      classNames: {
+        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
+        month: "space-y-4",
+        caption: "flex justify-center pt-1 relative items-center",
+        caption_label: "text-sm font-medium",
+        nav: "space-x-1 flex items-center",
+        nav_button: cn(
+          buttonVariants({ variant: "outline" }),
+          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+        ),
+        nav_button_previous: "absolute left-1",
+        nav_button_next: "absolute right-1",
+        table: "w-full border-collapse space-y-1",
+        head_row: "flex",
+        head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
+        row: "flex w-full mt-2",
+        cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+        day: cn(buttonVariants({ variant: "ghost" }), "h-9 w-9 p-0 font-normal aria-selected:opacity-100"),
+        day_range_end: "day-range-end",
+        day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+        day_today: "bg-accent text-accent-foreground",
+        day_outside: "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
+        day_disabled: "text-muted-foreground opacity-50",
+        day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
+        day_hidden: "invisible",
+        ...classNames
+      },
+      components: {
+        IconLeft: ({ ..._props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { "data-greta-id": "src/components/ui/calendar.tsx:45:37", "data-greta-name": "ChevronLeft", "data-greta-editable": "false", "data-component-path": "src/components/ui/calendar.tsx", "data-component-line": "45", "data-component-file": "calendar.tsx", "data-component-name": "ChevronLeft", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+        IconRight: ({ ..._props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { "data-greta-id": "src/components/ui/calendar.tsx:46:38", "data-greta-name": "ChevronRight", "data-greta-editable": "false", "data-component-path": "src/components/ui/calendar.tsx", "data-component-line": "46", "data-component-file": "calendar.tsx", "data-component-name": "ChevronRight", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" })
+      },
+      ...props
+    }
+  );
+}
+Calendar.displayName = "Calendar";
+function toDate(argument) {
+  const argStr = Object.prototype.toString.call(argument);
+  if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
+    return new argument.constructor(+argument);
+  } else if (typeof argument === "number" || argStr === "[object Number]" || typeof argument === "string" || argStr === "[object String]") {
+    return new Date(argument);
+  } else {
+    return /* @__PURE__ */ new Date(NaN);
+  }
+}
+function constructFrom(date, value) {
+  if (date instanceof Date) {
+    return new date.constructor(value);
+  } else {
+    return new Date(value);
+  }
+}
+function addDays(date, amount) {
+  const _date = toDate(date);
+  if (isNaN(amount)) return constructFrom(date, NaN);
+  _date.setDate(_date.getDate() + amount);
+  return _date;
+}
+const millisecondsInWeek = 6048e5;
+const millisecondsInDay = 864e5;
+let defaultOptions = {};
+function getDefaultOptions() {
+  return defaultOptions;
+}
+function startOfWeek(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions();
+  const weekStartsOn = (options == null ? void 0 : options.weekStartsOn) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.weekStartsOn) ?? defaultOptions2.weekStartsOn ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.weekStartsOn) ?? 0;
+  const _date = toDate(date);
+  const day = _date.getDay();
+  const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+  _date.setDate(_date.getDate() - diff);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+function startOfISOWeek(date) {
+  return startOfWeek(date, { weekStartsOn: 1 });
+}
+function getISOWeekYear(date) {
+  const _date = toDate(date);
+  const year = _date.getFullYear();
+  const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
+  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
+  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
+  const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
+  const fourthOfJanuaryOfThisYear = constructFrom(date, 0);
+  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
+  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
+  const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
+  if (_date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1;
+  } else if (_date.getTime() >= startOfThisYear.getTime()) {
+    return year;
+  } else {
+    return year - 1;
+  }
+}
+function startOfDay(date) {
+  const _date = toDate(date);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+function getTimezoneOffsetInMilliseconds(date) {
+  const _date = toDate(date);
+  const utcDate = new Date(
+    Date.UTC(
+      _date.getFullYear(),
+      _date.getMonth(),
+      _date.getDate(),
+      _date.getHours(),
+      _date.getMinutes(),
+      _date.getSeconds(),
+      _date.getMilliseconds()
+    )
+  );
+  utcDate.setUTCFullYear(_date.getFullYear());
+  return +date - +utcDate;
+}
+function differenceInCalendarDays(dateLeft, dateRight) {
+  const startOfDayLeft = startOfDay(dateLeft);
+  const startOfDayRight = startOfDay(dateRight);
+  const timestampLeft = +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
+  const timestampRight = +startOfDayRight - getTimezoneOffsetInMilliseconds(startOfDayRight);
+  return Math.round((timestampLeft - timestampRight) / millisecondsInDay);
+}
+function startOfISOWeekYear(date) {
+  const year = getISOWeekYear(date);
+  const fourthOfJanuary = constructFrom(date, 0);
+  fourthOfJanuary.setFullYear(year, 0, 4);
+  fourthOfJanuary.setHours(0, 0, 0, 0);
+  return startOfISOWeek(fourthOfJanuary);
+}
+function constructNow(date) {
+  return constructFrom(date, Date.now());
+}
+function isSameDay(dateLeft, dateRight) {
+  const dateLeftStartOfDay = startOfDay(dateLeft);
+  const dateRightStartOfDay = startOfDay(dateRight);
+  return +dateLeftStartOfDay === +dateRightStartOfDay;
+}
+function isDate(value) {
+  return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
+}
+function isValid(date) {
+  if (!isDate(date) && typeof date !== "number") {
+    return false;
+  }
+  const _date = toDate(date);
+  return !isNaN(Number(_date));
+}
+function startOfYear(date) {
+  const cleanDate = toDate(date);
+  const _date = constructFrom(date, 0);
+  _date.setFullYear(cleanDate.getFullYear(), 0, 1);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+const formatDistanceLocale = {
+  lessThanXSeconds: {
+    one: "less than a second",
+    other: "less than {{count}} seconds"
+  },
+  xSeconds: {
+    one: "1 second",
+    other: "{{count}} seconds"
+  },
+  halfAMinute: "half a minute",
+  lessThanXMinutes: {
+    one: "less than a minute",
+    other: "less than {{count}} minutes"
+  },
+  xMinutes: {
+    one: "1 minute",
+    other: "{{count}} minutes"
+  },
+  aboutXHours: {
+    one: "about 1 hour",
+    other: "about {{count}} hours"
+  },
+  xHours: {
+    one: "1 hour",
+    other: "{{count}} hours"
+  },
+  xDays: {
+    one: "1 day",
+    other: "{{count}} days"
+  },
+  aboutXWeeks: {
+    one: "about 1 week",
+    other: "about {{count}} weeks"
+  },
+  xWeeks: {
+    one: "1 week",
+    other: "{{count}} weeks"
+  },
+  aboutXMonths: {
+    one: "about 1 month",
+    other: "about {{count}} months"
+  },
+  xMonths: {
+    one: "1 month",
+    other: "{{count}} months"
+  },
+  aboutXYears: {
+    one: "about 1 year",
+    other: "about {{count}} years"
+  },
+  xYears: {
+    one: "1 year",
+    other: "{{count}} years"
+  },
+  overXYears: {
+    one: "over 1 year",
+    other: "over {{count}} years"
+  },
+  almostXYears: {
+    one: "almost 1 year",
+    other: "almost {{count}} years"
+  }
+};
+const formatDistance = (token, count2, options) => {
+  let result;
+  const tokenValue = formatDistanceLocale[token];
+  if (typeof tokenValue === "string") {
+    result = tokenValue;
+  } else if (count2 === 1) {
+    result = tokenValue.one;
+  } else {
+    result = tokenValue.other.replace("{{count}}", count2.toString());
+  }
+  if (options == null ? void 0 : options.addSuffix) {
+    if (options.comparison && options.comparison > 0) {
+      return "in " + result;
+    } else {
+      return result + " ago";
+    }
+  }
+  return result;
+};
+function buildFormatLongFn(args) {
+  return (options = {}) => {
+    const width = options.width ? String(options.width) : args.defaultWidth;
+    const format2 = args.formats[width] || args.formats[args.defaultWidth];
+    return format2;
+  };
+}
+const dateFormats = {
+  full: "EEEE, MMMM do, y",
+  long: "MMMM do, y",
+  medium: "MMM d, y",
+  short: "MM/dd/yyyy"
+};
+const timeFormats = {
+  full: "h:mm:ss a zzzz",
+  long: "h:mm:ss a z",
+  medium: "h:mm:ss a",
+  short: "h:mm a"
+};
+const dateTimeFormats = {
+  full: "{{date}} 'at' {{time}}",
+  long: "{{date}} 'at' {{time}}",
+  medium: "{{date}}, {{time}}",
+  short: "{{date}}, {{time}}"
+};
+const formatLong = {
+  date: buildFormatLongFn({
+    formats: dateFormats,
+    defaultWidth: "full"
+  }),
+  time: buildFormatLongFn({
+    formats: timeFormats,
+    defaultWidth: "full"
+  }),
+  dateTime: buildFormatLongFn({
+    formats: dateTimeFormats,
+    defaultWidth: "full"
+  })
+};
+const formatRelativeLocale = {
+  lastWeek: "'last' eeee 'at' p",
+  yesterday: "'yesterday at' p",
+  today: "'today at' p",
+  tomorrow: "'tomorrow at' p",
+  nextWeek: "eeee 'at' p",
+  other: "P"
+};
+const formatRelative = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
+function buildLocalizeFn(args) {
+  return (value, options) => {
+    const context = (options == null ? void 0 : options.context) ? String(options.context) : "standalone";
+    let valuesArray;
+    if (context === "formatting" && args.formattingValues) {
+      const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+      const width = (options == null ? void 0 : options.width) ? String(options.width) : defaultWidth;
+      valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+    } else {
+      const defaultWidth = args.defaultWidth;
+      const width = (options == null ? void 0 : options.width) ? String(options.width) : args.defaultWidth;
+      valuesArray = args.values[width] || args.values[defaultWidth];
+    }
+    const index2 = args.argumentCallback ? args.argumentCallback(value) : value;
+    return valuesArray[index2];
+  };
+}
+const eraValues = {
+  narrow: ["B", "A"],
+  abbreviated: ["BC", "AD"],
+  wide: ["Before Christ", "Anno Domini"]
+};
+const quarterValues = {
+  narrow: ["1", "2", "3", "4"],
+  abbreviated: ["Q1", "Q2", "Q3", "Q4"],
+  wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
+};
+const monthValues = {
+  narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+  abbreviated: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  wide: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
+};
+const dayValues = {
+  narrow: ["S", "M", "T", "W", "T", "F", "S"],
+  short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+  abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  wide: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+};
+const dayPeriodValues = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mi",
+    noon: "n",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  }
+};
+const formattingDayPeriodValues = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mi",
+    noon: "n",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  }
+};
+const ordinalNumber = (dirtyNumber, _options) => {
+  const number = Number(dirtyNumber);
+  const rem100 = number % 100;
+  if (rem100 > 20 || rem100 < 10) {
+    switch (rem100 % 10) {
+      case 1:
+        return number + "st";
+      case 2:
+        return number + "nd";
+      case 3:
+        return number + "rd";
+    }
+  }
+  return number + "th";
+};
+const localize = {
+  ordinalNumber,
+  era: buildLocalizeFn({
+    values: eraValues,
+    defaultWidth: "wide"
+  }),
+  quarter: buildLocalizeFn({
+    values: quarterValues,
+    defaultWidth: "wide",
+    argumentCallback: (quarter) => quarter - 1
+  }),
+  month: buildLocalizeFn({
+    values: monthValues,
+    defaultWidth: "wide"
+  }),
+  day: buildLocalizeFn({
+    values: dayValues,
+    defaultWidth: "wide"
+  }),
+  dayPeriod: buildLocalizeFn({
+    values: dayPeriodValues,
+    defaultWidth: "wide",
+    formattingValues: formattingDayPeriodValues,
+    defaultFormattingWidth: "wide"
+  })
+};
+function buildMatchFn(args) {
+  return (string, options = {}) => {
+    const width = options.width;
+    const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
+    const matchResult = string.match(matchPattern);
+    if (!matchResult) {
+      return null;
+    }
+    const matchedString = matchResult[0];
+    const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
+    const key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString)) : (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+      findKey(parsePatterns, (pattern) => pattern.test(matchedString))
+    );
+    let value;
+    value = args.valueCallback ? args.valueCallback(key) : key;
+    value = options.valueCallback ? (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+      options.valueCallback(value)
+    ) : value;
+    const rest = string.slice(matchedString.length);
+    return { value, rest };
+  };
+}
+function findKey(object, predicate) {
+  for (const key in object) {
+    if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
+      return key;
+    }
+  }
+  return void 0;
+}
+function findIndex(array, predicate) {
+  for (let key = 0; key < array.length; key++) {
+    if (predicate(array[key])) {
+      return key;
+    }
+  }
+  return void 0;
+}
+function buildMatchPatternFn(args) {
+  return (string, options = {}) => {
+    const matchResult = string.match(args.matchPattern);
+    if (!matchResult) return null;
+    const matchedString = matchResult[0];
+    const parseResult = string.match(args.parsePattern);
+    if (!parseResult) return null;
+    let value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+    value = options.valueCallback ? options.valueCallback(value) : value;
+    const rest = string.slice(matchedString.length);
+    return { value, rest };
+  };
+}
+const matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
+const parseOrdinalNumberPattern = /\d+/i;
+const matchEraPatterns = {
+  narrow: /^(b|a)/i,
+  abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+  wide: /^(before christ|before common era|anno domini|common era)/i
+};
+const parseEraPatterns = {
+  any: [/^b/i, /^(a|c)/i]
+};
+const matchQuarterPatterns = {
+  narrow: /^[1234]/i,
+  abbreviated: /^q[1234]/i,
+  wide: /^[1234](th|st|nd|rd)? quarter/i
+};
+const parseQuarterPatterns = {
+  any: [/1/i, /2/i, /3/i, /4/i]
+};
+const matchMonthPatterns = {
+  narrow: /^[jfmasond]/i,
+  abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+  wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+};
+const parseMonthPatterns = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^ap/i,
+    /^may/i,
+    /^jun/i,
+    /^jul/i,
+    /^au/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+};
+const matchDayPatterns = {
+  narrow: /^[smtwf]/i,
+  short: /^(su|mo|tu|we|th|fr|sa)/i,
+  abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+  wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+};
+const parseDayPatterns = {
+  narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+};
+const matchDayPeriodPatterns = {
+  narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+  any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+};
+const parseDayPeriodPatterns = {
+  any: {
+    am: /^a/i,
+    pm: /^p/i,
+    midnight: /^mi/i,
+    noon: /^no/i,
+    morning: /morning/i,
+    afternoon: /afternoon/i,
+    evening: /evening/i,
+    night: /night/i
+  }
+};
+const match = {
+  ordinalNumber: buildMatchPatternFn({
+    matchPattern: matchOrdinalNumberPattern,
+    parsePattern: parseOrdinalNumberPattern,
+    valueCallback: (value) => parseInt(value, 10)
+  }),
+  era: buildMatchFn({
+    matchPatterns: matchEraPatterns,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseEraPatterns,
+    defaultParseWidth: "any"
+  }),
+  quarter: buildMatchFn({
+    matchPatterns: matchQuarterPatterns,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseQuarterPatterns,
+    defaultParseWidth: "any",
+    valueCallback: (index2) => index2 + 1
+  }),
+  month: buildMatchFn({
+    matchPatterns: matchMonthPatterns,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseMonthPatterns,
+    defaultParseWidth: "any"
+  }),
+  day: buildMatchFn({
+    matchPatterns: matchDayPatterns,
+    defaultMatchWidth: "wide",
+    parsePatterns: parseDayPatterns,
+    defaultParseWidth: "any"
+  }),
+  dayPeriod: buildMatchFn({
+    matchPatterns: matchDayPeriodPatterns,
+    defaultMatchWidth: "any",
+    parsePatterns: parseDayPeriodPatterns,
+    defaultParseWidth: "any"
+  })
+};
+const enUS = {
+  code: "en-US",
+  formatDistance,
+  formatLong,
+  formatRelative,
+  localize,
+  match,
+  options: {
+    weekStartsOn: 0,
+    firstWeekContainsDate: 1
+  }
+};
+function getDayOfYear(date) {
+  const _date = toDate(date);
+  const diff = differenceInCalendarDays(_date, startOfYear(_date));
+  const dayOfYear = diff + 1;
+  return dayOfYear;
+}
+function getISOWeek(date) {
+  const _date = toDate(date);
+  const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
+  return Math.round(diff / millisecondsInWeek) + 1;
+}
+function getWeekYear(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const _date = toDate(date);
+  const year = _date.getFullYear();
+  const defaultOptions2 = getDefaultOptions();
+  const firstWeekContainsDate = (options == null ? void 0 : options.firstWeekContainsDate) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? defaultOptions2.firstWeekContainsDate ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.firstWeekContainsDate) ?? 1;
+  const firstWeekOfNextYear = constructFrom(date, 0);
+  firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
+  firstWeekOfNextYear.setHours(0, 0, 0, 0);
+  const startOfNextYear = startOfWeek(firstWeekOfNextYear, options);
+  const firstWeekOfThisYear = constructFrom(date, 0);
+  firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeekOfThisYear.setHours(0, 0, 0, 0);
+  const startOfThisYear = startOfWeek(firstWeekOfThisYear, options);
+  if (_date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1;
+  } else if (_date.getTime() >= startOfThisYear.getTime()) {
+    return year;
+  } else {
+    return year - 1;
+  }
+}
+function startOfWeekYear(date, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions();
+  const firstWeekContainsDate = (options == null ? void 0 : options.firstWeekContainsDate) ?? ((_b2 = (_a2 = options == null ? void 0 : options.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? defaultOptions2.firstWeekContainsDate ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.firstWeekContainsDate) ?? 1;
+  const year = getWeekYear(date, options);
+  const firstWeek = constructFrom(date, 0);
+  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeek.setHours(0, 0, 0, 0);
+  const _date = startOfWeek(firstWeek, options);
+  return _date;
+}
+function getWeek(date, options) {
+  const _date = toDate(date);
+  const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
+  return Math.round(diff / millisecondsInWeek) + 1;
+}
+function addLeadingZeros(number, targetLength) {
+  const sign = number < 0 ? "-" : "";
+  const output = Math.abs(number).toString().padStart(targetLength, "0");
+  return sign + output;
+}
+const lightFormatters = {
+  // Year
+  y(date, token) {
+    const signedYear = date.getFullYear();
+    const year = signedYear > 0 ? signedYear : 1 - signedYear;
+    return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
+  },
+  // Month
+  M(date, token) {
+    const month = date.getMonth();
+    return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
+  },
+  // Day of the month
+  d(date, token) {
+    return addLeadingZeros(date.getDate(), token.length);
+  },
+  // AM or PM
+  a(date, token) {
+    const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
+    switch (token) {
+      case "a":
+      case "aa":
+        return dayPeriodEnumValue.toUpperCase();
+      case "aaa":
+        return dayPeriodEnumValue;
+      case "aaaaa":
+        return dayPeriodEnumValue[0];
+      case "aaaa":
+      default:
+        return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+    }
+  },
+  // Hour [1-12]
+  h(date, token) {
+    return addLeadingZeros(date.getHours() % 12 || 12, token.length);
+  },
+  // Hour [0-23]
+  H(date, token) {
+    return addLeadingZeros(date.getHours(), token.length);
+  },
+  // Minute
+  m(date, token) {
+    return addLeadingZeros(date.getMinutes(), token.length);
+  },
+  // Second
+  s(date, token) {
+    return addLeadingZeros(date.getSeconds(), token.length);
+  },
+  // Fraction of second
+  S(date, token) {
+    const numberOfDigits = token.length;
+    const milliseconds = date.getMilliseconds();
+    const fractionalSeconds = Math.trunc(
+      milliseconds * Math.pow(10, numberOfDigits - 3)
+    );
+    return addLeadingZeros(fractionalSeconds, token.length);
+  }
+};
+const dayPeriodEnum = {
+  am: "am",
+  pm: "pm",
+  midnight: "midnight",
+  noon: "noon",
+  morning: "morning",
+  afternoon: "afternoon",
+  evening: "evening",
+  night: "night"
+};
+const formatters = {
+  // Era
+  G: function(date, token, localize2) {
+    const era = date.getFullYear() > 0 ? 1 : 0;
+    switch (token) {
+      case "G":
+      case "GG":
+      case "GGG":
+        return localize2.era(era, { width: "abbreviated" });
+      case "GGGGG":
+        return localize2.era(era, { width: "narrow" });
+      case "GGGG":
+      default:
+        return localize2.era(era, { width: "wide" });
+    }
+  },
+  // Year
+  y: function(date, token, localize2) {
+    if (token === "yo") {
+      const signedYear = date.getFullYear();
+      const year = signedYear > 0 ? signedYear : 1 - signedYear;
+      return localize2.ordinalNumber(year, { unit: "year" });
+    }
+    return lightFormatters.y(date, token);
+  },
+  // Local week-numbering year
+  Y: function(date, token, localize2, options) {
+    const signedWeekYear = getWeekYear(date, options);
+    const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
+    if (token === "YY") {
+      const twoDigitYear = weekYear % 100;
+      return addLeadingZeros(twoDigitYear, 2);
+    }
+    if (token === "Yo") {
+      return localize2.ordinalNumber(weekYear, { unit: "year" });
+    }
+    return addLeadingZeros(weekYear, token.length);
+  },
+  // ISO week-numbering year
+  R: function(date, token) {
+    const isoWeekYear = getISOWeekYear(date);
+    return addLeadingZeros(isoWeekYear, token.length);
+  },
+  // Extended year. This is a single number designating the year of this calendar system.
+  // The main difference between `y` and `u` localizers are B.C. years:
+  // | Year | `y` | `u` |
+  // |------|-----|-----|
+  // | AC 1 |   1 |   1 |
+  // | BC 1 |   1 |   0 |
+  // | BC 2 |   2 |  -1 |
+  // Also `yy` always returns the last two digits of a year,
+  // while `uu` pads single digit years to 2 characters and returns other years unchanged.
+  u: function(date, token) {
+    const year = date.getFullYear();
+    return addLeadingZeros(year, token.length);
+  },
+  // Quarter
+  Q: function(date, token, localize2) {
+    const quarter = Math.ceil((date.getMonth() + 1) / 3);
+    switch (token) {
+      case "Q":
+        return String(quarter);
+      case "QQ":
+        return addLeadingZeros(quarter, 2);
+      case "Qo":
+        return localize2.ordinalNumber(quarter, { unit: "quarter" });
+      case "QQQ":
+        return localize2.quarter(quarter, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "QQQQQ":
+        return localize2.quarter(quarter, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "QQQQ":
+      default:
+        return localize2.quarter(quarter, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Stand-alone quarter
+  q: function(date, token, localize2) {
+    const quarter = Math.ceil((date.getMonth() + 1) / 3);
+    switch (token) {
+      case "q":
+        return String(quarter);
+      case "qq":
+        return addLeadingZeros(quarter, 2);
+      case "qo":
+        return localize2.ordinalNumber(quarter, { unit: "quarter" });
+      case "qqq":
+        return localize2.quarter(quarter, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "qqqqq":
+        return localize2.quarter(quarter, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "qqqq":
+      default:
+        return localize2.quarter(quarter, {
+          width: "wide",
+          context: "standalone"
+        });
+    }
+  },
+  // Month
+  M: function(date, token, localize2) {
+    const month = date.getMonth();
+    switch (token) {
+      case "M":
+      case "MM":
+        return lightFormatters.M(date, token);
+      case "Mo":
+        return localize2.ordinalNumber(month + 1, { unit: "month" });
+      case "MMM":
+        return localize2.month(month, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "MMMMM":
+        return localize2.month(month, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "MMMM":
+      default:
+        return localize2.month(month, { width: "wide", context: "formatting" });
+    }
+  },
+  // Stand-alone month
+  L: function(date, token, localize2) {
+    const month = date.getMonth();
+    switch (token) {
+      case "L":
+        return String(month + 1);
+      case "LL":
+        return addLeadingZeros(month + 1, 2);
+      case "Lo":
+        return localize2.ordinalNumber(month + 1, { unit: "month" });
+      case "LLL":
+        return localize2.month(month, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "LLLLL":
+        return localize2.month(month, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "LLLL":
+      default:
+        return localize2.month(month, { width: "wide", context: "standalone" });
+    }
+  },
+  // Local week of year
+  w: function(date, token, localize2, options) {
+    const week = getWeek(date, options);
+    if (token === "wo") {
+      return localize2.ordinalNumber(week, { unit: "week" });
+    }
+    return addLeadingZeros(week, token.length);
+  },
+  // ISO week of year
+  I: function(date, token, localize2) {
+    const isoWeek = getISOWeek(date);
+    if (token === "Io") {
+      return localize2.ordinalNumber(isoWeek, { unit: "week" });
+    }
+    return addLeadingZeros(isoWeek, token.length);
+  },
+  // Day of the month
+  d: function(date, token, localize2) {
+    if (token === "do") {
+      return localize2.ordinalNumber(date.getDate(), { unit: "date" });
+    }
+    return lightFormatters.d(date, token);
+  },
+  // Day of year
+  D: function(date, token, localize2) {
+    const dayOfYear = getDayOfYear(date);
+    if (token === "Do") {
+      return localize2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
+    }
+    return addLeadingZeros(dayOfYear, token.length);
+  },
+  // Day of week
+  E: function(date, token, localize2) {
+    const dayOfWeek = date.getDay();
+    switch (token) {
+      case "E":
+      case "EE":
+      case "EEE":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "EEEEE":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "EEEEEE":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "EEEE":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Local day of week
+  e: function(date, token, localize2, options) {
+    const dayOfWeek = date.getDay();
+    const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+    switch (token) {
+      case "e":
+        return String(localDayOfWeek);
+      case "ee":
+        return addLeadingZeros(localDayOfWeek, 2);
+      case "eo":
+        return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+      case "eee":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "eeeee":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "eeeeee":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "eeee":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Stand-alone local day of week
+  c: function(date, token, localize2, options) {
+    const dayOfWeek = date.getDay();
+    const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+    switch (token) {
+      case "c":
+        return String(localDayOfWeek);
+      case "cc":
+        return addLeadingZeros(localDayOfWeek, token.length);
+      case "co":
+        return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+      case "ccc":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "standalone"
+        });
+      case "ccccc":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "standalone"
+        });
+      case "cccccc":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "standalone"
+        });
+      case "cccc":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "standalone"
+        });
+    }
+  },
+  // ISO day of week
+  i: function(date, token, localize2) {
+    const dayOfWeek = date.getDay();
+    const isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+    switch (token) {
+      case "i":
+        return String(isoDayOfWeek);
+      case "ii":
+        return addLeadingZeros(isoDayOfWeek, token.length);
+      case "io":
+        return localize2.ordinalNumber(isoDayOfWeek, { unit: "day" });
+      case "iii":
+        return localize2.day(dayOfWeek, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "iiiii":
+        return localize2.day(dayOfWeek, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "iiiiii":
+        return localize2.day(dayOfWeek, {
+          width: "short",
+          context: "formatting"
+        });
+      case "iiii":
+      default:
+        return localize2.day(dayOfWeek, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // AM or PM
+  a: function(date, token, localize2) {
+    const hours = date.getHours();
+    const dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+    switch (token) {
+      case "a":
+      case "aa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "aaa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        }).toLowerCase();
+      case "aaaaa":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "aaaa":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // AM, PM, midnight, noon
+  b: function(date, token, localize2) {
+    const hours = date.getHours();
+    let dayPeriodEnumValue;
+    if (hours === 12) {
+      dayPeriodEnumValue = dayPeriodEnum.noon;
+    } else if (hours === 0) {
+      dayPeriodEnumValue = dayPeriodEnum.midnight;
+    } else {
+      dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+    }
+    switch (token) {
+      case "b":
+      case "bb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "bbb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        }).toLowerCase();
+      case "bbbbb":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "bbbb":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // in the morning, in the afternoon, in the evening, at night
+  B: function(date, token, localize2) {
+    const hours = date.getHours();
+    let dayPeriodEnumValue;
+    if (hours >= 17) {
+      dayPeriodEnumValue = dayPeriodEnum.evening;
+    } else if (hours >= 12) {
+      dayPeriodEnumValue = dayPeriodEnum.afternoon;
+    } else if (hours >= 4) {
+      dayPeriodEnumValue = dayPeriodEnum.morning;
+    } else {
+      dayPeriodEnumValue = dayPeriodEnum.night;
+    }
+    switch (token) {
+      case "B":
+      case "BB":
+      case "BBB":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "abbreviated",
+          context: "formatting"
+        });
+      case "BBBBB":
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "narrow",
+          context: "formatting"
+        });
+      case "BBBB":
+      default:
+        return localize2.dayPeriod(dayPeriodEnumValue, {
+          width: "wide",
+          context: "formatting"
+        });
+    }
+  },
+  // Hour [1-12]
+  h: function(date, token, localize2) {
+    if (token === "ho") {
+      let hours = date.getHours() % 12;
+      if (hours === 0) hours = 12;
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return lightFormatters.h(date, token);
+  },
+  // Hour [0-23]
+  H: function(date, token, localize2) {
+    if (token === "Ho") {
+      return localize2.ordinalNumber(date.getHours(), { unit: "hour" });
+    }
+    return lightFormatters.H(date, token);
+  },
+  // Hour [0-11]
+  K: function(date, token, localize2) {
+    const hours = date.getHours() % 12;
+    if (token === "Ko") {
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return addLeadingZeros(hours, token.length);
+  },
+  // Hour [1-24]
+  k: function(date, token, localize2) {
+    let hours = date.getHours();
+    if (hours === 0) hours = 24;
+    if (token === "ko") {
+      return localize2.ordinalNumber(hours, { unit: "hour" });
+    }
+    return addLeadingZeros(hours, token.length);
+  },
+  // Minute
+  m: function(date, token, localize2) {
+    if (token === "mo") {
+      return localize2.ordinalNumber(date.getMinutes(), { unit: "minute" });
+    }
+    return lightFormatters.m(date, token);
+  },
+  // Second
+  s: function(date, token, localize2) {
+    if (token === "so") {
+      return localize2.ordinalNumber(date.getSeconds(), { unit: "second" });
+    }
+    return lightFormatters.s(date, token);
+  },
+  // Fraction of second
+  S: function(date, token) {
+    return lightFormatters.S(date, token);
+  },
+  // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
+  X: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    if (timezoneOffset === 0) {
+      return "Z";
+    }
+    switch (token) {
+      case "X":
+        return formatTimezoneWithOptionalMinutes(timezoneOffset);
+      case "XXXX":
+      case "XX":
+        return formatTimezone(timezoneOffset);
+      case "XXXXX":
+      case "XXX":
+      default:
+        return formatTimezone(timezoneOffset, ":");
+    }
+  },
+  // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
+  x: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "x":
+        return formatTimezoneWithOptionalMinutes(timezoneOffset);
+      case "xxxx":
+      case "xx":
+        return formatTimezone(timezoneOffset);
+      case "xxxxx":
+      case "xxx":
+      default:
+        return formatTimezone(timezoneOffset, ":");
+    }
+  },
+  // Timezone (GMT)
+  O: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "O":
+      case "OO":
+      case "OOO":
+        return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+      case "OOOO":
+      default:
+        return "GMT" + formatTimezone(timezoneOffset, ":");
+    }
+  },
+  // Timezone (specific non-location)
+  z: function(date, token, _localize) {
+    const timezoneOffset = date.getTimezoneOffset();
+    switch (token) {
+      case "z":
+      case "zz":
+      case "zzz":
+        return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+      case "zzzz":
+      default:
+        return "GMT" + formatTimezone(timezoneOffset, ":");
+    }
+  },
+  // Seconds timestamp
+  t: function(date, token, _localize) {
+    const timestamp = Math.trunc(date.getTime() / 1e3);
+    return addLeadingZeros(timestamp, token.length);
+  },
+  // Milliseconds timestamp
+  T: function(date, token, _localize) {
+    const timestamp = date.getTime();
+    return addLeadingZeros(timestamp, token.length);
+  }
+};
+function formatTimezoneShort(offset3, delimiter = "") {
+  const sign = offset3 > 0 ? "-" : "+";
+  const absOffset = Math.abs(offset3);
+  const hours = Math.trunc(absOffset / 60);
+  const minutes = absOffset % 60;
+  if (minutes === 0) {
+    return sign + String(hours);
+  }
+  return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
+}
+function formatTimezoneWithOptionalMinutes(offset3, delimiter) {
+  if (offset3 % 60 === 0) {
+    const sign = offset3 > 0 ? "-" : "+";
+    return sign + addLeadingZeros(Math.abs(offset3) / 60, 2);
+  }
+  return formatTimezone(offset3, delimiter);
+}
+function formatTimezone(offset3, delimiter = "") {
+  const sign = offset3 > 0 ? "-" : "+";
+  const absOffset = Math.abs(offset3);
+  const hours = addLeadingZeros(Math.trunc(absOffset / 60), 2);
+  const minutes = addLeadingZeros(absOffset % 60, 2);
+  return sign + hours + delimiter + minutes;
+}
+const dateLongFormatter = (pattern, formatLong2) => {
+  switch (pattern) {
+    case "P":
+      return formatLong2.date({ width: "short" });
+    case "PP":
+      return formatLong2.date({ width: "medium" });
+    case "PPP":
+      return formatLong2.date({ width: "long" });
+    case "PPPP":
+    default:
+      return formatLong2.date({ width: "full" });
+  }
+};
+const timeLongFormatter = (pattern, formatLong2) => {
+  switch (pattern) {
+    case "p":
+      return formatLong2.time({ width: "short" });
+    case "pp":
+      return formatLong2.time({ width: "medium" });
+    case "ppp":
+      return formatLong2.time({ width: "long" });
+    case "pppp":
+    default:
+      return formatLong2.time({ width: "full" });
+  }
+};
+const dateTimeLongFormatter = (pattern, formatLong2) => {
+  const matchResult = pattern.match(/(P+)(p+)?/) || [];
+  const datePattern = matchResult[1];
+  const timePattern = matchResult[2];
+  if (!timePattern) {
+    return dateLongFormatter(pattern, formatLong2);
+  }
+  let dateTimeFormat;
+  switch (datePattern) {
+    case "P":
+      dateTimeFormat = formatLong2.dateTime({ width: "short" });
+      break;
+    case "PP":
+      dateTimeFormat = formatLong2.dateTime({ width: "medium" });
+      break;
+    case "PPP":
+      dateTimeFormat = formatLong2.dateTime({ width: "long" });
+      break;
+    case "PPPP":
+    default:
+      dateTimeFormat = formatLong2.dateTime({ width: "full" });
+      break;
+  }
+  return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
+};
+const longFormatters = {
+  p: timeLongFormatter,
+  P: dateTimeLongFormatter
+};
+const dayOfYearTokenRE = /^D+$/;
+const weekYearTokenRE = /^Y+$/;
+const throwTokens = ["D", "DD", "YY", "YYYY"];
+function isProtectedDayOfYearToken(token) {
+  return dayOfYearTokenRE.test(token);
+}
+function isProtectedWeekYearToken(token) {
+  return weekYearTokenRE.test(token);
+}
+function warnOrThrowProtectedError(token, format2, input) {
+  const _message = message(token, format2, input);
+  console.warn(_message);
+  if (throwTokens.includes(token)) throw new RangeError(_message);
+}
+function message(token, format2, input) {
+  const subject = token[0] === "Y" ? "years" : "days of the month";
+  return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format2}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
+}
+const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+const escapedStringRegExp = /^'([^]*?)'?$/;
+const doubleQuoteRegExp = /''/g;
+const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
+function format(date, formatStr, options) {
+  var _a2, _b2, _c2, _d2;
+  const defaultOptions2 = getDefaultOptions();
+  const locale = defaultOptions2.locale ?? enUS;
+  const firstWeekContainsDate = defaultOptions2.firstWeekContainsDate ?? ((_b2 = (_a2 = defaultOptions2.locale) == null ? void 0 : _a2.options) == null ? void 0 : _b2.firstWeekContainsDate) ?? 1;
+  const weekStartsOn = defaultOptions2.weekStartsOn ?? ((_d2 = (_c2 = defaultOptions2.locale) == null ? void 0 : _c2.options) == null ? void 0 : _d2.weekStartsOn) ?? 0;
+  const originalDate = toDate(date);
+  if (!isValid(originalDate)) {
+    throw new RangeError("Invalid time value");
+  }
+  let parts = formatStr.match(longFormattingTokensRegExp).map((substring) => {
+    const firstCharacter = substring[0];
+    if (firstCharacter === "p" || firstCharacter === "P") {
+      const longFormatter = longFormatters[firstCharacter];
+      return longFormatter(substring, locale.formatLong);
+    }
+    return substring;
+  }).join("").match(formattingTokensRegExp).map((substring) => {
+    if (substring === "''") {
+      return { isToken: false, value: "'" };
+    }
+    const firstCharacter = substring[0];
+    if (firstCharacter === "'") {
+      return { isToken: false, value: cleanEscapedString(substring) };
+    }
+    if (formatters[firstCharacter]) {
+      return { isToken: true, value: substring };
+    }
+    if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+      throw new RangeError(
+        "Format string contains an unescaped latin alphabet character `" + firstCharacter + "`"
+      );
+    }
+    return { isToken: false, value: substring };
+  });
+  if (locale.localize.preprocessor) {
+    parts = locale.localize.preprocessor(originalDate, parts);
+  }
+  const formatterOptions = {
+    firstWeekContainsDate,
+    weekStartsOn,
+    locale
+  };
+  return parts.map((part) => {
+    if (!part.isToken) return part.value;
+    const token = part.value;
+    if (isProtectedWeekYearToken(token) || isProtectedDayOfYearToken(token)) {
+      warnOrThrowProtectedError(token, formatStr, String(date));
+    }
+    const formatter = formatters[token[0]];
+    return formatter(originalDate, token, locale.localize, formatterOptions);
+  }).join("");
+}
+function cleanEscapedString(input) {
+  const matched = input.match(escapedStringRegExp);
+  if (!matched) {
+    return input;
+  }
+  return matched[1].replace(doubleQuoteRegExp, "'");
+}
+function isPast(date) {
+  return +toDate(date) < Date.now();
+}
+function isToday(date) {
+  return isSameDay(date, constructNow(date));
+}
+function isTomorrow(date) {
+  return isSameDay(date, addDays(constructNow(date), 1));
+}
 const CATEGORIES = ["General", "Work", "Personal", "Shopping", "Urgent"];
+const PRIORITIES = ["Low", "Medium", "High"];
+const PRIORITY_COLORS = {
+  Low: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+  Medium: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
+  High: "bg-red-500/10 text-red-500 border-red-500/20"
+};
+const PRIORITY_VALUE = {
+  High: 3,
+  Medium: 2,
+  Low: 1
+};
 function Index() {
   const [todos, setTodos] = reactExports.useState([]);
   const [newTodo, setNewTodo] = reactExports.useState("");
   const [newCategory, setNewCategory] = reactExports.useState("General");
+  const [newPriority, setNewPriority] = reactExports.useState("Medium");
+  const [dueDate, setDueDate] = reactExports.useState(void 0);
   const [filterCategory, setFilterCategory] = reactExports.useState("All");
+  const [sortBy, setSortBy] = reactExports.useState("custom");
   const [isAdding, setIsAdding] = reactExports.useState(false);
   const { toast: toast2 } = useToast();
   reactExports.useEffect(() => {
@@ -34839,13 +40815,16 @@ function Index() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title: newTodo.trim(),
-          category: newCategory
+          category: newCategory,
+          priority: newPriority,
+          due_date: dueDate ? dueDate.toISOString() : null
         })
       });
       if (response.ok) {
         const todo = await response.json();
         setTodos([todo, ...todos]);
         setNewTodo("");
+        setDueDate(void 0);
       }
     } catch (error) {
       toast2({ title: "Error adding todo", variant: "destructive" });
@@ -34883,7 +40862,7 @@ function Index() {
     }
   };
   const handleDragEnd = async (result) => {
-    if (!result.destination) return;
+    if (!result.destination || sortBy !== "custom") return;
     const items = Array.from(todos);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -34899,75 +40878,162 @@ function Index() {
       fetchTodos();
     }
   };
-  const filteredTodos = reactExports.useMemo(() => {
-    if (filterCategory === "All") return todos;
-    return todos.filter((t) => t.category === filterCategory);
-  }, [todos, filterCategory]);
+  const processedTodos = reactExports.useMemo(() => {
+    let result = [...todos];
+    if (filterCategory !== "All") {
+      result = result.filter((t) => t.category === filterCategory);
+    }
+    if (sortBy === "priority") {
+      result.sort((a, b) => PRIORITY_VALUE[b.priority] - PRIORITY_VALUE[a.priority]);
+    } else {
+      result.sort((a, b) => a.order - b.order);
+    }
+    return result;
+  }, [todos, filterCategory, sortBy]);
+  const getDueDateLabel = (dateStr) => {
+    if (!dateStr) return null;
+    const date = new Date(dateStr);
+    if (isToday(date)) return "Today";
+    if (isTomorrow(date)) return "Tomorrow";
+    return format(date, "MMM d");
+  };
+  const isOverdue = (dateStr) => {
+    if (!dateStr) return false;
+    const date = new Date(dateStr);
+    return isPast(date) && !isToday(date);
+  };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
-      "data-greta-id": "src/pages/Index.tsx:131:4",
+      "data-greta-id": "src/pages/Index.tsx:183:4",
       "data-greta-name": "div",
       "data-greta-editable": "false",
       "data-component-path": "src/pages/Index.tsx",
-      "data-component-line": "131",
+      "data-component-line": "183",
       "data-component-file": "Index.tsx",
       "data-component-name": "div",
       "data-component-content": "%7B%22className%22%3A%22min-h-screen%20p-4%20md%3Ap-8%20flex%20flex-col%20items-center%20pt-20%20relative%20bg-cover%20bg-center%20bg-no-repeat%20bg-fixed%22%7D",
       className: "min-h-screen p-4 md:p-8 flex flex-col items-center pt-20 relative bg-cover bg-center bg-no-repeat bg-fixed",
       style: { backgroundImage: 'url("https://media-manager-c.questera.ai/greta-media/00c0a41eb8edb82ed6aa373e1da2fa5eec94e0aa0c1d83da71a4483ec12809b29b5076da63b105370a91c12ee31dd9cd/images/aW1hZ2UvcG5n/a88295cc6e808bf462e3f4ca9497e042.png")' },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:135:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "135", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:137:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "137", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:138:8", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "138", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:141:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "141", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:142:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "142", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-row%20items-center%20justify-between%20space-y-0%20pb-7%22%7D", className: "flex flex-row items-center justify-between space-y-0 pb-7", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:143:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "143", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:144:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "144", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:145:12", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "145", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { "data-greta-id": "src/pages/Index.tsx:146:12", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "146", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:147:14", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "147", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B140px%5D%20h-8%20text-xs%22%7D", className: "w-[140px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:148:16", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "148", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Filter%22%7D", placeholder: "Filter" }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:150:14", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "150", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:151:16", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "151", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Categories" }),
-                  CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:152:37", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "152", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:187:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "187", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20inset-0%20bg-background%2F40%20pointer-events-none%22%7D", className: "absolute inset-0 bg-background/40 pointer-events-none" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:189:6", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "189", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22absolute%20top-4%20right-4%20flex%20gap-2%20z-10%22%7D", className: "absolute top-4 right-4 flex gap-2 z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeToggle, { "data-greta-id": "src/pages/Index.tsx:190:8", "data-greta-name": "ModeToggle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "190", "data-component-file": "Index.tsx", "data-component-name": "ModeToggle", "data-component-content": "%7B%7D" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-greta-id": "src/pages/Index.tsx:193:6", "data-greta-name": "Card", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "193", "data-component-file": "Index.tsx", "data-component-name": "Card", "data-component-content": "%7B%22className%22%3A%22w-full%20max-w-2xl%20shadow-xl%20border-border%2F50%20relative%20z-10%20bg-card%2F95%20backdrop-blur-sm%22%7D", className: "w-full max-w-2xl shadow-xl border-border/50 relative z-10 bg-card/95 backdrop-blur-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { "data-greta-id": "src/pages/Index.tsx:194:8", "data-greta-name": "CardHeader", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "194", "data-component-file": "Index.tsx", "data-component-name": "CardHeader", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20md%3Aflex-row%20md%3Aitems-center%20justify-between%20space-y-4%20md%3Aspace-y-0%20pb-7%22%7D", className: "flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 pb-7", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { "data-greta-id": "src/pages/Index.tsx:195:10", "data-greta-name": "CardTitle", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "195", "data-component-file": "Index.tsx", "data-component-name": "CardTitle", "data-component-content": "%7B%22className%22%3A%22text-3xl%20font-black%20tracking-tight%22%7D", className: "text-3xl font-black tracking-tight", children: "Tasks" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:196:10", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "196", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-wrap%20items-center%20gap-3%22%7D", className: "flex flex-wrap items-center gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:197:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "197", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Filter, { "data-greta-id": "src/pages/Index.tsx:198:14", "data-greta-name": "Filter", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "198", "data-component-file": "Index.tsx", "data-component-name": "Filter", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:199:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "199", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: filterCategory, onValueChange: setFilterCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:200:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "200", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:201:18", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "201", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Category%22%7D", placeholder: "Category" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:203:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "203", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:204:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "204", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22All%22%7D", value: "All", children: "All Cats" }),
+                    CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:205:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "205", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c))
+                  ] })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:209:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "209", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { "data-greta-id": "src/pages/Index.tsx:210:14", "data-greta-name": "ArrowUpDown", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "210", "data-component-file": "Index.tsx", "data-component-name": "ArrowUpDown", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20text-muted-foreground%22%7D", className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:211:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "211", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: sortBy, onValueChange: (v2) => setSortBy(v2), children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:212:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "212", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B120px%5D%20h-8%20text-xs%22%7D", className: "w-[120px] h-8 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:213:18", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "213", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%22placeholder%22%3A%22Sort%22%7D", placeholder: "Sort" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { "data-greta-id": "src/pages/Index.tsx:215:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "215", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:216:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "216", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22custom%22%7D", value: "custom", children: "Custom (Drag)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:217:18", "data-greta-name": "SelectItem", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "217", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%22value%22%3A%22priority%22%7D", value: "priority", children: "Priority" })
+                  ] })
                 ] })
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:157:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "157", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:158:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "158", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:159:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "159", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  "data-greta-id": "src/pages/Index.tsx:160:14",
-                  "data-greta-name": "Input",
-                  "data-greta-editable": "false",
-                  "data-component-path": "src/pages/Index.tsx",
-                  "data-component-line": "160",
-                  "data-component-file": "Index.tsx",
-                  "data-component-name": "Input",
-                  "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D",
-                  placeholder: "What needs to be done?",
-                  value: newTodo,
-                  onChange: (e) => setNewTodo(e.target.value),
-                  className: "flex-1 h-11",
-                  disabled: isAdding
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { "data-greta-id": "src/pages/Index.tsx:167:14", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "167", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:168:16", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "168", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-%5B130px%5D%20h-11%22%7D", className: "w-[130px] h-11", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:169:18", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "169", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:171:16", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "171", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:172:39", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "172", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { "data-greta-id": "src/pages/Index.tsx:223:8", "data-greta-name": "CardContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "223", "data-component-file": "Index.tsx", "data-component-name": "CardContent", "data-component-content": "%7B%7D", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("form", { "data-greta-id": "src/pages/Index.tsx:224:10", "data-greta-name": "form", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "224", "data-component-file": "Index.tsx", "data-component-name": "form", "data-component-content": "%7B%22className%22%3A%22space-y-4%20mb-8%22%7D", onSubmit: handleAddTodo, className: "space-y-4 mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:225:12", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "225", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20gap-2%22%7D", className: "flex flex-col gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:226:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "226", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%22%7D", className: "flex gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    "data-greta-id": "src/pages/Index.tsx:227:16",
+                    "data-greta-name": "Input",
+                    "data-greta-editable": "false",
+                    "data-component-path": "src/pages/Index.tsx",
+                    "data-component-line": "227",
+                    "data-component-file": "Index.tsx",
+                    "data-component-name": "Input",
+                    "data-component-content": "%7B%22placeholder%22%3A%22What%20needs%20to%20be%20done%3F%22%2C%22className%22%3A%22flex-1%20h-11%22%7D",
+                    placeholder: "What needs to be done?",
+                    value: newTodo,
+                    onChange: (e) => setNewTodo(e.target.value),
+                    className: "flex-1 h-11",
+                    disabled: isAdding
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { "data-greta-id": "src/pages/Index.tsx:234:16", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "234", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:235:30", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:235:77", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "235", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { "data-greta-id": "src/pages/Index.tsx:175:14", "data-greta-name": "Button", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "175", "data-component-file": "Index.tsx", "data-component-name": "Button", "data-component-content": "%7B%22type%22%3A%22submit%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22h-11%20w-11%20shrink-0%22%7D", type: "submit", size: "icon", className: "h-11 w-11 shrink-0", disabled: isAdding, children: isAdding ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:176:28", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "176", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%20animate-spin%22%7D", className: "h-5 w-5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { "data-greta-id": "src/pages/Index.tsx:176:75", "data-greta-name": "Plus", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "176", "data-component-file": "Index.tsx", "data-component-name": "Plus", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:238:14", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "238", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20gap-2%20flex-wrap%20sm%3Aflex-nowrap%22%7D", className: "flex gap-2 flex-wrap sm:flex-nowrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:239:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "239", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newCategory, onValueChange: setNewCategory, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:240:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "240", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:241:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "241", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:242:22", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "242", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:243:22", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "243", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+                  ] }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:246:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "246", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: CATEGORIES.map((c) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:247:41", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "247", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: c, children: c }, c)) })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Select$1, { "data-greta-id": "src/pages/Index.tsx:250:16", "data-greta-name": "Select", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "250", "data-component-file": "Index.tsx", "data-component-name": "Select", "data-component-content": "%7B%7D", value: newPriority, onValueChange: setNewPriority, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-greta-id": "src/pages/Index.tsx:251:18", "data-greta-name": "SelectTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "251", "data-component-file": "Index.tsx", "data-component-name": "SelectTrigger", "data-component-content": "%7B%22className%22%3A%22w-full%20h-10%22%7D", className: "w-full h-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:252:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "252", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-2%22%7D", className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { "data-greta-id": "src/pages/Index.tsx:253:22", "data-greta-name": "AlertCircle", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "253", "data-component-file": "Index.tsx", "data-component-name": "AlertCircle", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { "data-greta-id": "src/pages/Index.tsx:254:22", "data-greta-name": "SelectValue", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "254", "data-component-file": "Index.tsx", "data-component-name": "SelectValue", "data-component-content": "%7B%7D" })
+                  ] }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { "data-greta-id": "src/pages/Index.tsx:257:18", "data-greta-name": "SelectContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "257", "data-component-file": "Index.tsx", "data-component-name": "SelectContent", "data-component-content": "%7B%7D", children: PRIORITIES.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { "data-greta-id": "src/pages/Index.tsx:258:41", "data-greta-name": "SelectItem", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "258", "data-component-file": "Index.tsx", "data-component-name": "SelectItem", "data-component-content": "%7B%7D", value: p, children: p }, p)) })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Popover, { "data-greta-id": "src/pages/Index.tsx:261:16", "data-greta-name": "Popover", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "261", "data-component-file": "Index.tsx", "data-component-name": "Popover", "data-component-content": "%7B%7D", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { "data-greta-id": "src/pages/Index.tsx:262:18", "data-greta-name": "PopoverTrigger", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "262", "data-component-file": "Index.tsx", "data-component-name": "PopoverTrigger", "data-component-content": "%7B%7D", asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button$1,
+                    {
+                      "data-greta-id": "src/pages/Index.tsx:263:20",
+                      "data-greta-name": "Button",
+                      "data-greta-editable": "false",
+                      "data-component-path": "src/pages/Index.tsx",
+                      "data-component-line": "263",
+                      "data-component-file": "Index.tsx",
+                      "data-component-name": "Button",
+                      "data-component-content": "%7B%22variant%22%3A%22outline%22%7D",
+                      variant: "outline",
+                      className: cn(
+                        "w-full h-10 justify-start text-left font-normal",
+                        !dueDate && "text-muted-foreground"
+                      ),
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { "data-greta-id": "src/pages/Index.tsx:270:22", "data-greta-name": "CalendarIcon", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "270", "data-component-file": "Index.tsx", "data-component-name": "CalendarIcon", "data-component-content": "%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D", className: "mr-2 h-4 w-4" }),
+                        dueDate ? format(dueDate, "MMM d") : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:271:60", "data-greta-name": "span", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "271", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", children: "Due Date" })
+                      ]
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { "data-greta-id": "src/pages/Index.tsx:274:18", "data-greta-name": "PopoverContent", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "274", "data-component-file": "Index.tsx", "data-component-name": "PopoverContent", "data-component-content": "%7B%22className%22%3A%22w-auto%20p-0%22%2C%22align%22%3A%22start%22%7D", className: "w-auto p-0", align: "start", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Calendar,
+                    {
+                      "data-greta-id": "src/pages/Index.tsx:275:20",
+                      "data-greta-name": "Calendar",
+                      "data-greta-editable": "false",
+                      "data-component-path": "src/pages/Index.tsx",
+                      "data-component-line": "275",
+                      "data-component-file": "Index.tsx",
+                      "data-component-name": "Calendar",
+                      "data-component-content": "%7B%22mode%22%3A%22single%22%7D",
+                      mode: "single",
+                      selected: dueDate,
+                      onSelect: setDueDate,
+                      initialFocus: true
+                    }
+                  ) })
+                ] })
+              ] })
             ] }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:181:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "181", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:182:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "182", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:184:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "184", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
-              filteredTodos.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:186:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "186", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22text-center%20py-12%20border-2%20border-dashed%20rounded-xl%20border-muted%22%7D", className: "text-center py-12 border-2 border-dashed rounded-xl border-muted", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:187:22", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "187", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-muted-foreground%20font-medium%22%7D", className: "text-muted-foreground font-medium", children: "No tasks found" }) }) : filteredTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:191:22", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "191", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DragDropContext, { "data-greta-id": "src/pages/Index.tsx:287:10", "data-greta-name": "DragDropContext", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "287", "data-component-file": "Index.tsx", "data-component-name": "DragDropContext", "data-component-content": "%7B%7D", onDragEnd: handleDragEnd, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ConnectedDroppable, { "data-greta-id": "src/pages/Index.tsx:288:12", "data-greta-name": "Droppable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "288", "data-component-file": "Index.tsx", "data-component-name": "Droppable", "data-component-content": "%7B%22droppableId%22%3A%22todos%22%7D", droppableId: "todos", children: (provided) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:290:16", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "290", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22space-y-2%22%7D", ...provided.droppableProps, ref: provided.innerRef, className: "space-y-2", children: [
+              processedTodos.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:292:20", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "292", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22text-center%20py-12%20border-2%20border-dashed%20rounded-xl%20border-muted%22%7D", className: "text-center py-12 border-2 border-dashed rounded-xl border-muted", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { "data-greta-id": "src/pages/Index.tsx:293:22", "data-greta-name": "p", "data-greta-editable": "true", "data-component-path": "src/pages/Index.tsx", "data-component-line": "293", "data-component-file": "Index.tsx", "data-component-name": "p", "data-component-content": "%7B%22className%22%3A%22text-muted-foreground%20font-medium%22%7D", className: "text-muted-foreground font-medium", children: "No tasks found" }) }) : processedTodos.map((todo, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(PublicDraggable, { "data-greta-id": "src/pages/Index.tsx:297:22", "data-greta-name": "Draggable", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "297", "data-component-file": "Index.tsx", "data-component-name": "Draggable", "data-component-content": "%7B%7D", draggableId: todo.id, index: index2, isDragDisabled: sortBy !== "custom", children: (provided2, snapshot) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  "data-greta-id": "src/pages/Index.tsx:193:26",
+                  "data-greta-id": "src/pages/Index.tsx:299:26",
                   "data-greta-name": "div",
                   "data-greta-editable": "false",
                   "data-component-path": "src/pages/Index.tsx",
-                  "data-component-line": "193",
+                  "data-component-line": "299",
                   "data-component-file": "Index.tsx",
                   "data-component-name": "div",
                   "data-component-content": "%7B%7D",
@@ -34976,16 +41042,19 @@ function Index() {
                   className: `flex items-center justify-between p-4 border rounded-xl bg-card transition-all group ${snapshot.isDragging ? "shadow-2xl ring-2 ring-primary scale-[1.02] z-50" : "hover:border-primary/30"}`,
                   style: provided2.draggableProps.style,
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:201:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "201", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:202:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "202", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22text-muted-foreground%2F30%20hover%3Atext-primary%20transition-colors%20cursor-grab%20active%3Acursor-grabbing%22%7D", ...provided2.dragHandleProps, className: "text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing", children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:203:32", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "203", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:307:28", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "307", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-4%20flex-1%20min-w-0%22%7D", className: "flex items-center gap-4 flex-1 min-w-0", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-greta-id": "src/pages/Index.tsx:308:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "308", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", ...provided2.dragHandleProps, className: cn(
+                        "text-muted-foreground/30 hover:text-primary transition-colors cursor-grab active:cursor-grabbing",
+                        sortBy !== "custom" && "opacity-0 pointer-events-none"
+                      ), children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { "data-greta-id": "src/pages/Index.tsx:312:32", "data-greta-name": "GripVertical", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "312", "data-component-file": "Index.tsx", "data-component-name": "GripVertical", "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D", className: "h-5 w-5" }) }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         Checkbox,
                         {
-                          "data-greta-id": "src/pages/Index.tsx:205:30",
+                          "data-greta-id": "src/pages/Index.tsx:314:30",
                           "data-greta-name": "Checkbox",
                           "data-greta-editable": "false",
                           "data-component-path": "src/pages/Index.tsx",
-                          "data-component-line": "205",
+                          "data-component-line": "314",
                           "data-component-file": "Index.tsx",
                           "data-component-name": "Checkbox",
                           "data-component-content": "%7B%22className%22%3A%22h-5%20w-5%22%7D",
@@ -34994,22 +41063,32 @@ function Index() {
                           className: "h-5 w-5"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:210:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "210", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:211:32", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "211", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: `text-sm font-semibold truncate transition-all ${todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"}`, children: todo.title }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:214:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "214", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%20mt-1%22%7D", className: "flex items-center gap-1.5 mt-1", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:215:34", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "215", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:216:34", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "216", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20tracking-wider%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase tracking-wider font-bold text-muted-foreground", children: todo.category })
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:319:30", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "319", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20flex-col%20min-w-0%22%7D", className: "flex flex-col min-w-0", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:320:32", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "320", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%7D", className: `text-sm font-semibold truncate transition-all ${todo.completed ? "line-through text-muted-foreground opacity-60" : "text-foreground"}`, children: todo.title }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:323:32", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "323", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-3%20mt-1%20flex-wrap%22%7D", className: "flex items-center gap-3 mt-1 flex-wrap", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:324:34", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "324", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%22className%22%3A%22flex%20items-center%20gap-1.5%22%7D", className: "flex items-center gap-1.5", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { "data-greta-id": "src/pages/Index.tsx:325:36", "data-greta-name": "Tag", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "325", "data-component-file": "Index.tsx", "data-component-name": "Tag", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%20text-muted-foreground%22%7D", className: "h-3 w-3 text-muted-foreground" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:326:36", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "326", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20uppercase%20tracking-wider%20font-bold%20text-muted-foreground%22%7D", className: "text-[10px] uppercase tracking-wider font-bold text-muted-foreground", children: todo.category })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { "data-greta-id": "src/pages/Index.tsx:330:34", "data-greta-name": "Badge", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "330", "data-component-file": "Index.tsx", "data-component-name": "Badge", "data-component-content": "%7B%22variant%22%3A%22outline%22%7D", variant: "outline", className: cn("text-[8px] h-4 px-1 uppercase font-black border", PRIORITY_COLORS[todo.priority] || PRIORITY_COLORS.Medium), children: todo.priority }),
+                          todo.due_date && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-greta-id": "src/pages/Index.tsx:334:36", "data-greta-name": "div", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "334", "data-component-file": "Index.tsx", "data-component-name": "div", "data-component-content": "%7B%7D", className: cn(
+                            "flex items-center gap-1.5",
+                            isOverdue(todo.due_date) && !todo.completed ? "text-destructive" : "text-muted-foreground"
+                          ), children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { "data-greta-id": "src/pages/Index.tsx:338:38", "data-greta-name": "Clock", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "338", "data-component-file": "Index.tsx", "data-component-name": "Clock", "data-component-content": "%7B%22className%22%3A%22h-3%20w-3%22%7D", className: "h-3 w-3" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "data-greta-id": "src/pages/Index.tsx:339:38", "data-greta-name": "span", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "339", "data-component-file": "Index.tsx", "data-component-name": "span", "data-component-content": "%7B%22className%22%3A%22text-%5B10px%5D%20font-bold%22%7D", className: "text-[10px] font-bold", children: getDueDateLabel(todo.due_date) })
+                          ] })
                         ] })
                       ] })
                     ] }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Button,
+                      Button$1,
                       {
-                        "data-greta-id": "src/pages/Index.tsx:222:28",
+                        "data-greta-id": "src/pages/Index.tsx:347:28",
                         "data-greta-name": "Button",
                         "data-greta-editable": "false",
                         "data-component-path": "src/pages/Index.tsx",
-                        "data-component-line": "222",
+                        "data-component-line": "347",
                         "data-component-file": "Index.tsx",
                         "data-component-name": "Button",
                         "data-component-content": "%7B%22variant%22%3A%22ghost%22%2C%22size%22%3A%22icon%22%2C%22className%22%3A%22text-muted-foreground%20hover%3Atext-destructive%20hover%3Abg-destructive%2F10%20shrink-0%20h-9%20w-9%22%7D",
@@ -35018,7 +41097,7 @@ function Index() {
                         onClick: () => deleteTodo(todo.id),
                         disabled: todo.isDeleting,
                         className: "text-muted-foreground hover:text-destructive hover:bg-destructive/10 shrink-0 h-9 w-9",
-                        children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:229:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "229", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:229:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "229", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" })
+                        children: todo.isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { "data-greta-id": "src/pages/Index.tsx:354:49", "data-greta-name": "Loader2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "354", "data-component-file": "Index.tsx", "data-component-name": "Loader2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%20animate-spin%22%7D", className: "h-4 w-4 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { "data-greta-id": "src/pages/Index.tsx:354:96", "data-greta-name": "Trash2", "data-greta-editable": "false", "data-component-path": "src/pages/Index.tsx", "data-component-line": "354", "data-component-file": "Index.tsx", "data-component-name": "Trash2", "data-component-content": "%7B%22className%22%3A%22h-4%20w-4%22%7D", className: "h-4 w-4" })
                       }
                     )
                   ]
